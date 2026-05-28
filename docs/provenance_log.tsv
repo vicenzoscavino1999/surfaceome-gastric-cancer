@@ -1,3 +1,10 @@
 date	source_id	action	file_or_endpoint	version_or_release	checksum_or_hash	notes
 2026-05-28	deep_research_report	reviewed	C:/Users/Vicenzo/Downloads/deep-research-report (8).md	local file from user	TBD	Used to update Fase 0B landscape, claim discipline, and secondary benchmark controls.
 2026-05-28	scholar_equivalent_search	reviewed	Google Scholar query variants via broad web/academic search	2026-05-28	N/A	Direct Google Scholar access unavailable; search recovered known close literature and no pivot-triggering equivalent.
+2026-05-28	gdc_tcga_stad	metadata_query	https://api.gdc.cancer.gov/cases and https://api.gdc.cancer.gov/files	GDC API live	N/A	Queried TCGA-STAD cases, clinical fields, and RNA-seq STAR count sample types.
+2026-05-28	xena_toil_tcga_gtex	metadata_query	https://toil.xenahubs.net/download/TcgaTargetGTEX_phenotype.txt.gz	Toil recompute; Last-Modified Fri, 09 Apr 2021 20:01:15 GMT	N/A	Counted TCGA-STAD and GTEx stomach phenotype sample types without downloading the large matrix.
+2026-05-28	cbioportal_stad_tcga	metadata_query	https://www.cbioportal.org/api/studies/stad_tcga*/clinical-data	stad_tcga; stad_tcga_pan_can_atlas_2018	N/A	Queried TCGA molecular subtype and legacy clinical field availability.
+2026-05-28	hpa_downloads	metadata_query	https://www.proteinatlas.org/about/download	HPA 25.1; Ensembl 109	N/A	Counted gene coverage from HPA downloadable TSV zips in memory; no raw files saved.
+2026-05-28	uniprot_reviewed_human	metadata_query	https://rest.uniprot.org/uniprotkb/search	UniProt 2026_01	N/A	Queried reviewed human and topology-related entry counts.
+2026-05-28	depmap	metadata_query	https://depmap.org/portal/api/context_explorer/context_info	DepMap current portal; 26Q1 label observed	N/A	Queried STOMACH context model, child subtype, and modality counts.
+2026-05-28	pdc_cptac_gastric	metadata_query	https://pdc.cancer.gov/graphql	PDC GraphQL live	N/A	Queried gastric/STAD proteomics study IDs and case/aliquot counts.

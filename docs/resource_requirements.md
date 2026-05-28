@@ -1,10 +1,10 @@
 # Resource Requirements
 
-Initial estimates are placeholders until Fase 2 downloads and the first full smoke workflow.
+Initial estimates are placeholders until Fase 2 downloads and the first full smoke workflow. Fase 1 metadata narrowed the first download footprint.
 
 ```yaml
 resource_estimates:
-  raw_data_storage: "TBD after Fase 2"
+  raw_data_storage: ">=2 GB for Xena/Toil matrix plus metadata; HPA core TSV zips are <25 MB; optional PDC raw/proteomics can be much larger and is not part of MVP download"
   processed_data_storage: "TBD after Fase 5"
   peak_ram: "TBD after first full run"
   full_pipeline_time: "TBD on reference machine"
@@ -12,7 +12,9 @@ resource_estimates:
   docker_build_time: "TBD"
   requires_gpu: false
   requires_internet: "download phase only"
-  rate_limited_apis: ["HPA", "UniProt", "ClinicalTrials.gov", "Open Targets"]
+  rate_limited_apis: ["HPA", "UniProt", "ClinicalTrials.gov", "Open Targets", "GDC", "cBioPortal", "DepMap", "PDC"]
+  known_large_files:
+    xena_toil_gene_tpm_gz: "1323254426 bytes by HEAD on 2026-05-28"
 ```
 
 ```yaml

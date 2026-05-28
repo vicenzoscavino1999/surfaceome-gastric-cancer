@@ -1,48 +1,70 @@
 version: "0.1.0"
 created: "2026-05-28"
-status: "targets_declared_no_data_downloaded"
+status: "fase1_metadata_inventory_complete_no_large_raw_downloads"
 
 datasets:
   - id: "xena_toil_tcga_gtex"
     role: "primary tumor-normal RNA matrix"
     source: "UCSC Xena / Toil recompute"
-    url: "https://xenabrowser.net/datapages/"
+    url: "https://toil.xenahubs.net"
     local_raw_dir: "data/raw/xena_toil"
-    access_date: null
-    version_or_release: "TBD at download"
-    license_or_terms: "TBD at download"
+    access_date: "2026-05-28"
+    version_or_release: "Toil recompute; TcgaTargetGtex_rsem_gene_tpm.gz Last-Modified Fri, 09 Apr 2021 20:01:53 GMT; phenotype Last-Modified Fri, 09 Apr 2021 20:01:15 GMT"
+    license_or_terms: "UCSC Xena public hub terms; verify at Fase 2 download"
     checksum_manifest: "data/checksums/xena_toil_sha256.tsv"
-    status: "planned"
+    status: "metadata_verified_no_matrix_downloaded"
+    exact_files:
+      - "https://toil.xenahubs.net/download/TcgaTargetGtex_rsem_gene_tpm.gz"
+      - "https://toil.xenahubs.net/download/TcgaTargetGTEX_phenotype.txt.gz"
+    phase1_counts:
+      tcga_stad_primary_tumor: 414
+      tcga_stad_solid_tissue_normal: 36
+      gtex_stomach_normal_tissue: 175
   - id: "gdc_tcga_stad"
     role: "TCGA-STAD clinical, biospecimen, and adjacent-normal sensitivity"
     source: "GDC"
-    url: "https://portal.gdc.cancer.gov/"
+    url: "https://api.gdc.cancer.gov"
     local_raw_dir: "data/raw/gdc_tcga_stad"
-    access_date: null
-    version_or_release: "TBD at download"
-    license_or_terms: "TBD at download"
+    access_date: "2026-05-28"
+    version_or_release: "GDC API live query; TCGA-STAD cases=443; RNA-seq STAR Counts primary=412, solid tissue normal=36, metastatic=0"
+    license_or_terms: "GDC data use terms; open-access metadata queried"
     checksum_manifest: "data/checksums/gdc_tcga_stad_sha256.tsv"
-    status: "planned"
+    status: "metadata_verified_no_raw_downloaded"
   - id: "hpa_downloads"
     role: "normal tissue protein, pathology IHC, subcellular location, RNA tissue"
     source: "Human Protein Atlas"
     url: "https://www.proteinatlas.org/about/download"
     local_raw_dir: "data/raw/hpa"
-    access_date: null
-    version_or_release: "TBD at download"
-    license_or_terms: "TBD at download"
+    access_date: "2026-05-28"
+    version_or_release: "HPA 25.1; Ensembl 109"
+    license_or_terms: "Creative Commons Attribution 4.0 International, with third-party caveats"
     checksum_manifest: "data/checksums/hpa_sha256.tsv"
-    status: "planned"
+    status: "metadata_verified_no_raw_saved"
+    exact_files:
+      - "https://www.proteinatlas.org/download/tsv/normal_ihc_data.tsv.zip"
+      - "https://www.proteinatlas.org/download/tsv/cancer_data.tsv.zip"
+      - "https://www.proteinatlas.org/download/tsv/subcellular_location.tsv.zip"
+      - "https://www.proteinatlas.org/download/tsv/rna_tissue_consensus.tsv.zip"
+      - "https://www.proteinatlas.org/download/tsv/rna_tissue_gtex.tsv.zip"
+    phase1_counts:
+      normal_ihc_stomach_genes: 13478
+      cancer_ihc_stomach_genes: 15312
+      subcellular_location_genes: 13603
   - id: "uniprot_reviewed_human"
     role: "canonical protein IDs, topology, isoforms, extracellular regions"
     source: "UniProtKB reviewed human"
-    url: "https://www.uniprot.org/"
+    url: "https://rest.uniprot.org/uniprotkb/search"
     local_raw_dir: "data/raw/uniprot"
-    access_date: null
-    version_or_release: "TBD at download"
-    license_or_terms: "TBD at download"
+    access_date: "2026-05-28"
+    version_or_release: "2026_01"
+    license_or_terms: "UniProt terms; verify at Fase 2 download"
     checksum_manifest: "data/checksums/uniprot_sha256.tsv"
-    status: "planned"
+    status: "metadata_verified"
+    phase1_counts:
+      reviewed_human_entries: 20431
+      reviewed_human_transmembrane_entries: 5230
+      reviewed_human_topological_domain_entries: 4037
+      reviewed_human_signal_peptide_entries: 3616
   - id: "surfaceome_reference_lists"
     role: "surfaceome universe construction"
     source: "CSPA, Cancer Surfaceome Atlas, GO/UniProt/HPA-derived lists"
@@ -56,13 +78,82 @@ datasets:
   - id: "clinical_druggability_sources"
     role: "candidate card annotations"
     source: "Open Targets, ChEMBL, DGIdb, ClinicalTrials.gov"
-    url: "TBD per source"
+    url: "https://platform.opentargets.org/ ; https://www.ebi.ac.uk/chembl/ ; https://www.clinicaltrials.gov/"
     local_raw_dir: "data/raw/clinical_druggability"
-    access_date: null
-    version_or_release: "TBD at download"
-    license_or_terms: "TBD at download"
+    access_date: "2026-05-28"
+    version_or_release: "current APIs at candidate query date"
+    license_or_terms: "Per source"
     checksum_manifest: "data/checksums/clinical_druggability_sha256.tsv"
-    status: "planned"
+    status: "source_declared_not_assessed"
+  - id: "cbioportal_stad_tcga"
+    role: "TCGA molecular subtype and legacy clinical field availability"
+    source: "cBioPortal"
+    url: "https://www.cbioportal.org"
+    local_raw_dir: "data/raw/cbioportal"
+    access_date: "2026-05-28"
+    version_or_release: "stad_tcga and stad_tcga_pan_can_atlas_2018 API studies"
+    license_or_terms: "cBioPortal public API terms; verify before redistribution"
+    checksum_manifest: "data/checksums/cbioportal_sha256.tsv"
+    status: "metadata_verified"
+  - id: "depmap"
+    role: "gastric/GEJ cell-line expression and CRISPR dependency evidence"
+    source: "DepMap Portal Context Explorer"
+    url: "https://depmap.org/portal/context_explorer/?context=STOMACH"
+    local_raw_dir: "data/raw/depmap"
+    access_date: "2026-05-28"
+    version_or_release: "DepMap Portal current release; 26Q1 label observed on portal"
+    license_or_terms: "DepMap portal terms; verify at file download"
+    checksum_manifest: "data/checksums/depmap_sha256.tsv"
+    status: "metadata_verified"
+    phase1_counts:
+      esophagus_stomach_models: 104
+      esophagogastric_adenocarcinoma_models: 74
+      crispr_models: 69
+      rnaseq_models: 78
+  - id: "pdc_cptac_gastric"
+    role: "incremental gastric/STAD proteomics and related omics"
+    source: "NCI Proteomic Data Commons"
+    url: "https://pdc.cancer.gov"
+    local_raw_dir: "data/raw/pdc_cptac"
+    access_date: "2026-05-28"
+    version_or_release: "PDC GraphQL live query"
+    license_or_terms: "PDC open access and study-specific terms; verify before download"
+    checksum_manifest: "data/checksums/pdc_cptac_sha256.tsv"
+    status: "metadata_verified_no_raw_downloaded"
+    phase1_counts:
+      gastric_study_ids: 12
+      cptac_stad_proteome_cases: 193
+      cptac_stad_proteome_aliquots: 234
+  - id: "scrna_gastric_candidates"
+    role: "malignant epithelial vs TME specificity layer"
+    source: "TISCH2 / GEO gastric cancer scRNA"
+    url: "https://tisch.compbio.cn/home/"
+    local_raw_dir: "data/raw/scrna"
+    access_date: "2026-05-28"
+    version_or_release: "GEO/TISCH2 current at access date"
+    license_or_terms: "Per GEO/TISCH2/source publication"
+    checksum_manifest: "data/checksums/scrna_sha256.tsv"
+    status: "candidate_sources_identified_not_downloaded"
+  - id: "external_bulk_rna_cohorts"
+    role: "external bulk RNA validation cohorts"
+    source: "GEO/ACRG gastric expression cohorts"
+    url: "https://www.ncbi.nlm.nih.gov/geo/"
+    local_raw_dir: "data/raw/external_bulk_rna"
+    access_date: "2026-05-28"
+    version_or_release: "GEO current at access date"
+    license_or_terms: "Per GEO/source publication"
+    checksum_manifest: "data/checksums/external_bulk_rna_sha256.tsv"
+    status: "candidate_sources_identified_not_downloaded"
+  - id: "structure_sources"
+    role: "candidate-level PDB and AlphaFold annotations"
+    source: "RCSB PDB / AlphaFold DB"
+    url: "https://search.rcsb.org/ ; https://alphafold.ebi.ac.uk/"
+    local_raw_dir: "data/raw/pdb; data/raw/alphafold"
+    access_date: "2026-05-28"
+    version_or_release: "current APIs at candidate query date"
+    license_or_terms: "Per PDB/AlphaFold source terms"
+    checksum_manifest: "data/checksums/structures_sha256.tsv"
+    status: "source_declared_not_assessed"
 
 rules:
   no_manual_edits_to_raw: true

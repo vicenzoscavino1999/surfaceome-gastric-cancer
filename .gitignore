@@ -20,5 +20,8 @@ release/archive/*
 !data/processed/.gitkeep
 !results/figures/.gitkeep
 !results/tables/.gitkeep
+!results/tables/dataset_inventory.tsv
+!results/tables/sample_counts.tsv
+!results/tables/coverage_matrix.tsv
 !results/rankings/.gitkeep
 !data/checksums/.gitkeep
