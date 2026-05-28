@@ -17,9 +17,11 @@ resource_estimates:
 
 ```yaml
 reference_machine:
-  os: "Windows"
-  cpu: "TBD"
-  architecture: "TBD"
-  ram_gb: 0
-  storage_free_gb: 0
+  os: "Microsoft Windows 11 Home Single Language 10.0.22621"
+  cpu: "Intel(R) Core(TM) i5-10300H CPU @ 2.50GHz"
+  architecture: "x86_64 / 64-bit Windows"
+  cores: 4
+  logical_processors: 8
+  ram_gb: 15.84
+  storage_free_gb_on_d: 865.62
 ```

@@ -1,6 +1,6 @@
 # Literature Landscape and Differentiation
 
-Status: Fase 0B initial execution completed on 2026-05-28.
+Status: Fase 0B closed for execution on 2026-05-28.
 
 Decision: `go_with_narrower_claim`.
 
@@ -16,7 +16,7 @@ Required plan queries:
 4. `"multi-omic" AND "surface" AND "cancer" AND "ranking"`
 5. `"ADC target" AND "gastric cancer" AND "bioinformatics"`
 
-Executed on 2026-05-28 using web search over PubMed, PMC, publisher pages, Sciety/Research Square, and open-access article pages. Direct automated Google Scholar review was not available in this environment; before manuscript submission, do a manual Google Scholar check of the same five queries and append any additional close papers here.
+Executed on 2026-05-28 using web search over PubMed, PMC, publisher pages, Sciety/Research Square, and open-access article pages. Direct automated Google Scholar review was not available in this environment. A Scholar-equivalent broad search pass using the same query language plus "Google Scholar" terms was performed on 2026-05-28 and did not identify a pivot-triggering equivalent study. Before manuscript submission, do a direct browser/manual Google Scholar check and append any additional close papers here.
 
 ## Search Log
 
@@ -27,6 +27,7 @@ Executed on 2026-05-28 using web search over PubMed, PMC, publisher pages, Sciet
 | 2026-05-28 | `"antibody target" AND "gastric adenocarcinoma" AND "computational"` | Web/PubMed/publisher index | Found general ADC target discovery and gastric subtype-specific ADC work. |
 | 2026-05-28 | `"multi-omic" AND "surface" AND "cancer" AND "ranking"` | Web/PubMed/publisher index | Found Cancer Surfaceome Atlas and Multiomics2Targets framework. |
 | 2026-05-28 | `"ADC target" AND "gastric cancer" AND "bioinformatics"` | Web/PubMed/publisher index | Found HPA-based ADC target prioritization and gastric/GEJ ADC target examples. |
+| 2026-05-28 | `Google Scholar "surfaceome" "gastric cancer" "prioritization"` and related variants | Broad web/academic index | Recovered already documented close papers: BMC Cancer 2026, CD66c GEJ, PVR GSRCC, Kathad 2024, Li 2022, TCSA, and ADC target discovery papers. No pivot-triggering equivalent found. |
 
 ## Differentiation Table
 
@@ -73,8 +74,8 @@ Claims to avoid:
 
 ## Immediate Consequences for the Plan
 
-1. Keep Fase 0B open until a manual Google Scholar pass is appended.
-2. Do not download bulk data until the user accepts `go_with_narrower_claim`.
+1. Keep direct manual Google Scholar as a pre-submission check, not a blocker for Fase 1 inventory.
+2. Proceed to Fase 1 only under `go_with_narrower_claim`.
 3. In the manuscript, compare directly against TCSA, BMC Cancer 2026 target prioritization, TANK, CD66c-DXd GEJ, PVR-DXd GSRCC, and the 15-layer gastric ecotype atlas.
 4. Add at least one figure or supplement explicitly benchmarking what this project adds over existing target-prioritization papers.
 5. Include Kathad 2024, Li 2022, Molina/Montero 2022, Yin 2025, and Chang 2026 as additional comparators from the deep-research report.

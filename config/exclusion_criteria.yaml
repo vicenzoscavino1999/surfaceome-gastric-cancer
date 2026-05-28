@@ -1,0 +1,35 @@
+version: "0.1.0-preregistered"
+created: "2026-05-28"
+status: "frozen_before_top_hits"
+
+purpose: "Define exclusion and flagging rules before any ranking or candidate interpretation."
+
+hard_exclusion_from_surfaceome_universe:
+  - id: "no_protein_coding_gene"
+    rule: "Gene is not a reviewed or mappable protein-coding human gene."
+  - id: "intracellular_only"
+    rule: "Curated evidence supports exclusively nuclear, cytosolic, mitochondrial, or peroxisomal localization with no credible cell-surface context."
+  - id: "secreted_only"
+    rule: "Protein is secreted or soluble-only without membrane anchoring or cell-surface retention."
+  - id: "unresolved_identifier"
+    rule: "Gene cannot be resolved to a canonical HGNC/Ensembl/UniProt mapping after manual review."
+
+not_hard_exclusion_but_tier_penalty:
+  - id: "tme_marker"
+    rule: "Immune, endothelial, fibroblast, or stromal signal can remain in tables but cannot be Tier 1 for epithelial tumor targeting unless modality is explicitly TME-directed."
+    examples: ["PTPRC", "PECAM1"]
+  - id: "normal_critical_tissue_high"
+    rule: "High normal expression in critical organs penalizes R and can block Tier 1, but does not remove the gene from all analysis."
+  - id: "isoform_unresolved"
+    rule: "Gene-level signal for isoform-specific targets is allowed only with explicit isoform_unresolved flag."
+    examples: ["CLDN18", "FGFR2"]
+  - id: "protein_evidence_missing"
+    rule: "Missing HPA/protein evidence does not hard-exclude; it restricts tiering and must be tested in missing-data sensitivity."
+  - id: "short_or_ambiguous_ecd"
+    rule: "Short, buried, or ambiguous extracellular domain blocks antibody/ADC claims unless literature provides strong counterevidence."
+
+candidate_interpretation_rules:
+  - "No candidate can be called safe; only lower proxy risk is allowed."
+  - "No candidate can be called validated unless supported by external experimental literature."
+  - "No AlphaFold-derived structure can be used as proof of epitope accessibility."
+  - "Manual curation may change tier annotations, not numeric scores, unless it reveals a reproducible data or mapping bug."

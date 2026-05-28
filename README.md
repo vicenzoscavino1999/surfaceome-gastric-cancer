@@ -11,7 +11,7 @@ Current stage: preregistration/bootstrap. No data-derived results should be inte
 3. Decide `go`, `go_with_narrower_claim`, or `pivot`.
 4. Download expression data only after the novelty gate is documented.
 
-Current Fase 0B status: initial decision is `go_with_narrower_claim`; manual Google Scholar verification remains pending before bulk data download.
+Current Fase 0B status: closed for execution as `go_with_narrower_claim`; direct manual Google Scholar verification remains a pre-submission check.
 
 ## Commands
 

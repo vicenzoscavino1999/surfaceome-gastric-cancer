@@ -15,6 +15,7 @@ REQUIRED_BOOTSTRAP_FILES = [
     "config/datasets.yaml",
     "config/parameters.yaml",
     "config/surfaceome_universe_definition.yaml",
+    "config/exclusion_criteria.yaml",
     "docs/design_decisions.md",
     "docs/time_tracking.tsv",
     "docs/resource_requirements.md",
