@@ -1,0 +1,71 @@
+version: "0.1.0"
+created: "2026-05-28"
+status: "targets_declared_no_data_downloaded"
+
+datasets:
+  - id: "xena_toil_tcga_gtex"
+    role: "primary tumor-normal RNA matrix"
+    source: "UCSC Xena / Toil recompute"
+    url: "https://xenabrowser.net/datapages/"
+    local_raw_dir: "data/raw/xena_toil"
+    access_date: null
+    version_or_release: "TBD at download"
+    license_or_terms: "TBD at download"
+    checksum_manifest: "data/checksums/xena_toil_sha256.tsv"
+    status: "planned"
+  - id: "gdc_tcga_stad"
+    role: "TCGA-STAD clinical, biospecimen, and adjacent-normal sensitivity"
+    source: "GDC"
+    url: "https://portal.gdc.cancer.gov/"
+    local_raw_dir: "data/raw/gdc_tcga_stad"
+    access_date: null
+    version_or_release: "TBD at download"
+    license_or_terms: "TBD at download"
+    checksum_manifest: "data/checksums/gdc_tcga_stad_sha256.tsv"
+    status: "planned"
+  - id: "hpa_downloads"
+    role: "normal tissue protein, pathology IHC, subcellular location, RNA tissue"
+    source: "Human Protein Atlas"
+    url: "https://www.proteinatlas.org/about/download"
+    local_raw_dir: "data/raw/hpa"
+    access_date: null
+    version_or_release: "TBD at download"
+    license_or_terms: "TBD at download"
+    checksum_manifest: "data/checksums/hpa_sha256.tsv"
+    status: "planned"
+  - id: "uniprot_reviewed_human"
+    role: "canonical protein IDs, topology, isoforms, extracellular regions"
+    source: "UniProtKB reviewed human"
+    url: "https://www.uniprot.org/"
+    local_raw_dir: "data/raw/uniprot"
+    access_date: null
+    version_or_release: "TBD at download"
+    license_or_terms: "TBD at download"
+    checksum_manifest: "data/checksums/uniprot_sha256.tsv"
+    status: "planned"
+  - id: "surfaceome_reference_lists"
+    role: "surfaceome universe construction"
+    source: "CSPA, Cancer Surfaceome Atlas, GO/UniProt/HPA-derived lists"
+    url: "TBD per source"
+    local_raw_dir: "data/raw/surfaceome"
+    access_date: null
+    version_or_release: "TBD at download"
+    license_or_terms: "TBD at download"
+    checksum_manifest: "data/checksums/surfaceome_sha256.tsv"
+    status: "planned"
+  - id: "clinical_druggability_sources"
+    role: "candidate card annotations"
+    source: "Open Targets, ChEMBL, DGIdb, ClinicalTrials.gov"
+    url: "TBD per source"
+    local_raw_dir: "data/raw/clinical_druggability"
+    access_date: null
+    version_or_release: "TBD at download"
+    license_or_terms: "TBD at download"
+    checksum_manifest: "data/checksums/clinical_druggability_sha256.tsv"
+    status: "planned"
+
+rules:
+  no_manual_edits_to_raw: true
+  every_raw_file_requires_checksum: true
+  every_dataset_requires_access_date: true
+  every_dataset_requires_license_or_terms: true

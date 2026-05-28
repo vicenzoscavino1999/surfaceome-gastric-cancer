@@ -1,0 +1,39 @@
+version: "0.1.0-preregistered"
+created: "2026-05-28"
+
+random:
+  global_seed: 20260528
+  bootstrap_seed: 20260529
+  perturbation_seed: 20260530
+  rank_resolution_seed: 20260531
+
+numeric_tolerances:
+  default_abs: 1.0e-8
+  default_rel: 1.0e-6
+  ranking_score_abs: 1.0e-6
+  pca_variance_abs: 1.0e-5
+
+expression:
+  tumor_tpm_thresholds:
+    primary: 1.0
+    sensitivity:
+      - 0.5
+      - 1.0
+      - 5.0
+  pseudocount: 0.1
+
+batch_diagnostic:
+  required: true
+  pca_output: "results/figures/pca_batch_diagnostic.svg"
+  permanova_output: "results/tables/batch_permanova.tsv"
+
+subtype_analysis:
+  min_n_for_quantitative_claim: 30
+  min_n_for_descriptive_report: 15
+  min_n_for_tier_1_subtype_only: 50
+
+manual_curation:
+  top_n_primary: 30
+  top_n_extended_if_time: 50
+  max_minutes_per_candidate: 60
+  hard_max_minutes_per_candidate: 90

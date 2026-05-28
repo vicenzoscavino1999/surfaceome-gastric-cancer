@@ -1,0 +1,133 @@
+version: "0.1.0-preregistered"
+created: "2026-05-28"
+status: "frozen_before_data_execution"
+
+score_components:
+  Surf: "surfaceome membership confidence; higher is better"
+  E: "tumor expression and prevalence; higher is better"
+  N: "tumor-normal selectivity; higher is better"
+  R: "on-target/off-tumor risk; higher is worse and is subtracted"
+  P: "protein/localization evidence; higher is better"
+  SC: "tumor-cell specificity versus TME; higher is better; optional in MVP"
+  T: "topology, extracellular accessibility, and isoform confidence; higher is better"
+
+normalization:
+  primary: "rank_percentile"
+  sensitivity:
+    - "robust_z_median_mad"
+    - "winsorized_min_max"
+
+missing_data_policy:
+  score_computation:
+    strategy: "exclude_and_renormalize"
+    description: "Use available components and divide by the sum of available weights."
+  tiering_impact:
+    max_missing_for_tier_1A: 1
+    max_missing_for_tier_1B: 2
+    three_or_more_missing: "Tier 2/watchlist unless strong manual justification is documented."
+  sensitivity:
+    imputation_scenarios:
+      - "p25"
+      - "p50"
+      - "p75"
+      - "exclude_and_renormalize"
+
+scenarios:
+  balanced:
+    primary: true
+    weights:
+      Surf: 0.15
+      E: 0.20
+      N: 0.20
+      R: 0.20
+      P: 0.15
+      SC: 0.00
+      T: 0.10
+    note: "MVP primary scenario without SC. If SC is available and reliable, weights must be preregistered in a new version before ranking."
+  balanced_with_sc:
+    primary: false
+    weights:
+      Surf: 0.13
+      E: 0.18
+      N: 0.18
+      R: 0.18
+      P: 0.13
+      SC: 0.10
+      T: 0.10
+    note: "Use only if scRNA data passes annotation quality gate before Fase 13."
+  safety_first:
+    primary: false
+    weights:
+      Surf: 0.12
+      E: 0.15
+      N: 0.22
+      R: 0.28
+      P: 0.13
+      SC: 0.00
+      T: 0.10
+  adc_focused:
+    primary: false
+    weights:
+      Surf: 0.15
+      E: 0.24
+      N: 0.16
+      R: 0.18
+      P: 0.17
+      SC: 0.00
+      T: 0.10
+    tiering_annotations:
+      - "internalization"
+      - "extracellular_domain"
+      - "protein_evidence"
+  novelty_focused:
+    primary: false
+    weights:
+      Surf: 0.17
+      E: 0.18
+      N: 0.20
+      R: 0.18
+      P: 0.14
+      SC: 0.00
+      T: 0.13
+    note: "Clinical validation is not a numeric component; novelty affects candidate cards/tiering only."
+  protein_first:
+    primary: false
+    weights:
+      Surf: 0.15
+      E: 0.15
+      N: 0.18
+      R: 0.18
+      P: 0.24
+      SC: 0.00
+      T: 0.10
+
+risk_score:
+  strategy: "max_weighted_organ_penalty"
+  thresholds:
+    caution: "normal_pan_tissue_p50"
+    critical: "normal_pan_tissue_p75"
+    caution_tpm_floor: 1.0
+    critical_tpm_floor: 5.0
+  organ_weights:
+    heart: 1.00
+    brain: 1.00
+    liver: 0.90
+    kidney: 0.90
+    lung: 0.85
+    endothelial: 0.85
+    hematopoietic: 0.80
+    immune: 0.75
+    gi_epithelial: 0.70
+    reproductive_other: 0.60
+  sensitivity:
+    organ_weight_perturbation: 0.20
+    functional_forms:
+      - "R_max"
+      - "R_max_plus_breadth"
+      - "R_sum_capped"
+
+functional_form_sensitivity:
+  - method: "weighted_rank_sum"
+  - method: "geometric_mean_percentile"
+  - method: "weighted_rank_sum_with_veto"
+    veto_threshold_percentile: 20

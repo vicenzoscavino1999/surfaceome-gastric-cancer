@@ -1,0 +1,45 @@
+version: "0.1.0-preregistered"
+created: "2026-05-28"
+status: "definition_declared_before_download"
+
+objective: "Build a high-confidence but not overly narrow universe of candidate cell-surface proteins for gastric adenocarcinoma target prioritization."
+
+candidate_sources:
+  - id: "cancer_surfaceome_atlas"
+    planned_use: "strong supporting source"
+    status: "planned"
+  - id: "cell_surface_protein_atlas_cspa"
+    planned_use: "experimental cell-surface evidence"
+    status: "planned"
+  - id: "uniprot_topology"
+    planned_use: "reviewed topology and extracellular regions"
+    status: "planned"
+  - id: "go_cell_surface_plasma_membrane"
+    planned_use: "supporting annotation"
+    status: "planned"
+  - id: "hpa_subcellular_location"
+    planned_use: "supporting localization"
+    status: "planned"
+
+initial_category_rules:
+  core_surfaceome:
+    description: "Multiple independent sources or curated topology strongly support cell-surface accessibility."
+    minimum_evidence: ">=2 independent surface-supporting sources OR UniProt reviewed extracellular topology with plasma membrane localization"
+  candidate_surfaceome:
+    description: "Some surface evidence but incomplete or conflicting support."
+    minimum_evidence: "1 surface-supporting source with no strong contradiction"
+  excluded_or_flagged:
+    description: "Known intracellular, secreted-only, mitochondrial, nuclear, ER-only, or TME/off-tumor markers unless context-specific surface evidence exists."
+
+expected_size_range:
+  min_genes: 800
+  max_genes: 2200
+  action_if_outside_range: "warn_and_document_in_design_decisions"
+
+special_cases:
+  cldn18:
+    requirement: "Track CLDN18.2 isoform explicitly; gene-level CLDN18 is not enough for clinical claims."
+  fgfr2:
+    requirement: "Track FGFR2b isoform context explicitly when available."
+  ptprc_pecam1:
+    requirement: "Do not use as non-surface controls; use as TME/off-tumor penalty controls."

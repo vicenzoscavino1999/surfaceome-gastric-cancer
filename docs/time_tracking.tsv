@@ -1,0 +1,4 @@
+week_real	phase	hours_real	hours_estimated	ratio	overrun_reason	note
+2026-W22	bootstrap	0	20-35	0.00		Initial repository bootstrap started; no data execution yet.
+2026-W22	Fase 0B literature landscape initial pass	2	12	0.17		Initial web/PubMed/publisher search completed; decision go_with_narrower_claim pending manual Google Scholar confirmation.
+2026-W22	Deep research report assessment	1	3	0.33		Reviewed user-provided deep research report and incorporated additional comparators/benchmarks.

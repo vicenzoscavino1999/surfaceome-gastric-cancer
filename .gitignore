@@ -1,0 +1,24 @@
+.snakemake/
+.pytest_cache/
+__pycache__/
+*.pyc
+.venv/
+env/
+environment.lock.yml
+
+# Raw and large generated data are tracked by manifests/checksums, not Git.
+data/raw/*
+data/interim/*
+data/processed/*
+results/figures/*
+results/tables/*
+results/rankings/*
+release/archive/*
+
+!data/raw/.gitkeep
+!data/interim/.gitkeep
+!data/processed/.gitkeep
+!results/figures/.gitkeep
+!results/tables/.gitkeep
+!results/rankings/.gitkeep
+!data/checksums/.gitkeep

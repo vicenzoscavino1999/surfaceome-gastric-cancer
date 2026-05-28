@@ -1,0 +1,9 @@
+rule all:
+    input:
+        "results/tables/bootstrap_status.tsv"
+
+rule bootstrap_status:
+    output:
+        "results/tables/bootstrap_status.tsv"
+    shell:
+        "python src/utils/compare_outputs.py --write-bootstrap-status {output}"
