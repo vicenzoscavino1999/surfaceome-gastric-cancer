@@ -9,7 +9,7 @@ Status date: 2026-06-01
 - [x] Retained active raw/source files have checksum manifests under `data/checksums/`.
 - [x] API/manual captures are declared as frozen inputs in `docs/source_acquisition_policy.md`; cBioPortal/GISTIC are not treated as default live-download outputs.
 - [x] Data availability limitations are documented in the manuscript, reproducibility guide, and route-blocker file.
-- [ ] Public repository URL inserted after release.
+- [x] Public repository URL inserted after release: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
 - [ ] Archival DOI inserted after release and covering the frozen input package or equivalent checksum/provenance data package.
 
 ## Code
@@ -24,8 +24,8 @@ Status date: 2026-06-01
 - [x] Current release-candidate container audit passes with `docker run --rm -v "${PWD}:/work" surfaceome-gastric-cancer-repro`.
 - [x] Current release-candidate clean-directory audit passes after forced Fase 13->17 rerun and hash comparison.
 - [x] Current release-candidate clean-directory recompute from frozen `data/raw/` passes Fase 1->17 and reviewer audit.
-- [ ] Clean clone/container audit repeated after public release tag/DOI freeze.
-- [ ] Full transitive environment lockfile or container verified on the frozen public release.
+- [ ] Clean clone/container audit repeated after public release tag; post-tag result should be recorded in release notes or an external audit artifact because it is generated after the commit tree is frozen.
+- [ ] Full transitive environment lockfile or container verified on the frozen public release tag.
 - [ ] Manual GitHub Actions release-audit workflow repeated on the final public release package if the frozen data bundle is available to the runner.
 
 ## Results
@@ -38,7 +38,7 @@ Status date: 2026-06-01
 - [x] Manuscript figures are exported and checked as publication PDFs.
 - [x] Forced downstream Fase 13->17 workflow rerun and key-output hash comparison completed on a clean directory copy.
 - [x] Full declared workflow rerun from frozen local raw/source files completed on a clean directory copy, with key-output hash comparison.
-- [ ] Live-source redownload smoke test after public release tag/DOI freeze, best-effort only.
+- [ ] Live-source redownload smoke test after public release tag and DOI archive, best-effort only.
 
 ## Documentation
 
@@ -59,8 +59,10 @@ Status date: 2026-06-01
 ## Publication
 
 - [ ] Final PDF/graphical abstract approved by author.
-- [ ] GitHub or equivalent public repository release.
+- [x] GitHub or equivalent public repository release.
 - [ ] Zenodo, OSF, Figshare, or equivalent archival DOI.
-- [ ] DOI and public repository URL added to manuscript.
-- [ ] DOI and public repository URL added to cover letter.
+- [x] Public repository URL added to manuscript.
+- [x] Public repository URL added to cover letter.
+- [ ] DOI added to manuscript.
+- [ ] DOI added to cover letter.
 - [ ] Editorial Manager upload completed.

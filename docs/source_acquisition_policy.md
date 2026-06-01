@@ -11,7 +11,7 @@ This release does not claim that a reviewer can redownload every byte from live 
 - `recompute-from-frozen-raw` recomputes Fase 1-17 from the retained local `data/raw/` bundle without live web re-querying.
 - `redownload-from-live-sources` is best-effort only. API payloads, endpoint behavior, versions, and availability can change after the release date.
 
-The final public release must be archived through Zenodo, OSF, Figshare, or an equivalent repository. The archival DOI must cover the code tree and the frozen data inputs needed for the reviewer contract, or a documented data package containing checksum manifests and exact retrieval/provenance records where upstream redistribution terms prevent bundling raw third-party files.
+The code repository is public at https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final public release must also be archived through Zenodo, OSF, Figshare, or an equivalent repository. The archival DOI must cover the code tree and the frozen data inputs needed for the reviewer contract, or a documented data package containing checksum manifests and exact retrieval/provenance records where upstream redistribution terms prevent bundling raw third-party files.
 
 ## Frozen API and Manual Inputs
 

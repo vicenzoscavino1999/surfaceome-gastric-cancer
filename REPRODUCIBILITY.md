@@ -69,6 +69,8 @@ The release uses four explicit levels:
 
 `docs/source_acquisition_policy.md` records the release boundary for API/manual acquisitions. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are frozen inputs with checksum/provenance records. The final public DOI must cover those inputs or an equivalent archived data package; live refreshes are best-effort only.
 
+The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The planned release-candidate tag is `v0.1.0-rc1`; the archival DOI remains pending until the frozen input bundle or equivalent checksum/provenance package is archived externally.
+
 ## Reviewer Audit Path
 
 The shortest reproducibility path for a reviewer is:
@@ -132,9 +134,10 @@ python scripts/build_release_audit_report.py
 - [x] Key-output hash comparison after frozen-raw clean-directory recompute.
 - [x] cBioPortal/GISTIC and other API/manual captures declared as frozen checksum-registered inputs rather than default live-download outputs.
 - [x] GitHub Actions added for push/PR small CI, manual reviewer audit, Docker audit, and manual frozen-raw rerun.
-- [ ] Repeat clean clone/container audit after the public release tag/DOI freeze.
-- [ ] Environment recreated from the lockfile/container on the frozen public release.
+- [ ] Repeat clean clone/container audit after the public release tag; record the post-tag result in release notes or a post-release audit artifact because it is necessarily generated after the commit tree is frozen.
+- [ ] Environment recreated from the lockfile/container on the frozen public release tag.
 - [ ] Final archival DOI covers the frozen data inputs or an equivalent checksum/provenance data package.
 - [ ] Optional live-source redownload smoke test after public release freeze, treated as best-effort only.
-- [ ] Public repository URL and archival DOI inserted in manuscript and cover letter.
+- [x] Public repository URL inserted in manuscript and cover letter.
+- [ ] Archival DOI inserted in manuscript and cover letter.
 - [ ] Release checklist in `release/release_checklist.md`.

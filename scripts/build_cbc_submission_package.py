@@ -88,7 +88,10 @@ def main() -> int:
 
     manifest.append("")
     manifest.append("## External blockers")
-    manifest.append("- Insert public repository URL and archival DOI before formal submission.")
+    manifest.append(
+        "- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; "
+        "insert archival DOI before formal submission."
+    )
     manifest.append("- Add full postal address in Editorial Manager if required.")
     manifest.append("- Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.")
 

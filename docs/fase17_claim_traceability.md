@@ -57,6 +57,7 @@ Sidecar metadata: `results/rankings/ranking_v2_frozen.metadata.yaml`
 
 - Verify every external bibliographic record and DOI during the reference-manager / `.bib` pass.
 - Reconfirm the CSBJ guide for authors immediately before final submission formatting.
-- Insert the public repository URL and archival DOI after the Fase 18 release.
+- Public repository URL inserted: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
+- Insert the archival DOI after the frozen input package or equivalent checksum/provenance package is archived.
 - Reconfirm author, funding, competing-interest, and acknowledgement wording immediately before final submission; current author name, affiliation, ORCID, and corrected corresponding-author email are inserted but the PDF remains non-final.
 - Migrate the frozen editorial text to LaTeX only after the remaining language review is complete.

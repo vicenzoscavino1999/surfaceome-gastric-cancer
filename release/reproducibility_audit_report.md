@@ -1,6 +1,6 @@
 # Reproducibility Audit Report
 
-Generated: 2026-06-01 19:22:00 UTC
+Generated: 2026-06-01 19:48:22 UTC
 
 ## Scope
 
@@ -201,12 +201,12 @@ results/validation/risk_functiona
 
 ## Remaining Release Blockers
 
-- Public repository URL is still required.
+- Public repository URL: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
 - Archival DOI is still required and must cover frozen inputs or an equivalent checksum/provenance data package.
-- A clean clone or clean directory audit should be repeated after the release candidate is frozen.
-- Docker build/run should be repeated on the final public release package.
+- A clean clone/container audit should be repeated after the public release-candidate tag is created.
+- Docker build/run should be repeated on the frozen public release tag.
 - Manual GitHub Actions release-audit jobs should be repeated when the final frozen data bundle is available to the runner.
-- Manuscript and cover letter still need the final repository URL and archival DOI.
+- Manuscript and cover letter include the public repository URL; they still need the final archival DOI.
 
 ### Reproducibility Check Output
 
@@ -214,7 +214,7 @@ results/validation/risk_functiona
 == unit tests ==
 C:\Users\Vicenzo\AppData\Local\Programs\Python\Python312\python.exe -m pytest -q
 .............                                                            [100%]
-13 passed in 3.84s
+13 passed in 5.68s
 
 == artifact check --self-test ==
 C:\Users\Vicenzo\AppData\Local\Programs\Python\Python312\python.exe src/utils/compare_outputs.py --self-test

@@ -31,6 +31,6 @@ This inventory documents outputs that may vary across platforms, dependency vers
 
 ## Pending Before Final Release
 
-- Repeat the clean clone/container audit after the final public tag and archival DOI are frozen.
+- Repeat the clean clone/container audit after the final public tag is created; repeat DOI-bound data-package checks after the archival DOI is frozen.
 - Ensure the archival DOI covers the frozen inputs or an equivalent checksum/provenance data package.
 - Treat any full all-rules live-source redownload after public release freeze as best-effort only.

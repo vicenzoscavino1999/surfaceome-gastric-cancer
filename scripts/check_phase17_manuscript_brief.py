@@ -281,7 +281,12 @@ def main() -> int:
     if (ROOT / "manuscript/latex/cbc_manuscript.pdf").stat().st_size == 0:
         failures.append("CBC LaTeX handoff PDF preview is empty")
 
-    for needle in ["subscription route", "not independent validation", "public repository URL and archival DOI"]:
+    for needle in [
+        "subscription route",
+        "not independent validation",
+        "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer",
+        "archival DOI",
+    ]:
         if needle not in cover_letter:
             failures.append(f"CBC cover letter draft missing required phrase: {needle}")
     for needle in ["subscription route", "no APC", "Do not hand-edit `manuscript/latex/cbc_manuscript.tex`", "research-data Option C"]:
@@ -291,7 +296,8 @@ def main() -> int:
     for needle in [
         "python scripts/run_reproducibility_checks.py",
         "Current Limitations",
-        "public repository URL and archival DOI",
+        "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer",
+        "archival DOI",
         "full transitive environment lockfile",
         "GitHub Actions",
         "docs/source_acquisition_policy.md",
@@ -301,7 +307,8 @@ def main() -> int:
     for needle in [
         "python scripts/run_reproducibility_checks.py",
         "Snakemake dry-run",
-        "Public repository URL and archival DOI",
+        "Public repository URL inserted",
+        "Archival DOI inserted",
         "GitHub Actions",
     ]:
         if needle not in reproducibility:

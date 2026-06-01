@@ -13,7 +13,7 @@ python scripts\build_phase17_latex_handoff.py
 
 The generated manuscript source is `cbc_manuscript.tex`. Edit `manuscript/cbc_manuscript_scaffold.md`, not the generated `.tex`, then regenerate.
 
-The current `cbc_manuscript.pdf` is a draft preview with current author name, affiliation, ORCID, durable corresponding-author email, and phone metadata inserted. It is not submission-ready because the public repository URL, archival DOI, optional postal-address metadata, optional referee suggestions, and final user approval remain pending.
+The current `cbc_manuscript.pdf` is a draft preview with current author name, affiliation, ORCID, durable corresponding-author email, phone metadata, and public repository URL inserted. It is not submission-ready because the archival DOI, optional postal-address metadata, optional referee suggestions, and final user approval remain pending.
 
 Publication figure PDFs are generated separately:
 
@@ -36,6 +36,6 @@ The older `csbj_manuscript.*` files may remain as historical generated artifacts
 
 - Add postal-address metadata if required by Editorial Manager.
 - Reconfirm funding, declaration of interests, and CRediT roles immediately before submission.
-- Add public repository URL and archival DOI after release.
+- Add archival DOI after external archive release. Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
 - Select the subscription route unless open-access funding is available.
 - Recompile and visually inspect the final submission PDF.

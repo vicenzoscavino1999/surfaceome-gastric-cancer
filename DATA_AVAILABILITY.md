@@ -4,7 +4,7 @@ This project uses only public, de-identified, aggregate, or open-access research
 
 ## Current Release Status
 
-The local analysis package is complete enough for reviewer-facing audit, but the public release is not yet archived. Before journal submission, the repository release must be made public and archived through Zenodo, OSF, Figshare, or an equivalent repository. The resulting public URL and archival DOI must be inserted into the manuscript and cover letter.
+The code repository is public at https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The release candidate is not yet archived with an external DOI. Before journal submission, the repository/data package must be archived through Zenodo, OSF, Figshare, or an equivalent repository, and the resulting archival DOI must be inserted into the manuscript and cover letter.
 
 ## Raw and Source Data
 

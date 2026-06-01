@@ -34,6 +34,6 @@ Generated from repository sources. Do not edit these packaged files directly.
 - manuscript_table5_candidate_flags.tsv
 
 ## External blockers
-- Insert public repository URL and archival DOI before formal submission.
+- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; insert archival DOI before formal submission.
 - Add full postal address in Editorial Manager if required.
 - Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.

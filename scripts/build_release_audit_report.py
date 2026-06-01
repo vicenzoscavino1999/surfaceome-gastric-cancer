@@ -188,12 +188,12 @@ def main() -> int:
         "",
         "## Remaining Release Blockers",
         "",
-        "- Public repository URL is still required.",
+        "- Public repository URL: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.",
         "- Archival DOI is still required and must cover frozen inputs or an equivalent checksum/provenance data package.",
-        "- A clean clone or clean directory audit should be repeated after the release candidate is frozen.",
-        "- Docker build/run should be repeated on the final public release package.",
+        "- A clean clone/container audit should be repeated after the public release-candidate tag is created.",
+        "- Docker build/run should be repeated on the frozen public release tag.",
         "- Manual GitHub Actions release-audit jobs should be repeated when the final frozen data bundle is available to the runner.",
-        "- Manuscript and cover letter still need the final repository URL and archival DOI.",
+        "- Manuscript and cover letter include the public repository URL; they still need the final archival DOI.",
     ]
 
     if audit_output:
