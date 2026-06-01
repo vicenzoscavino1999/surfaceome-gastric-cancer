@@ -189,9 +189,10 @@ def main() -> int:
         "## Remaining Release Blockers",
         "",
         "- Public repository URL is still required.",
-        "- Archival DOI is still required.",
+        "- Archival DOI is still required and must cover frozen inputs or an equivalent checksum/provenance data package.",
         "- A clean clone or clean directory audit should be repeated after the release candidate is frozen.",
         "- Docker build/run should be repeated on the final public release package.",
+        "- Manual GitHub Actions release-audit jobs should be repeated when the final frozen data bundle is available to the runner.",
         "- Manuscript and cover letter still need the final repository URL and archival DOI.",
     ]
 

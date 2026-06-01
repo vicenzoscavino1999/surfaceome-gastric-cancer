@@ -188,7 +188,8 @@ datasets:
     version_or_release: "stad_tcga and stad_tcga_pan_can_atlas_2018 API studies"
     license_or_terms: "cBioPortal public API terms; verify before redistribution"
     checksum_manifest: "data/checksums/cbioportal_sha256.tsv"
-    status: "patient_subtype_stage_and_cna_context_downloaded_with_checksums_fase5_complete"
+    acquisition_policy: "frozen_archived_input_in_default_reviewer_path; live API refresh is best-effort only"
+    status: "patient_subtype_stage_and_cna_context_frozen_with_checksums_fase5_complete_live_redownload_best_effort_only"
     exact_files:
       - "https://www.cbioportal.org/api/studies/stad_tcga_pan_can_atlas_2018/clinical-data?clinicalDataType=PATIENT&projection=DETAILED"
       - "https://www.cbioportal.org/api/molecular-profiles/stad_tcga_pan_can_atlas_2018_gistic/molecular-data/fetch?projection=SUMMARY"

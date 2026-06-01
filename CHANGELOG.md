@@ -11,6 +11,7 @@ All notable changes to the reproducible analysis package are documented here.
 - Added external TCSA baseline comparison, Wang simple and matched-null overlap audits, GPI correction-impact tables, and limited TISCH2 candidate-level annotations without changing scores or tiers.
 - Added release-engineering files for data availability, citation metadata, Docker runtime, and locked dependency audit.
 - Hardened release reproducibility after clean-directory audit: Wang 2026 `mmc8.xlsx` now has a local checksum-validated cache/fallback path, Fase 13 v2 freeze metadata is pinned for bitwise ranking-hash reproduction, Docker audit passes, and a clean directory forced Fase 13->17 rerun reproduced key output hashes.
+- Declared cBioPortal/GISTIC and other API/manual captures as frozen checksum inputs rather than default live re-download outputs, added `docs/source_acquisition_policy.md`, and added GitHub Actions small CI plus manual full-data release-audit workflows.
 
 ## Pre-release analysis history
 

@@ -1,0 +1,141 @@
+name: Reproducibility CI
+
+"on":
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      run_release_audit:
+        description: "Run the full reviewer audit. Requires the frozen release data bundle in data/raw/."
+        required: false
+        type: boolean
+        default: false
+      run_downstream_recompute:
+        description: "Force Fase 13->17 downstream recomputation after the reviewer audit."
+        required: false
+        type: boolean
+        default: false
+      run_full_raw_recompute:
+        description: "Delete derived outputs and run Fase 1->17 from frozen data/raw/. Manual release audit only."
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  ci-smoke:
+    name: Small CI smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install CI dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+
+      - name: Check small tracked release inputs
+        run: python scripts/check_release_inputs.py --mode ci-small
+
+      - name: Syntax lint
+        run: python -m compileall -q scripts src tests
+
+      - name: Pytest
+        run: python -m pytest -q
+
+      - name: Snakemake dry-run for CI-safe targets
+        run: >
+          python -m snakemake -n --cores 1
+          results/tables/bootstrap_status.tsv
+          results/tables/dataset_inventory.tsv
+          results/tables/sample_counts.tsv
+          results/tables/coverage_matrix.tsv
+          docs/fase1_data_inventory.md
+
+      - name: Build audit container
+        run: docker build -f docker/Dockerfile -t surfaceome-gastric-cancer-repro .
+
+  reviewer-audit:
+    name: Full reviewer audit
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_release_audit }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install audit dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+          python -m pip install -r requirements-manuscript.txt
+
+      - name: Verify full frozen release bundle
+        run: python scripts/check_release_inputs.py --mode full --verify-checksums
+
+      - name: Reviewer audit
+        run: python scripts/run_reproducibility_checks.py
+
+      - name: Full Snakemake dry-run
+        run: python -m snakemake -n --cores 1
+
+      - name: Optional downstream recompute
+        if: ${{ inputs.run_downstream_recompute }}
+        run: |
+          python -m snakemake --cores 1 --forcerun phase13_mvp_scoring
+          python scripts/run_reproducibility_checks.py
+
+      - name: Container reviewer audit
+        run: |
+          docker build -f docker/Dockerfile -t surfaceome-gastric-cancer-repro .
+          docker run --rm -v "$PWD:/work" surfaceome-gastric-cancer-repro
+
+  frozen-raw-rerun:
+    name: Manual frozen raw rerun
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_full_raw_recompute }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install audit dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements-dev.txt
+          python -m pip install -r requirements-manuscript.txt
+
+      - name: Verify frozen raw/source files before deletion
+        run: python scripts/check_release_inputs.py --mode full --verify-checksums
+
+      - name: Delete derived outputs
+        run: |
+          rm -rf data/processed data/interim data/checksums results .snakemake manuscript/latex/figures
+
+      - name: Recompute Fase 1-17 from frozen raw
+        run: python -m snakemake --cores 1
+
+      - name: Reviewer audit after frozen raw rerun
+        run: python scripts/run_reproducibility_checks.py

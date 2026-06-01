@@ -53,7 +53,7 @@ Stage and anatomic-origin expression summaries are included because the fields w
 
 ## Amplification Context
 
-cBioPortal GISTIC calls were queried for ERBB2, FGFR2, and MET to support amplified-target context.
+Frozen cBioPortal GISTIC JSON calls were used for ERBB2, FGFR2, and MET to support amplified-target context.
 
 - ERBB2: high amp 54/409, status=computed
 - FGFR2: high amp 18/409, status=computed

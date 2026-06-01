@@ -289,7 +289,7 @@ rule phase5_tumor_expression:
         "results/tables/amplified_target_cna_expression.tsv",
         "docs/fase5_tumor_expression.md"
     shell:
-        "python scripts/build_tumor_expression.py"
+        "python scripts/build_tumor_expression.py --offline"
 
 rule phase6_normal_selectivity:
     input:

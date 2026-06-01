@@ -1,6 +1,6 @@
 # Reproducibility Audit Report
 
-Generated: 2026-06-01 14:44:43 UTC
+Generated: 2026-06-01 19:22:00 UTC
 
 ## Scope
 
@@ -105,7 +105,7 @@ results/tables/control_identifier_mapping.tsv	Thu May 28 12:47:37 2026	phase3_id
 results/tables/id_source_coverage.tsv	Thu May 28 12:47:37 2026	phase3_identifier_map	-	ok	no update
 docs/fase3_identifier_normalization.md	Thu May 28 12:47:37 2026	phase3_identifier_map	-	ok	no update
 data/checksums/surfaceome_sources_sha256.tsv	Mon Jun  1 09:34:22 2026	phase4_surfaceome_universe		ok	no update
-data/checksums/sha256sums.txt	Mon Jun  1 09:39:57 2026	phase4_surfaceome_universe		ok	no update
+data/checksums/sha256sums.txt	Mon Jun  1 14:17:43 2026	phase4_surfaceome_universe		ok	no update
 data/processed/surfaceome_universe.tsv	Mon Jun  1 09:34:22 2026	phase4_surfaceome_universe		ok	no update
 results/tables/surfaceome_confidence_summary.tsv	Mon Jun  1 09:34:22 2026	phase4_surfaceome_universe		ok	no update
 results/tables/surfaceome_jaccard_with_published_lists.tsv	Mon Jun  1 09:34:22 2026	phase4_surfaceome_universe		ok	no update
@@ -117,94 +117,95 @@ results/validation/ranking_resolution_simulation.tsv	Mon Jun  1 09:34:25 2026	ph
 results/validation/ranking_resolution_summary.tsv	Mon Jun  1 09:34:25 2026	phase4b_ranking_resolution		ok	no update
 results/figures/rank_ci_by_coverage.svg	Mon Jun  1 09:34:25 2026	phase4b_ranking_resolution		ok	no update
 docs/fase4b_ranking_resolution.md	Mon Jun  1 09:34:25 2026	phase4b_ranking_resolution		ok	no update
-data/checksums/cbioportal_sha256.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-data/processed/tumor_expression.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/figures/tumor_expression_distribution.svg	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/tables/subtype_expression.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/tables/subtype_sample_counts.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/tables/subtype_power_analysis.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/tables/clinical_covariate_expression.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/tables/clinical_covariate_sample_counts.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/tables/fase5_covariate_availability.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-results/tables/amplified_target_cna_expression.tsv	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-docs/fase5_tumor_expression.md	Mon Jun  1 09:36:10 2026	phase5_tumor_expression		ok	no update
-data/processed/normal_expression.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-data/processed/selectivity_scores.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-data/processed/off_tumor_risk.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-data/processed/organ_penalties.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-data/processed/tumor_normal_tests.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-results/tables/tumor_normal_power_analysis.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-results/tables/normal_tissue_sample_counts.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-results/tables/hpa_normal_protein_by_organ.tsv	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-results/figures/tumor_vs_normal_critical.svg	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-results/figures/tumor_normal_power_curve.svg	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-docs/fase6_normal_selectivity_risk.md	Mon Jun  1 09:38:55 2026	phase6_normal_selectivity		ok	no update
-data/processed/protein_evidence.tsv	Mon Jun  1 09:39:04 2026	phase7_protein_evidence		ok	no update
-results/tables/protein_coverage.tsv	Mon Jun  1 09:39:04 2026	phase7_protein_evidence		ok	no update
-results/figures/rna_protein_concordance.svg	Mon Jun  1 09:39:04 2026	phase7_protein_evidence		ok	no update
-docs/fase7_protein_evidence.md	Mon Jun  1 09:39:04 2026	phase7_protein_evidence		ok	no update
-data/checksums/tcga_purity_sha256.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-data/processed/single_cell_specificity.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tme_contamination_flags.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tme_contamination_risk_mvp.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tme_purity_adjusted_correlations.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tme_purity_suppression_audit.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tme_module_correlations.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tme_module_marker_coverage.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tme_estimate_marker_overlap.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/tables/tumor_purity_estimate_scores.tsv	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-results/figures/top_candidates_scRNA_dotplot.svg	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-docs/fase8_single_cell_tme_specificity.md	Mon Jun  1 09:37:42 2026	phase8_single_cell_tme		ok	no update
-data/checksums/uniprot_phase9_features_sha256.tsv	Mon Jun  1 09:39:08 2026	phase9_topology_isoforms		ok	no update
-data/processed/topology_isoforms_ecd.tsv	Mon Jun  1 09:39:08 2026	phase9_topology_isoforms		ok	no update
-results/tables/isoform_risk_flags.tsv	Mon Jun  1 09:39:08 2026	phase9_topology_isoforms		ok	no update
-results/figures/ecd_length_distribution.svg	Mon Jun  1 09:39:08 2026	phase9_topology_isoforms		ok	no update
-docs/fase9_topology_isoforms.md	Mon Jun  1 09:39:08 2026	phase9_topology_isoforms		ok	no update
-results/tables/component_scores_all_candidates.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/tables/tiering_annotations_all_candidates.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/tables/control_recovery_phase13.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_balanced.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_safety_first.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_adc_focused.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_novelty.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_protein_first.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_robust_aggregate.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_v0_frozen.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_v1_frozen.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_v2_frozen.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/rankings/ranking_v2_frozen.metadata.yaml	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/validation/functional_form_sensitivity.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-results/validation/phase13_post_scoring_sanity.tsv	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-docs/fase13_mvp_score_integration.md	Mon Jun  1 09:39:10 2026	phase13_mvp_scoring		ok	no update
-docs/fase13_diagnostico.md	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
-results/tables/fase13_diagnostic_snapshot_hashes.tsv	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
-results/tables/fase13_component_transform_audit.tsv	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
-results/tables/fase13_surfaceome_tie_groups.tsv	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
-results/tables/fase13_gpi_anchor_surf_audit.tsv	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
-results/tables/fase13_positive_control_component_diagnostic.tsv	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
-results/tables/fase13_positive_control_causal_gate.tsv	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
-results/tables/fase13_v0_v1_rank_delta.tsv	Mon Jun  1 09:39:11 2026	phase13_diagnostic		ok	no update
+data/checksums/cbioportal_sha256.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+data/processed/tumor_expression.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+results/figures/tumor_expression_distribution.svg	Mon Jun  1 14:20:29 2026	phase5_tumor_expression		ok	no update
+results/tables/subtype_expression.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+results/tables/subtype_sample_counts.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+results/tables/subtype_power_analysis.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+results/tables/clinical_covariate_expression.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+results/tables/clinical_covariate_sample_counts.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+results/tables/fase5_covariate_availability.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+results/tables/amplified_target_cna_expression.tsv	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+docs/fase5_tumor_expression.md	Mon Jun  1 14:13:48 2026	phase5_tumor_expression		ok	no update
+data/processed/normal_expression.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+data/processed/selectivity_scores.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+data/processed/off_tumor_risk.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+data/processed/organ_penalties.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+data/processed/tumor_normal_tests.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+results/tables/tumor_normal_power_analysis.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+results/tables/normal_tissue_sample_counts.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+results/tables/hpa_normal_protein_by_organ.tsv	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+results/figures/tumor_vs_normal_critical.svg	Mon Jun  1 14:20:29 2026	phase6_normal_selectivity		ok	no update
+results/figures/tumor_normal_power_curve.svg	Mon Jun  1 14:20:29 2026	phase6_normal_selectivity		ok	no update
+docs/fase6_normal_selectivity_risk.md	Mon Jun  1 14:16:32 2026	phase6_normal_selectivity		ok	no update
+data/processed/protein_evidence.tsv	Mon Jun  1 14:16:41 2026	phase7_protein_evidence		ok	no update
+results/tables/protein_coverage.tsv	Mon Jun  1 14:16:41 2026	phase7_protein_evidence		ok	no update
+results/figures/rna_protein_concordance.svg	Mon Jun  1 14:20:29 2026	phase7_protein_evidence		ok	no update
+docs/fase7_protein_evidence.md	Mon Jun  1 14:16:41 2026	phase7_protein_evidence		ok	no update
+data/checksums/tcga_purity_sha256.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+data/processed/single_cell_specificity.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tme_contamination_flags.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tme_contamination_risk_mvp.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tme_purity_adjusted_correlations.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tme_purity_suppression_audit.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tme_module_correlations.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tme_module_marker_coverage.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tme_estimate_marker_overlap.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/tables/tumor_purity_estimate_scores.tsv	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+results/figures/top_candidates_scRNA_dotplot.svg	Mon Jun  1 14:20:29 2026	phase8_single_cell_tme		ok	no update
+docs/fase8_single_cell_tme_specificity.md	Mon Jun  1 14:15:23 2026	phase8_single_cell_tme		ok	no update
+data/checksums/uniprot_phase9_features_sha256.tsv	Mon Jun  1 14:16:46 2026	phase9_topology_isoforms		ok	no update
+data/processed/topology_isoforms_ecd.tsv	Mon Jun  1 14:16:46 2026	phase9_topology_isoforms		ok	no update
+results/tables/isoform_risk_flags.tsv	Mon Jun  1 14:16:46 2026	phase9_topology_isoforms		ok	no update
+results/figures/ecd_length_distribution.svg	Mon Jun  1 14:16:46 2026	phase9_topology_isoforms		ok	no update
+docs/fase9_topology_isoforms.md	Mon Jun  1 14:16:46 2026	phase9_topology_isoforms		ok	no update
+results/tables/component_scores_all_candidates.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/tables/tiering_annotations_all_candidates.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/tables/control_recovery_phase13.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_balanced.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_safety_first.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_adc_focused.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_novelty.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_protein_first.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_robust_aggregate.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_v0_frozen.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_v1_frozen.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_v2_frozen.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/rankings/ranking_v2_frozen.metadata.yaml	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/validation/functional_form_sensitivity.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+results/validation/phase13_post_scoring_sanity.tsv	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+docs/fase13_mvp_score_integration.md	Mon Jun  1 14:16:49 2026	phase13_mvp_scoring		ok	no update
+docs/fase13_diagnostico.md	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
+results/tables/fase13_diagnostic_snapshot_hashes.tsv	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
+results/tables/fase13_component_transform_audit.tsv	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
+results/tables/fase13_surfaceome_tie_groups.tsv	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
+results/tables/fase13_gpi_anchor_surf_audit.tsv	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
+results/tables/fase13_positive_control_component_diagnostic.tsv	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
+results/tables/fase13_positive_control_causal_gate.tsv	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
+results/tables/fase13_v0_v1_rank_delta.tsv	Mon Jun  1 14:16:49 2026	phase13_diagnostic		ok	no update
 docs/fase13_gpi_membership_route.md	Mon Jun  1 09:36:12 2026	phase13_gpi_membership_route		ok	no update
 results/tables/fase13_gpi_membership_route_audit.tsv	Mon Jun  1 09:36:12 2026	phase13_gpi_membership_route		ok	no update
 results/tables/fase13_gpi_membership_route_summary.tsv	Mon Jun  1 09:36:12 2026	phase13_gpi_membership_route		ok	no update
-docs/fase14_preflight.md	Mon Jun  1 09:39:11 2026	phase14_preflight		ok	no update
-results/tables/fase14_preflight_top50_v1_v2_audit.tsv	Mon Jun  1 09:39:11 2026	phase14_preflight		ok	no update
-results/tables/fase14_preflight_snapshot_integrity.tsv	Mon Jun  1 09:39:11 2026	phase14_preflight		ok	no update
-results/tables/fase14_preflight_universe_stability.tsv	Mon Jun  1 09:39:11 2026	phase14_preflight		ok	no update
-docs/fase14_rank_stability.md	Mon Jun  1 09:39:44 2026	phase14_stability		ok	no update
-results/validation/rank_stability.tsv	Mon Jun  1 09:39:44 2026	phase14_stability		ok	no update
-results/validation/leave_one_layer_out.tsv	Mon Jun  1 09:39:44 2026	phase14_stability		ok	no update
-results/validation/weight_perturbation_summary.tsv	Mon Jun  1 09:39:44 2026	phase14_stability		ok	no update
-results/validation/risk_threshold_sensitivity.tsv	Mon Jun  1 09:39:44 2026	phase14_stability		ok	no update
+docs/fase14_preflight.md	Mon Jun  1 14:16:50 2026	phase14_preflight		ok	no update
+results/tables/fase14_preflight_top50_v1_v2_audit.tsv	Mon Jun  1 14:16:50 2026	phase14_preflight		ok	no update
+results/tables/fase14_preflight_snapshot_integrity.tsv	Mon Jun  1 14:16:50 2026	phase14_preflight		ok	no update
+results/tables/fase14_preflight_universe_stability.tsv	Mon Jun  1 14:16:50 2026	phase14_preflight		ok	no update
+docs/fase14_rank_stability.md	Mon Jun  1 14:17:29 2026	phase14_stability		ok	no update
+results/validation/rank_stability.tsv	Mon Jun  1 14:17:29 2026	phase14_stability		ok	no update
+results/validation/leave_one_layer_out.tsv	Mon Jun  1 14:17:29 2026	phase14_stability		ok	no update
+results/validation/weight_perturbation_summary.tsv	Mon Jun  1 14:17:29 2026	phase14_stability		ok	no update
+results/validation/risk_threshold_sensitivity.tsv	Mon Jun  1 14:17:29 2026	phase14_stability		ok	no update
 results/validation/risk_functiona
 ```
 
 ## Remaining Release Blockers
 
 - Public repository URL is still required.
-- Archival DOI is still required.
+- Archival DOI is still required and must cover frozen inputs or an equivalent checksum/provenance data package.
 - A clean clone or clean directory audit should be repeated after the release candidate is frozen.
 - Docker build/run should be repeated on the final public release package.
+- Manual GitHub Actions release-audit jobs should be repeated when the final frozen data bundle is available to the runner.
 - Manuscript and cover letter still need the final repository URL and archival DOI.
 
 ### Reproducibility Check Output
@@ -213,7 +214,7 @@ results/validation/risk_functiona
 == unit tests ==
 C:\Users\Vicenzo\AppData\Local\Programs\Python\Python312\python.exe -m pytest -q
 .............                                                            [100%]
-13 passed in 3.60s
+13 passed in 3.84s
 
 == artifact check --self-test ==
 C:\Users\Vicenzo\AppData\Local\Programs\Python\Python312\python.exe src/utils/compare_outputs.py --self-test

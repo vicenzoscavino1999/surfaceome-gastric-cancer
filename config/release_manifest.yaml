@@ -280,6 +280,36 @@ data_freeze:
     final_submission_format: "latex_elsevier_cbc_elsarticle_profile_generated_from_markdown"
     scope: "manuscript_drafting_only_no_score_weight_universe_ranking_or_tier_change"
 
+source_acquisition_policy:
+  documentation: "docs/source_acquisition_policy.md"
+  default_reviewer_claim: "frozen_local_raw_source_files_with_checksums_not_100_percent_live_redownload"
+  final_archive_requirement: "public_repository_or_data_package_DOI_must_cover_frozen_inputs_or_equivalent_checksum_provenance_package"
+  live_redownload_status: "best_effort_only_after_release_because_external_APIs_and_files_can_change"
+  ci_boundary:
+    push_pr: "syntax_lint_pytest_ci_safe_snakemake_dry_run_docker_build"
+    manual_release_audit: "full_reviewer_audit_and_container_audit_when_frozen_data_bundle_is_present"
+    manual_frozen_raw_rerun: "delete_derived_outputs_and_recompute_fase1_to_fase17_from_data_raw_when_data_bundle_is_present"
+  frozen_api_or_manual_captures:
+    - source_id: "cbioportal_stad_tcga"
+      policy: "frozen_archived_input_not_default_live_download"
+      checksum_manifest: "data/checksums/cbioportal_sha256.tsv"
+      files:
+        - "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_patient_clinical_data.json"
+        - "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_gistic_erbb2_fgfr2_met.json"
+      workflow_status: "Snakemake declares these files as inputs and runs scripts/build_tumor_expression.py --offline"
+    - source_id: "gdc_tcga_stad"
+      policy: "frozen_metadata_capture"
+      checksum_manifest: "data/checksums/gdc_tcga_stad_sha256.tsv"
+    - source_id: "scrna_gastric_candidates"
+      policy: "frozen_candidate_context_input_not_numeric_score"
+      checksum_manifest: "data/checksums/tisch2_candidate_scrna_sha256.tsv"
+    - source_id: "wang2026_mmc8"
+      policy: "frozen_open_access_supplementary_workbook"
+      checksum_manifest: "data/checksums/wang2026_mmc8_sha256.tsv"
+    - source_id: "manual_curation"
+      policy: "frozen_human_curation_inputs_materialized_by_workflow_not_regenerated_from_web"
+      local_raw_dir: "data/raw/manual_curation"
+
 datasets_frozen:
   - source_id: "xena_toil_tcga_gtex"
     local_raw_dir: "data/raw/xena_toil"
@@ -350,7 +380,7 @@ datasets_frozen:
     files:
       - "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_patient_clinical_data.json"
       - "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_gistic_erbb2_fgfr2_met.json"
-    note: "Fase 5 molecular subtype, AJCC stage, and ERBB2/FGFR2/MET GISTIC context."
+    note: "Fase 5 molecular subtype, AJCC stage, and ERBB2/FGFR2/MET GISTIC context. Frozen archived input in the default reviewer path; live cBioPortal refresh is best-effort only."
   - source_id: "tidyestimate_estimate_gene_sets"
     local_raw_dir: "data/raw/tcga_purity"
     checksum_manifest: "data/checksums/tcga_purity_sha256.tsv"

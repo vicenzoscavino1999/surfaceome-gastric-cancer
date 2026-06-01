@@ -66,10 +66,11 @@ https://submit.elsevier.com/CBAC
 ## Release Dependencies
 
 - [ ] Insert public repository URL.
-- [ ] Insert archival DOI after release.
+- [ ] Insert archival DOI after release; DOI must cover frozen inputs or an equivalent checksum/provenance data package.
 - [ ] Cite or link the deposited dataset/release in the article, consistent with CBC research data Option C.
 - [ ] Review whether public inputs should also be represented as formal dataset references.
 - [x] Re-run local smoke-test equivalent, unit tests, Snakemake dry-run, and Phase 17 manuscript/figure checks.
 - [x] Add reviewer-facing reproducibility guide and aggregate check command.
-- [ ] Re-run clean clone/container audit if a submission container or lockfile is added.
+- [x] Add frozen-source acquisition policy and split GitHub Actions CI/manual release-audit workflow.
+- [ ] Re-run clean clone/container audit on the final public tag/DOI package.
 - [ ] Reconfirm Guide for Authors requirements immediately before submission.

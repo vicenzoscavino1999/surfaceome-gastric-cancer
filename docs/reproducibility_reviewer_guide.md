@@ -26,6 +26,8 @@ The repository separates four reproducibility modes so that reviewers can distin
 
 Frozen raw inputs include the retained source data, `data/raw/frozen_snapshots/phase1_inventory/` for live-endpoint inventory metadata, `data/raw/frozen_snapshots/` for historical ranking snapshots, and `data/raw/manual_curation/` for human-curated tiering artifacts. The active scientific ranking table remains metadata-free; file-level release metadata is in the sidecar.
 
+The frozen-source acquisition policy is documented in `docs/source_acquisition_policy.md`. In particular, cBioPortal clinical/GISTIC JSON files, GDC metadata captures, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation files are frozen inputs with checksum/provenance records. The final public DOI must cover these inputs or an equivalent archived data package. Live re-download is not the release reproduction claim.
+
 ## One-Command Audit
 
 Install the project check dependencies:
@@ -100,6 +102,16 @@ docker run --rm -v "${PWD}:/work" surfaceome-gastric-cancer-repro
 
 The image does not copy large raw/source data during build. It expects the release checkout, including `data/`, `results/`, and `manuscript/`, to be mounted at `/work`.
 
+## GitHub Actions
+
+`.github/workflows/reproducibility-ci.yml` defines three CI levels:
+
+1. Push/PR `ci-smoke`: syntax lint through `compileall`, `pytest`, a Snakemake dry-run over tracked small frozen targets, and Docker image build. Data-dependent pytest checks are skipped automatically when the frozen release data bundle is not present.
+2. Manual `reviewer-audit`: verifies the full frozen data bundle, runs `python scripts/run_reproducibility_checks.py`, runs a full Snakemake dry-run, and runs the Docker audit. It can optionally force Fase 13-17 recomputation.
+3. Manual `frozen-raw-rerun`: verifies frozen raw/source inputs, deletes derived outputs, recomputes Fase 1-17 from `data/raw/`, and reruns the reviewer audit.
+
+The manual jobs require the frozen data package to be present in the workflow workspace. They are release-audit hooks, not a claim that GitHub can redownload all live sources on every push.
+
 To write a local release audit report:
 
 ```powershell
@@ -121,6 +133,7 @@ The current release candidate has been checked in Docker and in clean directory 
 
 - A public repository URL and archival DOI are still pending; those must be inserted before formal submission.
 - A Dockerfile, full transitive environment lockfile, Docker audit, downstream clean-directory audit, and frozen-raw clean-directory audit are present for the current release candidate. The clean clone/container audit must still be repeated after the public release tag and DOI are frozen.
+- GitHub Actions are present for small CI and manual full-data release audits, but the full raw bundle is intentionally not assumed to exist on every push.
 - Some historical Snakemake metadata are missing in the long-lived prepared workspace for early files generated before all rules were formalized; a clean frozen-raw run produces current metadata and a clean dry-run for declared outputs.
 - Manual curation artifacts are validated as frozen files; web curation is not automatically regenerated.
 - Future re-downloads from live APIs may differ, so the release should prioritize frozen local raw files and checksum manifests over live re-querying.

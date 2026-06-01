@@ -63,6 +63,10 @@ python scripts/run_reproducibility_checks.py --include-latex
 
 Current local result: unit tests pass, phase artifact checks pass through Fase 16, the CBC manuscript check passes, the publication-figure check passes, and Snakemake dry-run reports all declared outputs up to date.
 
+The frozen-source acquisition boundary is documented in `docs/source_acquisition_policy.md`. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are treated as frozen checksum/provenance inputs for release reproduction. Live re-downloads are best-effort only and are not the default reviewer claim.
+
+GitHub Actions are defined in `.github/workflows/reproducibility-ci.yml`: push/PR runs syntax linting, `pytest`, a small tracked-target Snakemake dry-run, and Docker image build; manual workflow-dispatch jobs run the full reviewer audit, optional downstream recompute, and optional Fase 1-17 frozen-raw rerun when the frozen data package is present.
+
 ## Commands
 
 ```bash

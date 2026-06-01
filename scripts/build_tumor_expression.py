@@ -112,7 +112,13 @@ def load_parameters() -> dict[str, object]:
     return yaml.safe_load(PARAMETERS_CONFIG.read_text(encoding="utf-8"))
 
 
-def fetch_json_raw(url: str, output: Path, payload: dict[str, object] | None = None, force: bool = False) -> tuple[list[dict[str, object]], dict[str, str]]:
+def fetch_json_raw(
+    url: str,
+    output: Path,
+    payload: dict[str, object] | None = None,
+    force: bool = False,
+    offline: bool = False,
+) -> tuple[list[dict[str, object]], dict[str, str]]:
     output.parent.mkdir(parents=True, exist_ok=True)
     headers = {
         "Accept": "application/json",
@@ -121,6 +127,12 @@ def fetch_json_raw(url: str, output: Path, payload: dict[str, object] | None = N
     if output.exists() and not force:
         raw = output.read_bytes()
         return json.loads(raw.decode("utf-8")), {"source": "cache"}
+    if offline:
+        rel_path = output.relative_to(REPO_ROOT).as_posix()
+        raise FileNotFoundError(
+            f"Frozen cBioPortal input is missing: {rel_path}. "
+            "Restore the archived data/raw bundle or rerun live acquisition explicitly outside the reviewer path."
+        )
 
     data: bytes | None = None
     method = "GET"
@@ -777,7 +789,11 @@ def build_power_rows(samples: list[TumorSample], log_values_by_symbol: dict[str,
     return rows
 
 
-def fetch_cna_data(id_map: dict[str, dict[str, str]], force: bool = False) -> tuple[list[dict[str, object]], dict[str, str]]:
+def fetch_cna_data(
+    id_map: dict[str, dict[str, str]],
+    force: bool = False,
+    offline: bool = False,
+) -> tuple[list[dict[str, object]], dict[str, str]]:
     entrez_ids = []
     for symbol in AMPLIFICATION_TARGETS:
         row = id_map.get(symbol, {})
@@ -788,7 +804,13 @@ def fetch_cna_data(id_map: dict[str, dict[str, str]], force: bool = False) -> tu
         "entrezGeneIds": entrez_ids,
         "sampleListId": f"{CBIO_STUDY_ID}_cna",
     }
-    data, meta = fetch_json_raw(CBIO_GISTIC_URL, CBIO_GISTIC_RAW, payload=payload, force=force)
+    data, meta = fetch_json_raw(
+        CBIO_GISTIC_URL,
+        CBIO_GISTIC_RAW,
+        payload=payload,
+        force=force,
+        offline=offline,
+    )
     return data, meta
 
 
@@ -1036,7 +1058,7 @@ Stage and anatomic-origin expression summaries are included because the fields w
 
 ## Amplification Context
 
-cBioPortal GISTIC calls were queried for ERBB2, FGFR2, and MET to support amplified-target context.
+Frozen cBioPortal GISTIC JSON calls were used for ERBB2, FGFR2, and MET to support amplified-target context.
 
 {cna_lines}
 
@@ -1059,6 +1081,11 @@ cBioPortal GISTIC calls were queried for ERBB2, FGFR2, and MET to support amplif
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--force-download", action="store_true")
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="Use frozen local cBioPortal/GISTIC JSON inputs only; fail if they are absent.",
+    )
     args = parser.parse_args(argv)
 
     params = load_parameters()
@@ -1071,6 +1098,7 @@ def main(argv: list[str] | None = None) -> int:
         CBIO_PATIENT_CLINICAL_URL,
         CBIO_PATIENT_CLINICAL_RAW,
         force=args.force_download,
+        offline=args.offline,
     )
     download_meta[CBIO_PATIENT_CLINICAL_RAW.relative_to(REPO_ROOT).as_posix()] = clinical_meta
     patient_clinical = clinical_records_by_patient(clinical_records)
@@ -1111,7 +1139,7 @@ def main(argv: list[str] | None = None) -> int:
         allow_tier1_context=False,
     )
     power_rows = build_power_rows(ordered_samples, log_values_by_symbol, params)
-    cna_records, cna_meta = fetch_cna_data(id_map, force=args.force_download)
+    cna_records, cna_meta = fetch_cna_data(id_map, force=args.force_download, offline=args.offline)
     download_meta[CBIO_GISTIC_RAW.relative_to(REPO_ROOT).as_posix()] = cna_meta
     cna_rows = build_cna_expression_rows(cna_records, id_map, log_values_by_symbol, ordered_samples)
     covariate_availability = build_covariate_availability_rows(ordered_samples, cna_rows)

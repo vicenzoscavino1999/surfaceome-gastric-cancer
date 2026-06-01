@@ -34,8 +34,9 @@ Fase 2 MVP raw inputs have been downloaded or captured with checksums in `data/c
 - `snakemake --summary` is the workflow audit command for declared outputs.
 - `snakemake -n --cores 1` currently reports nothing to do in the prepared workspace; it can still warn about missing historical provenance metadata for early long-lived outputs. A clean frozen-raw directory rerun has now completed Fase 1-17 and its post-run dry-run reports nothing to do.
 - `python scripts/run_reproducibility_checks.py` is the reviewer-facing aggregate audit command. It runs unit tests, all phase artifact checks through Fase 16, the CBC manuscript check, the publication-figure check, and a Snakemake dry-run.
+- `.github/workflows/reproducibility-ci.yml` provides push/PR syntax lint, `pytest`, a CI-safe Snakemake dry-run, and Docker image build. Manual workflow-dispatch jobs run the full reviewer audit, optional Fase 13->17 recompute, and optional Fase 1->17 frozen-raw rerun when the frozen data bundle is present.
 - Fase 4B indicates that fine five-level tiering is not justified under neutral synthetic uncertainty unless Tier 1 uses a stricter stability threshold or Fase 14 real-score stability supports finer granularity.
-- Fase 5 cBioPortal patient clinical and GISTIC files are checksum-registered in `data/checksums/cbioportal_sha256.tsv`; `E_score` is a component score, not a final target ranking.
+- Fase 5 cBioPortal patient clinical and GISTIC files are checksum-registered in `data/checksums/cbioportal_sha256.tsv` and treated as frozen archived inputs in the default Snakemake path (`scripts/build_tumor_expression.py --offline`); `E_score` is a component score, not a final target ranking.
 - Fase 6 uses `config/tissue_mappings.yaml` plus preregistered `normal_selectivity` and `normal_risk` parameters. `N_score` and `R_score` are components, not a final target ranking.
 - Fase 7 uses HPA bulk stomach cancer IHC, HPA normal IHC, and HPA subcellular location files to build `P_score`. HPA bulk cancer files do not expose antibody IDs, intensity/quantity fields, patient-level membrane pattern, or multi-antibody concordance, so those are documented limitations rather than imputed fields.
 - Fase 8 keeps `SC` as `not_available` because no processed annotated gastric scRNA dataset has been admitted. The MVP fallback in `config/tme_markers.yaml` computes bulk TME marker-module correlations plus ESTIMATE/tidyestimate partial Spearman correlations using an RNA-seq relative purity/admixture covariate. These outputs emit flags only and must not be treated as hard ranking filters or absolute pathology purity claims.
@@ -65,6 +66,8 @@ The release uses four explicit levels:
 4. `redownload-from-live-sources`: re-runs acquisition against current external APIs or web sources. This is best-effort only because source content, identifiers, and access behavior can change after release.
 
 `data/raw/frozen_snapshots/phase1_inventory/` stores frozen live-endpoint inventory metadata for offline Fase 1 materialization. `data/raw/frozen_snapshots/` also stores historical ranking snapshots needed to materialize v0/v1 outputs during raw regeneration. `data/raw/manual_curation/` stores frozen human-curation artifacts needed to reproduce Fase 15 without redoing web/manual review.
+
+`docs/source_acquisition_policy.md` records the release boundary for API/manual acquisitions. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are frozen inputs with checksum/provenance records. The final public DOI must cover those inputs or an equivalent archived data package; live refreshes are best-effort only.
 
 ## Reviewer Audit Path
 
@@ -127,8 +130,11 @@ python scripts/build_release_audit_report.py
 - [x] Current release-candidate clean-directory Fase 1->17 recompute from frozen `data/raw/`.
 - [x] Reviewer audit after frozen-raw clean-directory recompute.
 - [x] Key-output hash comparison after frozen-raw clean-directory recompute.
+- [x] cBioPortal/GISTIC and other API/manual captures declared as frozen checksum-registered inputs rather than default live-download outputs.
+- [x] GitHub Actions added for push/PR small CI, manual reviewer audit, Docker audit, and manual frozen-raw rerun.
 - [ ] Repeat clean clone/container audit after the public release tag/DOI freeze.
 - [ ] Environment recreated from the lockfile/container on the frozen public release.
+- [ ] Final archival DOI covers the frozen data inputs or an equivalent checksum/provenance data package.
 - [ ] Optional live-source redownload smoke test after public release freeze, treated as best-effort only.
 - [ ] Public repository URL and archival DOI inserted in manuscript and cover letter.
 - [ ] Release checklist in `release/release_checklist.md`.

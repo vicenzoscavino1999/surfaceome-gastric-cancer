@@ -29,7 +29,19 @@ The main retained raw/source inputs include:
 - TISCH2 candidate-level gastric scRNA context files.
 - Wang 2026 open-access supplementary workbook `mmc8.xlsx` for the drug-target-class overlap and matched-null consistency audit.
 
-Future re-downloads from live APIs may differ. The release should therefore prioritize the frozen local raw/source files, checksum manifests, and exact download provenance rather than live re-querying.
+Future re-downloads from live APIs may differ. The release therefore prioritizes the frozen local raw/source files, checksum manifests, and exact download provenance rather than live re-querying. It does not claim a 100% automatic live-source re-download from zero.
+
+## Frozen API and Manual Captures
+
+The acquisition policy is documented in `docs/source_acquisition_policy.md`.
+
+cBioPortal TCGA-STAD clinical and selected GISTIC files are treated as frozen archived inputs, not default live-download outputs:
+
+- `data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_patient_clinical_data.json`
+- `data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_gistic_erbb2_fgfr2_met.json`
+- `data/checksums/cbioportal_sha256.tsv`
+
+The final archival DOI must cover these frozen inputs, or an equivalent archived data package with checksums and exact provenance if upstream redistribution terms prevent bundling the raw JSON files. GDC metadata captures, TISCH2 candidate-level scRNA files, Wang 2026 `mmc8.xlsx`, Phase 1 endpoint snapshots, and manual curation files follow the same frozen-input principle. Live refreshes remain best-effort transparency checks only.
 
 The Wang 2026 `mmc8.xlsx` source is cached at `data/raw/wang2026/mmc8.xlsx` and recorded in `data/checksums/wang2026_mmc8_sha256.tsv` because the older Europe PMC supplementary endpoint was unstable during release audit. The fallback retrieval path uses the PubMed Central OA package location recorded by NCBI/PMC, with checksum validation before any derived table is written.
 

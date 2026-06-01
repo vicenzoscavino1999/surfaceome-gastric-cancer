@@ -13,7 +13,9 @@ REQUIRED_FILES = [
     "docs/fase17_manuscript_brief.md",
     "docs/fase17_claim_traceability.md",
     "docs/reproducibility_reviewer_guide.md",
+    "docs/source_acquisition_policy.md",
     "REPRODUCIBILITY.md",
+    "DATA_AVAILABILITY.md",
     "manuscript/cbc_manuscript_scaffold.md",
     "manuscript/cbc_highlights.md",
     "manuscript/graphical_abstract_brief.md",
@@ -42,6 +44,8 @@ REQUIRED_FILES = [
     "scripts/build_cbc_submission_package.py",
     "scripts/export_phase17_publication_figures.py",
     "scripts/run_reproducibility_checks.py",
+    "scripts/check_release_inputs.py",
+    ".github/workflows/reproducibility-ci.yml",
     "requirements-manuscript.txt",
     "results/tables/manuscript_publication_figure_manifest.tsv",
     "results/tables/manuscript_table3_top_candidates.tsv",
@@ -65,7 +69,9 @@ ACTIVE_TEXT_FILES = [
     "manuscript/cbc_cover_letter_draft.md",
     "manuscript/cbc_submission_route_blockers.md",
     "docs/reproducibility_reviewer_guide.md",
+    "docs/source_acquisition_policy.md",
     "REPRODUCIBILITY.md",
+    "DATA_AVAILABILITY.md",
     "manuscript/latex/README.md",
 ]
 
@@ -138,6 +144,7 @@ def main() -> int:
     submission_blockers = read_text("manuscript/cbc_submission_route_blockers.md")
     reproducibility = read_text("REPRODUCIBILITY.md")
     reviewer_guide = read_text("docs/reproducibility_reviewer_guide.md")
+    source_policy = read_text("docs/source_acquisition_policy.md")
 
     for needle in [
         "Computational Biology and Chemistry",
@@ -286,6 +293,8 @@ def main() -> int:
         "Current Limitations",
         "public repository URL and archival DOI",
         "full transitive environment lockfile",
+        "GitHub Actions",
+        "docs/source_acquisition_policy.md",
     ]:
         if needle not in reviewer_guide:
             failures.append(f"reviewer reproducibility guide missing required phrase: {needle}")
@@ -293,9 +302,19 @@ def main() -> int:
         "python scripts/run_reproducibility_checks.py",
         "Snakemake dry-run",
         "Public repository URL and archival DOI",
+        "GitHub Actions",
     ]:
         if needle not in reproducibility:
             failures.append(f"reproducibility plan missing required phrase: {needle}")
+    for needle in [
+        "This release does not claim",
+        "cBioPortal TCGA-STAD clinical",
+        "Frozen archived input",
+        "GitHub Actions checks are split",
+        "The archival DOI must cover",
+    ]:
+        if needle not in source_policy:
+            failures.append(f"source acquisition policy missing required phrase: {needle}")
 
     manuscript_tables = "\n".join(
         read_text(path)

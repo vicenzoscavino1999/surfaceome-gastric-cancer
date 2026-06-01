@@ -7,9 +7,10 @@ Status date: 2026-06-01
 - [x] Active-analysis dataset registry is documented in `config/datasets.yaml`.
 - [x] Release manifest is documented in `config/release_manifest.yaml`.
 - [x] Retained active raw/source files have checksum manifests under `data/checksums/`.
+- [x] API/manual captures are declared as frozen inputs in `docs/source_acquisition_policy.md`; cBioPortal/GISTIC are not treated as default live-download outputs.
 - [x] Data availability limitations are documented in the manuscript, reproducibility guide, and route-blocker file.
 - [ ] Public repository URL inserted after release.
-- [ ] Archival DOI inserted after release.
+- [ ] Archival DOI inserted after release and covering the frozen input package or equivalent checksum/provenance data package.
 
 ## Code
 
@@ -19,11 +20,13 @@ Status date: 2026-06-01
 - [x] Scoring and artifact specification checks pass through `src/utils/compare_outputs.py`.
 - [x] Phase 17 manuscript and figure-export checks pass.
 - [x] Release-candidate Dockerfile and dependency lockfile are present.
+- [x] GitHub Actions workflow added for push/PR small CI, manual reviewer audit, Docker audit, and manual frozen-raw rerun.
 - [x] Current release-candidate container audit passes with `docker run --rm -v "${PWD}:/work" surfaceome-gastric-cancer-repro`.
 - [x] Current release-candidate clean-directory audit passes after forced Fase 13->17 rerun and hash comparison.
 - [x] Current release-candidate clean-directory recompute from frozen `data/raw/` passes Fase 1->17 and reviewer audit.
 - [ ] Clean clone/container audit repeated after public release tag/DOI freeze.
 - [ ] Full transitive environment lockfile or container verified on the frozen public release.
+- [ ] Manual GitHub Actions release-audit workflow repeated on the final public release package if the frozen data bundle is available to the runner.
 
 ## Results
 
@@ -42,6 +45,7 @@ Status date: 2026-06-01
 - [x] `README.md`
 - [x] `REPRODUCIBILITY.md`
 - [x] `docs/reproducibility_reviewer_guide.md`
+- [x] `docs/source_acquisition_policy.md`
 - [x] `docs/design_decisions.md`
 - [x] `docs/analytical_decisions_registry.md`
 - [x] `docs/reviewer_attack_surface.md`

@@ -13,7 +13,7 @@ This inventory documents outputs that may vary across platforms, dependency vers
 | Python dict/set iteration order | Any output built from unordered collections | Use sorted iteration for outputs where order matters | None for outputs already sorted before writing |
 | BLAS/LAPACK implementation | PCA and future linear algebra operations | Treat PCA numeric outputs as tolerance-validated; final release should pin runtime in lockfile/Docker | Small coordinate sign or low-order differences can occur |
 | Snakemake parallel execution order | Logs and timestamps | Scientific outputs are per-rule deterministic; logs are not compared as scientific outputs | Log ordering may differ and is not interpreted biologically |
-| API response format changes | Download scripts and metadata capture | Raw files are frozen locally with checksums; `config/datasets.yaml` records URL/version/date | Future re-download can fail or differ if APIs change, but frozen raw analysis remains reproducible |
+| API response format changes | Download scripts and metadata capture | Raw files are frozen locally with checksums; `config/datasets.yaml` records URL/version/date; `docs/source_acquisition_policy.md` declares cBioPortal/GISTIC, GDC metadata, TISCH2, Wang, endpoint snapshots, and manual curation as frozen inputs | Future re-download can fail or differ if APIs change, but frozen raw analysis remains reproducible |
 | Workbook parser warnings | Surfaceome Excel supplementary parsing | Fase 4 outputs are validated by control audits and output checks | Parser/library upgrades may alter warning text, not expected biological output |
 
 ## Current Deterministic Outputs
@@ -27,8 +27,10 @@ This inventory documents outputs that may vary across platforms, dependency vers
 - Raw-file integrity is checked by `data/checksums/sha256sums.txt`.
 - Fase checks are implemented in `src/utils/compare_outputs.py`.
 - Current release-candidate clean-directory audit forced Fase 13->17 rerun and reproduced key output hashes bit-for-bit, including `ranking_v2_frozen.tsv`.
+- GitHub Actions push/PR CI covers syntax lint, `pytest`, a small frozen-target Snakemake dry-run, and Docker image build; full reviewer/container/frozen-raw audits are manual jobs requiring the frozen data bundle.
 
 ## Pending Before Final Release
 
 - Repeat the clean clone/container audit after the final public tag and archival DOI are frozen.
-- Repeat full all-rules rerun from raw acquisition after public release freeze if live-source access remains available.
+- Ensure the archival DOI covers the frozen inputs or an equivalent checksum/provenance data package.
+- Treat any full all-rules live-source redownload after public release freeze as best-effort only.
