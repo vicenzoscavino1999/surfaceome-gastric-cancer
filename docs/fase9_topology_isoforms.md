@@ -1,6 +1,6 @@
 # Fase 9 Topology, Isoforms, and Extracellular Accessibility
 
-Access date: 2026-05-30
+Access date: 2026-06-01
 
 Fase 9 builds the topology component `T` for the Core+Probable surfaceome universe. The component is not a final biological ranking. It uses reviewed UniProt human feature fields for protein length, topological domains, transmembrane segments, signal peptide, lipid/GPI anchor, glycosylation, disulfide bonds, chains, domains, subcellular location, PTM comments, and Ensembl isoform mappings.
 

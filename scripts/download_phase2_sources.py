@@ -176,13 +176,15 @@ def relative(path: Path) -> str:
     return path.resolve().relative_to(REPO_ROOT.resolve()).as_posix()
 
 
-def download_url(spec: UrlDownload, force: bool, timeout: int, chunk_size: int) -> dict[str, object]:
+def download_url(spec: UrlDownload, force: bool, timeout: int, chunk_size: int, offline: bool) -> dict[str, object]:
     target = spec.target
     target.parent.mkdir(parents=True, exist_ok=True)
-    headers = fetch_head(spec.url, timeout=timeout)
+    headers = {} if offline else fetch_head(spec.url, timeout=timeout)
     action = "verified_existing_raw"
 
     if force or not target.exists():
+        if offline:
+            raise FileNotFoundError(f"Offline frozen-raw mode requires existing raw file: {target}")
         action = "downloaded_raw"
         part = target.with_name(target.name + ".part")
         if part.exists():
@@ -233,7 +235,7 @@ def gdc_query(endpoint: str, params: dict[str, object], timeout: int) -> tuple[s
         return url, response.read()
 
 
-def write_gdc_metadata(force: bool, timeout: int) -> list[dict[str, object]]:
+def write_gdc_metadata(force: bool, timeout: int, offline: bool) -> list[dict[str, object]]:
     project_filter = {"op": "=", "content": {"field": "project.project_id", "value": "TCGA-STAD"}}
     case_fields = ",".join(
         [
@@ -309,6 +311,8 @@ def write_gdc_metadata(force: bool, timeout: int) -> list[dict[str, object]]:
         action = "verified_existing_raw_metadata"
         url = f"https://api.gdc.cancer.gov/{endpoint}?{urllib.parse.urlencode(params)}"
         if force or not target.exists():
+            if offline:
+                raise FileNotFoundError(f"Offline frozen-raw mode requires existing GDC metadata: {target}")
             action = "downloaded_raw_metadata"
             print(f"Downloading gdc_tcga_stad: {filename}", flush=True)
             url, raw = gdc_query(endpoint, params, timeout=timeout)
@@ -511,6 +515,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     parser.add_argument("--skip-large", action="store_true", help="Skip large files such as the Xena expression matrix.")
     parser.add_argument("--force", action="store_true", help="Redownload files even if local copies exist.")
+    parser.add_argument("--offline", action="store_true", help="Use only existing files under data/raw; fail if any selected raw file is missing.")
     parser.add_argument("--no-update-config", action="store_true", help="Do not update status fields in config/datasets.yaml.")
     parser.add_argument("--timeout", type=int, default=300)
     parser.add_argument("--chunk-size-mib", type=int, default=8)
@@ -523,10 +528,10 @@ def main(argv: list[str] | None = None) -> int:
     records: list[dict[str, object]] = []
     chunk_size = args.chunk_size_mib * 1024 * 1024
     for spec in selected_url_downloads(sources, skip_large=args.skip_large):
-        records.append(download_url(spec, force=args.force, timeout=args.timeout, chunk_size=chunk_size))
+        records.append(download_url(spec, force=args.force, timeout=args.timeout, chunk_size=chunk_size, offline=args.offline))
 
     if "gdc_tcga_stad" in sources:
-        records.extend(write_gdc_metadata(force=args.force, timeout=args.timeout))
+        records.extend(write_gdc_metadata(force=args.force, timeout=args.timeout, offline=args.offline))
 
     if not records:
         print("No records were downloaded or verified.", file=sys.stderr)

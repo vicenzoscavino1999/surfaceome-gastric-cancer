@@ -1,0 +1,31 @@
+rank_v2	gene	tier	prevalence_flag	balanced_top20_freq	single_layer_dependent	tme_flag	rule_clause	principal_caveat
+1	ITGB4	Tier 1	Broad	1.000	false	low	tier_1_requires_all: passes stability, not single-layer, class A, protein+membrane, TME low	CAVEAT: basal/stratified epithelial (skin keratinocyte/hemidesmosome) normal expression; skin not in organ-risk model so R may under-weight it; preclinical agents only
+6	CDH3	Tier 1	Broad	1.000	false	low	tier_1_requires_all: all criteria met	established TAA; confirm membranous tumor IHC in pass 2
+9	NECTIN2	Tier 1	Broad	1.000	false	low	tier_1_requires_all: all criteria met (TME partial 0.32 < frozen 0.4 threshold)	CAVEAT: purity-adjusted myeloid/DC partial 0.32 p<0.001 + LAMP3+ DC checkpoint literature; closest-to-threshold Tier 1 member; single-cell confirmation needed (user-confirmed Tier 1 2026-05-31)
+12	CEACAM5	Tier 1	Broad	1.000	false	low	tier_1_requires_all: all criteria met	apical/normal GI epithelial expression; specificity review
+13	JAG1	Tier 1	Broad	1.000	false	low	tier_1_requires_all: all criteria met	CAVEAT: dual tumor-epithelial + endothelial/vascular (angiocrine) expression; most compartment-exposed Tier 1 member; surface-targetable (neutralizing mAbs) but needs single-cell resolution
+14	EPCAM	Tier 1	Broad	1.000	false	low	tier_1_requires_all: all criteria met	high normal epithelial expression (preregistered normal-expression penalty)
+7	MPZL1	Tier 2	Broad	1.000	false	high	tier_2: fails Tier1 TME criterion (high purity-adjusted TME)	needs cell-resolution to confirm tumor-epithelial origin
+8	ITGB5	Tier 2	Broad	1.000	false	high	tier_2: fails Tier1 TME criterion	high TME + broad expression
+10	BST2	Tier 2	Broad	1.000	false	watchlist_corr	tier_2: fails Tier1 membrane-evidence (protein_present_no_membrane discordance)	membrane localization discordance; hematopoietic risk
+11	IFNGR1	Tier 2	Broad	1.000	false	high	tier_2: fails Tier1 TME criterion	ubiquitous cytokine receptor, no tumor selectivity
+16	ALPG	Tier 2	Moderate	0.840	true	low	tier_2: fails Tier1 not-single-layer-dependent	excellent normal-tissue window but ranking is single-layer dependent
+18	DSC2	Tier 2	Broad	0.900	true	low	tier_2: fails Tier1 not-single-layer-dependent	literature reports DOWNregulation in tumor (poor window)
+19	TNFRSF11A	Tier 2	Broad	0.940	true	low	tier_2: fails Tier1 not-single-layer-dependent	weak gastric-specific antibody rationale (denosumab targets ligand)
+20	ERBB2	Tier 2	Broad	0.340	false	high	tier_2: fails Tier1 stability (top20-freq 0.34 < 0.40)	established HER2 benchmark; NOT forced to Tier 1; robust top50, heterogeneity-consistent
+25	CD9	Tier 2	Broad	0.020	false	low	tier_2: fails Tier1 stability + accessibility class C	short extracellular loops limit antibody access
+26	LSR	Tier 2	Broad	0.040	false	high	tier_2: fails Tier1 stability + TME	favorable literature window; tight-junction accessibility caveat
+28	CDH17	Tier 2	Broad	0.000	false	low	tier_2: fails Tier1 stability (top20-freq 0.00)	GI-restricted surface-antigen program with clinical-stage CAR-T/ADC context; bulk ranking conservative
+30	TGFBR1	Tier 2	Broad	0.000	false	high	tier_2: fails Tier1 stability + TME	ubiquitous signaling receptor, no tumor selectivity
+2	HLA-DRB3	Watchlist	Restricted	1.000	true	none	watchlist: missing>=3 primary components AND non-assessable core expression	thin-evidence renormalization artifact; immune MHC-II gene
+3	HLA-DRB4	Watchlist	Restricted	1.000	true	none	watchlist: missing>=3 AND non-assessable	thin-evidence; immune MHC-II gene
+4	KIR2DL5A	Watchlist	Restricted	1.000	true	none	watchlist: missing>=3 AND non-assessable	thin-evidence; immune NK receptor
+5	KIR2DS1	Watchlist	Restricted	1.000	true	none	watchlist: missing>=3 AND non-assessable	thin-evidence; immune NK receptor
+15	PECAM1	Watchlist	Broad	1.000	false	known_marker	watchlist: tme_marker control; a-priori expectation confirmed (HPA vascular)	endothelial marker; vascular not tumor-epithelial staining (HPA-confirmed)
+17	IL2RG	Watchlist	Broad	0.740	false	moderate	watchlist: immune/lymphoid lineage + RNA_high_protein_absent discordance	common gamma chain; not an epithelial tumor target
+21	HLA-A	Watchlist	Broad	0.320	false	low	watchlist: HLA not a conventional antibody target (plan rule)	MHC class I, ubiquitous; protein_missing
+22	LRRC15	Watchlist	Broad	0.560	false	high	watchlist: curation-identified stromal/CAF compartment marker	ABBV-085 targets it on stroma; second bulk/TME compartment FP (cf PECAM1)
+23	HLA-DPB1	Watchlist	Broad	0.180	false	high	watchlist: HLA not a conventional antibody target	MHC class II/immune; ubiquitous
+24	BTN3A3	Watchlist	Broad	0.000	false	high	watchlist: immune butyrophilin	immune compartment, not epithelial target
+27	ULBP2	Watchlist	Broad	0.120	false	low	watchlist: immune NKG2D ligand with shedding/soluble decoy risk	stress-induced immune ligand, sheds
+29	CD47	Watchlist	Broad	0.000	false	low	watchlist: ubiquitous with disqualifying hematologic toxicity	RBC/platelet toxicity; multiple anti-CD47 drugs terminated

@@ -1,6 +1,6 @@
 # Fase 6 Normal Selectivity And Off-Tumor Risk
 
-Access date: 2026-05-30
+Access date: 2026-06-01
 
 Fase 6 estimates tumor-normal selectivity (`N`) and organ-specific on-target/off-tumor risk (`R`) for the Fase 4 Core+Probable surfaceome universe. Xena/Toil values are transformed from `log2(TPM+0.001)` back to TPM before summary statistics. HPA RNA `nTPM` is used conservatively where mapped by `config/tissue_mappings.yaml`, especially for tissue classes not directly represented in Xena.
 

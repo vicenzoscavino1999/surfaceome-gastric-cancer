@@ -1,6 +1,6 @@
 # Fase 7 Protein Evidence And Localization
 
-Access date: 2026-05-30
+Access date: 2026-06-01
 
 Fase 7 separates tumor RNA expression from protein evidence and localization. The MVP uses HPA stomach cancer IHC aggregate counts, HPA normal tissue IHC, and HPA subcellular localization. CPTAC/PDC and literature curation remain downstream/candidate-level layers and are marked `CPTAC_not_assessed` here.
 

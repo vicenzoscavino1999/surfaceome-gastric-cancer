@@ -1,6 +1,6 @@
 # Fase 5 Tumor Expression
 
-Access date: 2026-05-30
+Access date: 2026-06-01
 
 Fase 5 computes the tumor-expression component for the Fase 4 Core+Probable surfaceome universe using Xena/Toil TCGA-STAD primary tumor RNA. Xena values are stored as `log2(TPM + 0.001)`; they were transformed back to TPM as `2^x - 0.001` and clipped at zero.
 

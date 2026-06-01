@@ -142,7 +142,18 @@ rule all:
         "results/tables/manuscript_table3_top_candidates.tsv",
         "results/tables/manuscript_table4_controls.tsv",
         "results/tables/manuscript_table5_candidate_flags.tsv",
-        "results/tables/supplementary_table_manifest.tsv"
+        "results/tables/supplementary_table_manifest.tsv",
+        "results/tables/supplementary_table_manifest.status.ok",
+        "results/tables/manuscript_publication_figure_manifest.tsv",
+        "manuscript/latex/figures/f1_phase16_pipeline_overview.pdf",
+        "manuscript/latex/figures/f2_phase16_surfaceome_evidence_landscape.pdf",
+        "manuscript/latex/figures/f3_phase16_tumor_normal_selectivity.pdf",
+        "manuscript/latex/figures/f4_phase16_multilayer_heatmap_top30.pdf",
+        "manuscript/latex/figures/f5_top_candidates_scRNA_dotplot.pdf",
+        "manuscript/latex/figures/f6a_rank_stability_heatmap.pdf",
+        "manuscript/latex/figures/f6b_bumpchart_scenarios.pdf",
+        "manuscript/latex/figures/f7_phase16_benchmark_controls.pdf",
+        "manuscript/latex/figures/f8_phase16_tier1_candidate_panel.pdf"
 
 rule bootstrap_status:
     output:
@@ -157,10 +168,10 @@ rule phase1_inventory:
         "results/tables/coverage_matrix.tsv",
         "docs/fase1_data_inventory.md"
     shell:
-        "python scripts/build_dataset_inventory.py"
+        "python scripts/build_dataset_inventory.py --offline"
 
 rule phase2_downloads:
-    output:
+    input:
         "data/raw/xena_toil/TcgaTargetGTEX_phenotype.txt.gz",
         "data/raw/xena_toil/TcgaTargetGtex_rsem_gene_tpm.gz",
         "data/raw/hpa/normal_ihc_data.tsv.zip",
@@ -170,7 +181,8 @@ rule phase2_downloads:
         "data/raw/hpa/rna_tissue_gtex.tsv.zip",
         "data/raw/uniprot/uniprot_reviewed_human_topology.tsv.gz",
         "data/raw/gdc_tcga_stad/cases_tcga_stad.json",
-        "data/raw/gdc_tcga_stad/files_tcga_stad_rnaseq_star_counts.json",
+        "data/raw/gdc_tcga_stad/files_tcga_stad_rnaseq_star_counts.json"
+    output:
         "results/tables/phase2_download_manifest.tsv",
         "data/checksums/xena_toil_sha256.tsv",
         "data/checksums/hpa_sha256.tsv",
@@ -178,7 +190,7 @@ rule phase2_downloads:
         "data/checksums/gdc_tcga_stad_sha256.tsv",
         "docs/fase2_data_acquisition.md"
     shell:
-        "python scripts/download_phase2_sources.py"
+        "python scripts/download_phase2_sources.py --offline --no-update-config"
 
 rule phase2_batch_diagnostic:
     input:
@@ -203,9 +215,9 @@ rule phase3_identifier_map:
         "data/raw/hpa/subcellular_location.tsv.zip",
         "data/raw/hpa/rna_tissue_consensus.tsv.zip",
         "data/raw/hpa/rna_tissue_gtex.tsv.zip",
+        "data/raw/hgnc/hgnc_complete_set.txt",
         "config/controls.yaml"
     output:
-        "data/raw/hgnc/hgnc_complete_set.txt",
         "data/checksums/hgnc_sha256.tsv",
         "data/processed/id_map_master.tsv",
         "results/tables/mapping_failures.tsv",
@@ -220,14 +232,14 @@ rule phase4_surfaceome_universe:
         "data/processed/id_map_master.tsv",
         "data/raw/uniprot/uniprot_reviewed_human_topology.tsv.gz",
         "data/raw/hpa/subcellular_location.tsv.zip",
-        "config/controls.yaml",
-        "config/surfaceome_universe_definition.yaml"
-    output:
         "data/raw/surfaceome/tcsa_supplementary_tables_1_40.xlsx",
         "data/raw/surfaceome/cspa_pone_0121314_s003.xlsx",
         "data/raw/surfaceome/surfy_table_s3_surfaceome.xlsx",
         "data/raw/uniprot/uniprot_reviewed_human_go.tsv.gz",
         "data/raw/uniprot/uniprot_reviewed_human_gpi.tsv.gz",
+        "config/controls.yaml",
+        "config/surfaceome_universe_definition.yaml"
+    output:
         "data/checksums/surfaceome_sources_sha256.tsv",
         "data/checksums/sha256sums.txt",
         "data/processed/surfaceome_universe.tsv",
@@ -259,12 +271,12 @@ rule phase5_tumor_expression:
         "data/raw/xena_toil/TcgaTargetGTEX_phenotype.txt.gz",
         "data/raw/xena_toil/TcgaTargetGtex_rsem_gene_tpm.gz",
         "data/raw/gdc_tcga_stad/cases_tcga_stad.json",
+        "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_patient_clinical_data.json",
+        "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_gistic_erbb2_fgfr2_met.json",
         "data/processed/surfaceome_universe.tsv",
         "data/processed/id_map_master.tsv",
         "config/parameters.yaml"
     output:
-        "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_patient_clinical_data.json",
-        "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_gistic_erbb2_fgfr2_met.json",
         "data/checksums/cbioportal_sha256.tsv",
         "data/processed/tumor_expression.tsv",
         "results/figures/tumor_expression_distribution.svg",
@@ -326,14 +338,14 @@ rule phase8_single_cell_tme:
     input:
         "data/raw/xena_toil/TcgaTargetGTEX_phenotype.txt.gz",
         "data/raw/xena_toil/TcgaTargetGtex_rsem_gene_tpm.gz",
+        "data/raw/tcga_purity/tidyestimate_1.1.1.tar.gz",
+        "data/raw/tcga_purity/tidyestimate/data/gene_sets.rda",
         "data/processed/surfaceome_universe.tsv",
         "data/processed/id_map_master.tsv",
         "data/processed/tumor_expression.tsv",
         "config/controls.yaml",
         "config/tme_markers.yaml"
     output:
-        "data/raw/tcga_purity/tidyestimate_1.1.1.tar.gz",
-        "data/raw/tcga_purity/tidyestimate/data/gene_sets.rda",
         "data/checksums/tcga_purity_sha256.tsv",
         "data/processed/single_cell_specificity.tsv",
         "results/tables/tme_contamination_flags.tsv",
@@ -354,9 +366,9 @@ rule phase9_topology_isoforms:
         "data/processed/surfaceome_universe.tsv",
         "data/processed/id_map_master.tsv",
         "data/processed/protein_evidence.tsv",
+        "data/raw/uniprot/uniprot_reviewed_human_features.tsv.gz",
         "config/topology_isoforms.yaml"
     output:
-        "data/raw/uniprot/uniprot_reviewed_human_features.tsv.gz",
         "data/checksums/uniprot_phase9_features_sha256.tsv",
         "data/processed/topology_isoforms_ecd.tsv",
         "results/tables/isoform_risk_flags.tsv",
@@ -378,7 +390,9 @@ rule phase13_mvp_scoring:
         "config/parameters.yaml",
         "config/controls.yaml",
         "config/exclusion_criteria.yaml",
-        "docs/limitations_register.md"
+        "docs/limitations_register.md",
+        "data/raw/frozen_snapshots/ranking_v0_frozen.tsv",
+        "data/raw/frozen_snapshots/ranking_v1_frozen.tsv"
     output:
         "results/tables/component_scores_all_candidates.tsv",
         "results/tables/tiering_annotations_all_candidates.tsv",
@@ -389,6 +403,8 @@ rule phase13_mvp_scoring:
         "results/rankings/ranking_novelty.tsv",
         "results/rankings/ranking_protein_first.tsv",
         "results/rankings/ranking_robust_aggregate.tsv",
+        "results/rankings/ranking_v0_frozen.tsv",
+        "results/rankings/ranking_v1_frozen.tsv",
         "results/rankings/ranking_v2_frozen.tsv",
         "results/rankings/ranking_v2_frozen.metadata.yaml",
         "results/validation/functional_form_sensitivity.tsv",
@@ -481,6 +497,31 @@ rule phase14_stability:
     shell:
         "python scripts/build_phase14_stability.py"
 
+rule phase15_tiering:
+    input:
+        "results/rankings/ranking_v2_frozen.tsv",
+        "results/validation/rank_stability.tsv",
+        "results/validation/top30_false_positive_audit.tsv",
+        "config/tiering_rules.yaml",
+        "docs/manual_curation_protocol.md",
+        "data/raw/manual_curation/tier_assignments.tsv",
+        "data/raw/manual_curation/manual_curation_notes.tsv",
+        "data/raw/manual_curation/top20_candidate_cards.md",
+        "data/raw/manual_curation/excluded_with_reason.tsv",
+        "data/raw/manual_curation/wang2026_crosscheck.tsv",
+        "data/raw/manual_curation/fase15_tiering_and_curation.md",
+        "data/raw/manual_curation/fase15_post_curation_verification.md"
+    output:
+        "docs/fase15_tiering_and_curation.md",
+        "docs/fase15_post_curation_verification.md",
+        "results/tables/tier_assignments.tsv",
+        "results/tables/manual_curation_notes.tsv",
+        "results/tables/top20_candidate_cards.md",
+        "results/tables/excluded_with_reason.tsv",
+        "results/tables/wang2026_crosscheck.tsv"
+    shell:
+        "python scripts/build_phase15_tiering.py"
+
 rule phase16_figures_tables:
     input:
         "results/rankings/ranking_v2_frozen.tsv",
@@ -515,13 +556,39 @@ rule phase16_figures_tables:
     shell:
         "python scripts/build_phase16_figures_tables.py"
 
+rule phase17_publication_figures:
+    input:
+        "manuscript/figure_table_plan.tsv",
+        "results/figures/phase16_pipeline_overview.svg",
+        "results/figures/phase16_surfaceome_evidence_landscape.svg",
+        "results/figures/phase16_tumor_normal_selectivity.svg",
+        "results/figures/phase16_multilayer_heatmap_top30.svg",
+        "results/figures/top_candidates_scRNA_dotplot.svg",
+        "results/figures/rank_stability_heatmap.svg",
+        "results/figures/bumpchart_scenarios.svg",
+        "results/figures/phase16_benchmark_controls.svg",
+        "results/figures/phase16_tier1_candidate_panel.svg"
+    output:
+        "results/tables/manuscript_publication_figure_manifest.tsv",
+        "manuscript/latex/figures/f1_phase16_pipeline_overview.pdf",
+        "manuscript/latex/figures/f2_phase16_surfaceome_evidence_landscape.pdf",
+        "manuscript/latex/figures/f3_phase16_tumor_normal_selectivity.pdf",
+        "manuscript/latex/figures/f4_phase16_multilayer_heatmap_top30.pdf",
+        "manuscript/latex/figures/f5_top_candidates_scRNA_dotplot.pdf",
+        "manuscript/latex/figures/f6a_rank_stability_heatmap.pdf",
+        "manuscript/latex/figures/f6b_bumpchart_scenarios.pdf",
+        "manuscript/latex/figures/f7_phase16_benchmark_controls.pdf",
+        "manuscript/latex/figures/f8_phase16_tier1_candidate_panel.pdf"
+    shell:
+        "python scripts/export_phase17_publication_figures.py"
+
 rule wang2026_overlap_enrichment:
     input:
         "data/processed/surfaceome_universe.tsv",
         "results/tables/tier_assignments.tsv",
-        "results/tables/component_scores_all_candidates.tsv"
+        "results/tables/component_scores_all_candidates.tsv",
+        "data/raw/wang2026/mmc8.xlsx"
     output:
-        "data/raw/wang2026/mmc8.xlsx",
         "data/checksums/wang2026_mmc8_sha256.tsv",
         "results/tables/wang2026_overlap_enrichment.tsv",
         "results/tables/wang2026_matched_null.tsv"
@@ -553,15 +620,6 @@ rule external_surfaceome_baseline_comparison:
     shell:
         "python scripts/build_external_surfaceome_baseline_comparison.py"
 
-rule candidate_scrna_tisch2_downloads:
-    output:
-        "data/raw/tisch2/STAD_GSE134520/STAD_GSE134520_Expression.zip",
-        "data/raw/tisch2/STAD_GSE134520/STAD_GSE134520_CellMetainfo_table.tsv",
-        "data/raw/tisch2/STAD_GSE167297/STAD_GSE167297_Expression.zip",
-        "data/raw/tisch2/STAD_GSE167297/STAD_GSE167297_CellMetainfo_table.tsv"
-    shell:
-        "python scripts/build_candidate_scrna_compartment_check.py"
-
 rule candidate_scrna_compartment_check:
     input:
         "results/tables/manuscript_table3_top_candidates.tsv",
@@ -577,3 +635,13 @@ rule candidate_scrna_compartment_check:
         "docs/candidate_scrna_compartment_check.md"
     shell:
         "python scripts/build_candidate_scrna_compartment_check.py"
+
+rule phase17_supplementary_manifest_status:
+    input:
+        "results/tables/supplementary_table_manifest.tsv",
+        "results/tables/external_surfaceome_baseline_comparison.tsv",
+        "results/tables/candidate_scrna_tisch2_compartment_check.tsv"
+    output:
+        "results/tables/supplementary_table_manifest.status.ok"
+    shell:
+        "python scripts/refresh_supplementary_manifest_status.py"

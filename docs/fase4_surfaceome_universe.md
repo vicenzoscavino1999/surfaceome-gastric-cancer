@@ -1,6 +1,6 @@
 # Fase 4 Surfaceome Universe
 
-Access date: 2026-05-30
+Access date: 2026-06-01
 
 This phase builds a conservative multi-source surfaceome universe from Cancer Surfaceome Atlas/TCSA, CSPA, SURFY, UniProt topology, UniProt reviewed lipidation/GPI-anchor evidence, UniProt GO cellular component terms, and HPA subcellular localization. The unit remains the HGNC approved protein-coding gene from Fase 3.
 

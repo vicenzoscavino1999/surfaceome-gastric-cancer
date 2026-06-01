@@ -1,6 +1,6 @@
 # Fase 4B Ranking-Resolution Simulation
 
-Access date: 2026-05-30
+Access date: 2026-06-01
 
 This pre-scoring simulation estimates whether the current surfaceome universe and observed layer coverage can support fine-grained tiering before biological expression/selectivity results are inspected.
 

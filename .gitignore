@@ -24,6 +24,22 @@ results/rankings/*
 release/archive/*
 
 !data/raw/.gitkeep
+!data/raw/frozen_snapshots/
+!data/raw/frozen_snapshots/phase1_inventory/
+!data/raw/frozen_snapshots/phase1_inventory/coverage_matrix.tsv
+!data/raw/frozen_snapshots/phase1_inventory/dataset_inventory.tsv
+!data/raw/frozen_snapshots/phase1_inventory/fase1_data_inventory.md
+!data/raw/frozen_snapshots/phase1_inventory/sample_counts.tsv
+!data/raw/frozen_snapshots/ranking_v0_frozen.tsv
+!data/raw/frozen_snapshots/ranking_v1_frozen.tsv
+!data/raw/manual_curation/
+!data/raw/manual_curation/excluded_with_reason.tsv
+!data/raw/manual_curation/fase15_post_curation_verification.md
+!data/raw/manual_curation/fase15_tiering_and_curation.md
+!data/raw/manual_curation/manual_curation_notes.tsv
+!data/raw/manual_curation/tier_assignments.tsv
+!data/raw/manual_curation/top20_candidate_cards.md
+!data/raw/manual_curation/wang2026_crosscheck.tsv
 !data/raw/wang2026/
 !data/raw/wang2026/mmc8.xlsx
 !data/interim/.gitkeep
@@ -56,6 +72,7 @@ release/archive/*
 !results/tables/subtype_expression.tsv
 !results/tables/subtype_sample_counts.tsv
 !results/tables/subtype_power_analysis.tsv
+!results/tables/supplementary_table_manifest.status.ok
 !results/tables/clinical_covariate_expression.tsv
 !results/tables/clinical_covariate_sample_counts.tsv
 !results/tables/fase5_covariate_availability.tsv

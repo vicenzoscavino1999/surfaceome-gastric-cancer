@@ -77,7 +77,7 @@ def read_yaml(path: Path) -> dict[str, object]:
 def audit_log_rows() -> list[str]:
     if not AUDIT_LOG.exists():
         return ["No manual clean-directory/container audit log is present."]
-    with AUDIT_LOG.open(newline="", encoding="utf-8") as handle:
+    with AUDIT_LOG.open(newline="", encoding="utf-8-sig") as handle:
         rows = list(csv.DictReader(handle, delimiter="\t"))
     if not rows:
         return ["Audit log is present but empty."]

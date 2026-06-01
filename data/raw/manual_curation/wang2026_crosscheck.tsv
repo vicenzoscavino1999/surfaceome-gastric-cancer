@@ -1,0 +1,24 @@
+our_gene	our_tier	in_wang_drug_target_table	wang_class	wang_all_tiers	wang_membrane	wang_ADC	wang_Antibody	wang_Tcell_target	wang_glyco_outlier_rank	wang_glyco_n_outliers	note
+ITGB4	Tier 1	yes	Membrane	T4,T5	1	0	0	0	292	2	membrane-confirmed, not drugged, low glyco-outlier
+CDH3	Tier 1	yes	Membrane	T5	1	0	0	0	NA	NA	Wang membrane-class entry; external P-cadherin ADC precedent noted in our curation
+NECTIN2	Tier 1	yes	Membrane	T5	1	0	0	0	NA	NA	novel: membrane-confirmed, undrugged, not a top glyco-outlier
+CEACAM5	Tier 1	yes	ADC/Antibody	T3	0	1	1	0	4	111	established antibody/T-cell target highlighted by Wang; top glyco-outlier
+JAG1	Tier 1	yes	Membrane	T5	1	0	0	0	NA	NA	novel: membrane-confirmed, undrugged
+EPCAM	Tier 1	yes	ADC/Antibody	T5	1	0	1	1	22	72	Wang: epithelial-predominant (C4); strong glyco-outlier
+MPZL1	Tier 2	yes	Membrane	T5	1	0	0	0	371	0	membrane-confirmed, no glyco-outlier
+ITGB5	Tier 2	yes	Membrane	T4,T5	1	0	0	0	40	59	membrane-confirmed; strong glyco-outlier
+BST2	Tier 2	yes	Membrane	T5	1	0	0	0	NA	NA	membrane-confirmed
+IFNGR1	Tier 2	yes	Membrane	T2,T5	1	0	0	0	141	17	membrane-confirmed
+ALPG	Tier 2	yes	Approved Non Oncology	T2	NA	NA	NA	NA	NA	NA	Wang: approved non-oncology enzyme (PLAP family)
+DSC2	Tier 2	yes	Membrane	T5	1	0	0	0	49	53	membrane-confirmed; strong glyco-outlier
+TNFRSF11A	Tier 2	yes	Membrane	T5	1	0	0	0	NA	NA	membrane-confirmed
+ERBB2	Tier 2	yes	ADC/Antibody	T1,T3,T4,T5	1	1	1	1	232	6	clinically drugged benchmark (HER2)
+CD9	Tier 2	no	NA	NA	NA	NA	NA	NA	NA	NA	NOT in Wang drug-target table (independent/divergent)
+LSR	Tier 2	no	NA	NA	NA	NA	NA	NA	NA	NA	NOT in Wang drug-target table (independent/divergent)
+CDH17	Tier 2	yes	Membrane	T5	1	0	0	0	19	79	membrane-confirmed; strong glyco-outlier
+TGFBR1	Tier 2	yes	Experimental	T3	NA	NA	NA	NA	NA	NA	Wang: experimental kinase (not membrane-flagged)
+CLDN18	benchmark	yes	ADC/Antibody	T3	0	1	1	1	NA	NA	zolbetuximab benchmark
+FGFR2	benchmark	yes	ADC/Antibody	T1,T3,T4,T5	1	1	1	0	NA	NA	clinical benchmark
+TACSTD2	benchmark	yes	ADC/Antibody	T1,T5	1	1	1	0	109	25	TROP2 benchmark
+MET	benchmark	yes	ADC/Antibody	T1,T3,T4,T5	1	1	1	1	241	5	clinical benchmark
+MSLN	benchmark	yes	ADC/Antibody	T5	1	1	1	1	NA	NA	clinical benchmark

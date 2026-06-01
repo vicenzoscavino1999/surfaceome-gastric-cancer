@@ -85,7 +85,10 @@ These checks are diagnostic only. A control failure triggers investigation, not 
 - `results/rankings/ranking_novelty.tsv`
 - `results/rankings/ranking_protein_first.tsv`
 - `results/rankings/ranking_robust_aggregate.tsv`
+- `results/rankings/ranking_v0_frozen.tsv` (archived snapshot materialized from `data/raw/frozen_snapshots/`)
+- `results/rankings/ranking_v1_frozen.tsv` (archived snapshot materialized from `data/raw/frozen_snapshots/`)
 - `results/rankings/ranking_v2_frozen.tsv`
+- `results/rankings/ranking_v2_frozen.metadata.yaml`
 - `results/validation/functional_form_sensitivity.tsv`
 - `results/validation/phase13_post_scoring_sanity.tsv`
 

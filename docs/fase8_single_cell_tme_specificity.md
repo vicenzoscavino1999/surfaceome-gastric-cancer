@@ -1,6 +1,6 @@
 # Fase 8 Single-Cell/TME Specificity
 
-Access date: 2026-05-31
+Access date: 2026-06-01
 
 Fase 8 was executed as the preregistered MVP fallback. No processed gastric scRNA dataset with reliable malignant epithelial versus TME annotations was admitted into the quantitative score, so `SC` is `not_available` and was not imputed.
 

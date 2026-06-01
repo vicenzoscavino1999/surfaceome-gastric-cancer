@@ -1,0 +1,8 @@
+gene	control_or_candidate_class	exclusion_rule	evidence	excluded_from	date
+ACTB	negative_control_intracellular	hard_exclusion: intracellular_only	housekeeping cytoskeletal protein; no credible cell-surface context	Core+Probable surfaceome universe (not ranked)	2026-05-31
+GAPDH	negative_control_intracellular	hard_exclusion: intracellular_only	housekeeping glycolytic enzyme; no cell-surface context	Core+Probable surfaceome universe (not ranked)	2026-05-31
+H3C1	negative_control_nuclear	hard_exclusion: intracellular_only	nuclear histone; no cell-surface context	Core+Probable surfaceome universe (not ranked)	2026-05-31
+TOMM20	negative_control_mitochondrial	hard_exclusion: intracellular_only	mitochondrial outer-membrane import receptor; not plasma-membrane surface	Core+Probable surfaceome universe (not ranked)	2026-05-31
+CALR	negative_control_ER_luminal	hard_exclusion: intracellular_only (context-specific surface exposure)	ER/luminal chaperone; surface exposure is context-specific, not a conventional target	Core+Probable surfaceome universe (not ranked)	2026-05-31
+ALB	negative_control_secreted	hard_exclusion: secreted_only	plasma/secreted protein; not a tumor cell-surface target	Core+Probable surfaceome universe (not ranked)	2026-05-31
+NOTE_top30	scope_note	none	No top30 candidate met hard-exclusion criteria; problematic candidates (thin-evidence HLA/KIR, compartment markers PECAM1/LRRC15, HLA, immune) were placed in Watchlist and remain in tables with explicit flags, not hard-excluded	n/a	2026-05-31

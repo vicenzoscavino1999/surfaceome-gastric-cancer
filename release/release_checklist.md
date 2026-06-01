@@ -21,6 +21,7 @@ Status date: 2026-06-01
 - [x] Release-candidate Dockerfile and dependency lockfile are present.
 - [x] Current release-candidate container audit passes with `docker run --rm -v "${PWD}:/work" surfaceome-gastric-cancer-repro`.
 - [x] Current release-candidate clean-directory audit passes after forced Fase 13->17 rerun and hash comparison.
+- [x] Current release-candidate clean-directory recompute from frozen `data/raw/` passes Fase 1->17 and reviewer audit.
 - [ ] Clean clone/container audit repeated after public release tag/DOI freeze.
 - [ ] Full transitive environment lockfile or container verified on the frozen public release.
 
@@ -33,7 +34,8 @@ Status date: 2026-06-01
 - [x] Candidate cards and tier files are generated/validated as frozen artifacts.
 - [x] Manuscript figures are exported and checked as publication PDFs.
 - [x] Forced downstream Fase 13->17 workflow rerun and key-output hash comparison completed on a clean directory copy.
-- [ ] Full all-rules rerun from raw acquisition repeated after public release tag/DOI freeze, if live-source access remains available.
+- [x] Full declared workflow rerun from frozen local raw/source files completed on a clean directory copy, with key-output hash comparison.
+- [ ] Live-source redownload smoke test after public release tag/DOI freeze, best-effort only.
 
 ## Documentation
 

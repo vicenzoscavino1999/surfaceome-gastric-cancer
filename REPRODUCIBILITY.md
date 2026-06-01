@@ -32,7 +32,7 @@ Fase 2 MVP raw inputs have been downloaded or captured with checksums in `data/c
 - Development check dependencies are pinned in `requirements-dev.txt`; manuscript-render dependencies are pinned separately in `requirements-manuscript.txt`; the Python audit/runtime dependency closure is pinned in `requirements-lock.txt` and installed by `docker/Dockerfile`.
 - `python -m pytest -q` is the canonical unit-test command.
 - `snakemake --summary` is the workflow audit command for declared outputs.
-- `snakemake -n --cores 1` currently reports nothing to do; Snakemake still warns about missing provenance metadata for `bootstrap_status` and older Fase 1-3 rules because those outputs were first generated directly before all rules were formalized.
+- `snakemake -n --cores 1` currently reports nothing to do in the prepared workspace; it can still warn about missing historical provenance metadata for early long-lived outputs. A clean frozen-raw directory rerun has now completed Fase 1-17 and its post-run dry-run reports nothing to do.
 - `python scripts/run_reproducibility_checks.py` is the reviewer-facing aggregate audit command. It runs unit tests, all phase artifact checks through Fase 16, the CBC manuscript check, the publication-figure check, and a Snakemake dry-run.
 - Fase 4B indicates that fine five-level tiering is not justified under neutral synthetic uncertainty unless Tier 1 uses a stricter stability threshold or Fase 14 real-score stability supports finer granularity.
 - Fase 5 cBioPortal patient clinical and GISTIC files are checksum-registered in `data/checksums/cbioportal_sha256.tsv`; `E_score` is a component score, not a final target ranking.
@@ -55,6 +55,17 @@ Fase 2 MVP raw inputs have been downloaded or captured with checksums in `data/c
 - The active global Python environment still reports an unrelated `tensorflow-intel`/`numpy` dependency warning during pip installs; this project does not use TensorFlow in the current pipeline.
 - `openpyxl` emits a non-blocking unsupported-extension warning when reading one downloaded workbook; Fase 4 tables and audits still pass declared checks.
 
+## Reproducibility Modes
+
+The release uses four explicit levels:
+
+1. `audit`: runs checks against the prepared release workspace. It verifies file presence, hashes, internal consistency, manuscript constraints, publication figures, and Snakemake up-to-date status. It is validation, not full recomputation.
+2. `recompute-downstream`: recomputes Fase 13-17 from frozen upstream processed tables plus frozen raw/manual inputs. Use `python -m snakemake --cores 1 --forcerun phase13_mvp_scoring`, then run the aggregate audit.
+3. `recompute-from-frozen-raw`: preserves `data/raw/`, deletes derived outputs (`data/processed/`, `data/interim/`, `data/checksums/`, `results/`, generated manuscript figure PDFs, and `.snakemake/`), then runs `python -m snakemake --cores 1` followed by the aggregate audit. This is the strict local no-live-download regeneration path.
+4. `redownload-from-live-sources`: re-runs acquisition against current external APIs or web sources. This is best-effort only because source content, identifiers, and access behavior can change after release.
+
+`data/raw/frozen_snapshots/phase1_inventory/` stores frozen live-endpoint inventory metadata for offline Fase 1 materialization. `data/raw/frozen_snapshots/` also stores historical ranking snapshots needed to materialize v0/v1 outputs during raw regeneration. `data/raw/manual_curation/` stores frozen human-curation artifacts needed to reproduce Fase 15 without redoing web/manual review.
+
 ## Reviewer Audit Path
 
 The shortest reproducibility path for a reviewer is:
@@ -72,6 +83,20 @@ python scripts/run_reproducibility_checks.py --include-latex
 ```
 
 The detailed reviewer guide is `docs/reproducibility_reviewer_guide.md`.
+
+For downstream recomputation of the active ranking and manuscript-ready outputs:
+
+```powershell
+python -m snakemake --cores 1 --forcerun phase13_mvp_scoring
+python scripts/run_reproducibility_checks.py
+```
+
+For recomputation from frozen local raw/source files, use a clean copy of the release workspace, keep `data/raw/`, remove derived folders, and run:
+
+```powershell
+python -m snakemake --cores 1
+python scripts/run_reproducibility_checks.py
+```
 
 The release-candidate Docker runtime is:
 
@@ -99,8 +124,11 @@ python scripts/build_release_audit_report.py
 - [x] Current release-candidate Docker audit run.
 - [x] Current release-candidate clean-directory audit with forced Fase 13->17 rerun.
 - [x] Key-output hash comparison after clean-directory rerun.
+- [x] Current release-candidate clean-directory Fase 1->17 recompute from frozen `data/raw/`.
+- [x] Reviewer audit after frozen-raw clean-directory recompute.
+- [x] Key-output hash comparison after frozen-raw clean-directory recompute.
 - [ ] Repeat clean clone/container audit after the public release tag/DOI freeze.
 - [ ] Environment recreated from the lockfile/container on the frozen public release.
-- [ ] Full all-rules run from raw acquisition after public release freeze, if live-source access remains available.
+- [ ] Optional live-source redownload smoke test after public release freeze, treated as best-effort only.
 - [ ] Public repository URL and archival DOI inserted in manuscript and cover letter.
 - [ ] Release checklist in `release/release_checklist.md`.

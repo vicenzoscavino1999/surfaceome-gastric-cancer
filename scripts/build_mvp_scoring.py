@@ -7,6 +7,7 @@ import csv
 import datetime as dt
 import hashlib
 import math
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -52,6 +53,10 @@ SCENARIO_OUTPUTS = {
     "protein_first": RANKINGS_DIR / "ranking_protein_first.tsv",
 }
 ROBUST_AGGREGATE = RANKINGS_DIR / "ranking_robust_aggregate.tsv"
+FROZEN_V0_SOURCE = REPO_ROOT / "data" / "raw" / "frozen_snapshots" / "ranking_v0_frozen.tsv"
+FROZEN_V1_SOURCE = REPO_ROOT / "data" / "raw" / "frozen_snapshots" / "ranking_v1_frozen.tsv"
+FROZEN_V0 = RANKINGS_DIR / "ranking_v0_frozen.tsv"
+FROZEN_V1 = RANKINGS_DIR / "ranking_v1_frozen.tsv"
 FROZEN_V2 = RANKINGS_DIR / "ranking_v2_frozen.tsv"
 FROZEN_V2_METADATA = RANKINGS_DIR / "ranking_v2_frozen.metadata.yaml"
 RANKING_STATUS = "preliminary_fase13_mvp_not_final_tiering"
@@ -118,6 +123,15 @@ def sha256_file(path: Path) -> str:
 def write_yaml(path: Path, payload: dict[str, object]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(yaml.safe_dump(payload, sort_keys=False), encoding="utf-8", newline="\n")
+
+
+def materialize_archived_ranking_snapshots() -> None:
+    """Restore historical v0/v1 snapshots from frozen raw inputs."""
+    for source, target in [(FROZEN_V0_SOURCE, FROZEN_V0), (FROZEN_V1_SOURCE, FROZEN_V1)]:
+        if not source.exists():
+            raise FileNotFoundError(f"Missing archived ranking snapshot source: {source}")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(source, target)
 
 
 def git_commit() -> str:
@@ -924,7 +938,10 @@ These checks are diagnostic only. A control failure triggers investigation, not 
 - `results/rankings/ranking_novelty.tsv`
 - `results/rankings/ranking_protein_first.tsv`
 - `results/rankings/ranking_robust_aggregate.tsv`
+- `results/rankings/ranking_v0_frozen.tsv` (archived snapshot materialized from `data/raw/frozen_snapshots/`)
+- `results/rankings/ranking_v1_frozen.tsv` (archived snapshot materialized from `data/raw/frozen_snapshots/`)
 - `results/rankings/ranking_v2_frozen.tsv`
+- `results/rankings/ranking_v2_frozen.metadata.yaml`
 - `results/validation/functional_form_sensitivity.tsv`
 - `results/validation/phase13_post_scoring_sanity.tsv`
 
@@ -945,6 +962,7 @@ def main() -> int:
     config_hash = sha256_file(SCORING_CONFIG)
     commit, dirty, freeze_date = frozen_v2_metadata(git_commit(), git_dirty_status())
 
+    materialize_archived_ranking_snapshots()
     component_rows = build_component_rows()
     scored_by_scenario = score_rows(component_rows, scoring_config["scenarios"])
     aggregate_rows = write_robust_aggregate(scored_by_scenario)

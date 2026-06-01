@@ -13,6 +13,7 @@ import datetime as dt
 import gzip
 import io
 import json
+import shutil
 import sys
 import urllib.parse
 import urllib.request
@@ -23,6 +24,13 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parents[1]
 RESULTS_DIR = REPO_ROOT / "results" / "tables"
 DOCS_DIR = REPO_ROOT / "docs"
+FROZEN_PHASE1_DIR = REPO_ROOT / "data" / "raw" / "frozen_snapshots" / "phase1_inventory"
+FROZEN_PHASE1_FILES = {
+    "dataset_inventory.tsv": RESULTS_DIR / "dataset_inventory.tsv",
+    "sample_counts.tsv": RESULTS_DIR / "sample_counts.tsv",
+    "coverage_matrix.tsv": RESULTS_DIR / "coverage_matrix.tsv",
+    "fase1_data_inventory.md": DOCS_DIR / "fase1_data_inventory.md",
+}
 
 USER_AGENT = "surfaceome-gastric-cancer-inventory/0.1"
 
@@ -83,6 +91,17 @@ def write_tsv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) 
         writer.writeheader()
         for row in rows:
             writer.writerow({key: row.get(key, "") for key in fieldnames})
+
+
+def materialize_offline_inventory() -> None:
+    missing = [name for name in FROZEN_PHASE1_FILES if not (FROZEN_PHASE1_DIR / name).exists()]
+    if missing:
+        raise FileNotFoundError(
+            "Offline frozen-raw mode requires Phase 1 inventory snapshots: " + ", ".join(missing)
+        )
+    for name, target in FROZEN_PHASE1_FILES.items():
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(FROZEN_PHASE1_DIR / name, target)
 
 
 def format_counts(mapping: dict[str, object]) -> str:
@@ -1006,7 +1025,17 @@ Fase 1 is sufficient to proceed to Fase 2 data acquisition, with two explicit ca
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--access-date", default=dt.date.today().isoformat())
+    parser.add_argument(
+        "--offline",
+        action="store_true",
+        help="Materialize the frozen Phase 1 inventory snapshot instead of querying live metadata endpoints.",
+    )
     args = parser.parse_args(argv)
+
+    if args.offline:
+        materialize_offline_inventory()
+        print("Materialized frozen Fase 1 inventory snapshot.")
+        return 0
 
     sample_counts: list[dict[str, object]] = []
     summaries: dict[str, object] = {}
