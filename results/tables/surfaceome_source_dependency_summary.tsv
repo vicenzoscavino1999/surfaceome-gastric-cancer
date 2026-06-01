@@ -1,0 +1,19 @@
+metric	group	value	denominator	fraction	genes	interpretation
+multi_source_supported	Tier 1+2	18	18	1.000	ITGB4;CDH3;MPZL1;ITGB5;NECTIN2;BST2;IFNGR1;CEACAM5;JAG1;EPCAM;ALPG;DSC2;TNFRSF11A;ERBB2;CD9;LSR;CDH17;TGFBR1	Candidates have at least two declared source groups.
+source_diverse_curated_plus_anchor	Tier 1+2	18	18	1.000	ITGB4;CDH3;MPZL1;ITGB5;NECTIN2;BST2;IFNGR1;CEACAM5;JAG1;EPCAM;ALPG;DSC2;TNFRSF11A;ERBB2;CD9;LSR;CDH17;TGFBR1	Candidates combine curated surfaceome-list support with UniProt/HPA/GO anchoring.
+retains_support_after_any_single_source_removal	Tier 1+2	18	18	1.000	ITGB4;CDH3;MPZL1;ITGB5;NECTIN2;BST2;IFNGR1;CEACAM5;JAG1;EPCAM;ALPG;DSC2;TNFRSF11A;ERBB2;CD9;LSR;CDH17;TGFBR1	Candidates would retain at least one declared surfaceome source after dropping any single source group.
+single_source_dependent	Tier 1+2	0	18	0.000		Candidates whose declared surfaceome support collapses if their only source is removed.
+multi_source_supported	Tier 1	6	6	1.000	ITGB4;CDH3;NECTIN2;CEACAM5;JAG1;EPCAM	Candidates have at least two declared source groups.
+source_diverse_curated_plus_anchor	Tier 1	6	6	1.000	ITGB4;CDH3;NECTIN2;CEACAM5;JAG1;EPCAM	Candidates combine curated surfaceome-list support with UniProt/HPA/GO anchoring.
+retains_support_after_any_single_source_removal	Tier 1	6	6	1.000	ITGB4;CDH3;NECTIN2;CEACAM5;JAG1;EPCAM	Candidates would retain at least one declared surfaceome source after dropping any single source group.
+single_source_dependent	Tier 1	0	6	0.000		Candidates whose declared surfaceome support collapses if their only source is removed.
+multi_source_supported	Tier 2	12	12	1.000	MPZL1;ITGB5;BST2;IFNGR1;ALPG;DSC2;TNFRSF11A;ERBB2;CD9;LSR;CDH17;TGFBR1	Candidates have at least two declared source groups.
+source_diverse_curated_plus_anchor	Tier 2	12	12	1.000	MPZL1;ITGB5;BST2;IFNGR1;ALPG;DSC2;TNFRSF11A;ERBB2;CD9;LSR;CDH17;TGFBR1	Candidates combine curated surfaceome-list support with UniProt/HPA/GO anchoring.
+retains_support_after_any_single_source_removal	Tier 2	12	12	1.000	MPZL1;ITGB5;BST2;IFNGR1;ALPG;DSC2;TNFRSF11A;ERBB2;CD9;LSR;CDH17;TGFBR1	Candidates would retain at least one declared surfaceome source after dropping any single source group.
+single_source_dependent	Tier 2	0	12	0.000		Candidates whose declared surfaceome support collapses if their only source is removed.
+loses_all_support_after_removing_tcsa	Tier 1+2	0	18	0.000		Candidates fully dependent on TCSA curated cancer surfaceome.
+loses_all_support_after_removing_cspa	Tier 1+2	0	18	0.000		Candidates fully dependent on CSPA experimental cell-surface proteomics.
+loses_all_support_after_removing_surfy	Tier 1+2	0	18	0.000		Candidates fully dependent on SURFY in silico surfaceome.
+loses_all_support_after_removing_uniprot_anchor	Tier 1+2	0	18	0.000		Candidates fully dependent on UniProt topology/TM/GPI anchor.
+loses_all_support_after_removing_hpa_plasma_membrane	Tier 1+2	0	18	0.000		Candidates fully dependent on HPA plasma-membrane localization.
+loses_all_support_after_removing_go_plasma_membrane	Tier 1+2	0	18	0.000		Candidates fully dependent on GO plasma-membrane/surface annotation.

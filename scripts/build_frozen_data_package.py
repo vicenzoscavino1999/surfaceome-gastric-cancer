@@ -29,6 +29,9 @@ SUPPORT_FILES = [
     "docs/provenance_log.tsv",
     "docs/source_acquisition_policy.md",
     "docs/reproducibility_reviewer_guide.md",
+    "docs/surfaceome_source_dependency_audit.md",
+    "results/tables/surfaceome_source_dependency_audit.tsv",
+    "results/tables/surfaceome_source_dependency_summary.tsv",
     "release/reproducibility_audit_report.md",
     "release/reproducibility_audit_log.tsv",
 ]

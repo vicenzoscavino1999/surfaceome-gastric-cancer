@@ -125,6 +125,9 @@ rule all:
         "results/tables/external_surfaceome_baseline_comparison.tsv",
         "results/tables/external_surfaceome_baseline_gene_ranks.tsv",
         "docs/external_surfaceome_baseline_comparison.md",
+        "results/tables/surfaceome_source_dependency_audit.tsv",
+        "results/tables/surfaceome_source_dependency_summary.tsv",
+        "docs/surfaceome_source_dependency_audit.md",
         "results/tables/candidate_scrna_tisch2_compartment_check.tsv",
         "results/tables/candidate_scrna_tisch2_summary.tsv",
         "results/figures/candidate_scrna_tisch2_compartment_heatmap.svg",
@@ -535,6 +538,8 @@ rule phase16_figures_tables:
         "results/tables/control_recovery_phase13.tsv",
         "results/validation/rank_stability.tsv",
         "results/validation/top30_false_positive_audit.tsv",
+        "results/tables/surfaceome_source_dependency_audit.tsv",
+        "results/tables/surfaceome_source_dependency_summary.tsv",
         "data/processed/tumor_expression.tsv",
         "data/processed/selectivity_scores.tsv",
         "config/scoring_scenarios.yaml"
@@ -620,6 +625,18 @@ rule external_surfaceome_baseline_comparison:
     shell:
         "python scripts/build_external_surfaceome_baseline_comparison.py"
 
+rule surfaceome_source_dependency_audit:
+    input:
+        "data/processed/surfaceome_universe.tsv",
+        "results/rankings/ranking_v2_frozen.tsv",
+        "results/tables/tier_assignments.tsv"
+    output:
+        "results/tables/surfaceome_source_dependency_audit.tsv",
+        "results/tables/surfaceome_source_dependency_summary.tsv",
+        "docs/surfaceome_source_dependency_audit.md"
+    shell:
+        "python scripts/build_surfaceome_source_dependency_audit.py"
+
 rule candidate_scrna_compartment_check:
     input:
         "results/tables/manuscript_table3_top_candidates.tsv",
@@ -642,6 +659,8 @@ rule phase17_supplementary_manifest_status:
         "results/tables/wang2026_overlap_enrichment.tsv",
         "results/tables/wang2026_matched_null.tsv",
         "results/tables/external_surfaceome_baseline_comparison.tsv",
+        "results/tables/surfaceome_source_dependency_audit.tsv",
+        "results/tables/surfaceome_source_dependency_summary.tsv",
         "results/tables/candidate_scrna_tisch2_compartment_check.tsv"
     output:
         "results/tables/supplementary_table_manifest.status.ok"

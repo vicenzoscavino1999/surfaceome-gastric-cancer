@@ -2,6 +2,10 @@
 
 All notable changes to the reproducible analysis package are documented here.
 
+## Unreleased - 2026-06-01
+
+- Added a post-ranking surfaceome source-dependency robustness audit for Tier 1/2 candidates. All 18 Tier 1/2 candidates retain declared surfaceome support after removing any single source group, and none are single-source dependent. Scores, weights, universe membership, ranking, and tiers are unchanged.
+
 ## 0.1.0-rc3 - 2026-06-01
 
 - Supersedes `v0.1.0-rc2` by aligning push/tag GitHub Actions with the documented CI-small boundary.

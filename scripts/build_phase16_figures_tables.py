@@ -46,6 +46,8 @@ WANG_MATCHED_NULL = TABLES_DIR / "wang2026_matched_null.tsv"
 GPI_CORRECTION_IMPACT = TABLES_DIR / "gpi_correction_impact.tsv"
 GPI_RANK_DELTA = TABLES_DIR / "gpi_rank_delta_v1_v2.tsv"
 EXTERNAL_BASELINE_COMPARISON = TABLES_DIR / "external_surfaceome_baseline_comparison.tsv"
+SURFACEOME_SOURCE_DEPENDENCY_AUDIT = TABLES_DIR / "surfaceome_source_dependency_audit.tsv"
+SURFACEOME_SOURCE_DEPENDENCY_SUMMARY = TABLES_DIR / "surfaceome_source_dependency_summary.tsv"
 CANDIDATE_SCRNA_TISCH2 = TABLES_DIR / "candidate_scrna_tisch2_compartment_check.tsv"
 CONTROL_BENCHMARK = VALIDATION_DIR / "control_benchmark.tsv"
 CONTROL_RECOVERY = TABLES_DIR / "control_recovery_phase13.tsv"
@@ -756,6 +758,8 @@ def build_manifests() -> None:
         ("S20", "GPI rank delta", GPI_RANK_DELTA, "available"),
         ("S21", "External surfaceome baseline comparison", EXTERNAL_BASELINE_COMPARISON, "available"),
         ("S22", "Candidate-level TISCH2 scRNA compartment check", CANDIDATE_SCRNA_TISCH2, "available"),
+        ("S23", "Surfaceome source-dependency audit", SURFACEOME_SOURCE_DEPENDENCY_AUDIT, "available"),
+        ("S24", "Surfaceome source-dependency summary", SURFACEOME_SOURCE_DEPENDENCY_SUMMARY, "available"),
     ]
     write_tsv(
         SUPPLEMENTARY_MANIFEST,

@@ -77,6 +77,8 @@ release/archive/*
 !results/tables/clinical_covariate_sample_counts.tsv
 !results/tables/fase5_covariate_availability.tsv
 !results/tables/amplified_target_cna_expression.tsv
+!results/tables/surfaceome_source_dependency_audit.tsv
+!results/tables/surfaceome_source_dependency_summary.tsv
 !results/tables/tumor_normal_power_analysis.tsv
 !results/tables/normal_tissue_sample_counts.tsv
 !results/tables/hpa_normal_protein_by_organ.tsv
