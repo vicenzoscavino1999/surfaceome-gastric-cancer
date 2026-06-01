@@ -34,7 +34,7 @@ Fase 2 MVP raw inputs have been downloaded or captured with checksums in `data/c
 - `snakemake --summary` is the workflow audit command for declared outputs.
 - `snakemake -n --cores 1` currently reports nothing to do in the prepared workspace; it can still warn about missing historical provenance metadata for early long-lived outputs. A clean frozen-raw directory rerun has now completed Fase 1-17 and its post-run dry-run reports nothing to do.
 - `python scripts/run_reproducibility_checks.py` is the reviewer-facing aggregate audit command. It runs unit tests, all phase artifact checks through Fase 16, the CBC manuscript check, the publication-figure check, and a Snakemake dry-run.
-- `.github/workflows/reproducibility-ci.yml` provides push/PR syntax lint, `pytest`, a CI-safe Snakemake dry-run, and Docker image build. Manual workflow-dispatch jobs run the full reviewer audit, optional Fase 13->17 recompute, and optional Fase 1->17 frozen-raw rerun when the frozen data bundle is present.
+- `.github/workflows/reproducibility-ci.yml` provides push/PR syntax lint, `pytest` with full-data tests skipped when the frozen bundle is absent, a CI-safe Snakemake dry-run, and Docker image build. Manual workflow-dispatch jobs run the full reviewer audit, optional Fase 13->17 recompute, and optional Fase 1->17 frozen-raw rerun when the frozen data bundle is present.
 - Fase 4B indicates that fine five-level tiering is not justified under neutral synthetic uncertainty unless Tier 1 uses a stricter stability threshold or Fase 14 real-score stability supports finer granularity.
 - Fase 5 cBioPortal patient clinical and GISTIC files are checksum-registered in `data/checksums/cbioportal_sha256.tsv` and treated as frozen archived inputs in the default Snakemake path (`scripts/build_tumor_expression.py --offline`); `E_score` is a component score, not a final target ranking.
 - Fase 6 uses `config/tissue_mappings.yaml` plus preregistered `normal_selectivity` and `normal_risk` parameters. `N_score` and `R_score` are components, not a final target ranking.
@@ -69,7 +69,7 @@ The release uses four explicit levels:
 
 `docs/source_acquisition_policy.md` records the release boundary for API/manual acquisitions. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are frozen inputs with checksum/provenance records. The final public DOI must cover those inputs or an equivalent archived data package; live refreshes are best-effort only.
 
-The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The planned release-candidate tag is `v0.1.0-rc2`; the archival DOI remains pending until the frozen input bundle or equivalent checksum/provenance package is archived externally.
+The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The planned release-candidate tag is `v0.1.0-rc3`; the archival DOI remains pending until the frozen input bundle or equivalent checksum/provenance package is archived externally.
 
 ## Reviewer Audit Path
 

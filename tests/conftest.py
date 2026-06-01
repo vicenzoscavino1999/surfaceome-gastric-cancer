@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 import pytest
 
@@ -6,6 +7,10 @@ import pytest
 ROOT = Path(__file__).resolve().parents[1]
 
 DATA_DEPENDENT_TEST_FILES = {
+    "test_phase13_mvp_scoring.py",
+    "test_phase14_preflight.py",
+    "test_phase14_stability.py",
+    "test_phase4b_ranking_resolution.py",
     "test_phase4_surfaceome_universe.py",
     "test_phase5_tumor_expression.py",
     "test_phase8_single_cell_tme.py",
@@ -21,6 +26,8 @@ MINIMUM_RELEASE_DATA_FILES = [
 
 
 def release_data_bundle_present() -> bool:
+    if os.environ.get("SURFACEOME_CI_SMALL") == "1":
+        return False
     return all((ROOT / rel_path).exists() for rel_path in MINIMUM_RELEASE_DATA_FILES)
 
 

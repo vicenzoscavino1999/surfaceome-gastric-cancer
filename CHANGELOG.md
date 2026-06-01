@@ -2,6 +2,11 @@
 
 All notable changes to the reproducible analysis package are documented here.
 
+## 0.1.0-rc3 - 2026-06-01
+
+- Supersedes `v0.1.0-rc2` by aligning push/tag GitHub Actions with the documented CI-small boundary.
+- Sets `SURFACEOME_CI_SMALL=1` for push/PR pytest and skips full-data pytest files when the frozen raw/derived bundle is absent; local and manual full-data audits still run those tests.
+
 ## 0.1.0-rc2 - 2026-06-01
 
 - Supersedes `v0.1.0-rc1` after a public-tag clean clone plus frozen-raw rerun exposed a missing Snakemake dependency edge for the supplementary-manifest status check.
