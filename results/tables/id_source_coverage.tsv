@@ -1,0 +1,6 @@
+source_id	identifier_type	total_source_identifiers	mapped_to_hgnc_approved	mapped_to_hgnc_protein_coding	unresolved_or_outside_protein_coding	pct_mapped_to_hgnc_protein_coding	notes
+id_map_master_candidates	HGNC approved protein-coding gene	19295	19295	19295	0	100.00	Candidate denominator for Fase 3 exit criterion.
+xena_toil_tcga_gtex	Ensembl gene ID	60498	41023	19080	41418	31.54	Includes noncoding and deprecated Ensembl IDs; not the candidate denominator.
+hpa_downloads	Ensembl gene ID	20162	19793	19214	948	95.30	HPA uses Ensembl IDs plus gene names in bulk files.
+hpa_downloads	gene symbol	20151	18967	18967	1184	94.12	Symbol coverage is secondary to Ensembl mapping.
+uniprot_reviewed_human	UniProt accession	20431	19203	19203	1228	93.99	UniProt reviewed entries can include accessions not listed in HGNC uniprot_ids; symbol matching is used in master map when HGNC accessions are absent.

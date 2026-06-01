@@ -1,6 +1,6 @@
 version: "0.1.0"
 created: "2026-05-28"
-status: "fase1_metadata_inventory_complete_no_large_raw_downloads"
+status: "fase9_topology_isoforms_complete"
 
 datasets:
   - id: "xena_toil_tcga_gtex"
@@ -12,10 +12,13 @@ datasets:
     version_or_release: "Toil recompute; TcgaTargetGtex_rsem_gene_tpm.gz Last-Modified Fri, 09 Apr 2021 20:01:53 GMT; phenotype Last-Modified Fri, 09 Apr 2021 20:01:15 GMT"
     license_or_terms: "UCSC Xena public hub terms; verify at Fase 2 download"
     checksum_manifest: "data/checksums/xena_toil_sha256.tsv"
-    status: "metadata_verified_no_matrix_downloaded"
+    status: "raw_downloaded_with_checksums_batch_diagnostic_phase6_normal_selectivity_complete"
     exact_files:
       - "https://toil.xenahubs.net/download/TcgaTargetGtex_rsem_gene_tpm.gz"
       - "https://toil.xenahubs.net/download/TcgaTargetGTEX_phenotype.txt.gz"
+    downloaded_files:
+      - "data/raw/xena_toil/TcgaTargetGtex_rsem_gene_tpm.gz"
+      - "data/raw/xena_toil/TcgaTargetGTEX_phenotype.txt.gz"
     phase1_counts:
       tcga_stad_primary_tumor: 414
       tcga_stad_solid_tissue_normal: 36
@@ -29,7 +32,10 @@ datasets:
     version_or_release: "GDC API live query; TCGA-STAD cases=443; RNA-seq STAR Counts primary=412, solid tissue normal=36, metastatic=0"
     license_or_terms: "GDC data use terms; open-access metadata queried"
     checksum_manifest: "data/checksums/gdc_tcga_stad_sha256.tsv"
-    status: "metadata_verified_no_raw_downloaded"
+    status: "metadata_raw_downloaded_with_checksums_expression_files_pending"
+    downloaded_files:
+      - "data/raw/gdc_tcga_stad/cases_tcga_stad.json"
+      - "data/raw/gdc_tcga_stad/files_tcga_stad_rnaseq_star_counts.json"
   - id: "hpa_downloads"
     role: "normal tissue protein, pathology IHC, subcellular location, RNA tissue"
     source: "Human Protein Atlas"
@@ -39,13 +45,19 @@ datasets:
     version_or_release: "HPA 25.1; Ensembl 109"
     license_or_terms: "Creative Commons Attribution 4.0 International, with third-party caveats"
     checksum_manifest: "data/checksums/hpa_sha256.tsv"
-    status: "metadata_verified_no_raw_saved"
+    status: "raw_downloaded_with_checksums_phase7_protein_evidence_complete"
     exact_files:
       - "https://www.proteinatlas.org/download/tsv/normal_ihc_data.tsv.zip"
       - "https://www.proteinatlas.org/download/tsv/cancer_data.tsv.zip"
       - "https://www.proteinatlas.org/download/tsv/subcellular_location.tsv.zip"
       - "https://www.proteinatlas.org/download/tsv/rna_tissue_consensus.tsv.zip"
       - "https://www.proteinatlas.org/download/tsv/rna_tissue_gtex.tsv.zip"
+    downloaded_files:
+      - "data/raw/hpa/normal_ihc_data.tsv.zip"
+      - "data/raw/hpa/cancer_data.tsv.zip"
+      - "data/raw/hpa/subcellular_location.tsv.zip"
+      - "data/raw/hpa/rna_tissue_consensus.tsv.zip"
+      - "data/raw/hpa/rna_tissue_gtex.tsv.zip"
     phase1_counts:
       normal_ihc_stomach_genes: 13478
       cancer_ihc_stomach_genes: 15312
@@ -59,22 +71,104 @@ datasets:
     version_or_release: "2026_01"
     license_or_terms: "UniProt terms; verify at Fase 2 download"
     checksum_manifest: "data/checksums/uniprot_sha256.tsv"
-    status: "metadata_verified"
+    status: "raw_downloaded_with_checksums"
+    exact_files:
+      - "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,id,gene_names,protein_name,ft_topo_dom,ft_transmem,ft_signal,xref_ensembl&query=(reviewed:true)%20AND%20(organism_id:9606)"
+    downloaded_files:
+      - "data/raw/uniprot/uniprot_reviewed_human_topology.tsv.gz"
     phase1_counts:
       reviewed_human_entries: 20431
       reviewed_human_transmembrane_entries: 5230
       reviewed_human_topological_domain_entries: 4037
       reviewed_human_signal_peptide_entries: 3616
-  - id: "surfaceome_reference_lists"
-    role: "surfaceome universe construction"
-    source: "CSPA, Cancer Surfaceome Atlas, GO/UniProt/HPA-derived lists"
-    url: "TBD per source"
+  - id: "uniprot_reviewed_human_features_phase9"
+    role: "Fase 9 topology, isoform, GPI/lipidation, domain, glycosylation, disulfide, chain, and PTM evidence"
+    source: "UniProtKB reviewed human"
+    url: "https://rest.uniprot.org/uniprotkb/stream"
+    local_raw_dir: "data/raw/uniprot"
+    access_date: "2026-05-28"
+    version_or_release: "2026_01"
+    license_or_terms: "UniProt terms"
+    checksum_manifest: "data/checksums/uniprot_phase9_features_sha256.tsv"
+    status: "raw_downloaded_with_checksums_phase9_topology_complete"
+    exact_files:
+      - "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,id,gene_names,protein_name,length,ft_topo_dom,ft_transmem,ft_intramem,ft_signal,ft_lipid,ft_carbohyd,ft_disulfid,ft_chain,ft_domain,cc_subcellular_location,cc_ptm,xref_ensembl&query=(reviewed:true)%20AND%20(organism_id:9606)"
+    downloaded_files:
+      - "data/raw/uniprot/uniprot_reviewed_human_features.tsv.gz"
+    phase9_counts:
+      core_probable_genes_assessed: 2650
+      uniprot_feature_coverage: 2650
+      gpi_anchor_annotations: 67
+  - id: "hgnc_complete_set"
+    role: "canonical HGNC symbols, aliases, previous symbols, Entrez IDs, Ensembl IDs, UniProt IDs, and MANE transcripts"
+    source: "HGNC"
+    url: "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt"
+    local_raw_dir: "data/raw/hgnc"
+    access_date: "2026-05-28"
+    version_or_release: "HGNC complete set; Last-Modified Tue, 26 May 2026 13:13:52 GMT"
+    license_or_terms: "HGNC public download terms; verify before redistribution"
+    checksum_manifest: "data/checksums/hgnc_sha256.tsv"
+    status: "raw_downloaded_with_checksums_id_map_built"
+    exact_files:
+      - "https://storage.googleapis.com/public-download-files/hgnc/tsv/tsv/hgnc_complete_set.txt"
+    downloaded_files:
+      - "data/raw/hgnc/hgnc_complete_set.txt"
+  - id: "cancer_surfaceome_atlas_tcsa"
+    role: "surfaceome universe construction; curated cancer surface protein prior"
+    source: "Cancer Surfaceome Atlas / TCSA supplementary workbook"
+    url: "https://static-content.springer.com/esm/art%3A10.1038%2Fs43018-021-00282-w/MediaObjects/43018_2021_282_MOESM2_ESM.xlsx"
     local_raw_dir: "data/raw/surfaceome"
-    access_date: null
-    version_or_release: "TBD at download"
-    license_or_terms: "TBD at download"
-    checksum_manifest: "data/checksums/surfaceome_sha256.tsv"
-    status: "planned"
+    access_date: "2026-05-28"
+    version_or_release: "Hu et al. Nature Cancer 2021 Supplementary Tables 1-40; Last-Modified Thu, 26 Oct 2023 09:19:51 GMT"
+    license_or_terms: "Nature/Springer supplementary material terms"
+    checksum_manifest: "data/checksums/surfaceome_sources_sha256.tsv"
+    status: "raw_downloaded_with_checksums_surfaceome_universe_built"
+    exact_files:
+      - "https://static-content.springer.com/esm/art%3A10.1038%2Fs43018-021-00282-w/MediaObjects/43018_2021_282_MOESM2_ESM.xlsx"
+    downloaded_files:
+      - "data/raw/surfaceome/tcsa_supplementary_tables_1_40.xlsx"
+  - id: "cspa"
+    role: "surfaceome universe construction; experimental surface proteomics prior"
+    source: "Cell Surface Protein Atlas supplementary workbook"
+    url: "https://journals.plos.org/plosone/article/file?type=supplementary&id=10.1371/journal.pone.0121314.s003"
+    local_raw_dir: "data/raw/surfaceome"
+    access_date: "2026-05-28"
+    version_or_release: "Bausch-Fluck et al. PLOS ONE 2015 S2 file; Last-Modified Mon, 30 Nov 2020 21:58:07 GMT"
+    license_or_terms: "PLOS ONE article supplementary material terms"
+    checksum_manifest: "data/checksums/surfaceome_sources_sha256.tsv"
+    status: "raw_downloaded_with_checksums_surfaceome_universe_built"
+    exact_files:
+      - "https://journals.plos.org/plosone/article/file?type=supplementary&id=10.1371/journal.pone.0121314.s003"
+    downloaded_files:
+      - "data/raw/surfaceome/cspa_pone_0121314_s003.xlsx"
+  - id: "surfy"
+    role: "surfaceome universe construction; in silico surfaceome prior"
+    source: "SURFY / Wollscheid lab"
+    url: "https://wlab.ethz.ch/surfaceome/table_S3_surfaceome.xlsx"
+    local_raw_dir: "data/raw/surfaceome"
+    access_date: "2026-05-28"
+    version_or_release: "SURFY table S3; Last-Modified Mon, 09 Mar 2026 13:42:02 GMT"
+    license_or_terms: "Wollscheid lab SURFY download terms; verify before redistribution"
+    checksum_manifest: "data/checksums/surfaceome_sources_sha256.tsv"
+    status: "raw_downloaded_with_checksums_surfaceome_universe_built"
+    exact_files:
+      - "https://wlab.ethz.ch/surfaceome/table_S3_surfaceome.xlsx"
+    downloaded_files:
+      - "data/raw/surfaceome/surfy_table_s3_surfaceome.xlsx"
+  - id: "uniprot_reviewed_human_go"
+    role: "surfaceome universe construction; GO cellular component support"
+    source: "UniProtKB reviewed human GO annotations"
+    url: "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,gene_names,go_id,go_c&query=(reviewed:true)%20AND%20(organism_id:9606)"
+    local_raw_dir: "data/raw/uniprot"
+    access_date: "2026-05-28"
+    version_or_release: "UniProt reviewed human GO cellular component stream; release observed as 2026_01 in Fase 1"
+    license_or_terms: "UniProt terms"
+    checksum_manifest: "data/checksums/surfaceome_sources_sha256.tsv"
+    status: "raw_downloaded_with_checksums_surfaceome_universe_built"
+    exact_files:
+      - "https://rest.uniprot.org/uniprotkb/stream?compressed=true&format=tsv&fields=accession,gene_names,go_id,go_c&query=(reviewed:true)%20AND%20(organism_id:9606)"
+    downloaded_files:
+      - "data/raw/uniprot/uniprot_reviewed_human_go.tsv.gz"
   - id: "clinical_druggability_sources"
     role: "candidate card annotations"
     source: "Open Targets, ChEMBL, DGIdb, ClinicalTrials.gov"
@@ -94,7 +188,24 @@ datasets:
     version_or_release: "stad_tcga and stad_tcga_pan_can_atlas_2018 API studies"
     license_or_terms: "cBioPortal public API terms; verify before redistribution"
     checksum_manifest: "data/checksums/cbioportal_sha256.tsv"
-    status: "metadata_verified"
+    status: "patient_subtype_stage_and_cna_context_downloaded_with_checksums_fase5_complete"
+    exact_files:
+      - "https://www.cbioportal.org/api/studies/stad_tcga_pan_can_atlas_2018/clinical-data?clinicalDataType=PATIENT&projection=DETAILED"
+      - "https://www.cbioportal.org/api/molecular-profiles/stad_tcga_pan_can_atlas_2018_gistic/molecular-data/fetch?projection=SUMMARY"
+    downloaded_files:
+      - "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_patient_clinical_data.json"
+      - "data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_gistic_erbb2_fgfr2_met.json"
+    phase5_counts:
+      xena_primary_tumor_samples: 414
+      molecular_subtype_mapped_samples: 381
+      stad_ebv_samples: 30
+      stad_msi_samples: 73
+      stad_gs_samples: 50
+      stad_cin_samples: 221
+      stad_pole_samples: 7
+      unassigned_samples: 33
+      ajcc_stage_mapped_samples: 393
+      anatomic_origin_mapped_samples: 414
   - id: "depmap"
     role: "gastric/GEJ cell-line expression and CRISPR dependency evidence"
     source: "DepMap Portal Context Explorer"
@@ -125,15 +236,48 @@ datasets:
       cptac_stad_proteome_cases: 193
       cptac_stad_proteome_aliquots: 234
   - id: "scrna_gastric_candidates"
-    role: "malignant epithelial vs TME specificity layer"
+    role: "post-ranking candidate-level malignant epithelial vs TME specificity annotation"
     source: "TISCH2 / GEO gastric cancer scRNA"
     url: "https://tisch.compbio.cn/home/"
-    local_raw_dir: "data/raw/scrna"
-    access_date: "2026-05-28"
-    version_or_release: "GEO/TISCH2 current at access date"
+    local_raw_dir: "data/raw/tisch2"
+    access_date: "2026-05-31"
+    version_or_release: "TISCH2 static processed matrices current at access date"
     license_or_terms: "Per GEO/TISCH2/source publication"
-    checksum_manifest: "data/checksums/scrna_sha256.tsv"
-    status: "candidate_sources_identified_not_downloaded"
+    checksum_manifest: "data/checksums/tisch2_candidate_scrna_sha256.tsv"
+    status: "downloaded_with_checksums_candidate_annotation_only_not_numeric_score"
+    exact_files:
+      - "https://tisch.compbio.cn/static/data/STAD_GSE134520/STAD_GSE134520_Expression.zip"
+      - "https://tisch.compbio.cn/static/data/STAD_GSE134520/STAD_GSE134520_CellMetainfo_table.tsv"
+      - "https://tisch.compbio.cn/static/data/STAD_GSE167297/STAD_GSE167297_Expression.zip"
+      - "https://tisch.compbio.cn/static/data/STAD_GSE167297/STAD_GSE167297_CellMetainfo_table.tsv"
+    downloaded_files:
+      - "data/raw/tisch2/STAD_GSE134520/STAD_GSE134520_Expression.zip"
+      - "data/raw/tisch2/STAD_GSE134520/STAD_GSE134520_CellMetainfo_table.tsv"
+      - "data/raw/tisch2/STAD_GSE167297/STAD_GSE167297_Expression.zip"
+      - "data/raw/tisch2/STAD_GSE167297/STAD_GSE167297_CellMetainfo_table.tsv"
+    phase8_decision:
+      sc_component_status: "SC_not_available_not_imputed"
+      fallback: "TCGA-STAD bulk TME marker-module correlations plus ESTIMATE/tidyestimate partial correlations"
+    phase17_candidate_check:
+      score_usage: "candidate_annotation_only_not_numeric_SC_score"
+      datasets:
+        STAD_GSE134520: "41,554 cells; 13 samples; 880 malignant cells in TISCH2 metadata"
+        STAD_GSE167297: "22,464 cells; 14 samples; no TISCH2 malignant-cell class"
+  - id: "tidyestimate_estimate_gene_sets"
+    role: "ESTIMATE stromal and immune signatures for Fase 8 relative purity/admixture covariate"
+    source: "CRAN tidyestimate source package"
+    url: "https://cran.r-project.org/src/contrib/tidyestimate_1.1.1.tar.gz"
+    local_raw_dir: "data/raw/tcga_purity"
+    access_date: "2026-05-28"
+    version_or_release: "tidyestimate 1.1.1; ESTIMATE signatures from Yoshihara et al. 2013"
+    license_or_terms: "GPL-2/GPL-3 package license; ESTIMATE signature provenance retained in package metadata"
+    checksum_manifest: "data/checksums/tcga_purity_sha256.tsv"
+    status: "raw_downloaded_with_checksums_phase8_control_b_complete"
+    exact_files:
+      - "https://cran.r-project.org/src/contrib/tidyestimate_1.1.1.tar.gz"
+    downloaded_files:
+      - "data/raw/tcga_purity/tidyestimate_1.1.1.tar.gz"
+      - "data/raw/tcga_purity/tidyestimate/data/gene_sets.rda"
   - id: "external_bulk_rna_cohorts"
     role: "external bulk RNA validation cohorts"
     source: "GEO/ACRG gastric expression cohorts"

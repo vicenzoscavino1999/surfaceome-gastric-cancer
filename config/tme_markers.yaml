@@ -1,0 +1,39 @@
+version: "0.1.0"
+created: "2026-05-28"
+status: "fase8_mvp_fallback_frozen_before_final_ranking"
+
+single_cell_gate:
+  status: "not_entered_mvp_no_processed_annotated_dataset"
+  rationale: "No local processed gastric scRNA matrix with malignant epithelial versus TME annotations has passed the Fase 8 quality gate."
+  sc_component_status: "SC_not_available_not_imputed"
+
+tme_modules:
+  caf_fibroblast:
+    label: "CAF/fibroblast"
+    markers: ["FAP", "ACTA2", "COL1A1", "COL1A2", "DCN", "LUM"]
+  endothelial:
+    label: "Endothelial/pericyte"
+    markers: ["PECAM1", "VWF", "CDH5", "ENG", "ERG"]
+  myeloid_macrophage:
+    label: "Myeloid/macrophage"
+    markers: ["CD68", "CD163", "CSF1R", "ITGAM", "LYZ"]
+  t_cell:
+    label: "T cell"
+    markers: ["CD3D", "CD3E", "CD8A", "CD4", "TRAC"]
+  b_plasma:
+    label: "B/plasma"
+    markers: ["CD19", "MS4A1", "SDC1", "MZB1", "JCHAIN"]
+
+risk_thresholds:
+  high_uncorrected_rho: 0.60
+  moderate_uncorrected_rho: 0.50
+  watchlist_uncorrected_rho: 0.35
+  high_partial_rho: 0.40
+  purity_confounded_partial_rho: 0.20
+  min_samples: 100
+
+purity_adjustment:
+  status: "computed_with_estimate_tidyestimate_rnaseq_relative_proxy"
+  accepted_sources: ["ESTIMATE", "CPE", "consensus_purity"]
+  selected_source: "ESTIMATE/tidyestimate gene signatures"
+  rule: "Use the ESTIMATE-derived RNA-seq relative purity proxy as a covariate for partial Spearman correlations. Do not interpret it as absolute pathology purity."

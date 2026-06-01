@@ -1,0 +1,83 @@
+version: "0.1.0-preregistered"
+created: "2026-05-31"
+status: "frozen_before_tier_assignment"
+
+purpose: >
+  Preregistered coarse tiering rules for Fase 15, frozen before any gene is assigned a tier.
+  This file does not invent new degrees of freedom: it consolidates criteria already frozen in
+  config/parameters.yaml (missing_data_policy, manual_curation), config/exclusion_criteria.yaml,
+  config/controls.yaml, and the preregistered Fase 14 Tier-1 quality criteria. The only new element
+  is the collapse from the master plan's five-level scheme to three coarse tiers, which is mandated
+  by DD-031 (post-scoring rank resolution supports coarse tiers only). No tier threshold below was
+  chosen by inspecting which genes it would include or exclude.
+
+granularity:
+  scheme: ["Tier 1", "Tier 2", "Watchlist", "Excluded"]
+  no_intra_tier_rank_order: true
+  rationale: >
+    Fase 14 post-scoring resolution found 1/20 baseline top20 genes with a 95% rank interval
+    contained in top40. Fine intra-tier ordering is not statistically defensible; tiers are reported
+    as unordered sets.
+
+# Tier 1 requires ALL of the following. Criteria are pre-existing frozen thresholds.
+tier_1_requires_all:
+  stability_top20_frequency_min: 0.40        # plan: "top20 in >=40% of reasonable perturbations"; column balanced_weight_perturb_top20_frequency
+  not_single_layer_dependent: true           # plan: a candidate that depends on one layer cannot be Tier 1
+  max_missing_primary_components: 2           # parameters.yaml missing_data_policy.max_missing_for_tier_1B
+  accessibility_class_in: ["A", "B", "C_with_literature_support"]   # Fase 9 classes; class C only with curation evidence
+  protein_evidence_present_or_documented_absence: true
+  no_unexplained_critical_normal_risk: true
+  not_tme_marker_without_tumor_cell_membranous_evidence: true       # exclusion_criteria.tme_marker + Fase 14 TME rule
+  prevalence_flag_assigned: true
+
+# Tier 2: good candidate failing exactly one Tier-1 criterion, or scenario/subtype-dependent.
+tier_2_if_any:
+  - meets_tier_1_except_one_criterion: true
+  - scenario_or_subtype_dependent: true       # plan: scenario-dependent hits are not primary
+  - moderate_stability_below_tier1_but_ranked: true
+  constraints:
+    max_missing_primary_components: 2
+    allowed_with_explicit_flags: true
+
+# Watchlist: interesting but not nominable as a priority target.
+watchlist_if_any:
+  - missing_primary_components_ge: 3          # parameters.yaml missing_data_policy.three_or_more_missing
+  - non_assessable_core_expression: true
+  - tme_marker_control: ["PECAM1", "PTPRC"]   # exclusion_criteria.tme_marker; not Tier 1 for epithelial targeting
+  - unexplained_high_critical_normal_risk: true
+  - isoform_unresolved_benchmark: ["CLDN18", "FGFR2"]   # kept as benchmarks with isoform_unresolved flag
+
+# Excluded: hard exclusions copied from exclusion_criteria.yaml hard_exclusion_from_surfaceome_universe.
+excluded_if_any:
+  - not_in_core_probable_surfaceome: true
+  - intracellular_or_secreted_only: true
+  - unresolved_identifier: true
+  - accessibility_class: "E"                  # no accessible extracellular domain
+
+# Prevalence flag is independent of tier (Fase 5 prevalence; % tumor samples expressing).
+prevalence_flag:
+  Broad: ">=0.50 of tumor samples expressing"
+  Moderate: "0.20-0.50 of tumor samples expressing"
+  Restricted: "<0.20 with high tail or clear subtype"
+  restricted_tier1_rule: >
+    A Restricted gene may be Tier 1 only with strong subtype evidence and must be narrated as
+    subtype-specific, never as a pan-STAD target.
+
+# Placements pinned by the Fase 14 diagnostic, applied BY RULE (above), not by hand.
+audit_pinned_placements:
+  - genes: ["HLA-DRB3", "HLA-DRB4", "KIR2DL5A", "KIR2DS1"]
+    trigger: "missing_primary_components_ge 3 AND non_assessable_core_expression"
+    placement: "Watchlist"
+    note: "Surf+T-only thin-evidence; renormalization-inflated rank 2-5; not nominable."
+  - gene: "PECAM1"
+    trigger: "tme_marker_control"
+    placement: "Watchlist (expected)"
+    note: >
+      A-priori expectation registered 2026-05-31 in docs/fase14_T_dominance_diagnostic.md: HPA
+      stomach-cancer IHC expected vascular (not tumor-cell membranous) -> Watchlist by this rule.
+      Record as a rule-relevant surprise if IHC shows genuine tumor-epithelial membranous staining.
+
+rules:
+  curation_informs_tier_not_score: true       # exclusion_criteria.candidate_interpretation_rules
+  tier_assignment_is_script_generated: true    # reproducibility: results/tables/tier_assignments.tsv not hand-edited
+  tie_break: "HGNC symbol lexicographic"        # parameters.yaml reproducibility_tolerances.rank_order

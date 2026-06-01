@@ -126,6 +126,18 @@ risk_score:
       - "R_max_plus_breadth"
       - "R_sum_capped"
 
+risk_functional_form_sensitivity:
+  - form: "max"
+    description: "Primary result; conservative worst-organ risk."
+  - form: "max_plus_breadth"
+    alpha: 0.7
+    top_k: 3
+    description: "Sensitivity: partial accumulated multi-organ risk."
+  - form: "sum_capped"
+    cap: 1.0
+    divisor: 3.0
+    description: "Sensitivity: accumulated risk with cap."
+
 functional_form_sensitivity:
   - method: "weighted_rank_sum"
   - method: "geometric_mean_percentile"

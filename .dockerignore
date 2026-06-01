@@ -1,0 +1,15 @@
+.git
+.pytest_cache
+.snakemake
+__pycache__
+*.pyc
+.venv
+env
+tmp
+data/raw
+data/interim
+data/processed
+results
+manuscript/latex
+manuscript/cbc_editorial_manager_package
+release/archive

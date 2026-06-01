@@ -1,0 +1,4 @@
+method	comparison_basis	spearman_vs_weighted_rank_sum	top10_jaccard_vs_weighted_rank_sum	top20_jaccard_vs_weighted_rank_sum	top50_jaccard_vs_weighted_rank_sum	n_balanced_top20_vetoed	balanced_top20_vetoed_symbols	interpretation
+weighted_rank_sum	primary_balanced	1.000000	1.000000	1.000000	1.000000	0		primary_compensatory_model
+geometric_mean_percentile	R converted to 1-R for multiplicative positive scale	0.898705	0.333333	0.600000	0.666667			less_compensatory_functional_form
+weighted_rank_sum_with_veto_p20	any available positive component below p20, or R safety below p20, sorted after non-vetoed genes	0.927228	1.000000	1.000000	0.886792	0		semi_veto_sensitivity_not_final_tiering

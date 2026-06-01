@@ -1,0 +1,85 @@
+﻿# Data Availability
+
+This project uses only public, de-identified, aggregate, or open-access research data. No new patient samples, restricted clinical records, or wet-lab data were generated.
+
+## Current Release Status
+
+The local analysis package is complete enough for reviewer-facing audit, but the public release is not yet archived. Before journal submission, the repository release must be made public and archived through Zenodo, OSF, Figshare, or an equivalent repository. The resulting public URL and archival DOI must be inserted into the manuscript and cover letter.
+
+## Raw and Source Data
+
+Retained raw/source files are stored under `data/raw/` in the local release candidate and are registered in:
+
+- `config/datasets.yaml`
+- `config/release_manifest.yaml`
+- `results/tables/phase2_download_manifest.tsv`
+- `docs/provenance_log.tsv`
+- `data/checksums/*.tsv`
+
+The main retained raw/source inputs include:
+
+- UCSC Xena/Toil TCGA/GTEx RNA matrix and phenotype files.
+- Human Protein Atlas normal IHC, cancer IHC, tissue RNA, GTEx RNA, and subcellular localization downloads.
+- UniProt reviewed-human topology, GO, GPI, and expanded feature files.
+- GDC TCGA-STAD metadata.
+- HGNC complete set.
+- TCSA, CSPA, and SURFY surfaceome workbooks.
+- cBioPortal TCGA-STAD clinical and selected GISTIC context.
+- tidyestimate source/signature inputs.
+- TISCH2 candidate-level gastric scRNA context files.
+- Wang 2026 open-access supplementary workbook `mmc8.xlsx` for the drug-target-class overlap and matched-null consistency audit.
+
+Future re-downloads from live APIs may differ. The release should therefore prioritize the frozen local raw/source files, checksum manifests, and exact download provenance rather than live re-querying.
+
+The Wang 2026 `mmc8.xlsx` source is cached at `data/raw/wang2026/mmc8.xlsx` and recorded in `data/checksums/wang2026_mmc8_sha256.tsv` because the older Europe PMC supplementary endpoint was unstable during release audit. The fallback retrieval path uses the PubMed Central OA package location recorded by NCBI/PMC, with checksum validation before any derived table is written.
+
+## Processed Data and Results
+
+Processed analysis outputs are stored under:
+
+- `data/processed/`
+- `results/rankings/`
+- `results/validation/`
+- `results/tables/`
+- `results/figures/`
+- `manuscript/latex/figures/`
+
+The active frozen ranking is `results/rankings/ranking_v2_frozen.tsv` with SHA256:
+
+`95040edef1b2a50c9ab1d61042856485bbfcac98e9f51d4cb78cbe05c46e9631`
+
+Its file-level freeze metadata is stored separately in `results/rankings/ranking_v2_frozen.metadata.yaml`.
+
+Earlier preserved ranking snapshots are:
+
+- `results/rankings/ranking_v0_frozen.tsv`: pre-normalization-fix snapshot.
+- `results/rankings/ranking_v1_frozen.tsv`: pre-GPI-correction snapshot.
+- `results/rankings/ranking_v2_frozen.tsv`: active post-GPI-correction snapshot.
+
+## Reproducibility Commands
+
+Install the local audit dependencies:
+
+```powershell
+python -m pip install -r requirements-dev.txt
+python -m pip install -r requirements-manuscript.txt
+```
+
+Run the reviewer-facing audit:
+
+```powershell
+python scripts/run_reproducibility_checks.py
+```
+
+Build a Docker audit runtime:
+
+```powershell
+docker build -f docker/Dockerfile -t surfaceome-gastric-cancer-repro .
+docker run --rm -v "${PWD}:/work" surfaceome-gastric-cancer-repro
+```
+
+The Docker image is a runtime image. It intentionally expects a mounted release checkout at `/work` so large raw/source files are not copied into the image build context.
+
+## Redistribution Notes
+
+This repository contains code and derived outputs generated from public resources. Upstream datasets retain their original terms, licenses, and citation requirements. Users who redistribute a release archive should verify the redistribution terms for large raw/source files and, where appropriate, archive processed outputs and checksum manifests instead of restricted or third-party raw files.

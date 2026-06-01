@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="640" viewBox="0 0 1600 640" role="img" aria-labelledby="title desc">
+  <title id="title">Reproducible public-data prioritization of gastric cancer surface targets</title>
+  <desc id="desc">Graphical abstract showing public evidence inputs, a reproducible GPI-aware surfaceome pipeline, coarse candidate tiers, external consistency checks, and study limitations.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#48616f"/>
+    </marker>
+    <style>
+      .bg { fill: #ffffff; }
+      .header { fill: #173042; }
+      .section { fill: #f8fafb; stroke: #c7d3da; stroke-width: 2; }
+      .section-blue { fill: #edf5f8; stroke: #4d879a; stroke-width: 2; }
+      .section-green { fill: #eef7f1; stroke: #548568; stroke-width: 2; }
+      .section-amber { fill: #fff7e7; stroke: #bd842c; stroke-width: 2; }
+      .strip { fill: #f5f0ed; stroke: #b99c8c; stroke-width: 1.5; }
+      .pill { fill: #ffffff; stroke: #c7d3da; stroke-width: 1.5; }
+      .step { fill: #ffffff; stroke: #8ca9b4; stroke-width: 1.5; }
+      .arrow { fill: none; stroke: #48616f; stroke-width: 3; marker-end: url(#arrow); }
+      .arrow-amber { fill: none; stroke: #bd842c; stroke-width: 3; marker-end: url(#arrow); }
+      .h1 { font-family: Arial, sans-serif; font-size: 31px; font-weight: 700; fill: #ffffff; }
+      .subtitle { font-family: Arial, sans-serif; font-size: 17px; fill: #d9e7ed; }
+      .section-title { font-family: Arial, sans-serif; font-size: 20px; font-weight: 700; fill: #173042; }
+      .label { font-family: Arial, sans-serif; font-size: 16px; font-weight: 700; fill: #284653; }
+      .body { font-family: Arial, sans-serif; font-size: 15px; fill: #36535f; }
+      .small { font-family: Arial, sans-serif; font-size: 13px; fill: #4b626b; }
+      .small-strong { font-family: Arial, sans-serif; font-size: 13px; font-weight: 700; fill: #284653; }
+      .metric { font-family: Arial, sans-serif; font-size: 27px; font-weight: 700; fill: #225843; }
+      .metric-sub { font-family: Arial, sans-serif; font-size: 14px; fill: #386953; }
+      .warning { font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; fill: #8a5a14; }
+      .strip-text { font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; fill: #684e43; }
+      .number { font-family: Arial, sans-serif; font-size: 14px; font-weight: 700; fill: #ffffff; }
+    </style>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="1600" height="640"/>
+  <rect class="header" x="0" y="0" width="1600" height="78"/>
+  <text class="h1" x="42" y="36">Reproducible public-data prioritization of gastric cancer surface targets</text>
+  <text class="subtitle" x="43" y="61">GPI-aware surfaceome prioritization quantifies evidence-routing effects and keeps nominations hypothesis-generating</text>
+
+  <rect class="section-blue" x="36" y="108" width="292" height="410" rx="6"/>
+  <text class="section-title" x="58" y="142">Public evidence inputs</text>
+  <rect class="pill" x="58" y="166" width="248" height="48" rx="6"/>
+  <text class="label" x="76" y="188">TCGA / GTEx RNA</text>
+  <text class="small" x="76" y="205">tumor, stomach normal, critical tissues</text>
+  <rect class="pill" x="58" y="226" width="248" height="48" rx="6"/>
+  <text class="label" x="76" y="248">HPA IHC + localization</text>
+  <text class="small" x="76" y="265">protein context and membrane support</text>
+  <rect class="pill" x="58" y="286" width="248" height="48" rx="6"/>
+  <text class="label" x="76" y="308">UniProt reviewed human</text>
+  <text class="small" x="76" y="325">topology, ECD, isoforms, lipidation</text>
+  <rect class="pill" x="58" y="346" width="248" height="48" rx="6"/>
+  <text class="label" x="76" y="368">Surfaceome resources</text>
+  <text class="small" x="76" y="385">TCSA, CSPA, SURFY, GO</text>
+  <rect class="pill" x="58" y="406" width="248" height="48" rx="6"/>
+  <text class="label" x="76" y="428">Bulk TME marker modules</text>
+  <text class="small" x="76" y="445">review flags; not hard filters</text>
+  <text class="small-strong" x="58" y="486">Versioned inputs + checksums</text>
+
+  <path class="arrow" d="M336 313 L382 313"/>
+
+  <rect class="section" x="390" y="108" width="492" height="410" rx="6"/>
+  <text class="section-title" x="414" y="142">Reproducible evidence-integration pipeline</text>
+  <rect class="step" x="420" y="170" width="430" height="58" rx="6"/>
+  <circle cx="449" cy="199" r="15" fill="#4d879a"/>
+  <text class="number" x="445" y="204">1</text>
+  <text class="label" x="478" y="194">Identifier normalization</text>
+  <text class="small" x="478" y="213">HGNC genes, UniProt accessions, isoform flags</text>
+  <path class="arrow" d="M635 231 L635 252"/>
+  <rect class="step" x="420" y="258" width="430" height="58" rx="6"/>
+  <circle cx="449" cy="287" r="15" fill="#4d879a"/>
+  <text class="number" x="445" y="292">2</text>
+  <text class="label" x="478" y="282">Core + Probable surfaceome universe</text>
+  <text class="small" x="478" y="301">2,704 genes with multi-source surface evidence</text>
+  <path class="arrow" d="M635 319 L635 340"/>
+  <rect class="step" x="420" y="346" width="430" height="58" rx="6"/>
+  <circle cx="449" cy="375" r="15" fill="#4d879a"/>
+  <text class="number" x="445" y="380">3</text>
+  <text class="label" x="478" y="370">Quantitative evidence layers</text>
+  <text class="small" x="478" y="389">Surf  E  N  R  P  T    |    SC = not available</text>
+  <path class="arrow" d="M635 407 L635 428"/>
+  <rect class="step" x="420" y="434" width="430" height="58" rx="6"/>
+  <circle cx="449" cy="463" r="15" fill="#4d879a"/>
+  <text class="number" x="445" y="468">4</text>
+  <text class="label" x="478" y="458">Stability analysis + manual curation</text>
+  <text class="small" x="478" y="477">final frozen ranking; coarse unordered tiers</text>
+
+  <path class="arrow" d="M890 313 L930 313"/>
+
+  <rect class="section-amber" x="938" y="108" width="290" height="410" rx="6"/>
+  <text class="section-title" x="960" y="142">Transferable GPI lesson</text>
+  <circle cx="1083" cy="220" r="54" fill="#ffffff" stroke="#bd842c" stroke-width="3"/>
+  <path d="M1041 198 C1060 164, 1104 164, 1124 198" fill="none" stroke="#bd842c" stroke-width="3"/>
+  <path d="M1041 242 C1060 276, 1104 276, 1124 242" fill="none" stroke="#bd842c" stroke-width="3"/>
+  <circle cx="1083" cy="220" r="15" fill="#bd842c"/>
+  <text class="number" x="1077" y="225">G</text>
+  <text class="warning" x="968" y="303">Confirmed GPI anchors can be</text>
+  <text class="warning" x="968" y="323">misrouted when lipidation evidence</text>
+  <text class="warning" x="968" y="343">is not credited before ranking.</text>
+  <path class="arrow-amber" d="M1083 365 L1083 393"/>
+  <rect x="968" y="402" width="230" height="74" rx="6" fill="#ffffff" stroke="#bd842c" stroke-width="1.5"/>
+  <text class="label" x="988" y="426">Correct route</text>
+  <text class="small" x="988" y="447">UniProt lipidation evidence</text>
+  <text class="small" x="988" y="465">enters universe construction</text>
+  <text class="small-strong" x="975" y="500">54 added; 5 top50; source-wide</text>
+
+  <path class="arrow" d="M1236 313 L1272 313"/>
+
+  <rect class="section-green" x="1280" y="108" width="284" height="410" rx="6"/>
+  <text class="section-title" x="1302" y="142">Applied output</text>
+  <text class="label" x="1302" y="184">Unordered coarse tiers</text>
+  <text class="metric" x="1302" y="232">Tier 1 = 6</text>
+  <text class="metric-sub" x="1302" y="252">surface-target hypotheses</text>
+  <text class="metric" x="1302" y="298">Tier 2 = 12</text>
+  <text class="metric-sub" x="1302" y="318">additional candidates</text>
+  <rect x="1302" y="350" width="240" height="82" rx="6" fill="#ffffff" stroke="#548568" stroke-width="1.5"/>
+  <text class="metric" x="1320" y="385">16 / 18</text>
+  <text class="body" x="1320" y="409">external atlas consistency</text>
+  <text class="small-strong" x="1302" y="468">Hypothesis-generating queue</text>
+  <text class="small" x="1302" y="489">requires experimental follow-up</text>
+
+  <rect class="strip" x="36" y="548" width="1528" height="62" rx="6"/>
+  <text class="strip-text" x="58" y="574">Interpretation limits</text>
+  <text class="body" x="58" y="596">bulk RNA</text>
+  <text class="body" x="220" y="596">TME flags only</text>
+  <text class="body" x="405" y="596">CLDN18.2 / FGFR2b unresolved</text>
+  <text class="body" x="724" y="596">HPA bulk IHC granularity</text>
+  <text class="body" x="1018" y="596">coarse tiers, no fine order</text>
+  <text class="body" x="1303" y="596">no wet-lab validation</text>
+</svg>

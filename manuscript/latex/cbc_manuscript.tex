@@ -1,0 +1,413 @@
+\documentclass[preprint,12pt,authoryear]{elsarticle}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\graphicspath{{./figures/}}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+
+\journal{Computational Biology and Chemistry}
+\bibliographystyle{plainnat}
+\setlength{\emergencystretch}{3em}
+
+\begin{document}
+
+\begin{frontmatter}
+
+\title{A reproducible framework for uncertainty-aware gastric cancer surface-target prioritization with GPI evidence-routing audit}
+\author[aff1]{Vicenzo Scavino Alfaro\corref{cor1}}
+\ead{u201919346@upc.edu.pe}
+\cortext[cor1]{Corresponding author. ORCID: 0009-0000-2472-9785. Telephone: +\allowbreak{}51 962 559 391.}
+\affiliation[aff1]{organization={Independent Researcher}, city={Lima}, country={Peru}}
+
+\begin{abstract}
+We present a reproducible framework for gastric cancer surface-target prioritization that integrates heterogeneous public evidence while keeping uncertainty explicit rather than collapsing it into a single ranked list. Surface-target ranking from public data is sensitive to confounders that conventional candidate lists often hide, including identifier mapping, RNA/\allowbreak{}protein discordance, normal-tissue signal, tumor microenvironment admixture, isoform ambiguity, and surfaceome-resource bias. The workflow integrates tumor/\allowbreak{}normal RNA sequencing, Human Protein Atlas (HPA) protein and localization evidence, UniProt topology and lipidation annotations, curated surfaceome resources, benchmark controls, and stability analysis. External comparisons showed that Tier 1/\allowbreak{}2 nominations were consistent with contemporary surface-target resources, but their overlap was not enriched beyond a matched null controlling for surfaceome confidence, expression, protein evidence, topology, component completeness, and accessibility. This result defines the framework's purpose: transparent hypothesis generation and uncertainty delimitation, not independent validation. A diagnostic audit further showed that topology-first routing had excluded 54 confirmed glycosylphosphatidylinositol (GPI)-anchor genes from the ranked universe, motivating a universe-stage correction before final scoring. The final output was a coarse, unordered set of experimentally testable Tier 1/\allowbreak{}2 hypotheses, including six Tier 1 candidates, with explicit caveats for bulk RNA, compartment attribution, isoform resolution, HPA immunohistochemistry granularity, and absence of wet-lab validation. The framework supports reproducible prioritization of gastric cancer surface-target hypotheses while making the limits of public bulk-data evidence part of the result.
+\end{abstract}
+
+\begin{keyword}
+gastric cancer \sep surfaceome \sep target prioritization \sep reproducibility \sep GPI-anchored proteins \sep proteogenomics
+\end{keyword}
+
+\end{frontmatter}
+
+\section{Introduction}
+
+\subsection{Why surface-target prioritization is hard}
+
+Surface-target prioritization from public data is not equivalent to ranking genes by tumor RNA abundance. RNA expression does not establish protein presence, membrane localization, extracellular accessibility, tumor-cell attribution, isoform specificity, or an acceptable normal-tissue profile. Bulk tumor RNA can reflect tumor microenvironment (TME) compartments, including endothelial, immune, and stromal cells, rather than malignant epithelial cells. Surfaceome resources also differ in how they route non-transmembrane evidence, including glycosylphosphatidylinositol (GPI)-anchored proteins; prior in silico surfaceome work explicitly accounted for annotated GPI-linked proteins, so the open problem here is not whether GPI anchors can be surface evidence but how incomplete evidence routing propagates into an auditable candidate universe and ranking \citep{bauschfluck2018surfy}.
+
+\subsection{Clinical and biological motivation}
+
+In gastric adenocarcinoma, antibody-accessible surface proteins remain a tractable intervention space because they can support antibody-based therapeutics, antibody-drug conjugates (ADCs), cell therapies, receptor blockade, or imaging strategies \citep{bray2024globocan,tcga2014gastric,hu2021surfaceome,bauschfluck2015cspa,bauschfluck2018surfy,li2022pancancer,razzaghdoust2021adc,kathad2024adc}. Established and emerging gastric cancer targets, including ERBB2, CLDN18.2, FGFR2b, TACSTD2/\allowbreak{}TROP2, EPCAM, CEACAM5, MET, and MSLN, provide useful benchmarks but do not remove the need for systematic prioritization \citep{bang2010toga,shah2023spotlight,shitara2023glow,wainberg2022fight}.
+
+\subsection{Contribution}
+
+This study contributes an uncertainty-aware, reproducible framework for transparent gastric cancer surface-target hypothesis generation from public evidence. The framework makes the limits of bulk RNA, protein/\allowbreak{}localization coverage, topology, normal-tissue risk, TME admixture, isoform ambiguity, and external benchmarks part of the result rather than compressing them into a single ranked list. As a concrete methodological audit, it quantifies a GPI-anchor evidence-routing gap and implements a source-wide correction at universe construction before scoring. It also shows that external gastric-atlas overlap exceeds a simple random-draw null but not a matched null, making benchmark consistency without independent validation an intended finding rather than a late caveat. Coarse Tier 1/\allowbreak{}2 nominations are downstream, experimentally testable hypotheses used to illustrate the framework's boundaries.
+
+\section{Material and methods}
+
+\subsection{Reproducibility design}
+
+The analysis was implemented as a staged reproducible workflow rather than as an exploratory notebook. Controls, exclusion criteria, dataset targets, scoring scenarios, random seeds, tissue mappings, and coarse tiering rules were pre-specified in repository configuration and decision files before candidate interpretation; this is an operational repository freeze, not a formal external registry entry. Raw or downloaded inputs were checksum-registered where stored locally, and each major analysis stage produced both machine-readable tables and a short report. The repository preserves design decisions, analytical decisions, provenance records, a release manifest, and stage-specific validation checks, following reproducible-computational-research and findable, accessible, interoperable, reusable data principles where feasible \citep{sandve2013reproducible,wilkinson2016fair}.
+
+Workflow integrity was assessed with three levels of checks. First, unit tests cover core scripts and stage-specific invariants. Second, a smoke test verifies expected outputs from data inventory through manuscript figure/\allowbreak{}table packaging, including manual curation artifacts. Third, Snakemake declares the workflow outputs and reports whether any declared artifact is missing or out of date. Some early bootstrap and data-inventory outputs were generated before all rules were formalized and therefore retain missing Snakemake provenance metadata; these steps write source inventories and checksum context rather than scoring outputs, and all later analysis, ranking, and manuscript-package outputs are tracked.
+
+Intermediate ranking snapshots were retained rather than overwritten. The pre-fix snapshot preserves the ordinal surfaceome-confidence transform, the pre-GPI snapshot preserves the state before the GPI-anchor correction, and the final frozen ranking snapshot preserves the active ranking after the universe-wide GPI evidence correction and downstream rerun. This version history was kept to document bug detection and correction, not to select a favorable ranking retrospectively.
+
+\subsection{Datasets and identifier normalization}
+
+The main input sources are summarized in Table 1. TCGA-STAD and GTEx expression data were obtained through the UCSC Xena/\allowbreak{}Toil RNA-seq recompute and used as the primary tumor-normal RNA matrix \citep{goldman2020xena,vivian2017toil,gtex2020atlas}. GDC TCGA-STAD metadata and cBioPortal TCGA-STAD clinical and copy-number fields were used for clinical covariate availability, selected amplification context, and secondary sensitivity planning \citep{grossman2016gdc,cerami2012cbioportal}. Human Protein Atlas (HPA) downloadable files supplied normal IHC, cancer IHC, subcellular localization, and tissue RNA context \citep{uhlen2015hpa,uhlen2017pathology,thul2017subcellular}. UniProtKB reviewed human records supplied protein identifiers, topology, transmembrane annotations, extracellular features, signal peptides, lipidation/\allowbreak{}GPI-anchor evidence, protein length, and isoform mappings \citep{uniprot2025}. TCSA, CSPA, SURFY, UniProt GO, UniProt topology/\allowbreak{}GPI fields, and HPA subcellular localization were integrated to construct the surfaceome universe \citep{hu2021surfaceome,bauschfluck2015cspa,bauschfluck2018surfy}.
+
+Identifier normalization used HGNC-approved protein-coding genes as the primary denominator before surfaceome filtering \citep{tweedie2021hgnc}. This choice prevents the candidate denominator from being inflated by noncoding or deprecated matrix rows while preserving alias, Ensembl, UniProt, and HPA mappings for evidence integration. Mapping failures and source coverage are retained as audit outputs rather than silently dropped.
+
+\subsection{Surfaceome universe construction}
+
+The surfaceome universe was defined at the HGNC gene level. Core/\allowbreak{}Probable membership required independent surface support plus an anchor, topology, or localization signal. Qualifying anchor evidence included UniProt extracellular topology, UniProt transmembrane annotation, confirmed UniProt lipidation GPI-anchor, HPA plasma membrane localization, or SURFY surfaceome support. Curated-list or GO-only genes lacking such support were retained as ambiguous surface-context genes rather than treated as high-confidence surface targets.
+
+The final Core+\allowbreak{}Probable universe contains 2,704 genes: 2,646 Core and 58 Probable. Published-list overlap was used as a sanity check, with Jaccard overlap of 0.7749 for TCSA, 0.2889 for CSPA, and 0.8017 for SURFY. Negative controls did not enter Core/\allowbreak{}Probable, and positive/\allowbreak{}benchmark controls were present or documented.
+
+Confirmed UniProt lipidation GPI-anchor evidence was credited as a non-experimental strong anchor signal at the universe construction stage. Specifically, confirmed GPI evidence contributed score +\allowbreak{}2, one support source, \texttt{has\_anchor=true}, and \texttt{has\_strong=true}. Subcellular-location-only GPI annotations were flagged but not credited as confirmed direct lipidation evidence. This correction was applied universe-wide before final ranking, not as a target-specific patch, and is best interpreted as an auditable evidence-routing correction rather than a new biological discovery.
+
+\subsection{Tumor expression and heterogeneity}
+
+Tumor expression was computed for the Core+\allowbreak{}Probable universe using TCGA-STAD primary tumor samples from the Xena/\allowbreak{}Toil matrix. Xena/\allowbreak{}Toil values were treated as $\log_2(\mathrm{TPM}+0.001)$, transformed back to TPM as $2^{x} - 0.001$, and clipped at zero. Of 2,704 Core+\allowbreak{}Probable genes, 2,696 had measured Xena expression and 8 were missing.
+
+The tumor expression component $E$ combines abundance and prevalence. For each measured gene, percentile ranks were computed for median tumor TPM, the fraction of tumor samples with TPM > 1, P75 tumor TPM, and P90 tumor TPM. The raw expression score was:
+
+\begin{equation}
+\begin{split}
+E_{\mathrm{raw}} ={}& 0.40\,r_{\mathrm{median}}
+ + 0.30\,r_{\mathrm{prev>1}} \\
+& + 0.20\,r_{\mathrm{P75}}
+ + 0.10\,r_{\mathrm{P90}}.
+\end{split}
+\end{equation}
+
+The $E$ score is a component score only. It is not by itself a final target ranking.
+
+Molecular subtype, stage, tissue-origin, and selected amplification summaries were computed when fields were available. TCGA molecular subtypes were used for expression and power summaries. Exact Lauren subtype was not available in the current raw sources; histology proxy fields were retained only as audit information and were not treated as quantitative Lauren labels. cBioPortal GISTIC calls were queried for ERBB2, FGFR2, and MET to provide amplification context.
+
+\subsection{Normal selectivity and off-tumor risk}
+
+Normal selectivity and on-target/\allowbreak{}off-tumor risk were estimated with the same TPM transformation as tumor expression. TCGA-STAD primary tumor, GTEx stomach normal, and TCGA-STAD adjacent normal samples were summarized separately. The primary stomach normal comparator used GTEx stomach because the adjacent-normal set was source-matched but smaller.
+
+The selectivity component $N$ combines two tumor-normal contrasts and a statistical rule. $N_{\mathrm{stomach}}$ compares tumor median TPM with GTEx stomach median TPM. $N_{\mathrm{critical}}$ compares tumor median TPM with the maximum mapped critical normal expression across Xena/\allowbreak{}HPA-derived normal tissue contexts. The component score was:
+
+\begin{equation}
+\begin{split}
+N_{\mathrm{score}} ={}& 0.50\,r_{\mathrm{critical}}
+ + 0.30\,r_{\mathrm{stomach}} \\
+& + 0.20\,N_{\mathrm{stat,GTEx}}.
+\end{split}
+\end{equation}
+
+The pre-specified positive statistical rule required tumor versus GTEx stomach log2 fold-change >= 1 and BH-FDR < 0.05. The TCGA adjacent-normal comparison was reported as a sensitivity context rather than as a full replacement for GTEx stomach.
+
+The off-tumor risk component $R$ used a pre-specified maximum weighted organ penalty. Critical organs and tissue classes were assigned manually chosen expert-prior weights, including heart and brain at 1.00, liver and kidney at 0.90, lung and endothelial contexts at 0.85, hematopoietic at 0.80, immune at 0.75, gastrointestinal epithelial at 0.70, and reproductive/\allowbreak{}other at 0.60. These weights are not learned, optimized, or inferred from outcome data. $R$ is high-worse: higher values indicate greater on-target/\allowbreak{}off-tumor concern and are subtracted in the integrated score. Alternative $R_{\mathrm{max+breadth}}$ and $R_{\mathrm{sum,capped}}$ forms were retained for sensitivity analysis.
+
+\subsection{Protein and localization evidence}
+
+Protein/\allowbreak{}localization evidence was computed from HPA stomach cancer IHC, HPA normal IHC, and HPA subcellular localization. In the 2,704-gene Core+\allowbreak{}Probable universe, HPA stomach cancer IHC covered 1,790 genes, HPA normal stomach and critical normal IHC covered 1,535 genes, and HPA subcellular localization covered 1,302 genes. Membrane or cell-junction localization support was present for 734 genes. CPTAC/\allowbreak{}PDC proteomics was not assessed in the primary analysis and was not imputed.
+
+The $P$ component combines tumor protein presence, membrane or cell-junction localization support, mapped normal protein safety support, HPA reliability support, and discordance penalties. The HPA bulk cancer file does not expose antibody IDs, staining intensity/\allowbreak{}quantity fields, patient-level membrane pattern, or multi-antibody concordance. These unavailable fields were not inferred and are marked for candidate-card review where relevant.
+
+Discordance flags include HPA-missing stomach cancer IHC, high RNA but absent tumor protein, protein present without membrane/\allowbreak{}cell-junction support, and low-confidence HPA evidence. HPA absence does not automatically eliminate a candidate because the protein layer has incomplete coverage and antibody-level detail is unavailable in the bulk files.
+
+\subsection{Tumor microenvironment specificity}
+
+No processed gastric single-cell RNA-seq dataset was admitted into the numeric primary score. The optional $SC$ component therefore remains \texttt{not\_available} and has zero weight in the primary ranking.
+
+As a pre-specified fallback, bulk TCGA-STAD expression was used to flag possible TME-derived signal. Marker modules were computed for CAF/\allowbreak{}fibroblast, endothelial, myeloid/\allowbreak{}macrophage, T-cell, and B/\allowbreak{}plasma compartments. For each candidate gene, Spearman correlations were computed between candidate expression and each module score across 414 TCGA-STAD tumors. ESTIMATE stromal and immune signatures from \texttt{tidyestimate} were also computed from the same Xena/\allowbreak{}Toil matrix and used as relative purity/\allowbreak{}admixture covariates for partial Spearman correlations \citep{yoshihara2013estimate}.
+
+After the ranking and tiers were frozen, a limited candidate-level scRNA cross-check was added with processed TISCH2 gastric cancer datasets \citep{han2023tisch2,zhang2019gastric_scrna,jeong2021gastric_tme}. TISCH2 \texttt{STAD\_GSE134520} provides average expression for 41,554 cells across 13 samples and includes a Malignant cells class, while \texttt{STAD\_GSE167297} provides average expression for 22,464 cells across 14 diffuse-type gastric cancer samples but no TISCH2 malignant-cell class. These data were used only to annotate the 18 Tier 1/\allowbreak{}2 candidates as malignant-cell supported, mixed, non-malignant dominant, or context-only. They did not alter $SC$, the integrated score, or tier assignments.
+
+These outputs are flags only. They are not hard ranking filters and are not interpreted as absolute pathology purity estimates. ESTIMATE and the TME marker modules both represent stromal/\allowbreak{}immune biology, so their partial correlations are biologically collinear rather than clean causal decomposition. A \texttt{high\_purity\_adjusted\_tme\_correlation} flag therefore triggers conservative review with protein/\allowbreak{}localization and cell-resolved evidence where available.
+
+\subsection{Topology, extracellular accessibility, and isoforms}
+
+Topology and extracellular accessibility were computed from reviewed UniProt human feature fields for all 2,704 Core+\allowbreak{}Probable genes. Parsed fields included protein length, topological domains, transmembrane segments, signal peptides, lipid/\allowbreak{}GPI anchor features, glycosylation, disulfide bonds, chains/\allowbreak{}domains, subcellular location, PTM comments, and Ensembl isoform mappings.
+
+Each protein was assigned an accessibility class from A to E. Classes A/\allowbreak{}B indicate clear or inferred extracellular regions suitable for antibody-accessibility review. Class C indicates possible but less straightforward access, often for multipass proteins or shorter extracellular loops. Classes D/\allowbreak{}E are not automatic exclusions from the universe but block Tier 1 antibody-targeting claims unless later structure, literature, or candidate-card evidence supports an exception.
+
+The topology component $T$ combines accessibility class, extracellular length, topology confidence, and isoform confidence, then subtracts conservative cleavage/\allowbreak{}shedding and soluble-decoy penalties. These penalties are candidate-card flags, not hard exclusions. GPI-anchor features are explicitly captured in this layer; MSLN is the benchmark example where GPI anchoring supports membrane accessibility despite absence of a classical transmembrane segment.
+
+Isoform-specific benchmarks were handled conservatively. \textit{CLDN18} and \textit{FGFR2} remain gene-level in the current expression layers, so CLDN18.2 and FGFR2b/\allowbreak{}IIIb claims are marked \texttt{isoform\_unresolved} and are not used as evidence that the pipeline resolves isoform-specific expression.
+
+\subsection{Integrated scoring and sensitivity}
+
+The integrated score used the pre-specified components listed in Table 2. The primary scenario used manually chosen expert-prior weights $Surf=0.15$, $E=0.20$, $N=0.20$, $R=0.20$, $P=0.15$, $SC=0.00$, and $T=0.10$. These weights are transparent design choices, not learned coefficients or optimal estimates. $SC$ remained unavailable and was not imputed. Sensitivity scenarios included safety-prioritized, ADC-focused, novelty-focused, and protein-evidence-focused weighting; these were reported as sensitivity contexts, not alternative primary rankings.
+
+$Surf$ is the relative surfaceome confidence within the admitted Core+\allowbreak{}Probable universe. After the GPI correction, it is scaled as:
+
+\begin{equation}
+\operatorname{Surf}_{\mathrm{relative}} = \frac{S_{\mathrm{conf}} - 5}{5}.
+\end{equation}
+
+over the theoretical admitted confidence range \citep{bauschfluck2018surfy,vivian2017toil}, not over the observed min/\allowbreak{}max of the current dataset. This means that zero indicates the lowest admitted confidence level, not absence from the surfaceome universe.
+
+For score computation, missing principal components were handled with exclude-and-renormalize: the weighted score was computed over available nonzero-weight components and divided by the available absolute weight sum. Missingness was then carried into tiering restrictions and sensitivity analyses rather than mean-imputed. $R$ is the only high-worse primary component and is subtracted from the total score.
+
+The stability analysis evaluated weight perturbation, leave-one-layer-out sensitivity, missing-data sensitivity, risk-threshold sensitivity, organ-weight perturbation, scenario stability, and post-scoring rank resolution. These analyses supported coarse tier language but not fine intra-tier ordering.
+
+\subsection{Tiering and manual curation}
+
+Tiering was performed only after stability analysis. The original fine tiering plan was collapsed to unordered coarse categories because post-scoring rank resolution supported coarse interpretation but not fine rank distinctions. The tiering rule file was frozen before candidate assignment. Tier 1 required stability, no unexplained critical normal risk, no unsupported TME-marker status, acceptable accessibility class, protein evidence or documented absence, no more than two missing primary components, and absence of single-layer dependence. Tier 2 captured candidates failing one Tier 1 criterion or showing scenario/\allowbreak{}subtype dependence. Watchlist captured candidates with major missingness, TME-marker behavior, unresolved benchmark isoforms, or other non-nominable but biologically relevant signals.
+
+Manual curation informed tiers and caveats but did not change scores. The top 30 candidates were reviewed against UniProt, HPA, literature, clinical/\allowbreak{}druggability context, Wang 2026 concordance, and analysis-stage flags. Candidate notes explicitly record whether curation changed the score; all current entries preserve \texttt{changes\_score=no}.
+
+External baseline behavior was assessed in two ways. First, final scores were compared with the Cancer Surfaceome Atlas final and core GESP scores \citep{hu2021surfaceome} over overlapping genes by Spearman correlation and top-k overlap. This is a pan-cancer surfaceome-prioritization baseline, not a gastric-specific validation label. Second, external consistency was assessed against Wang 2026 gastric proteogenomic surface-target resources \citep{wang2026gastric}. Two null models were retained for the Wang comparison. The first was a one-sided hypergeometric test against random draws from the frozen Core+\allowbreak{}Probable surfaceome universe. The second was a deterministic matched-null sensitivity analysis with 20,000 permutations and seed 20260531, sampling nearest-neighbor Core+\allowbreak{}Probable controls matched on surfaceome confidence, tumor expression percentile, protein-evidence percentile and missingness, topology percentile, available component count, and accessibility class. This cross-check is used as benchmark concordance and compartment-framework support, not as proof of clinical validity or as per-gene single-cell validation for genes absent from the Wang Figure 7H panel.
+
+\section{Results}
+
+\subsection{Framework behavior and external consistency}
+
+The primary behavior of the framework is transparent hypothesis generation with explicit uncertainty, not external validation of a candidate list. Against the TCSA final GESP baseline, final scores showed moderate concordance across 2,685 overlapping genes (Spearman rho=0.389861, p=3.5e-98), with low top20 identity (1/\allowbreak{}20: \textit{NECTIN2}) and 6 of 18 Tier 1/\allowbreak{}2 genes in the TCSA final-score top100. The TCSA core GESP baseline gave similar moderate concordance (rho=0.329466, p=5.3e-69), 2/\allowbreak{}20 top20 overlap (\textit{ERBB2} and \textit{ITGB4}), and 8 of 18 Tier 1/\allowbreak{}2 genes in the baseline top100. This supports external surfaceome consistency while showing that the final ranking is not a clone of a pan-cancer surfaceome score.
+
+External consistency was also assessed against Wang 2026. Sixteen of eighteen Tier 1/\allowbreak{}2 nominations were present in Wang's drug-target table, including all six Tier 1 genes. Against the 2,704-gene Core+\allowbreak{}Probable universe, this exceeded a simple random draw (one-sided hypergeometric p=0.0013; odds ratio 7.27). However, a matched-null sensitivity analysis showed that the observed Wang overlap was not above matched expectation after controlling for surfaceome confidence, expression, protein-evidence availability, topology, component completeness, and accessibility class. For the all-table background, the matched-null mean overlap was 15.18 of 18 (upper-tail p=0.436); for the Wang membrane-protein flag, the matched-null mean was 13.99 of 18 (p=0.817). The external checks therefore support plausibility and benchmark consistency, but not independent validation of the ranking or of any individual nomination.
+
+The workflow integrates public transcriptomic, protein, localization, topology, and curated surfaceome resources into a staged candidate-prioritization pipeline (Fig. 1; Table 1). The current execution covers dataset inventory, raw/\allowbreak{}source checksum capture, batch diagnostics, identifier normalization, surfaceome universe construction, tumor expression, normal selectivity and off-tumor risk, HPA protein/\allowbreak{}localization evidence, TME specificity flags, topology/\allowbreak{}isoform annotation, integrated scoring, stability analysis, coarse tiering, external baseline comparison, candidate-level scRNA compartment annotation, and manuscript figure/\allowbreak{}table packaging. Unit tests, smoke tests through the figure/\allowbreak{}table package, the manuscript brief check, and Snakemake dry-run checks pass for declared current outputs.
+
+\subsection{Surfaceome universe and GPI-anchor diagnostic}
+
+The final surfaceome universe contains 2,704 Core+\allowbreak{}Probable genes, comprising 2,646 Core and 58 Probable candidates (Fig. 2). The construction rule balanced published surfaceome support with direct anchor, topology, or localization evidence. This conservative rule excluded all intracellular/\allowbreak{}secreted negative controls from Core+\allowbreak{}Probable while retaining benchmark surface-target genes for downstream scoring.
+
+During scoring diagnostics, confirmed GPI-anchored candidates exposed a source-integration problem. Treating GPI evidence only as a downstream topology note under-credited confirmed GPI-anchored surface proteins at the surfaceome universe layer. This is not a claim that GPI-linked proteins were absent from prior surfaceome resources: SURFY explicitly incorporated annotated GPI-linked proteins in its in silico surfaceome construction \citep{bauschfluck2018surfy}. The contribution here is to quantify how incomplete routing of confirmed GPI evidence affects a gastric cancer prioritization workflow and to correct that routing before final scoring. Because confirmed lipidation evidence can affect both membership and confidence, the correction was applied universe-wide during surfaceome-universe construction before rerunning downstream analyses. Confirmed UniProt lipidation GPI-anchor evidence was credited as non-experimental strong anchor evidence; subcellular-location-only GPI annotations were flagged but not credited as direct lipidation evidence.
+
+After correction, the active final ranking uses the fixed theoretical $Surf_{\mathrm{relative\ confidence}}$ scale over the admitted confidence range \citep{bauschfluck2018surfy,vivian2017toil}. This means that low $Surf$ values represent lower relative confidence within an admitted surfaceome universe, not absence from the surfaceome. The GPI finding is therefore interpreted as a transferable under-crediting issue in resource integration, not as evidence that all GPI-anchored proteins are strong therapeutic candidates.
+
+The impact of the correction was quantified against the preserved pre-GPI snapshot. The ranked universe increased from 2,650 to 2,704 genes; all 54 newly ranked genes were confirmed UniProt GPI-anchor genes. Confirmed GPI anchors increased from 65 to 119 ranked genes. None were in the pre-GPI top 50, whereas five confirmed GPI anchors entered the final top 50 (\textit{BST2}, \textit{CEACAM5}, \textit{ALPG}, \textit{ULBP2}, and \textit{NT5E}), with zero classified as suspicious Surf-dominant entrants by the pre-stability audit. Among common GPI genes, the median rank improvement was 453 positions. The correction also changed benchmark behavior: \textit{CEACAM5} moved from rank 120 to 12, and \textit{MSLN} moved from rank 453 to 158. Because tiering was performed after the correction, no pre/\allowbreak{}post tier-change claim is made; instead, the current Tier 1/\allowbreak{}2 set contains three confirmed GPI candidates (\textit{CEACAM5}, \textit{BST2}, and \textit{ALPG}).
+
+\subsection{Tumor expression, normal selectivity, and risk landscape}
+
+Tumor expression was measured for 2,696 of 2,704 Core+\allowbreak{}Probable genes. The $E$ component captured both expression magnitude and prevalence in TCGA-STAD primary tumors. The normal selectivity component $N$ combined tumor versus GTEx stomach contrast, tumor versus mapped critical-normal contrast, and a pre-specified statistical rule. Under the GTEx stomach statistical selectivity rule, 757 genes met $\log_2\mathrm{FC}\geq 1$ and BH-FDR < 0.05.
+
+The off-tumor risk component $R$ provided an opposing high-worse layer (Fig. 3). In the current conservative maximum-risk model, 1,825 Core+\allowbreak{}Probable genes had high critical off-tumor risk. This high count is expected because many cell-surface proteins are shared across normal epithelial, endothelial, hematopoietic, immune, or organ-specific compartments. $E$, $N$, and $R$ therefore need to be interpreted together: tumor abundance without normal-context review can over-rank broadly expressed targets, while a high normal-risk flag does not automatically exclude gastric-lineage or clinically benchmarked antigens.
+
+\subsection{Integrated evidence across candidates}
+
+The primary frozen ranking was converted into coarse tiers only after stability analysis and manual curation (Fig. 4; Table 3). Tier 1 contains six unordered surface-target hypotheses: \textit{ITGB4}, \textit{CDH3}, \textit{NECTIN2}, \textit{CEACAM5}, \textit{JAG1}, and \textit{EPCAM}. Tier 2 contains twelve additional candidates: \textit{MPZL1}, \textit{ITGB5}, \textit{BST2}, \textit{IFNGR1}, \textit{ALPG}, \textit{DSC2}, \textit{TNFRSF11A}, \textit{ERBB2}, \textit{CD9}, \textit{LSR}, \textit{CDH17}, and \textit{TGFBR1}.
+
+The Tier 1 set is intentionally not presented as a fine rank order. Its members combine high tumor expression/\allowbreak{}selectivity, protein/\allowbreak{}localization support, and accessible topology, but each carries interpretation caveats. For example, \textit{ITGB4} has basal/\allowbreak{}stratified epithelial expression not fully captured by the organ-risk model, \textit{NECTIN2} has a purity-adjusted myeloid/\allowbreak{}DC signal below the frozen high-TME threshold, \textit{CEACAM5} and \textit{EPCAM} retain normal epithelial expression concerns, and \textit{JAG1} has dual epithelial/\allowbreak{}endothelial biology. These caveats are part of the prioritization output rather than post-hoc exclusions.
+
+Tier 2 captures candidates with strong but less stable or more caveated evidence. \textit{ERBB2}, an established HER2 benchmark, remains Tier 2 because its primary-scenario top-20 stability frequency (0.34) does not meet the pre-specified Tier 1 stability threshold of 0.40, although it is robustly recovered within the top 50. \textit{CDH17} is likewise retained as Tier 2: its external clinical and biological relevance is noted, but the bulk ranking and stability criteria do not support Tier 1 placement in this pipeline.
+
+\subsection{TME specificity and compartment caveats}
+
+Because no processed gastric single-cell matrix was admitted into the primary score, compartment specificity was handled through flags rather than a numeric $SC$ layer (Fig. 5; Table 5). The TME fallback identified known immune, endothelial, and stromal markers as high-risk cases for epithelial tumor-target interpretation. \textit{PECAM1} remained high in the bulk ranking but was assigned to Watchlist by the pre-specified TME rule after curation confirmed vascular/\allowbreak{}endothelial rather than tumor-epithelial staining. \textit{LRRC15} was also assigned to Watchlist because curation supported a CAF/\allowbreak{}stromal interpretation rather than a primary malignant-epithelial target claim.
+
+The same compartment discipline applies to immune genes and thin-evidence high-rank artifacts. HLA and KIR genes with missing primary expression/\allowbreak{}protein/\allowbreak{}risk components were Watchlist by the missing-data rule, not by subjective demotion. \textit{HLA-DPB1}, \textit{IL2RG}, and related immune-context candidates are retained as biologically relevant but not nominated as epithelial tumor-cell surface targets.
+
+The candidate-level TISCH2 cross-check is deliberately context-only. In \texttt{STAD\_GSE134520}, all 18 Tier 1/\allowbreak{}2 genes were present, 8 were malignant-class supported, 1 had mixed malignant and non-malignant signal, 7 had low malignant signal in that early-cancer/\allowbreak{}premalignant dataset, and 2 were non-malignant dominant. In \texttt{STAD\_GSE167297}, TISCH2 provided epithelial/\allowbreak{}TME context only because no malignant-cell class was present. These results are candidate annotations, not score components.
+
+These single-cell calls are not symmetric evidence for or against tier placement. \texttt{STAD\_GSE134520} contains only 880 malignant-class cells and was designed around premalignant lesions and early gastric cancer. Low or non-malignant calls for \textit{CDH3}, \textit{ALPG}, \textit{CEACAM5}, and \textit{EPCAM} therefore lower confidence in tumor-cell attribution and make tumor-cell membrane confirmation mandatory before experimental prioritization, but they do not override the frozen multi-layer score or tiers.
+
+\textit{NECTIN2} and \textit{JAG1} illustrate the same rule in the opposite direction: supportive annotations can reduce concern but do not eliminate compartment caveats. Both remain Tier 1 under frozen criteria, but \textit{NECTIN2} remains closest to the TME threshold and \textit{JAG1} remains exposed to endothelial/\allowbreak{}angiocrine interpretation.
+
+\subsection{Stability and control diagnostics}
+
+Stability analysis supported coarse candidate interpretation but not fine within-tier ordering (Fig. 6a-b). Weight perturbations were generally stable: 231 of 250 perturbations passed both pre-specified gates, with minimum and median Spearman correlations of 0.910703 and 0.983898 relative to the final ranking. However, leave-one-layer-out analyses showed important layer dependence, especially for $T$, $R$, and $E$, and post-scoring rank resolution found only 1 of 20 baseline top20 genes with a 95\% rank interval contained within the top 40. These results justify coarse tiers rather than fine rank claims.
+
+Control behavior was used as a diagnostic rather than for weight tuning (Fig. 7; Table 4). Positive-control top50 recovery remained imperfect at 4 of 8 (\textit{ERBB2}, \textit{EPCAM}, \textit{MET}, and \textit{CEACAM5}). The aggregate pre-specified top50 gate therefore remains reported as failed. The cause review was added after the aggregate miss and is reported as an explanatory diagnostic, not as a replacement success criterion: \textit{CLDN18} and \textit{FGFR2} are isoform unresolved at gene level, \textit{MSLN} retains a topology/\allowbreak{}shedding penalty despite high protein support and corrected GPI evidence, and \textit{TACSTD2} has intermediate surface confidence and weaker protein support. Negative intracellular controls were excluded from Core/\allowbreak{}Probable; \textit{PTPRC} was cleanly low-ranked for epithelial targeting; \textit{PECAM1} remained the documented vascular/\allowbreak{}TME exception and was handled by Watchlist tiering.
+
+\subsection{Candidate interpretation}
+
+The candidate panel summarizes the final applied output of the pipeline (Fig. 8; Tables 3 and 5). The Tier 1 set should be read as a compact, experimentally testable hypothesis set rather than as a list of proven therapeutic targets. Candidate behavior is most useful where it reveals the framework's boundaries: \textit{ERBB2} remaining Tier 2 shows that benchmark status did not override frozen stability rules, and Watchlist placement for \textit{PECAM1} and \textit{LRRC15} shows how bulk surfaceome ranking can over-rank endothelial or stromal signals when cell-resolved data are unavailable.
+
+Tier 1/\allowbreak{}2 candidates therefore function as a prioritized experimental queue with explicit caveats. Their value in this manuscript is not stand-alone translational validity, but the fact that each nomination carries the evidence layers, missingness, compartment warnings, normal-risk context, and stability limits needed to decide what validation would be required next.
+
+\section{Discussion}
+
+\subsection{What the pipeline adds}
+
+This study presents a reproducible public-data workflow for prioritizing gastric cancer surface-target hypotheses while preserving the uncertainty that usually gets compressed into a single ranked list. The pipeline integrates surfaceome membership, tumor expression, tumor-normal selectivity, normal-tissue risk, protein/\allowbreak{}localization evidence, and topology/\allowbreak{}accessibility, while keeping single-cell specificity unavailable rather than imputed. Its main contribution is not a claim that any individual candidate is ready for translation, but a transparent method for combining heterogeneous evidence layers and showing where that evidence is strong, weak, or confounded. This positioning is deliberately narrower than pan-cancer target-discovery frameworks and general multi-omics prioritization platforms \citep{li2022pancancer,razzaghdoust2021adc,kathad2024adc,deng2024multiomics2targets}.
+
+The TCSA and Wang comparisons address different external-reference questions. TCSA provides a pan-cancer surfaceome-score baseline: the moderate rank correlation and low top20 identity show that the workflow is aligned with established surfaceome evidence but not reducible to it. Wang 2026 is best interpreted as a gastric-specific consistency check rather than an independent validation claim. The overlap with Wang exceeds a simple random draw but not a matched null, which matters because both resources enrich for highly expressed and well-annotated surface proteins. Taken together, the external checks support plausibility and benchmark consistency, but not independent validation of the ranking or any individual nomination. CD9 and LSR remain divergent nominations, glyco-outlier corroboration is selective, and the curated Wang Figure 7H single-cell panel does not directly plot most of the specific nominees.
+
+The workflow also makes uncertainty visible. ERBB2 remaining Tier 2 rather than being forced into Tier 1 shows that benchmark recovery was not used to override frozen stability rules. PECAM1 and LRRC15 moving to Watchlist shows that bulk RNA surfaceome ranking can produce compartment-derived false positives when cell-resolved data are unavailable. CLDN18 and FGFR2 remaining isoform unresolved shows that gene-level expression is insufficient for isoform-specific claims. These are not failures to be hidden; they are the evidence boundaries that make the prioritization interpretable.
+
+\subsection{Transferable GPI-anchor lesson}
+
+The GPI-anchor audit is the most transferable concrete methods artifact from this work. Confirmed GPI-anchored proteins are biologically membrane-associated and can be relevant to antibody-accessible targeting, and prior surfaceome work already recognized this class explicitly \citep{bauschfluck2018surfy}. The issue quantified here is narrower: pipelines can under-credit GPI-anchored candidates when list overlap or classical transmembrane topology is weighted above confirmed lipidation evidence during universe construction.
+
+The correction is therefore a routing-design precaution, not a broad claim about every surfaceome resource or every GPI-anchored protein. It applies most directly to workflows that build candidate universes from heterogeneous surfaceome lists and topology fields but fail to route confirmed lipidation evidence as direct surface-anchor support. It does not generalize to resources that already handle GPI evidence appropriately, such as SURFY, and it does not imply that GPI anchoring alone makes a good target.
+
+The most compact consequence is that the correction admitted 54 additional confirmed GPI-anchor genes into the ranked universe. The detailed rank shifts belong in the Results and supplementary tables; the discussion-level lesson is that source-wide evidence routing can change what the framework is allowed to evaluate before scoring even begins.
+
+\subsection{Candidate tiers as method diagnostics}
+
+The candidate tiers are useful because they show how the framework behaves under pressure. Established biology does not automatically override frozen criteria: ERBB2 remains Tier 2 because it misses the Tier 1 stability threshold. High bulk expression does not automatically imply malignant epithelial targeting: PECAM1 and LRRC15 are retained as Watchlist examples of endothelial and stromal signal. External concordance does not erase normal-tissue or compartment caveats: CEACAM5, EPCAM, NECTIN2, ITGB4, JAG1, and CDH3 still require candidate-specific validation before any translational claim.
+
+This candidate behavior is the point of a methods-forward paper. The output is an experimental queue with evidence boundaries, not a ranked claim that the top genes are intrinsically superior therapeutic targets. Cases such as ERBB2, PECAM1, LRRC15, CLDN18, FGFR2, and the GPI-anchored candidates show where the framework refuses to simplify away benchmark expectations, compartment risk, isoform ambiguity, or routing artifacts.
+
+The Watchlist is therefore not a discard bin. It is a visible record of the cases that a score-only view could over-promote, including immune HLA/\allowbreak{}KIR genes with thin evidence, endothelial PECAM1, CAF/\allowbreak{}stromal LRRC15, immune IL2RG/\allowbreak{}HLA-DPB1/\allowbreak{}BTN3A3, and ubiquitous or toxicity-prone CD47.
+
+\subsection{Limitations}
+
+Several limitations are central to interpretation. First, the Tier 1/\allowbreak{}2 set is externally consistent but not independently validated: its Wang overlap exceeds a simple random-draw null but not the matched null that controls for surfaceome confidence, expression, protein evidence, topology, component completeness, and accessibility. This is a boundary made visible by the framework, not a secondary apology for the result.
+
+Second, the expression layers are based on bulk RNA rather than isolated malignant epithelial cells. Bulk signal can reflect tumor cells, stromal cells, immune cells, endothelial cells, or mixtures of these compartments. Bulk TME correlations, ESTIMATE-adjusted partial correlations, and the limited TISCH2 candidate-level check provide conservative review flags, but they do not replace single-cell or spatial validation.
+
+Third, tumor-normal selectivity is constrained by source and sample-size limitations. TCGA-STAD primary tumors and GTEx stomach normals were processed through the Xena/\allowbreak{}Toil recompute, but TCGA/\allowbreak{}GTEx source effects remain explicit. TCGA adjacent normal samples provide a source-matched sensitivity context but are lower-powered than GTEx stomach. The risk model is intentionally conservative, yet some normal compartments such as skin/\allowbreak{}basal epithelium are incompletely represented and must be revisited in candidate-specific review.
+
+Fourth, HPA bulk IHC provides useful protein and localization evidence but lacks antibody-level and patient-level membrane detail in the downloadable cancer file. A candidate with HPA tumor staining and subcellular membrane support still requires antibody-specific review, tumor-cell membrane quantification, and normal-tissue cross-reactivity assessment before experimental prioritization.
+
+Fifth, the primary score did not admit a processed gastric scRNA dataset. $SC$ is therefore unavailable rather than imputed. The limited TISCH2 analysis annotates compartment caveats for the 18 Tier 1/\allowbreak{}2 candidates, but it does not solve cell-of-origin for the full ranked universe, does not provide patient-level malignant-cell prevalence for every candidate, and does not alter scores or tiers. Only \texttt{STAD\_GSE134520} contributes a TISCH2 malignant-cell class, and it contains 880 malignant-class cells from a premalignant/\allowbreak{}early-cancer study; \texttt{STAD\_GSE167297} is context-only. The current single-cell check is therefore deliberately limited and cannot be treated as a multi-cohort malignant-cell validation layer.
+
+Sixth, gene-level expression cannot resolve isoform-specific targets. CLDN18.2 and FGFR2b remain explicitly \texttt{isoform\_unresolved}; their positions in the ranking cannot be used as evidence that the pipeline resolves isoform-specific abundance. Similarly, topology/\allowbreak{}accessibility annotations do not establish antigen density, epitope exposure in native tumor tissue, internalization, shedding behavior, or therapeutic index.
+
+Finally, this is a computational, hypothesis-generating study without wet-lab validation. Wang 2026 consistency checks and HPA/\allowbreak{}UniProt support strengthen candidate context, but they do not establish clinical efficacy or safety for any nominated target.
+
+Sex-stratified and gender-related analyses were outside the scope of the current analysis. These dimensions should be assessed where relevant in future candidate-specific validation and translational study design.
+
+\subsection{Experimental follow-up}
+
+The highest-priority follow-up is experimental confirmation of tumor-cell surface abundance. Flow cytometry, cell-surface capture proteomics, or orthogonal surface-enrichment methods should be applied to gastric cancer cell models, organoids, and patient-derived samples. Tumor and normal tissue IHC should be repeated with validated antibodies and scored for membrane pattern, tumor-cell specificity, and normal compartment expression.
+
+Compartment resolution is especially important for the most exposed candidates. NECTIN2 should be evaluated in cell-resolved data to distinguish tumor-epithelial expression from dendritic/\allowbreak{}myeloid checkpoint-ligand biology. JAG1 requires separation of tumor epithelial and endothelial/\allowbreak{}vascular expression. PECAM1 and LRRC15 provide useful negative examples for epithelial targeting but may be relevant to vascular or stromal strategies if framed as different modalities.
+
+Modality-specific assays should follow confirmation of tumor-cell surface abundance. ADC-relevant candidates require internalization and payload-sensitivity testing. CAR or bispecific candidates require antigen-density and normal cross-reactivity assessment. GPI-anchored candidates require attention to shedding, soluble isoforms, and surface-retention behavior. The output of this pipeline is therefore a prioritized experimental queue, not a substitute for target validation.
+
+\section{Conclusions}
+
+This study provides a reproducible framework for uncertainty-aware gastric cancer surface-target prioritization from public evidence. Its central product is not a target list alone, but a transparent record of what heterogeneous bulk RNA, protein/\allowbreak{}localization, topology, normal-risk, surfaceome, and benchmark data can and cannot establish.
+
+The resulting Tier 1 and Tier 2 hypotheses show benchmark consistency but not independent validation: the gastric-atlas agreement is not enriched beyond a surfaceome-evidence-matched null. This negative result is part of the framework's value because it keeps public-data prioritization inside its evidential boundary.
+
+The GPI audit is the concrete routing artifact from this framework: confirmed lipidation evidence should be handled at universe construction when defining surfaceome candidates. The nominated genes should therefore be treated as experimentally testable hypotheses with explicit validation requirements, not as intrinsically validated therapeutic targets.
+
+\section{Glossary}
+
+\textbf{ADC.} Antibody-drug conjugate.
+
+\textbf{CSPA.} Cell Surface Protein Atlas.
+
+\textbf{GPI.} Glycosylphosphatidylinositol, a lipid anchor that can attach proteins to the cell surface.
+
+\textbf{GTEx.} Genotype-Tissue Expression project.
+
+\textbf{HPA.} Human Protein Atlas.
+
+\textbf{IHC.} Immunohistochemistry.
+
+\textbf{SC.} Single-cell specificity score component; unavailable and not imputed in the primary score.
+
+\textbf{SURFY.} Published in silico human surfaceome resource.
+
+\textbf{TCSA.} The Cancer Surfaceome Atlas.
+
+\textbf{TISCH2.} Tumor Immune Single-cell Hub 2.
+
+\textbf{TME.} Tumor microenvironment.
+
+\section{Figure captions}
+
+\textbf{Figure 1. Reproducible public-data workflow for gastric cancer surface-target prioritization.} The workflow begins with frozen public inputs, identifier normalization, and construction of a Core+\allowbreak{}Probable surfaceome universe, then computes tumor expression ($E$), normal selectivity ($N$), high-worse off-tumor risk ($R$), HPA protein/\allowbreak{}localization evidence ($P$), topology/\allowbreak{}accessibility ($T$), TME flags, stability checks, and coarse tiering. The figure reports stage-level counts and separates quantitative evidence layers from review flags and downstream hypothesis generation.
+
+\textbf{Figure 2. Surfaceome evidence landscape and GPI-anchor correction.} Source overlap and confidence summaries show how curated surfaceome resources, UniProt topology/\allowbreak{}GPI evidence, HPA localization, GO annotations, and SURFY support contribute to the 2,704-gene Core+\allowbreak{}Probable universe. Confirmed UniProt lipidation GPI-anchor evidence is credited as a source-wide non-experimental strong anchor during universe construction. Low $Surf$ values in the final ranking indicate lower relative confidence within the admitted universe, not absence from the surfaceome.
+
+\textbf{Figure 3. Tumor-normal selectivity and off-tumor risk landscape.} Candidate genes are positioned by TCGA-STAD tumor expression, stomach and critical-normal selectivity, and conservative organ-risk context. $R$ is a high-worse component and is subtracted in the integrated score. The display illustrates why tumor abundance, normal selectivity, and off-tumor risk must be interpreted jointly rather than as independent target-readiness claims.
+
+\textbf{Figure 4. Multi-layer evidence heatmap for the top 30 ranked candidates.} The heatmap summarizes $Surf$, $E$, $N$, $R$, $P$, $T$, missingness, TME flags, topology/\allowbreak{}accessibility, and coarse tiers for the top-ranked candidates from the final frozen ranking. Tiers are unordered within Tier 1, Tier 2, and Watchlist. Watchlist entries document immune, stromal, endothelial, ubiquitous, or thin-evidence cases that would be overinterpreted by a score-only view.
+
+\textbf{Figure 5. Tumor microenvironment specificity fallback.} Bulk TCGA-STAD marker-module and ESTIMATE-adjusted partial-correlation outputs flag likely CAF/\allowbreak{}fibroblast, endothelial, myeloid/\allowbreak{}macrophage, T-cell, and B/\allowbreak{}plasma compartment signals among top candidates. These outputs are flags only and do not replace cell-resolved single-cell or spatial validation. $SC$ remains \texttt{not\_available} and is not imputed in the primary score.
+
+\textbf{Figure 6. Rank stability and weighting sensitivity.} (a) Rank-stability heatmap from weight perturbation, leave-one-layer-out, missing-data, risk-form, organ-weight, and post-scoring resolution analyses. (b) Weighting-sensitivity bumpchart comparing the primary pre-specified ranking with safety-prioritized, ADC-focused, novelty-focused, protein-evidence-focused, and robust-aggregate contexts. Stability supports coarse tiers and explicit caveats, but not fine within-tier ordering.
+
+\textbf{Figure 7. Benchmark-control behavior.} Positive, secondary, negative, and TME/\allowbreak{}off-tumor controls are shown as diagnostics of pipeline behavior rather than as tuning targets. Positive-control top50 recovery is reported as imperfect, isoform-specific benchmarks remain unresolved where expression is gene-level, intracellular negative controls are excluded from Core+\allowbreak{}Probable, and \textit{PECAM1} is retained as the documented vascular/\allowbreak{}TME exception handled by Watchlist tiering.
+
+\textbf{Figure 8. Tier 1 candidate panel.} The six unordered Tier 1 hypotheses are \textit{ITGB4}, \textit{CDH3}, \textit{NECTIN2}, \textit{CEACAM5}, \textit{JAG1}, and \textit{EPCAM}. The panel summarizes component evidence, Wang 2026 concordance, and candidate-specific caveats. These nominations are experimentally testable hypotheses and do not imply clinical efficacy, clinical safety, antigen density, internalization, or wet-lab validation.
+
+\section{Table captions}
+
+\textbf{Table 1. Public datasets, versions, uses, and limitations.} Primary and secondary sources used for the workflow, including Xena/\allowbreak{}Toil TCGA-STAD/\allowbreak{}GTEx RNA, GDC and cBioPortal metadata, HPA IHC/\allowbreak{}localization/\allowbreak{}RNA files, UniProt reviewed-human topology/\allowbreak{}GPI features, curated surfaceome resources, TISCH2 candidate-level scRNA context, and optional resources not admitted into the numeric primary score. The table records source versions, checksum manifests where applicable, and interpretation limits.
+
+\textbf{Table 2. Score components and primary weights.} Definitions, directions, weights, primary sources, normalization conventions, and principal limitations for $Surf$, $E$, $N$, $R$, $P$, $SC$, and $T$. $R$ is high-worse and subtracted; $SC$ remains unavailable with zero weight; missing components are handled by exclude-and-renormalize during scoring and by tier restrictions during interpretation.
+
+\textbf{Table 3. Tier 1 and Tier 2 candidates.} Coarse unordered Tier 1 and Tier 2 nominations from the final frozen ranking, stability outputs, and manual curation. Columns report rank, score, prevalence flag, stability frequency, component values, Wang 2026 class/\allowbreak{}glyco-outlier context, and the principal caveat. The table is a hypothesis list, not a clinical target list.
+
+\textbf{Table 4. Benchmark-control diagnostics.} Positive controls, secondary benchmarks, intracellular negative controls, and TME/\allowbreak{}off-tumor controls used to assess whether the pipeline behaves plausibly. Control behavior is reported honestly, including the failed aggregate positive-control top50 gate and the cause-level interpretation of misses. Controls were not used to retune weights or rescue individual candidates.
+
+\textbf{Table 5. Candidate flags and interpretation guardrails for the top 30.} Automatic audit flags, TME risk, normal-risk interpretation, maximum-risk organ, accessibility class, HPA status, discordance flags, missing primary components, isoform-resolution status, and candidate-specific caveats. These flags define the review burden before any experimental prioritization.
+
+\section{Supplementary information captions}
+
+\textbf{Supplementary Table S1. Full surfaceome universe.} Complete Core, Probable, Ambiguous, and excluded surfaceome evidence table used to define the candidate universe.
+
+\textbf{Supplementary Table S2. All component scores.} Universe-wide component scores, missingness indicators, and integrated primary-score inputs for all Core+\allowbreak{}Probable genes.
+
+\textbf{Supplementary Table S3. Scenario rankings.} Preregistered primary, safety-prioritized, ADC-focused, novelty-focused, protein-evidence-focused, and robust-aggregate ranking outputs.
+
+\textbf{Supplementary Table S4. Complete stability and sensitivity outputs.} Rank stability, perturbation, leave-one-layer-out, missing-data, risk-threshold, organ-weight, and post-scoring resolution outputs.
+
+\textbf{Supplementary Table S5. Tissue mapping.} Organ and tissue mappings used to aggregate normal expression and off-tumor risk contexts.
+
+\textbf{Supplementary Table S6. Manual curation notes.} Frozen candidate-curation records for the top 30, including evidence notes and \texttt{changes\_score=no} status.
+
+\textbf{Supplementary Table S7. Excluded candidates with reason.} Candidate-level exclusions and non-nominable cases documented after tiering.
+
+\textbf{Supplementary Table S8. PCA/\allowbreak{}PERMANOVA batch diagnostic.} TCGA/\allowbreak{}GTEx source-effect diagnostic output used to keep tumor-normal selectivity claims explicitly source-aware.
+
+\textbf{Supplementary Table S9. Surfaceome overlap and Jaccard analysis.} Published-list overlap and Jaccard comparisons for TCSA, CSPA, and SURFY.
+
+\textbf{Supplementary Table S10. Tumor-normal power analysis.} Feasibility and sample-size context for tumor versus GTEx stomach and TCGA adjacent-normal comparisons.
+
+\textbf{Supplementary Table S11. Score functional-form sensitivity.} Alternative score-transform outputs used to assess whether component functional forms drive ranking conclusions.
+
+\textbf{Supplementary Table S12. TME marker-correlation flags.} Bulk marker-module and purity-adjusted TME correlation flags used as the fallback for absent score-level single-cell specificity.
+
+\textbf{Supplementary Table S13. Subtype feasibility and power.} TCGA-STAD molecular subtype sample-size and power context for exploratory subtype summaries.
+
+\textbf{Supplementary Table S14. Rank resolution simulation.} Pre-scoring simulation used to warn against fine rank interpretation before real-score stability analysis.
+
+\textbf{Supplementary Table S15. Risk functional-form sensitivity.} Alternative $R$ forms used to test whether risk aggregation changes candidate interpretation.
+
+\textbf{Supplementary Table S16. Wang 2026 cross-check.} Tier 1/\allowbreak{}2 and benchmark overlap with the Wang 2026 gastric proteogenomic surface-target resources, including drug-target class and glyco-outlier context.
+
+\textbf{Supplementary Table S17. Wang 2026 overlap enrichment.} Hypergeometric enrichment tests comparing Tier 1/\allowbreak{}2 overlap with Wang 2026 target backgrounds against random draws from the Core+\allowbreak{}Probable surfaceome universe.
+
+\textbf{Supplementary Table S18. Wang 2026 matched-null sensitivity.} Matched-null permutation analysis comparing Tier 1/\allowbreak{}2 Wang overlap against nearest-neighbor Core+\allowbreak{}Probable controls matched on surfaceome confidence, expression, protein evidence and missingness, topology, component completeness, and accessibility class.
+
+\textbf{Supplementary Table S19. GPI correction impact summary.} Summary metrics quantifying the effect of the universe-wide GPI evidence correction on ranked-universe size, confirmed GPI representation, top50 entry, named benchmark movement, and current Tier 1/\allowbreak{}2 GPI candidates.
+
+\textbf{Supplementary Table S20. GPI rank delta.} Gene-level rank and score changes for confirmed GPI-anchor genes between the preserved pre-GPI snapshot and the active post-GPI ranking.
+
+\textbf{Supplementary Table S21. External surfaceome baseline comparison.} Spearman rank correlation, top-k overlap, and Tier 1/\allowbreak{}2 overlap between the final ranking and TCSA final/\allowbreak{}core GESP baseline scores.
+
+\textbf{Supplementary Table S22. Candidate-level TISCH2 scRNA compartment check.} Processed TISCH2 gastric single-cell expression summaries for the 18 Tier 1/\allowbreak{}2 candidates, including malignant-class support, mixed signal, non-malignant dominance, low malignant signal, and context-only calls.
+
+\section{Data and code availability}
+
+All inputs used in the current analysis are public resources. Downloaded or captured raw/\allowbreak{}source files are listed in the release manifest, dataset registry, download manifest, and provenance log, with checksums in \path{data/checksums/} where files are stored locally. Primary local data paths include \path{data/raw/xena_toil/}, \path{data/raw/hpa/}, \path{data/raw/uniprot/}, \path{data/raw/gdc_tcga_stad/}, \path{data/raw/hgnc/}, \path{data/raw/surfaceome/}, \path{data/raw/cbioportal/}, \path{data/raw/tcga_purity/}, and \path{data/raw/tisch2/}.
+
+Processed tables, rankings, validation outputs, figures, and manuscript display tables are available in \path{data/processed/}, \path{results/rankings/}, \path{results/validation/}, \path{results/figures/}, and \path{results/tables/}. The active frozen ranking table has SHA256 \texttt{83cb\allowbreak{}bfcd\allowbreak{}281b\allowbreak{}9fb1\allowbreak{}048d\allowbreak{}b9e4\allowbreak{}f5e2\allowbreak{}426a\allowbreak{}17f8\allowbreak{}8787\allowbreak{}2d56\allowbreak{}c83c\allowbreak{}afcf\allowbreak{}6a64\allowbreak{}065a\allowbreak{}9e9f}. Earlier ranking snapshots are retained for reproducibility and diagnostic history.
+
+Analysis code is in \path{scripts/}, \path{src/}, \path{workflow/Snakefile}, and the configuration files in \path{config/}. The repository includes smoke tests, unit tests, manuscript checks, and Snakemake dry-run checks documented in the README and reproducibility guide. The submission version will include a public repository URL and archival DOI after the release package is archived. This is required for the Computational Biology and Chemistry research-data route because the journal asks authors to deposit research data in a relevant repository and cite or link the dataset in the article; those items remain pre-submission blockers in this draft.
+
+No new patient samples, wet-lab data, or restricted-access clinical data were generated for this study. The Wang 2026 supplementary cross-check was performed from open-access materials and summarized into the Wang cross-check, overlap-enrichment, and matched-null tables; temporary article/\allowbreak{}supplement parsing files were not retained in the repository. The external baseline comparison is summarized in the external surfaceome baseline comparison tables. The limited TISCH2 candidate-level scRNA check is summarized in the candidate-level TISCH2 compartment tables. The GPI impact audit is summarized in the GPI correction-impact and rank-delta tables.
+
+\section{Declarations}
+
+\textbf{Ethics approval and consent to participate.} Not applicable. This study uses publicly available, de-identified, aggregate, or open-access research data and does not generate new human-subject samples.
+
+\textbf{Consent for publication.} Not applicable.
+
+\textbf{Author information.} Vicenzo Scavino Alfaro, Independent Researcher, Lima, Peru. ORCID: 0009-0000-2472-9785. Correspondence: u201919346@upc.edu.pe. Telephone: +\allowbreak{}51 962 559 391. The author has confirmed that the correspondence email is retained permanently by the university.
+
+\textbf{Declaration of interests.} The author declares no competing interests.
+
+\textbf{Funding.} The author received no funding for this research.
+
+\textbf{Author contributions.} Vicenzo Scavino Alfaro is the sole author and was responsible for conceptualization, data curation, formal analysis, methodology, software, validation, visualization, writing-original draft, writing-review and editing, and final manuscript approval.
+
+\textbf{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process.} During the preparation of this work, the author used OpenAI Codex to support manuscript organization, language editing, and repository-oriented consistency checks. The author reviewed, revised, verified, and approved the final manuscript and accepts full responsibility for its content.
+
+\section{Acknowledgements}
+
+The author acknowledges the developers, maintainers, data generators, and participants behind TCGA, GTEx, GDC, UCSC Xena/\allowbreak{}Toil, HPA, UniProt, HGNC, cBioPortal, TCSA, CSPA, SURFY, ESTIMATE/\allowbreak{}tidyestimate, TISCH2, the underlying public gastric single-cell datasets, and the Wang 2026 open-access gastric proteogenomic atlas. No endorsement by those projects is implied.
+
+\bibliography{cbc_references}
+
+\end{document}

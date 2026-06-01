@@ -1,0 +1,7 @@
+subtype	n_subtype_samples	n_other_primary_tumor_samples	n_tests	alternative_fraction	simulations_per_delta	bh_fdr	target_power	median_empirical_log2_sd	min_detectable_standardized_shift	approx_min_detectable_log2_tpm_shift	achieved_power	achieved_fdr	status	power_model
+STAD_EBV	30	384	2696	0.10	200	0.05	0.80	1.689557	0.750000	1.267168	0.867056	0.044134	target_power_reached	normal-approximation two-group log2(TPM+0.001) shift; 10% non-null genes; BH-FDR 0.05
+STAD_MSI	73	341	2696	0.10	200	0.05	0.80	1.689557	0.500000	0.844778	0.849796	0.044945	target_power_reached	normal-approximation two-group log2(TPM+0.001) shift; 10% non-null genes; BH-FDR 0.05
+STAD_GS	50	364	2696	0.10	200	0.05	0.80	1.689557	0.750000	1.267168	0.985574	0.044151	target_power_reached	normal-approximation two-group log2(TPM+0.001) shift; 10% non-null genes; BH-FDR 0.05
+STAD_CIN	221	193	2696	0.10	200	0.05	0.80	1.689557	0.500000	0.844778	0.988889	0.043612	target_power_reached	normal-approximation two-group log2(TPM+0.001) shift; 10% non-null genes; BH-FDR 0.05
+STAD_POLE	7	407	2696	0.10	200	0.05	0.80	1.689557	1.500000	2.534335	0.863944	0.044888	target_power_reached	normal-approximation two-group log2(TPM+0.001) shift; 10% non-null genes; BH-FDR 0.05
+unassigned	33	381	2696	0.10	200	0.05	0.80	1.689557	0.750000	1.267168	0.904537	0.043858	target_power_reached	normal-approximation two-group log2(TPM+0.001) shift; 10% non-null genes; BH-FDR 0.05

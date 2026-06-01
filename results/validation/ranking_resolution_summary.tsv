@@ -1,0 +1,15 @@
+metric	value	notes
+candidate_universe_n	2704	Core+Probable surfaceome genes from Fase 4
+n_simulations	500	K synthetic rankings
+rank_resolution_seed	20260531	config/parameters.yaml random.rank_resolution_seed
+genes_ci_within_plusminus_10	0	95% rank CI width <=20 positions
+genes_ci_exceeds_plusminus_50	2693	95% rank CI width >100 positions
+top20_median_rank_genes	20	Twenty genes with the best simulated median ranks
+top20_with_ci_contained_in_top40	0	Exit criterion threshold is >=10
+tiering_resolution_decision	reduce_to_three_tiers_or_raise_tier1_stability_threshold	Pre-scoring calibration only; repeat with real score distributions in Fase 14
+coverage_Surf	1.0000	Observed source availability among Core+Probable candidates
+coverage_E	0.9970	Observed source availability among Core+Probable candidates
+coverage_N	0.9970	Observed source availability among Core+Probable candidates
+coverage_R	0.9963	Observed source availability among Core+Probable candidates
+coverage_P	0.9963	Observed source availability among Core+Probable candidates
+coverage_T	1.0000	Observed source availability among Core+Probable candidates

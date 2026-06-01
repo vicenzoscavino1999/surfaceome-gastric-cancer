@@ -1,0 +1,4 @@
+metric	value	threshold	status
+top20_with_ci_contained_in_top40	1	10	coarse_tiering_recommended
+median_top20_top20_frequency	0.596000	0.400000	descriptive
+n_simulations	500		recorded

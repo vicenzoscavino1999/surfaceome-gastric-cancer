@@ -1,0 +1,7 @@
+check	criterion	observed	status	symbols	interpretation
+positive_controls_top50	at_least_5_of_8	4/8	diagnostic_required_before_fase14	ERBB2;EPCAM;CEACAM5;MET	Do not tune weights; document whether misses are biological/design limitations or technical issues.
+negative_controls_top100	zero_negative_controls_in_top100	0	pass		Negative controls absent from Core+Probable universe remain expected.
+non_obvious_top10_presence	at_least_one_top10_not_positive_control	10	pass	ITGB4;HLA-DRB3;HLA-DRB4;KIR2DL5A;KIR2DS1;CDH3;MPZL1;ITGB5;NECTIN2;BST2	Top 10 is not composed only of preregistered positive controls.
+top20_missing_protein	review_any_P_missing_top20	4	diagnostic_required_before_fase14	HLA-DRB3;HLA-DRB4;KIR2DL5A;KIR2DS1	Verify exclude-and-renormalize is not being read as protein support.
+top20_three_or_more_missing_components	three_or_more_missing_requires_tier2_watchlist	4	documented_tiering_restriction_required	HLA-DRB3;HLA-DRB4;KIR2DL5A;KIR2DS1	These genes can remain in the audit ranking but cannot be Tier 1A/1B without manual justification.
+tme_penalty_controls_top100	TME controls may rank but cannot be epithelial Tier 1 without evidence	1	documented_tiering_demotion_required	PECAM1	TME flags are not numeric filters in Fase 13; Fase 15 must demote known TME/off-tumor controls for epithelial targeting.

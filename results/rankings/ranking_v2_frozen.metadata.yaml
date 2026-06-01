@@ -1,0 +1,18 @@
+format_version: release-format-v1
+ranking_file: results/rankings/ranking_v2_frozen.tsv
+ranking_sha256: 95040edef1b2a50c9ab1d61042856485bbfcac98e9f51d4cb78cbe05c46e9631
+row_count: 2704
+freeze_version: v2
+freeze_date_utc: '2026-05-31'
+ranking_status: preliminary_fase13_mvp_not_final_tiering
+score_config_sha256: 227d95ac3448af4b00edffbe8281c5c6b481dbd16eaaa92576f3633b21905560
+release_git_commit: defined_by_containing_clean_git_commit_or_tag
+release_git_worktree_status: clean_at_release_commit_required
+generation_git_commit: 6b4346e850b08f041c8e6c46b97a7396a3bba25d
+generation_git_worktree_status: dirty
+git_commit_policy: The release commit hash is intentionally not embedded literally
+  in this tracked sidecar, because doing so would make the commit hash self-referential.
+  The clean Git commit or tag that contains this file is authoritative for the exact
+  release tree.
+metadata_policy: File-level provenance is stored in this sidecar so the ranking table
+  contains only ranking/scoring fields.

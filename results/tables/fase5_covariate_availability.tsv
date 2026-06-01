@@ -1,0 +1,8 @@
+covariate	availability	n_primary_tumor_samples_with_value	n_primary_tumor_samples_total	action	notes
+TCGA molecular subtype	available	381	414	used_for_subtype_expression_and_power_analysis	cBioPortal patient-level SUBTYPE mapped by TCGA patient barcode.
+Lauren subtype	not_available_as_exact_field		414	not_used_for_quantitative_lauren_claims	GDC primary diagnosis can provide only a flagged histology proxy; exact Lauren claims remain blocked.
+Histology proxy	available_proxy_only	414	414	counted_but_not_treated_as_lauren	Proxy labels are descriptive and explicitly not equivalent to Lauren subtype.
+AJCC pathologic stage	available	393	414	included_in_clinical_covariate_expression_table	cBioPortal AJCC stage collapsed to Stage I-IV for sample-size stability.
+Anatomic tissue origin	available	414	414	included_in_clinical_covariate_expression_table	GDC tissue_or_organ_of_origin mapped by TCGA patient barcode.
+Tumor purity	not_available_in_current_raw_sources		414	not_purity_adjusted_in_fase5	No purity/stromal/immune estimate field was present in queried cBioPortal patient or sample clinical attributes.
+Copy-number amplification	available_for_selected_targets		414	computed_for_ERBB2_FGFR2_MET	3/3 selected amplified targets had high-amplification expression contrast rows.

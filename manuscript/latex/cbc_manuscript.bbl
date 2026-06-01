@@ -1,0 +1,188 @@
+\begin{thebibliography}{30}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bang et~al.(2010)Bang, {Van Cutsem}, Feyereislova, Chung, Shen, et~al.]{bang2010toga}
+Yung-Jue Bang, Eric {Van Cutsem}, Andrea Feyereislova, Hyun~Cheol Chung, Lin Shen, et~al.
+\newblock Trastuzumab in combination with chemotherapy versus chemotherapy alone for treatment of {HER2}-positive advanced gastric or gastro-oesophageal junction cancer ({ToGA}): a phase 3, open-label, randomised controlled trial.
+\newblock \emph{The Lancet}, 376\penalty0 (9742):\penalty0 687--697, 2010.
+\newblock \doi{10.1016/S0140-6736(10)61121-X}.
+
+\bibitem[Bausch-Fluck et~al.(2015)Bausch-Fluck, Hofmann, Bock, Frei, Cerciello, et~al.]{bauschfluck2015cspa}
+Damaris Bausch-Fluck, Andreas Hofmann, Thomas Bock, Andreas~P. Frei, Ferdinando Cerciello, et~al.
+\newblock A mass spectrometric-derived cell surface protein atlas.
+\newblock \emph{PLOS ONE}, 10\penalty0 (4):\penalty0 e0121314, 2015.
+\newblock \doi{10.1371/journal.pone.0121314}.
+
+\bibitem[Bausch-Fluck et~al.(2018)Bausch-Fluck, Goldmann, Muller, van Oostrum, Muller, et~al.]{bauschfluck2018surfy}
+Damaris Bausch-Fluck, Ulrich Goldmann, Sebastian Muller, Marc van Oostrum, Maik Muller, et~al.
+\newblock The in silico human surfaceome.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 115\penalty0 (46):\penalty0 E10988--E10997, 2018.
+\newblock \doi{10.1073/pnas.1808790115}.
+
+\bibitem[Bray et~al.(2024)Bray, Laversanne, Sung, Ferlay, Siegel, et~al.]{bray2024globocan}
+Freddie Bray, Mathieu Laversanne, Hyuna Sung, Jacques Ferlay, Rebecca~L. Siegel, et~al.
+\newblock Global cancer statistics 2022: {GLOBOCAN} estimates of incidence and mortality worldwide for 36 cancers in 185 countries.
+\newblock \emph{CA: A Cancer Journal for Clinicians}, 74\penalty0 (3):\penalty0 229--263, 2024.
+\newblock \doi{10.3322/caac.21834}.
+
+\bibitem[{Cancer Genome Atlas Research Network}(2014)]{tcga2014gastric}
+{Cancer Genome Atlas Research Network}.
+\newblock Comprehensive molecular characterization of gastric adenocarcinoma.
+\newblock \emph{Nature}, 513\penalty0 (7517):\penalty0 202--209, 2014.
+\newblock \doi{10.1038/nature13480}.
+
+\bibitem[Cerami et~al.(2012)Cerami, Gao, Dogrusoz, Gross, Sumer, et~al.]{cerami2012cbioportal}
+Ethan Cerami, Jianjiong Gao, Ugur Dogrusoz, Benjamin~E. Gross, Selcuk~Onur Sumer, et~al.
+\newblock The {cBio} cancer genomics portal: an open platform for exploring multidimensional cancer genomics data.
+\newblock \emph{Cancer Discovery}, 2\penalty0 (5):\penalty0 401--404, 2012.
+\newblock \doi{10.1158/2159-8290.CD-12-0095}.
+
+\bibitem[Deng et~al.(2024)Deng, Marino, Clarke, Diamant, Resnick, et~al.]{deng2024multiomics2targets}
+Eden~Z. Deng, Giacomo~B. Marino, Daniel~J.B. Clarke, Ido Diamant, Adam~C. Resnick, et~al.
+\newblock {Multiomics2Targets} identifies targets from cancer cohorts profiled with transcriptomics, proteomics, and phosphoproteomics.
+\newblock \emph{Cell Reports Methods}, 4\penalty0 (8):\penalty0 100839, 2024.
+\newblock \doi{10.1016/j.crmeth.2024.100839}.
+
+\bibitem[Goldman et~al.(2020)Goldman, Craft, Hastie, Repecka, McDade, et~al.]{goldman2020xena}
+Mary~J. Goldman, Brian Craft, Mim Hastie, Kristupas Repecka, Fran McDade, et~al.
+\newblock Visualizing and interpreting cancer genomics data via the {Xena} platform.
+\newblock \emph{Nature Biotechnology}, 38\penalty0 (6):\penalty0 675--678, 2020.
+\newblock \doi{10.1038/s41587-020-0546-8}.
+
+\bibitem[Grossman et~al.(2016)Grossman, Heath, Ferretti, Varmus, Lowy, et~al.]{grossman2016gdc}
+Robert~L. Grossman, Allison~P. Heath, Vincent Ferretti, Harold~E. Varmus, Douglas~R. Lowy, et~al.
+\newblock Toward a shared vision for cancer genomic data.
+\newblock \emph{New England Journal of Medicine}, 375\penalty0 (12):\penalty0 1109--1112, 2016.
+\newblock \doi{10.1056/NEJMp1607591}.
+
+\bibitem[{GTEx Consortium}(2020)]{gtex2020atlas}
+{GTEx Consortium}.
+\newblock The {GTEx} consortium atlas of genetic regulatory effects across human tissues.
+\newblock \emph{Science}, 369\penalty0 (6509):\penalty0 1318--1330, 2020.
+\newblock \doi{10.1126/science.aaz1776}.
+
+\bibitem[Han et~al.(2023)Han, Wang, Dong, Sun, Liu, et~al.]{han2023tisch2}
+Ya~Han, Yuting Wang, Xin Dong, Dongqing Sun, Zhaoyang Liu, et~al.
+\newblock {TISCH2}: expanded datasets and new tools for single-cell transcriptome analyses of the tumor microenvironment.
+\newblock \emph{Nucleic Acids Research}, 51\penalty0 (D1):\penalty0 D1425--D1431, 2023.
+\newblock \doi{10.1093/nar/gkac959}.
+
+\bibitem[Hu et~al.(2021)Hu, Yuan, Long, Jiang, Zhang, et~al.]{hu2021surfaceome}
+Zhongyi Hu, Jiao Yuan, Meixiao Long, Junjie Jiang, Youyou Zhang, et~al.
+\newblock The cancer surfaceome atlas integrates genomic, functional and drug response data to identify actionable targets.
+\newblock \emph{Nature Cancer}, 2\penalty0 (12):\penalty0 1406--1422, 2021.
+\newblock \doi{10.1038/s43018-021-00282-w}.
+
+\bibitem[Jeong et~al.(2021)Jeong, Ham, Lee, Ryu, Son, et~al.]{jeong2021gastric_tme}
+Hye~Young Jeong, In-Hye Ham, Sung~Hak Lee, Daeun Ryu, Sang-Yong Son, et~al.
+\newblock Spatially distinct reprogramming of the tumor microenvironment based on tumor invasion in diffuse-type gastric cancers.
+\newblock \emph{Clinical Cancer Research}, 27\penalty0 (23):\penalty0 6529--6542, 2021.
+\newblock \doi{10.1158/1078-0432.CCR-21-0792}.
+
+\bibitem[Kathad et~al.(2024)Kathad, Biyani, {Peru y Colon De Portugal}, Zhou, Kochat, et~al.]{kathad2024adc}
+Umesh Kathad, Neha Biyani, Raniero~L. {Peru y Colon De Portugal}, Jianli Zhou, Harry Kochat, et~al.
+\newblock Expanding the repertoire of antibody drug conjugate targets with improved tumor selectivity and range of potent payloads through in-silico analysis.
+\newblock \emph{PLOS ONE}, 19\penalty0 (8):\penalty0 e0308604, 2024.
+\newblock \doi{10.1371/journal.pone.0308604}.
+
+\bibitem[Li et~al.(2022)Li, Zhou, Zhang, You, Wang, et~al.]{li2022pancancer}
+Xinhui Li, Jian Zhou, Weiwen Zhang, Wenhua You, Jun Wang, et~al.
+\newblock Pan-cancer analysis identifies tumor cell surface targets for {CAR-T} cell therapies and antibody drug conjugates.
+\newblock \emph{Cancers}, 14\penalty0 (22):\penalty0 5674, 2022.
+\newblock \doi{10.3390/cancers14225674}.
+
+\bibitem[Razzaghdoust et~al.(2021)Razzaghdoust, Rahmatizadeh, Mofid, Muhammadnejad, Parvin, et~al.]{razzaghdoust2021adc}
+Abolfazl Razzaghdoust, Shahabedin Rahmatizadeh, Bahram Mofid, Samad Muhammadnejad, Mahmoud Parvin, et~al.
+\newblock Data-driven discovery of molecular targets for antibody-drug conjugates in cancer treatment.
+\newblock \emph{BioMed Research International}, 2021:\penalty0 2670573, 2021.
+\newblock \doi{10.1155/2021/2670573}.
+
+\bibitem[Sandve et~al.(2013)Sandve, Nekrutenko, Taylor, and Hovig]{sandve2013reproducible}
+Geir~Kjetil Sandve, Anton Nekrutenko, James Taylor, and Eivind Hovig.
+\newblock Ten simple rules for reproducible computational research.
+\newblock \emph{PLOS Computational Biology}, 9\penalty0 (10):\penalty0 e1003285, 2013.
+\newblock \doi{10.1371/journal.pcbi.1003285}.
+
+\bibitem[Shah et~al.(2023)Shah, Shitara, Ajani, Bang, Enzinger, et~al.]{shah2023spotlight}
+Manish~A. Shah, Kohei Shitara, Jaffer~A. Ajani, Yung-Jue Bang, Peter Enzinger, et~al.
+\newblock Zolbetuximab plus {mFOLFOX6} in patients with {CLDN18.2}-positive, {HER2}-negative, untreated, locally advanced unresectable or metastatic gastric or gastro-oesophageal junction adenocarcinoma ({SPOTLIGHT}): a multicentre, randomised, double-blind, phase 3 trial.
+\newblock \emph{The Lancet}, 401\penalty0 (10389):\penalty0 1655--1668, 2023.
+\newblock \doi{10.1016/S0140-6736(23)00620-7}.
+
+\bibitem[Shitara et~al.(2023)Shitara, Lordick, Bang, Enzinger, Ilson, et~al.]{shitara2023glow}
+Kohei Shitara, Florian Lordick, Yung-Jue Bang, Peter Enzinger, David Ilson, et~al.
+\newblock Zolbetuximab plus {CAPOX} in {CLDN18.2}-positive gastric or gastroesophageal junction adenocarcinoma: the randomized, phase 3 {GLOW} trial.
+\newblock \emph{Nature Medicine}, 29:\penalty0 2133--2141, 2023.
+\newblock \doi{10.1038/s41591-023-02465-7}.
+
+\bibitem[Thul et~al.(2017)Thul, Akesson, Wiking, Mahdessian, Geladaki, et~al.]{thul2017subcellular}
+Peter~J. Thul, Lovisa Akesson, Mikaela Wiking, Diana Mahdessian, Aikaterini Geladaki, et~al.
+\newblock A subcellular map of the human proteome.
+\newblock \emph{Science}, 356\penalty0 (6340):\penalty0 eaal3321, 2017.
+\newblock \doi{10.1126/science.aal3321}.
+
+\bibitem[Tweedie et~al.(2021)Tweedie, Braschi, Gray, Jones, Seal, et~al.]{tweedie2021hgnc}
+Susan Tweedie, Bryony Braschi, Kristian Gray, Tamsin~E.M. Jones, Ruth~L. Seal, et~al.
+\newblock Genenames.org: the {HGNC} and {VGNC} resources in 2021.
+\newblock \emph{Nucleic Acids Research}, 49\penalty0 (D1):\penalty0 D939--D946, 2021.
+\newblock \doi{10.1093/nar/gkaa980}.
+
+\bibitem[Uhlen et~al.(2015)Uhlen, Fagerberg, Hallstrom, Lindskog, Oksvold, et~al.]{uhlen2015hpa}
+Mathias Uhlen, Linn Fagerberg, Bjorn~M. Hallstrom, Cecilia Lindskog, Per Oksvold, et~al.
+\newblock Tissue-based map of the human proteome.
+\newblock \emph{Science}, 347\penalty0 (6220):\penalty0 1260419, 2015.
+\newblock \doi{10.1126/science.1260419}.
+
+\bibitem[Uhlen et~al.(2017)Uhlen, Zhang, Lee, Sjostedt, Fagerberg, et~al.]{uhlen2017pathology}
+Mathias Uhlen, Cheng Zhang, Sunjae Lee, Evelina Sjostedt, Linn Fagerberg, et~al.
+\newblock A pathology atlas of the human cancer transcriptome.
+\newblock \emph{Science}, 357\penalty0 (6352):\penalty0 eaan2507, 2017.
+\newblock \doi{10.1126/science.aan2507}.
+
+\bibitem[{UniProt Consortium}(2025)]{uniprot2025}
+{UniProt Consortium}.
+\newblock {UniProt}: the universal protein knowledgebase in 2025.
+\newblock \emph{Nucleic Acids Research}, 53\penalty0 (D1):\penalty0 D609--D617, 2025.
+\newblock \doi{10.1093/nar/gkae1010}.
+
+\bibitem[Vivian et~al.(2017)Vivian, Rao, Nothaft, Ketchum, Armstrong, et~al.]{vivian2017toil}
+John Vivian, Arjun~Arkal Rao, Frank~Austin Nothaft, Christopher Ketchum, Joel Armstrong, et~al.
+\newblock Toil enables reproducible, open source, big biomedical data analyses.
+\newblock \emph{Nature Biotechnology}, 35\penalty0 (4):\penalty0 314--316, 2017.
+\newblock \doi{10.1038/nbt.3772}.
+
+\bibitem[Wainberg et~al.(2022)Wainberg, Enzinger, Kang, Qin, Yamaguchi, et~al.]{wainberg2022fight}
+Zev~A. Wainberg, Peter~C. Enzinger, Yoon-Koo Kang, Shukui Qin, Kensei Yamaguchi, et~al.
+\newblock Bemarituzumab in patients with {FGFR2b}-selected gastric or gastro-oesophageal junction adenocarcinoma ({FIGHT}): a randomised, double-blind, placebo-controlled, phase 2 study.
+\newblock \emph{The Lancet Oncology}, 23\penalty0 (11):\penalty0 1430--1440, 2022.
+\newblock \doi{10.1016/S1470-2045(22)00603-9}.
+
+\bibitem[Wang et~al.(2026)Wang, Olsen, Jiao, Wang, Jiang, et~al.]{wang2026gastric}
+Yuefan Wang, Lindsey~K. Olsen, Fenglong Jiao, Chenwei Wang, Kevin~X. Jiang, et~al.
+\newblock A 15-layer multi-omics analysis of gastric cancer ecotypes provides therapeutic insights.
+\newblock \emph{Cell Reports Medicine}, 7\penalty0 (5):\penalty0 102756, 2026.
+\newblock \doi{10.1016/j.xcrm.2026.102756}.
+
+\bibitem[Wilkinson et~al.(2016)Wilkinson, Dumontier, Aalbersberg, Appleton, Axton, et~al.]{wilkinson2016fair}
+Mark~D. Wilkinson, Michel Dumontier, IJsbrand~Jan Aalbersberg, Gabrielle Appleton, Myles Axton, et~al.
+\newblock The {FAIR} guiding principles for scientific data management and stewardship.
+\newblock \emph{Scientific Data}, 3:\penalty0 160018, 2016.
+\newblock \doi{10.1038/sdata.2016.18}.
+
+\bibitem[Yoshihara et~al.(2013)Yoshihara, Shahmoradgoli, Martinez, Vegesna, Kim, et~al.]{yoshihara2013estimate}
+Kosuke Yoshihara, Maria Shahmoradgoli, Emmanuel Martinez, Rahulsimham Vegesna, Hoon Kim, et~al.
+\newblock Inferring tumour purity and stromal and immune cell admixture from expression data.
+\newblock \emph{Nature Communications}, 4:\penalty0 2612, 2013.
+\newblock \doi{10.1038/ncomms3612}.
+
+\bibitem[Zhang et~al.(2019)Zhang, Yang, Zhang, Xiao, Lai, et~al.]{zhang2019gastric_scrna}
+Peng Zhang, Mingran Yang, Yiding Zhang, Shuai Xiao, Xinxing Lai, et~al.
+\newblock Dissecting the single-cell transcriptome network underlying gastric premalignant lesions and early gastric cancer.
+\newblock \emph{Cell Reports}, 27\penalty0 (6):\penalty0 1934--1947.e5, 2019.
+\newblock \doi{10.1016/j.celrep.2019.04.052}.
+
+\end{thebibliography}

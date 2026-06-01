@@ -1,0 +1,626 @@
+sample	study	sample_type	detailed_category	analysis_group
+TCGA-BR-A4QL-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-QLQ7-0826-SM-447B3	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A927-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-132AR-2426-SM-5IFFD	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-IN-7808-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4466-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GP-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-D7-A4Z0-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4462-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7703-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-IN-8663-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-11EQ9-1226-SM-5987E	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-RWS6-0926-SM-47JXE	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-13X6H-1626-SM-5Q5CT	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-ZTX8-0426-SM-59HLG	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4GQ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7716-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-11EM3-1026-SM-5A5KL	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8372-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8363-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-8579-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-S3XE-1026-SM-4AD4O	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4363-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZYY3-1726-SM-5EGH3	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A91D-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7196-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6852-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-8575-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8367-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A91Q-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A94R-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A91W-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-A486-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-111YS-1126-SM-5GZYQ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-139YR-1926-SM-5LZXM	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A8PX-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4367-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7722-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7851-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-HU-A4GD-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A94U-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PJ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8E7-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4J9-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4H5-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8N6-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8291-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4279-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8P8-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A928-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7703-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-OHPK-1526-SM-3MJGM	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-XXEK-0826-SM-4BRWG	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-145MO-2226-SM-5Q5BN	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HF-7131-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-Y8E4-1526-SM-4WWDI	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-IN-7806-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8081-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-AB1X-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5722-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-VQ-A8PP-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8484-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4G8-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZYVF-2726-SM-5GID4	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4GC-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5726-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-A48C-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WYJK-2526-SM-4ONDF	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-11P82-0726-SM-5PNYL	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-7716-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-IN-8462-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-VQ-A8E3-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GH-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-VQ-A8E0-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PO-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8526-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5716-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8DV-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-12WS9-1426-SM-5FQT3	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-FP-A4BF-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8N1-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8687-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-11EI6-2426-SM-5PNVS	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8060-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+GTEX-ZLFU-1326-SM-4WWET	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-13QBU-1126-SM-5LU44	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4369-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZV6S-0926-SM-57WGB	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-A4IV-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PH-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WFON-1126-SM-4LVMA	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A91N-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8NB-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4PE-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-OOBJ-1526-SM-3NB1Q	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-12BJ1-1726-SM-5HL9B	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-XAJ8-0326-SM-47JYI	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8059-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8527-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8286-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-A7NT-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6820-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4J6-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6801-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-XBED-1226-SM-4AT5V	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-T6MO-0726-SM-4DM58	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-OIZH-1526-SM-3NB1J	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-RM2N-0826-SM-48FD3	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-R5-A805-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13RTK-0226-SM-5RQHR	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-A74A-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8591-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8677-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA6A-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6525-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4J1-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-A6RO-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-B7-A5TK-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8381-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4301-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4371-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A94P-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6521-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HF-A5NB-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4440-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-S4P3-0726-SM-4AD57	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-13CF3-1926-SM-5K7WF	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-A747-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-P78B-1826-SM-3P5YX	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-V955-1326-SM-4JBHR	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-11GSP-2126-SM-5HL5E	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-A6EV-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZZ64-0426-SM-5E43F	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-RD-A8N0-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-MX-A666-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13D11-2126-SM-5IFH2	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CD-5800-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-SW-A7EA-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8364-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-A489-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA68-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4475-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZVT3-2126-SM-59HL2	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-SIU7-1426-SM-4BRWT	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-5723-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6519-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PE-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A452-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4HB-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-BR-8382-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7715-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A94O-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8MW-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-P4PP-1526-SM-3P61M	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-12696-1726-SM-5EQLH	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4362-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA6B-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PB-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5717-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZEX8-1626-SM-4WKG7	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-A4J8-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4191-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-12WSJ-0926-SM-5P9JD	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-RD-A8N4-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4472-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13111-1226-SM-5GCNC	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-QV31-0626-SM-447C5	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-AA6J-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-SNMC-0626-SM-4DM6H	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-A748-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4294-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-14BMV-2226-SM-5RQHX	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4H0-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A4YT-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-A7NR-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4HD-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5718-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4474-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-XQ8I-2026-SM-4BOOL	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-FP-7998-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8679-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-S4Z8-1226-SM-4AD6W	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-4304-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A925-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7717-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-HU-A4H8-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-PWN1-1526-SM-48TDA	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-139D8-2326-SM-5IFGE	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-6528-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-QXCU-1926-SM-48FE4	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-5730-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-HU-A4H4-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8058-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WFJO-1126-SM-4LVLZ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-6454-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-CD-8534-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8368-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-8243-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8284-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-7916-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8P3-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4438-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7957-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-QCQG-0526-SM-48U2A	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-4444-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-F1-6177-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-8211-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4306-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA64-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GN-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-D7-6818-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-YFCO-0826-SM-5LUAG	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4370-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-8570-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-8663-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+GTEX-WHSB-1226-SM-4M1XR	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4HB-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4CS-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-NFK9-1526-SM-3LK7B	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-IN-A6RR-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8080-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-132QS-1826-SM-5IFFN	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-5734-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-VQ-A91V-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-B7-A5TI-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA6K-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZQUD-0826-SM-57WDQ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A923-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8373-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4H2-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-XUZC-0726-SM-4BOPH	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-7901-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8529-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13O21-0926-SM-5IFGT	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4280-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8362-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13113-0726-SM-5LZUF	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CD-A4MG-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8296-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6565-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-QV44-1226-SM-4R1KE	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-S4Q7-0726-SM-4AD5F	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-IN-A6RI-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IP-7968-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+GTEX-11NUK-2426-SM-5BC4U	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-8608-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8365-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4H6-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A7C1-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-8574-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A7BW-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-YJ8A-1526-SM-5P9FT	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-8238-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-IN-AB1V-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+GTEX-14BMU-1126-SM-5RQJ8	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-Q2AH-1126-SM-48TZM	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-P4PQ-1526-SM-3NMCK	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-7704-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-8209-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-Y3I4-1626-SM-4TT7W	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-Q734-1026-SM-48U16	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-A4QI-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-R5-A7ZE-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-144GN-1226-SM-5O991	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-11VI4-0326-SM-5EQ6L	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-UJMC-1226-SM-4IHLI	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-PLZ6-0826-SM-3P61K	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-TKQ2-0926-SM-4DXU5	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-WYVS-1326-SM-4ONCQ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-A453-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GF-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-RU1J-0526-SM-46MUT	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4257-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-QDVN-1226-SM-48TZ5	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4GU-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4366-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-11NSD-1426-SM-5HL67	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-S341-0626-SM-4AD5T	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A91E-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8077-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6452-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-R5-A7ZF-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8524-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4J5-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6802-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-YEC3-1426-SM-5PNXW	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-ZDYS-1926-SM-5HL59	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-Y3IK-1426-SM-4YCES	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HF-7133-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8536-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7723-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5720-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6852-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+GTEX-UPK5-2126-SM-4JBJK	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-R53T-1226-SM-48FCT	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-ZF29-1526-SM-4WKF7	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-8576-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-8099-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-5801-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8289-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5724-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-F1-A448-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-A6RL-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-3M-AB47-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13OW6-2526-SM-5IJEC	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-6522-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4449-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-7829-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-Y8LW-0826-SM-4WWDO	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8297-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5732-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-1339X-1426-SM-5K7YO	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-PW2O-1226-SM-48TCH	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CD-A4MI-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8486-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8DU-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6457-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-HJ-7597-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-146FH-2126-SM-5SI9U	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-146FR-2026-SM-5NQAI	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-T5JW-0926-SM-4DM5K	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-13FTW-1726-SM-5KM2B	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-A4IU-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-EQ-8122-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-AB1V-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-A9TM-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4437-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PQ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8MV-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-UJHI-1026-SM-4IHJP	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4G3-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-VQ-A8PF-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-T5JC-1926-SM-4DM6Q	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A91Y-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-ZA-A8F6-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7851-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZXES-1426-SM-5NQ8S	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4187-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-R5-A7O7-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-R5-A7ZR-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-131XF-1226-SM-5HL8V	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-ZE7O-3026-SM-51MS4	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4GP-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-131XE-2226-SM-5PNYX	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8676-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6527-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4H3-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4477-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-R55G-1126-SM-48FDG	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-13OVI-2426-SM-5KM4J	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4368-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4443-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-ZQ-A9CR-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-KB-A93H-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6564-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-BR-6706-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-11I78-1726-SM-5A5M3	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-U8XE-2126-SM-5CHRC	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-S7SF-0626-SM-4AD4V	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-8572-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5722-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6564-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-A4BE-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8380-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WFG8-1326-SM-4LVN3	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8682-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6518-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-B7-A5TN-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-12WSD-2326-SM-59HKQ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-4442-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8533-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA69-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZAB4-1526-SM-5CVN7	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-5719-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-5803-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A91U-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-A6RS-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-111CU-0926-SM-5EGIK	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-6458-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WY7C-1726-SM-4ONCC	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-5728-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-VQ-A8PK-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-A4MJ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A4YU-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8060-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8N5-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4469-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-7735-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA6G-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A4YV-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A91Z-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-5578-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5733-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-HU-A4GH-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8528-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8589-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZP4G-1226-SM-4WWCJ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-AA6D-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-S4UY-1626-SM-4AD55	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-8604-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-8631-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-QDVJ-1426-SM-48U1Y	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8361-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8680-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WXYG-1626-SM-4ONCR	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-QMRM-1126-SM-447BN	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-IN-7806-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+GTEX-O5YW-1526-SM-3MJGL	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4292-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-YEC4-1426-SM-5IFHS	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A8DZ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A7BT-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A92D-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-VJYA-1026-SM-4KL21	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-8573-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZVZP-1726-SM-5GZWY	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-Y114-1226-SM-4TT88	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-SNOS-0826-SM-4DM5N	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-6815-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8P5-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-KB-A6F7-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A44U-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-5813-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA6I-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-8610-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-TKQ1-0526-SM-4DXTG	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-A4YX-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-V1D1-1726-SM-4JBHB	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4G2-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-MX-A5UG-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-KB-A93G-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A94T-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-11WQK-2626-SM-5EQ4K	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-ZVP2-1626-SM-5GU5D	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-XV7Q-1326-SM-4BRWM	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-X15G-1126-SM-4PQZG	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-1399R-1126-SM-5IFIO	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-4256-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4PF-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8078-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GC-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-CD-8531-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4G9-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GN-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A91S-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-OXRK-1626-SM-3NB17	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-Q2AI-0826-SM-48TZO	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-A4J2-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6458-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-CD-A48A-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7197-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-Y5V6-1326-SM-4VDTF	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A922-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4267-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-EQ-A4SO-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13PVQ-2126-SM-5L3FW	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-SUCS-0926-SM-4DM4Z	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CD-8532-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7715-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-BR-7717-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8686-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7958-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-B7-A5TJ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8DT-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8690-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8485-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-8462-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GY-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6456-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-8210-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4465-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4PD-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4G3-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-MX-A5UJ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GT-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4IY-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WH7G-1526-SM-4LVMX	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-W5WG-1726-SM-4LMI5	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-IN-A7NU-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A91K-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6453-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HF-7136-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4253-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-A6RJ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8525-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-8530-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6457-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HF-7132-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8592-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8295-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WHWD-1426-SM-4OORU	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-7707-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6524-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A44T-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5725-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GX-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4J7-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6520-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZZPU-1426-SM-5GZZ6	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-ZF2S-1426-SM-57WET	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-11DXX-1326-SM-5GIDZ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8384-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-T8EM-1226-SM-4DM5J	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-PWOO-1226-SM-48TCO	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8678-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-8244-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8E2-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6454-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13S7M-1826-SM-5RQK6	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8683-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-7735-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-D7-6822-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8N2-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-5799-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-A8CX-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-RD-A8N9-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PC-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4201-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6563-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WZTO-2126-SM-4PQYW	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-WRHK-0626-SM-4MVOE	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A91A-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4J4-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4436-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A6EZ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-POMQ-0826-SM-3P61H	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-6803-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-117YW-2226-SM-5N9DB	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-6710-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZYFG-1326-SM-5GICJ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-QLQW-0726-SM-447AA	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CG-5734-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8369-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-U8T8-1226-SM-4E3IH	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A91X-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-8238-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6705-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZV7C-1626-SM-5NQ7E	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-B7-5818-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A924-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4460-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PD-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8590-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8483-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-6817-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13FH7-1026-SM-5IJGF	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-HU-A4G6-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A6F0-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4IZ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4357-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-YEC3-1426-101806-SM-5PNXX	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-B7-5816-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-KB-A93J-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-A4MH-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZVT2-1626-SM-51MRC	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-IP-7968-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A4YY-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7959-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5721-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-YEC3-1426-SM-4WWEM	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8371-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-11TT1-0726-SM-5GU5A	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-131XG-1226-SM-5EGH9	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-8487-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A6EY-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4476-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6455-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4305-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-A6F2-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CD-5798-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8366-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-4441-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-R55D-1526-SM-48FEJ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-P4QT-1526-SM-3NMCT	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-Y5LM-1326-SM-5RQIS	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-145ME-1026-SM-5O9B4	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-A4QM-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-8578-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-SW-A7EB-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WFON-1126-SM-5CHTG	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-1211K-1426-SM-5FQTF	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-F1-A72C-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-D7-5577-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-1122O-1926-SM-5EGIQ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-6526-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13O61-1126-SM-5L3FI	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-BR-6453-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-CD-5804-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-ZPIC-2026-SM-57WG3	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-VQ-A8PU-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6707-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-F1-6875-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-Y9LG-1026-SM-5IFJN	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-13O3Q-2126-SM-5KM4C	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+GTEX-ZLV1-0826-SM-4WWEQ	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-MX-A663-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-8249-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6802-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-BR-4361-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-7704-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-RD-A7BS-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-F1-6874-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-CG-5720-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-VQ-A8P2-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-PX3G-1526-SM-48U11	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-D7-A6EX-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-6709-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GY-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-HF-7134-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-A8PM-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-13FTX-0726-SM-5N9BI	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-CD-8535-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-A4GJ-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-WFG7-1326-SM-4LMK1	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-3M-AB46-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-FP-7829-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal
+TCGA-BR-6566-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-A4CR-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+GTEX-12C56-0526-SM-5FQST	GTEX	Normal Tissue	Stomach	GTEx stomach normal
+TCGA-R5-A7ZI-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-HU-8602-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-VQ-AA6F-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-8588-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-BR-4255-01	TCGA	Primary Tumor	Stomach Adenocarcinoma	TCGA-STAD primary tumor
+TCGA-IN-AB1X-11	TCGA	Solid Tissue Normal	Stomach Adenocarcinoma	TCGA-STAD adjacent normal

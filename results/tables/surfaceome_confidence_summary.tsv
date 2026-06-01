@@ -1,0 +1,12 @@
+summary_type	label	n_genes	notes
+category	ambiguous_membrane_or_surface_context	6428	
+category	core_surfaceome	2646	
+category	excluded	10163	
+category	probable_surfaceome	58	
+source	cspa	1222	880 overlap with core+probable universe
+source	go_surface_or_plasma_membrane	5157	2551 overlap with core+probable universe
+source	hpa_plasma_membrane	2202	678 overlap with core+probable universe
+source	surfy	2701	2405 overlap with core+probable universe
+source	tcsa	3446	2685 overlap with core+probable universe
+source	uniprot_extracellular_topology	2875	2500 overlap with core+probable universe
+source	uniprot_gpi_anchor	134	119 overlap with core+probable universe

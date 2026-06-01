@@ -1,0 +1,4 @@
+published_list	own_core_probable_n	published_n	intersection_n	union_n	jaccard
+tcsa	2704	3446	2685	3465	0.7748917748917749
+cspa	2704	1222	880	3046	0.28890347997373605
+surfy	2704	2701	2405	3000	0.8016666666666666

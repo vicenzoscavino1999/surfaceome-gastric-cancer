@@ -5,13 +5,36 @@ random:
   global_seed: 20260528
   bootstrap_seed: 20260529
   perturbation_seed: 20260530
+  weight_perturbation_seed: 20260530
   rank_resolution_seed: 20260531
+  missing_data_sensitivity_seed: 20260601
+  subtype_power_seed: 20260602
+  tumor_normal_power_seed: 20260603
 
 numeric_tolerances:
   default_abs: 1.0e-8
   default_rel: 1.0e-6
   ranking_score_abs: 1.0e-6
   pca_variance_abs: 1.0e-5
+
+reproducibility_tolerances:
+  expression_tpm:
+    atol: 1.0e-6
+    rtol: 1.0e-6
+  composite_scores:
+    atol: 1.0e-10
+    rtol: 1.0e-8
+  risk_scores:
+    atol: 1.0e-10
+    rtol: 1.0e-8
+  rank_order:
+    max_rank_diff: 0
+    note: "Rank ties must be broken by HGNC symbol lexicographic order."
+  tier_assignments:
+    exact_match: true
+  bootstrap_ci:
+    atol: 0.01
+    note: "Seed-dependent; expected identical only with the same architecture and dependency versions."
 
 expression:
   tumor_tpm_thresholds:
@@ -32,8 +55,111 @@ subtype_analysis:
   min_n_for_descriptive_report: 15
   min_n_for_tier_1_subtype_only: 50
 
+normal_selectivity:
+  pseudocount_tpm: 0.1
+  min_adjacent_normal_samples: 20
+  positive_rule:
+    comparison: "tumor_vs_gtex_stomach"
+    min_log2fc: 1.0
+    max_fdr_bh: 0.05
+  n_score_formula: "0.50*rank(N_critical_log2fc)+0.30*rank(N_stomach_log2fc)+0.20*N_stat_gtex"
+
+tumor_normal_power:
+  simulations_per_delta: 200
+  alternative_fraction: 0.10
+  bh_fdr: 0.05
+  target_power: 0.80
+  effect_grid_standardized:
+    start: 0.25
+    stop: 3.0
+    step: 0.25
+
+normal_risk:
+  strategy: "max_weighted_organ_penalty"
+  thresholds:
+    caution: "normal_pan_tissue_p50"
+    critical: "normal_pan_tissue_p75"
+    caution_tpm_floor: 1.0
+    critical_tpm_floor: 5.0
+  sensitivity_thresholds:
+    - caution: "p50"
+      critical: "p75"
+    - caution: "p60"
+      critical: "p80"
+    - caution_tpm: 1.0
+      critical_tpm: 5.0
+  organ_weight_perturbation: 0.20
+  functional_forms:
+    - form: "R_max"
+      description: "Primary conservative maximum weighted organ penalty."
+    - form: "R_max_plus_breadth"
+      alpha: 0.7
+      top_k: 3
+      description: "Sensitivity: partial accumulated multi-organ risk."
+    - form: "R_sum_capped"
+      cap: 1.0
+      divisor: 3.0
+      description: "Sensitivity: accumulated risk with cap."
+
+protein_evidence:
+  hpa_level_scores:
+    "Not detected": 0.0
+    "Low": 1.0
+    "Medium": 2.0
+    "High": 3.0
+  hpa_reliability_scores:
+    "Enhanced": 1.0
+    "Supported": 0.85
+    "Approved": 0.70
+    "Uncertain": 0.25
+  p_score_weights:
+    protein_tumor_presence: 0.35
+    membrane_localization_support: 0.25
+    normal_protein_safety_support: 0.20
+    antibody_validation_support: 0.20
+  discordance_penalties:
+    RNA_high_protein_absent: 0.20
+    protein_present_no_membrane: 0.15
+    antibody_low_confidence: 0.10
+    HPA_missing: 0.20
+  rna_high_for_discordance:
+    min_median_tpm: 10.0
+    min_E_rank_percentile: 0.75
+  rna_low_for_discordance:
+    max_median_tpm: 1.0
+  protein_present_threshold: 0.25
+  high_medium_positive_threshold: 0.10
+  membrane_support_locations:
+    plasma_membrane: 1.0
+    cell_junctions: 0.70
+    predicted_secreted_only: 0.30
+
 manual_curation:
   top_n_primary: 30
   top_n_extended_if_time: 50
   max_minutes_per_candidate: 60
   hard_max_minutes_per_candidate: 90
+
+ranking_resolution:
+  n_simulations: 500
+  latent_weight_neutral_layers: 0.70
+  component_noise_sd: 0.08
+  top20_ci_contained_in_top40_min_genes: 10
+  tight_ci_half_width_positions: 10
+  wide_ci_half_width_positions: 50
+  note: "Pre-scoring Fase 4B simulation. Repeat in Fase 14 with real component-score distributions."
+
+missing_data_policy:
+  score_computation:
+    strategy: "exclude_and_renormalize"
+    description: "If a principal component is missing for a gene, compute the total score from available nonzero-weight components and divide by the available absolute weight sum. Do not impute mean values."
+  tiering_impact:
+    max_missing_for_tier_1A: 1
+    max_missing_for_tier_1B: 2
+    three_or_more_missing: "Tier 2/watchlist unless strong manual justification is documented."
+  sensitivity:
+    imputation_scenarios:
+      - "p25"
+      - "p50"
+      - "p75"
+      - "exclude_and_renormalize"

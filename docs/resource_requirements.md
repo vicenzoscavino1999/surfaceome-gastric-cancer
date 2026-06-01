@@ -1,13 +1,13 @@
 # Resource Requirements
 
-Initial estimates are placeholders until Fase 2 downloads and the first full smoke workflow. Fase 1 metadata narrowed the first download footprint.
+Initial estimates are now anchored by the Fase 2 MVP download and batch diagnostic. Later phases can still increase storage and runtime.
 
 ```yaml
 resource_estimates:
-  raw_data_storage: ">=2 GB for Xena/Toil matrix plus metadata; HPA core TSV zips are <25 MB; optional PDC raw/proteomics can be much larger and is not part of MVP download"
-  processed_data_storage: "TBD after Fase 5"
-  peak_ram: "TBD after first full run"
-  full_pipeline_time: "TBD on reference machine"
+  raw_data_storage: "~1.38 GB for Fase 2-4 MVP raw files including HGNC and surfaceome workbooks; optional PDC/raw proteomics can be much larger and is not part of MVP download"
+  processed_data_storage: "Fase 13 processed tables/rankings remain TSV scale; no scRNA count matrix has been admitted or stored; tidyestimate source adds <1 MB raw purity-signature input; expanded UniProt Fase 9 feature raw adds ~4.3 MB; Fase 4 UniProt GPI raw stream is TSV-gzip scale"
+  peak_ram: "Fase 2 batch diagnostic completed with top 2000 genes on reference machine; exact peak not profiled"
+  full_pipeline_time: "Current Fase 1-13 workflow dry-run is up to date; Fase 8 bulk TME fallback plus ESTIMATE/tidyestimate partial correlations reads the Xena matrix and takes about 1.5 minutes on the reference machine; Fase 9 topology parsing is sub-minute after UniProt feature download; Fase 13 v2 scoring and diagnostic are seconds-scale"
   smoke_test_time: "<10 min"
   docker_build_time: "TBD"
   requires_gpu: false
@@ -15,6 +15,11 @@ resource_estimates:
   rate_limited_apis: ["HPA", "UniProt", "ClinicalTrials.gov", "Open Targets", "GDC", "cBioPortal", "DepMap", "PDC"]
   known_large_files:
     xena_toil_gene_tpm_gz: "1323254426 bytes by HEAD on 2026-05-28"
+    total_fase2_mvp_raw_files: "1340344456 bytes across 10 files on 2026-05-28"
+    hgnc_complete_set_txt: "16737155 bytes by HEAD on 2026-05-28"
+    total_fase4_surfaceome_raw_files: "15395627 bytes across 4 files on 2026-05-28"
+    tidyestimate_source_tar_gz: "936616 bytes on 2026-05-28"
+    uniprot_phase9_features_tsv_gz: "4338475 bytes on 2026-05-28"
 ```
 
 ```yaml

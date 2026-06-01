@@ -1,0 +1,201 @@
+version: "0.1.0-preregistered"
+created: "2026-05-28"
+status: "frozen_before_phase6_execution"
+
+description: "Critical normal tissue mappings for Fase 6 tumor-normal selectivity and on-target/off-tumor risk."
+
+normal_expression_sources:
+  xena_toil:
+    matrix: "data/raw/xena_toil/TcgaTargetGtex_rsem_gene_tpm.gz"
+    phenotype: "data/raw/xena_toil/TcgaTargetGTEX_phenotype.txt.gz"
+    units: "log2(TPM+0.001), transformed back to TPM before scoring"
+  hpa_rna:
+    file: "data/raw/hpa/rna_tissue_consensus.tsv.zip"
+    units: "nTPM"
+  hpa_normal_ihc:
+    file: "data/raw/hpa/normal_ihc_data.tsv.zip"
+    units: "Not detected/Low/Medium/High ordinal protein evidence"
+
+comparison_groups:
+  tcga_stad_primary_tumor:
+    xena_study: "TCGA"
+    xena_detailed_category: "Stomach Adenocarcinoma"
+    xena_sample_type: "Primary Tumor"
+  gtex_stomach_normal:
+    xena_study: "GTEX"
+    xena_detailed_category: "Stomach"
+    xena_sample_type: "Normal Tissue"
+  tcga_stad_adjacent_normal:
+    xena_study: "TCGA"
+    xena_detailed_category: "Stomach Adenocarcinoma"
+    xena_sample_type: "Solid Tissue Normal"
+
+critical_organs:
+  heart:
+    base_weight: 1.00
+    xena_detailed_categories:
+      - "Heart - Atrial Appendage"
+      - "Heart - Left Ventricle"
+    hpa_rna_tissues:
+      - "heart muscle"
+    hpa_ihc_tissues:
+      - "Heart muscle"
+    note: "Potentially severe cardiotoxicity."
+  brain:
+    base_weight: 1.00
+    xena_detailed_categories:
+      - "Brain - Amygdala"
+      - "Brain - Anterior Cingulate Cortex (Ba24)"
+      - "Brain - Caudate (Basal Ganglia)"
+      - "Brain - Cerebellar Hemisphere"
+      - "Brain - Cerebellum"
+      - "Brain - Cortex"
+      - "Brain - Frontal Cortex (Ba9)"
+      - "Brain - Hippocampus"
+      - "Brain - Hypothalamus"
+      - "Brain - Nucleus Accumbens (Basal Ganglia)"
+      - "Brain - Putamen (Basal Ganglia)"
+      - "Brain - Spinal Cord (Cervical C-1)"
+      - "Brain - Substantia Nigra"
+    hpa_rna_tissues:
+      - "amygdala"
+      - "basal ganglia"
+      - "cerebellum"
+      - "cerebral cortex"
+      - "hippocampal formation"
+      - "hypothalamus"
+      - "midbrain"
+      - "spinal cord"
+    hpa_ihc_tissues:
+      - "Caudate"
+      - "Cerebellum"
+      - "Cerebral cortex"
+      - "Dorsal raphe"
+      - "Hippocampus"
+      - "Hypothalamus"
+      - "Substantia nigra"
+    note: "BBB is noted later as modality/access qualifier; base risk is not reduced here."
+  liver:
+    base_weight: 0.90
+    xena_detailed_categories:
+      - "Liver"
+    hpa_rna_tissues:
+      - "liver"
+    hpa_ihc_tissues:
+      - "Liver"
+    note: "Hepatic toxicity and payload clearance risk."
+  kidney:
+    base_weight: 0.90
+    xena_detailed_categories:
+      - "Kidney - Cortex"
+    hpa_rna_tissues:
+      - "kidney"
+    hpa_ihc_tissues:
+      - "Kidney"
+    note: "Renal expression is treated conservatively; GTEx medulla is unavailable in the current Xena file."
+  lung:
+    base_weight: 0.85
+    xena_detailed_categories:
+      - "Lung"
+    hpa_rna_tissues:
+      - "lung"
+    hpa_ihc_tissues:
+      - "Lung"
+    note: "Respiratory toxicity/ILD risk."
+  hematopoietic:
+    base_weight: 0.80
+    xena_detailed_categories:
+      - "Whole Blood"
+      - "Spleen"
+    hpa_rna_tissues:
+      - "bone marrow"
+      - "spleen"
+    hpa_ihc_tissues:
+      - "Bone marrow"
+      - "Spleen"
+    note: "Blood, marrow, and spleen risk relevant for ADCs, bispecifics, and cellular therapies."
+  endothelial:
+    base_weight: 0.85
+    xena_detailed_categories: []
+    hpa_rna_tissues:
+      - "blood vessel"
+    hpa_ihc_tissues: []
+    note: "No direct Xena tissue category; HPA blood vessel RNA is used as a conservative proxy."
+  immune:
+    base_weight: 0.75
+    xena_detailed_categories:
+      - "Whole Blood"
+      - "Spleen"
+    hpa_rna_tissues:
+      - "bone marrow"
+      - "lymph node"
+      - "spleen"
+      - "thymus"
+      - "tonsil"
+    hpa_ihc_tissues:
+      - "Bone marrow"
+      - "Lymph node"
+      - "Spleen"
+      - "Thymus"
+      - "Tonsil"
+    note: "Immune-lineage/off-tumor risk; overlaps with hematopoietic but retained as a separate modality annotation."
+  gi_epithelial:
+    base_weight: 0.70
+    xena_detailed_categories:
+      - "Stomach"
+      - "Esophagus - Gastroesophageal Junction"
+      - "Esophagus - Mucosa"
+      - "Esophagus - Muscularis"
+      - "Small Intestine - Terminal Ileum"
+      - "Colon - Sigmoid"
+      - "Colon - Transverse"
+    hpa_rna_tissues:
+      - "stomach"
+      - "esophagus"
+      - "duodenum"
+      - "small intestine"
+      - "colon"
+      - "rectum"
+    hpa_ihc_tissues:
+      - "Stomach"
+      - "Esophagus"
+      - "Duodenum"
+      - "Small intestine"
+      - "Colon"
+      - "Rectum"
+    note: "Expected lineage risk in gastric targets; not automatically harmless for high-impact modalities."
+  reproductive_other:
+    base_weight: 0.60
+    xena_detailed_categories:
+      - "Ovary"
+      - "Testis"
+      - "Uterus"
+      - "Prostate"
+    hpa_rna_tissues:
+      - "ovary"
+      - "testis"
+      - "endometrium"
+      - "prostate"
+      - "fallopian tube"
+      - "seminal vesicle"
+    hpa_ihc_tissues:
+      - "Ovary"
+      - "Testis"
+      - "Endometrium"
+      - "Prostate"
+      - "Fallopian tube"
+      - "Seminal vesicle"
+    note: "Context-dependent reproductive/other normal-tissue risk."
+
+gastric_lineage_marker_watchlist:
+  - "CLDN18"
+  - "GKN1"
+  - "GKN2"
+  - "PGA3"
+  - "PGA4"
+  - "TFF1"
+  - "TFF2"
+  - "MUC5AC"
+  - "GIF"
+  - "ATP4A"
+  - "ATP4B"

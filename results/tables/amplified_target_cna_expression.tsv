@@ -1,0 +1,4 @@
+hgnc_symbol	n_cna_samples_matched_to_xena	n_high_amplification	pct_high_amplification	n_gain_or_amplification	pct_gain_or_amplification	median_tpm_high_amp	median_tpm_non_high_amp	median_log2_delta_high_amp_vs_non_amp	status
+ERBB2	409	54	0.132029	134	0.327628	530.560746	57.891315	3.195251	computed
+FGFR2	409	18	0.044010	80	0.195599	64.269598	12.280374	2.387650	computed
+MET	409	12	0.029340	156	0.381418	187.880667	21.710690	3.056850	computed

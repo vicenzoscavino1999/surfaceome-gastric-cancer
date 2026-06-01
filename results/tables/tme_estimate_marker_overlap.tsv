@@ -1,0 +1,6 @@
+module_id	module_label	n_module_markers	n_estimate_stromal_overlap	estimate_stromal_overlap_markers	n_estimate_immune_overlap	estimate_immune_overlap_markers	interpretation_note
+caf_fibroblast	CAF/fibroblast	6	4	COL1A2;DCN;FAP;LUM	0		Direct marker overlap is one collinearity diagnostic; ESTIMATE and TME modules also share broader immune/stromal biology.
+endothelial	Endothelial/pericyte	5	2	CDH5;ERG	0		Direct marker overlap is one collinearity diagnostic; ESTIMATE and TME modules also share broader immune/stromal biology.
+myeloid_macrophage	Myeloid/macrophage	5	3	CD163;CSF1R;ITGAM	1	LYZ	Direct marker overlap is one collinearity diagnostic; ESTIMATE and TME modules also share broader immune/stromal biology.
+t_cell	T cell	5	0		1	CD3D	Direct marker overlap is one collinearity diagnostic; ESTIMATE and TME modules also share broader immune/stromal biology.
+b_plasma	B/plasma	5	0		0		Direct marker overlap is one collinearity diagnostic; ESTIMATE and TME modules also share broader immune/stromal biology.

@@ -1,0 +1,8 @@
+evidence_layer	n_candidates	n_covered	pct_covered	notes
+hpa_stomach_cancer_ihc	2704	1790	0.661982	HPA cancer_data stomach cancer aggregate patient counts
+hpa_normal_stomach_ihc	2704	1535	0.567678	HPA normal_ihc stomach protein level
+hpa_critical_normal_ihc	2704	1535	0.567678	HPA normal_ihc mapped critical organ protein level
+hpa_subcellular_location	2704	1302	0.481509	HPA subcellular_location localization record
+hpa_membrane_or_cell_junction	2704	734	0.271450	HPA plasma membrane or cell junction support
+cptac_proteomics	2704	0	0.000000	Not assessed in Fase 7 MVP; retained as explicit flag
+protein_evidence_P_score_available	2704	1790	0.661982	Rows with computable P_score

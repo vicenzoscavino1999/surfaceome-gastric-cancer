@@ -1,0 +1,19 @@
+rank	gene	tier	primary_score	prevalence_flag	primary_top20_freq	Surf	E	N	R_high_worse	P	T	wang_class	wang_glyco_outlier_rank	principal_caveat
+1	ITGB4	Tier 1	0.626035	Broad	1.000	0.600000	0.988126	0.995176	0.364564	0.889044	0.789308	Membrane	292	CAVEAT: basal/stratified epithelial (skin keratinocyte/hemidesmosome) normal expression; skin not in organ-risk model so R may under-weight it; preclinical agents only
+6	CDH3	Tier 1	0.608164	Broad	1.000	0.600000	0.831911	0.961410	0.312987	0.954444	0.789308	Membrane	NA	established TAA; confirm membranous tumor IHC in pass 2
+9	NECTIN2	Tier 1	0.588737	Broad	1.000	0.600000	0.980705	0.988497	0.599629	0.972610	0.789308	Membrane	NA	CAVEAT: purity-adjusted myeloid/DC partial 0.32 p<0.001 + LAMP3+ DC checkpoint literature; closest-to-threshold Tier 1 member; single-cell confirmation needed (user-confirmed Tier 1 2026-05-31)
+12	CEACAM5	Tier 1	0.584828	Broad	1.000	0.600000	0.918738	0.936178	0.470501	0.984349	0.702923	ADC/Antibody	4	apical/normal GI epithelial expression; specificity review
+13	JAG1	Tier 1	0.584280	Broad	1.000	0.600000	0.917625	0.813729	0.470501	0.989939	0.936182	Membrane	NA	CAVEAT: dual tumor-epithelial + endothelial/vascular (angiocrine) expression; most compartment-exposed Tier 1 member; surface-targetable (neutralizing mAbs) but needs single-cell resolution
+14	EPCAM	Tier 1	0.580488	Broad	1.000	0.600000	0.964007	0.989239	0.599629	0.840973	0.936182	ADC/Antibody	22	high normal epithelial expression (preregistered normal-expression penalty)
+7	MPZL1	Tier 2	0.605739	Broad	1.000	0.600000	0.974026	0.994434	0.470501	0.964226	0.715131	Membrane	371	needs cell-resolution to confirm tumor-epithelial origin
+8	ITGB5	Tier 2	0.595199	Broad	1.000	0.600000	0.959184	0.858627	0.470501	0.947457	0.936182	Membrane	40	high TME + broad expression
+10	BST2	Tier 2	0.586798	Broad	1.000	0.800000	0.985158	0.878108	0.364564	0.536333	0.866075	Membrane	NA	membrane localization discordance; hematopoietic risk
+11	IFNGR1	Tier 2	0.585684	Broad	1.000	0.600000	0.952876	0.824490	0.470501	0.937954	0.936182	Membrane	141	ubiquitous cytokine receptor, no tumor selectivity
+16	ALPG	Tier 2	0.574731	Moderate	0.840	0.600000	0.513544	0.980334	0.085343	0.781163	0.858491	Approved Non Oncology	NA	excellent normal-tissue window but ranking is single-layer dependent
+18	DSC2	Tier 2	0.573364	Broad	0.900	0.600000	0.799629	0.803340	0.312987	0.976244	0.789308	Membrane	49	literature reports DOWNregulation in tumor (poor window)
+19	TNFRSF11A	Tier 2	0.572773	Broad	0.940	0.600000	0.737291	0.939889	0.290167	0.842929	0.789308	Membrane	NA	weak gastric-specific antibody rationale (denosumab targets ligand)
+20	ERBB2	Tier 2	0.568251	Broad	0.340	0.600000	0.968089	0.952134	0.599629	0.901342	0.789308	ADC/Antibody	232	established HER2 benchmark; NOT forced to Tier 1; robust top50, heterogeneity-consistent
+25	CD9	Tier 2	0.560111	Broad	0.020	0.600000	0.991095	0.892022	0.470501	0.923421	0.490751	NA	NA	short extracellular loops limit antibody access
+26	LSR	Tier 2	0.559871	Broad	0.040	0.400000	0.989981	0.998516	0.599629	0.954444	0.789308	NA	NA	favorable literature window; tight-junction accessibility caveat
+28	CDH17	Tier 2	0.557068	Broad	0.000	0.400000	0.848237	0.871614	0.364564	0.882616	0.936182	Membrane	19	GI-restricted surface-antigen program with clinical-stage CAR-T/ADC context; bulk ranking conservative
+30	TGFBR1	Tier 2	0.553247	Broad	0.000	0.600000	0.860482	0.920594	0.470501	0.951928	0.583426	Experimental	NA	ubiquitous signaling receptor, no tumor selectivity

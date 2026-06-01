@@ -1,0 +1,8 @@
+component	definition	primary_weight	direction	primary_source	normalization	main_limitation
+Surf	surfaceome membership confidence; higher is better	0.150000	higher_better	surfaceome_universe.tsv	rank_percentile_or_fixed_scale	Membership confidence within admitted Core+Probable universe; not direct antigen density.
+E	tumor expression and prevalence; higher is better	0.200000	higher_better	TCGA-STAD tumor_expression.tsv	rank_percentile_or_fixed_scale	Bulk RNA; no malignant epithelial isolation.
+N	tumor-normal selectivity; higher is better	0.200000	higher_better	selectivity_scores.tsv	rank_percentile_or_fixed_scale	TCGA/GTEx source effects remain explicit.
+R	on-target/off-tumor risk; higher is worse and is subtracted	0.200000	higher_worse_subtracted	off_tumor_risk.tsv	rank_percentile_or_fixed_scale	High-worse off-tumor risk is subtracted; risk form is sensitivity-tested.
+P	protein/localization evidence; higher is better	0.150000	higher_better	protein_evidence.tsv	rank_percentile_or_fixed_scale	HPA bulk IHC lacks antibody-level and patient-level membrane fields.
+SC	tumor-cell specificity versus TME; higher is better; optional in primary	0.000000	higher_better	single_cell_specificity.tsv (not_available in primary score)	rank_percentile_or_fixed_scale	No processed annotated gastric scRNA matrix admitted into the score; not counted in the primary score.
+T	topology, extracellular accessibility, and isoform confidence; higher is better	0.100000	higher_better	topology_isoforms_ecd.tsv	rank_percentile_or_fixed_scale	Topology/gene-level isoform annotations do not resolve CLDN18.2 or FGFR2b expression.

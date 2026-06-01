@@ -1,0 +1,35 @@
+group_type	group_id	n_samples	mapped_organs
+comparison	gtex_stomach_normal	175	
+comparison	tcga_stad_adjacent_normal	36	
+comparison	tcga_stad_primary_tumor	414	
+xena_tissue	Brain - Amygdala	69	brain
+xena_tissue	Brain - Anterior Cingulate Cortex (Ba24)	83	brain
+xena_tissue	Brain - Caudate (Basal Ganglia)	109	brain
+xena_tissue	Brain - Cerebellar Hemisphere	97	brain
+xena_tissue	Brain - Cerebellum	119	brain
+xena_tissue	Brain - Cortex	105	brain
+xena_tissue	Brain - Frontal Cortex (Ba9)	102	brain
+xena_tissue	Brain - Hippocampus	84	brain
+xena_tissue	Brain - Hypothalamus	82	brain
+xena_tissue	Brain - Nucleus Accumbens (Basal Ganglia)	104	brain
+xena_tissue	Brain - Putamen (Basal Ganglia)	81	brain
+xena_tissue	Brain - Spinal Cord (Cervical C-1)	60	brain
+xena_tissue	Brain - Substantia Nigra	57	brain
+xena_tissue	Colon - Sigmoid	141	gi_epithelial
+xena_tissue	Colon - Transverse	167	gi_epithelial
+xena_tissue	Esophagus - Gastroesophageal Junction	137	gi_epithelial
+xena_tissue	Esophagus - Mucosa	273	gi_epithelial
+xena_tissue	Esophagus - Muscularis	245	gi_epithelial
+xena_tissue	Heart - Atrial Appendage	175	heart
+xena_tissue	Heart - Left Ventricle	202	heart
+xena_tissue	Kidney - Cortex	28	kidney
+xena_tissue	Liver	110	liver
+xena_tissue	Lung	288	lung
+xena_tissue	Ovary	88	reproductive_other
+xena_tissue	Prostate	100	reproductive_other
+xena_tissue	Small Intestine - Terminal Ileum	92	gi_epithelial
+xena_tissue	Spleen	100	hematopoietic;immune
+xena_tissue	Stomach	175	gi_epithelial
+xena_tissue	Testis	165	reproductive_other
+xena_tissue	Uterus	78	reproductive_other
+xena_tissue	Whole Blood	337	hematopoietic;immune

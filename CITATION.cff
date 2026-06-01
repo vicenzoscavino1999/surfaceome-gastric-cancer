@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+message: "If you use this software or release package, please cite it using the metadata below."
+title: "Surfaceome-guided target prioritization in gastric adenocarcinoma"
+type: software
+authors:
+  - family-names: "Scavino Alfaro"
+    given-names: "Vicenzo"
+    orcid: "https://orcid.org/0009-0000-2472-9785"
+version: "0.1.0-rc1"
+date-released: "2026-06-01"
+repository-code: "https://github.com/REPLACE_WITH_OWNER/surfaceome-gastric-cancer"
+abstract: "A reproducible public-data framework for uncertainty-aware gastric cancer surface-target prioritization with a GPI-anchor evidence-routing audit."
+license: MIT
+keywords:
+  - gastric cancer
+  - surfaceome
+  - target prioritization
+  - reproducibility
+  - bioinformatics

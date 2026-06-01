@@ -1,0 +1,15 @@
+display_id	type	title	source_path_or_paths	role	keep_in_main
+F1	figure	Pipeline overview with counts	results/figures/phase16_pipeline_overview.svg	Methods overview and reproducibility flow	yes
+F2	figure	Surfaceome evidence landscape	results/figures/phase16_surfaceome_evidence_landscape.svg	Surfaceome universe evidence and GPI context	yes
+F3	figure	Tumor-normal selectivity map	results/figures/phase16_tumor_normal_selectivity.svg	Expression/selectivity/risk landscape	yes
+F4	figure	Top30 multi-layer heatmap	results/figures/phase16_multilayer_heatmap_top30.svg	Integrated evidence layers across top candidates	yes
+F5	figure	TME specificity fallback dotplot	results/figures/top_candidates_scRNA_dotplot.svg	TME caveats and specificity flags	yes
+F6a	figure	Rank stability heatmap	results/figures/rank_stability_heatmap.svg	Stability and uncertainty	yes
+F6b	figure	Weighting-sensitivity bumpchart	results/figures/bumpchart_scenarios.svg	Weighting sensitivity	yes
+F7	figure	Benchmark controls	results/figures/phase16_benchmark_controls.svg	Positive/negative control behavior	yes
+F8	figure	Tier 1 candidate panel	results/figures/phase16_tier1_candidate_panel.svg	Applied candidate summary	yes
+T1	table	Datasets, versions, use, and limitations	results/tables/manuscript_table1_datasets.tsv	Methods reproducibility	yes
+T2	table	Score definitions and component weights	results/tables/manuscript_table2_score_definitions.tsv	Methods scoring	yes
+T3	table	Tier 1 and Tier 2 candidates	results/tables/manuscript_table3_top_candidates.tsv	Main candidate results	yes
+T4	table	Control diagnostics	results/tables/manuscript_table4_controls.tsv	Validation and sanity checks	yes
+T5	table	Risks and flags among top candidates	results/tables/manuscript_table5_candidate_flags.tsv	Interpretation guardrails	yes

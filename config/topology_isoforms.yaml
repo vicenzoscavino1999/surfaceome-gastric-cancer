@@ -1,0 +1,40 @@
+version: "0.1.0"
+created: "2026-05-28"
+status: "fase9_frozen_before_final_ranking"
+
+accessibility_class_scores:
+  A: 1.00
+  B: 0.80
+  C: 0.55
+  D: 0.25
+  E: 0.00
+
+largest_extracellular_loop_thresholds_aa:
+  class_a_min: 101
+  class_b_min: 50
+  class_c_min: 20
+
+t_score_weights:
+  accessibility_class_score: 0.35
+  extracellular_length_score: 0.20
+  topology_confidence: 0.25
+  isoform_confidence: 0.20
+
+isoform_confidence:
+  default_or_single_canonical: 1.00
+  multiple_uniprot_isoforms_not_resolved: 0.85
+  mandatory_isoform_target_gene_level_unresolved: 0.25
+
+penalties:
+  cleavage_or_shedding: 0.15
+  soluble_decoy_or_secreted_isoform: 0.10
+
+mandatory_isoform_targets:
+  CLDN18: "CLDN18.2"
+  FGFR2: "FGFR2b/IIIb"
+
+rules:
+  score_is_component_not_final_ranking: true
+  cldn18_2_claim_requires_isoform_evidence: true
+  fgfr2b_claim_requires_isoform_evidence: true
+  d_or_e_accessibility_blocks_tier1_antibody_claim_without_counterevidence: true
