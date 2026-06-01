@@ -69,7 +69,7 @@ The release uses four explicit levels:
 
 `docs/source_acquisition_policy.md` records the release boundary for API/manual acquisitions. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are frozen inputs with checksum/provenance records. The final public DOI must cover those inputs or an equivalent archived data package; live refreshes are best-effort only.
 
-The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The planned release-candidate tag is `v0.1.0-rc1`; the archival DOI remains pending until the frozen input bundle or equivalent checksum/provenance package is archived externally.
+The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The planned release-candidate tag is `v0.1.0-rc2`; the archival DOI remains pending until the frozen input bundle or equivalent checksum/provenance package is archived externally.
 
 ## Reviewer Audit Path
 

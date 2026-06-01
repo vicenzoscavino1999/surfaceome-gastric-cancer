@@ -639,6 +639,8 @@ rule candidate_scrna_compartment_check:
 rule phase17_supplementary_manifest_status:
     input:
         "results/tables/supplementary_table_manifest.tsv",
+        "results/tables/wang2026_overlap_enrichment.tsv",
+        "results/tables/wang2026_matched_null.tsv",
         "results/tables/external_surfaceome_baseline_comparison.tsv",
         "results/tables/candidate_scrna_tisch2_compartment_check.tsv"
     output:

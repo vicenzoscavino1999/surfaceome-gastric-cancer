@@ -3,7 +3,7 @@ created: "2026-05-28"
 status: "fase17h_public_repository_release_candidate_prepared_doi_pending"
 public_repository:
   url: "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer"
-  planned_release_candidate_tag: "v0.1.0-rc1"
+  planned_release_candidate_tag: "v0.1.0-rc2"
   archival_doi_status: "pending_external_archive"
   data_package_boundary: "frozen_data_raw_bundle_or_equivalent_checksum_provenance_package_must_be_archived_before_submission"
 

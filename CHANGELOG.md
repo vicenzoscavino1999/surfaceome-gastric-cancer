@@ -2,6 +2,11 @@
 
 All notable changes to the reproducible analysis package are documented here.
 
+## 0.1.0-rc2 - 2026-06-01
+
+- Supersedes `v0.1.0-rc1` after a public-tag clean clone plus frozen-raw rerun exposed a missing Snakemake dependency edge for the supplementary-manifest status check.
+- Declared `results/tables/wang2026_overlap_enrichment.tsv` and `results/tables/wang2026_matched_null.tsv` as explicit inputs to the supplementary-manifest status rule so a Fase 1-17 raw rerun builds Wang tables before validating the manifest.
+
 ## 0.1.0-rc1 - 2026-06-01
 
 - Prepared the Computational Biology and Chemistry release-candidate package.
@@ -12,7 +17,7 @@ All notable changes to the reproducible analysis package are documented here.
 - Added release-engineering files for data availability, citation metadata, Docker runtime, and locked dependency audit.
 - Hardened release reproducibility after clean-directory audit: Wang 2026 `mmc8.xlsx` now has a local checksum-validated cache/fallback path, Fase 13 v2 freeze metadata is pinned for bitwise ranking-hash reproduction, Docker audit passes, and a clean directory forced Fase 13->17 rerun reproduced key output hashes.
 - Declared cBioPortal/GISTIC and other API/manual captures as frozen checksum inputs rather than default live re-download outputs, added `docs/source_acquisition_policy.md`, and added GitHub Actions small CI plus manual full-data release-audit workflows.
-- Published the code repository at https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer and prepared the `v0.1.0-rc1` release-candidate tag path. The archival DOI remains pending until the frozen input package or equivalent checksum/provenance package is archived externally.
+- Published the code repository at https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer and prepared the initial `v0.1.0-rc1` release-candidate tag path. The archival DOI remains pending until the frozen input package or equivalent checksum/provenance package is archived externally.
 
 ## Pre-release analysis history
 

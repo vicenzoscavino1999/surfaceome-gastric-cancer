@@ -1,6 +1,6 @@
 # Reproducibility Audit Report
 
-Generated: 2026-06-01 19:48:22 UTC
+Generated: 2026-06-01 20:08:38 UTC
 
 ## Scope
 
@@ -214,7 +214,7 @@ results/validation/risk_functiona
 == unit tests ==
 C:\Users\Vicenzo\AppData\Local\Programs\Python\Python312\python.exe -m pytest -q
 .............                                                            [100%]
-13 passed in 5.68s
+13 passed in 7.97s
 
 == artifact check --self-test ==
 C:\Users\Vicenzo\AppData\Local\Programs\Python\Python312\python.exe src/utils/compare_outputs.py --self-test
