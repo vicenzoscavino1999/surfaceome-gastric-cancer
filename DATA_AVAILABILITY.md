@@ -4,7 +4,7 @@ This project uses only public, de-identified, aggregate, or open-access research
 
 ## Current Release Status
 
-The code repository is public at https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final code release tag is `v0.1.0`. The frozen reproducibility data package for release candidate `v0.1.0-rc4` is archived on Zenodo at https://zenodo.org/records/20498705 with DOI `10.5281/zenodo.20498705`.
+The code repository is public at https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final code release tag is `v0.1.1`. The frozen reproducibility data package for release candidate `v0.1.0-rc4` is archived on Zenodo at https://zenodo.org/records/20498705 with DOI `10.5281/zenodo.20498705`.
 
 ## Raw and Source Data
 
@@ -41,7 +41,7 @@ cBioPortal TCGA-STAD clinical and selected GISTIC files are treated as frozen ar
 - `data/raw/cbioportal/stad_tcga_pan_can_atlas_2018_gistic_erbb2_fgfr2_met.json`
 - `data/checksums/cbioportal_sha256.tsv`
 
-The Zenodo archival DOI covers the frozen input package with checksums and exact provenance for `v0.1.0-rc4`, which is the archived frozen-data companion to the final `v0.1.0` code release. GDC metadata captures, TISCH2 candidate-level scRNA files, Wang 2026 `mmc8.xlsx`, Phase 1 endpoint snapshots, and manual curation files follow the same frozen-input principle. Live refreshes remain best-effort transparency checks only.
+The Zenodo archival DOI covers the frozen input package with checksums and exact provenance for `v0.1.0-rc4`, which is the archived frozen-data companion to the final `v0.1.1` code release. GDC metadata captures, TISCH2 candidate-level scRNA files, Wang 2026 `mmc8.xlsx`, Phase 1 endpoint snapshots, and manual curation files follow the same frozen-input principle. Live refreshes remain best-effort transparency checks only.
 
 The Wang 2026 `mmc8.xlsx` source is cached at `data/raw/wang2026/mmc8.xlsx` and recorded in `data/checksums/wang2026_mmc8_sha256.tsv` because the older Europe PMC supplementary endpoint was unstable during release audit. The fallback retrieval path uses the PubMed Central OA package location recorded by NCBI/PMC, with checksum validation before any derived table is written.
 

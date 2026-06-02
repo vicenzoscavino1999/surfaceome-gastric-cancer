@@ -7,6 +7,7 @@ import csv
 import datetime as dt
 import gzip
 import math
+import sys
 import zipfile
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -23,11 +24,17 @@ from scipy.stats import mannwhitneyu
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from src.utils.matplotlib_repro import configure_reproducible_svg, save_svg
+
 RAW_DIR = REPO_ROOT / "data" / "raw"
 PROCESSED_DIR = REPO_ROOT / "data" / "processed"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+configure_reproducible_svg()
 
 PHENOTYPE_PATH = RAW_DIR / "xena_toil" / "TcgaTargetGTEX_phenotype.txt.gz"
 MATRIX_PATH = RAW_DIR / "xena_toil" / "TcgaTargetGtex_rsem_gene_tpm.gz"
@@ -982,7 +989,7 @@ def plot_tumor_vs_normal(normal_rows: list[dict[str, object]], risk_rows: list[d
         ax.annotate(symbol, (np.log10(normal[idx] + 0.1), np.log10(tumor[idx] + 0.1)), xytext=(4, 4), textcoords="offset points", fontsize=7)
     fig.tight_layout()
     output.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output, format="svg")
+    save_svg(fig, output)
     plt.close(fig)
 
 
@@ -1002,7 +1009,7 @@ def plot_power_curve(power_rows: list[dict[str, object]], output: Path) -> None:
     ax.legend(frameon=False)
     fig.tight_layout()
     output.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output, format="svg")
+    save_svg(fig, output)
     plt.close(fig)
 
 

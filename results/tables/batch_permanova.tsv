@@ -1,4 +1,4 @@
 test_id	grouping_variable	n_samples	n_groups	df_between	df_within	ss_between	ss_total	r2	pseudo_f	permutations	p_value	interpretation
-study_all_samples	study	625	2	1	623	201661.5365079365	1250000.0	0.16132922920634918	119.84215176647055	999	0.001	Confounded with tumor/normal biology because GTEx contributes only normal tissue.
-sample_group_all_samples	analysis_group	625	3	2	622	218722.2324937457	1250000.0	0.17497778599499655	65.95954693180407	999	0.001	Describes combined biology and source structure; not a pure batch test.
-normal_source_only	normal_source	211	2	1	209	30849.873571428572	344121.28125	0.0896482584842421	20.5815896963188	999	0.001	Most relevant source diagnostic: TCGA adjacent normal versus GTEx stomach normal.
+study_all_samples	study	625	2	1	623	201662	1.25e+06	0.161329	119.842	999	0.001	Confounded with tumor/normal biology because GTEx contributes only normal tissue.
+sample_group_all_samples	analysis_group	625	3	2	622	218722	1.25e+06	0.174978	65.9595	999	0.001	Describes combined biology and source structure; not a pure batch test.
+normal_source_only	normal_source	211	2	1	209	30849.9	344121	0.0896483	20.5816	999	0.001	Most relevant source diagnostic: TCGA adjacent normal versus GTEx stomach normal.

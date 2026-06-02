@@ -207,7 +207,7 @@ rule phase2_batch_diagnostic:
         "results/tables/xena_top_variable_genes.tsv",
         "docs/fase2_batch_diagnostic.md"
     shell:
-        "python scripts/build_xena_batch_diagnostic.py"
+        "python scripts/build_xena_batch_diagnostic.py --no-update-config"
 
 rule phase3_identifier_map:
     input:

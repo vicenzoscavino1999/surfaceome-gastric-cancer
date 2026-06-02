@@ -6,6 +6,7 @@ import argparse
 import csv
 import gzip
 import heapq
+import sys
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -20,6 +21,11 @@ from sklearn.preprocessing import StandardScaler
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from src.utils.matplotlib_repro import configure_reproducible_svg, save_svg
+
 PHENOTYPE_PATH = REPO_ROOT / "data" / "raw" / "xena_toil" / "TcgaTargetGTEX_phenotype.txt.gz"
 MATRIX_PATH = REPO_ROOT / "data" / "raw" / "xena_toil" / "TcgaTargetGtex_rsem_gene_tpm.gz"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
@@ -28,6 +34,7 @@ DOCS_DIR = REPO_ROOT / "docs"
 CONFIG_DATASETS = REPO_ROOT / "config" / "datasets.yaml"
 
 SEED = 20260528
+configure_reproducible_svg()
 
 
 @dataclass(frozen=True)
@@ -46,6 +53,12 @@ def write_tsv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) 
         writer.writeheader()
         for row in rows:
             writer.writerow({key: row.get(key, "") for key in fieldnames})
+
+
+def fmt_float(value: object, digits: int = 6) -> object:
+    if isinstance(value, (float, np.floating)):
+        return f"{float(value):.{digits}g}"
+    return value
 
 
 def load_selected_samples() -> dict[str, SelectedSample]:
@@ -204,7 +217,7 @@ def make_plot(scores: np.ndarray, samples: list[SelectedSample], explained: np.n
     ax.legend(frameon=False, loc="best", fontsize=9)
     ax.grid(True, linewidth=0.35, alpha=0.25)
     fig.tight_layout()
-    fig.savefig(output, format="svg")
+    save_svg(fig, output)
     plt.close(fig)
 
 
@@ -224,6 +237,10 @@ def update_config_status() -> None:
             line = '    status: "raw_downloaded_with_checksums_batch_diagnostic_complete"'
         updated.append(line)
     CONFIG_DATASETS.write_text("\n".join(updated) + "\n", encoding="utf-8")
+
+
+def format_permanova_row(row: dict[str, object]) -> dict[str, object]:
+    return {key: fmt_float(value) for key, value in row.items()}
 
 
 def write_notes(sample_counts: dict[str, int], pca_explained: np.ndarray, permanova_rows: list[dict[str, object]]) -> None:
@@ -269,6 +286,7 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--top-variable-genes", type=int, default=2000)
     parser.add_argument("--permutations", type=int, default=999)
+    parser.add_argument("--no-update-config", action="store_true", help="Do not mutate config/datasets.yaml status fields.")
     args = parser.parse_args(argv)
 
     selected = load_selected_samples()
@@ -340,7 +358,7 @@ def main(argv: list[str] | None = None) -> int:
         )
     write_tsv(
         TABLES_DIR / "batch_permanova.tsv",
-        permanova_rows,
+        [format_permanova_row(row) for row in permanova_rows],
         [
             "test_id",
             "grouping_variable",
@@ -360,7 +378,8 @@ def main(argv: list[str] | None = None) -> int:
 
     counts = {group: int(np.sum(groups == group)) for group in sorted(np.unique(groups))}
     write_notes(counts, pca.explained_variance_ratio_, permanova_rows)
-    update_config_status()
+    if not args.no_update_config:
+        update_config_status()
     print("Wrote Xena/Toil batch diagnostic PCA and PERMANOVA outputs.")
     return 0
 

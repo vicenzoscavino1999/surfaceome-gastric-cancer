@@ -27,6 +27,11 @@ import yaml
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from src.utils.matplotlib_repro import configure_reproducible_svg, save_svg
+
 RAW_DIR = REPO_ROOT / "data" / "raw"
 PROCESSED_DIR = REPO_ROOT / "data" / "processed"
 CHECKSUM_DIR = REPO_ROOT / "data" / "checksums"
@@ -34,6 +39,7 @@ RESULTS_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
 PROVENANCE_LOG = DOCS_DIR / "provenance_log.tsv"
+configure_reproducible_svg()
 
 ID_MAP = PROCESSED_DIR / "id_map_master.tsv"
 CONTROLS_YAML = REPO_ROOT / "config" / "controls.yaml"
@@ -819,7 +825,7 @@ def plot_source_overlap(summary_rows: list[dict[str, object]], output: Path) -> 
     ax.grid(axis="y", linewidth=0.35, alpha=0.3)
     fig.tight_layout()
     output.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output, format="svg")
+    save_svg(fig, output)
     plt.close(fig)
 
 
@@ -836,7 +842,7 @@ def plot_jaccard(jaccard_rows: list[dict[str, object]], output: Path) -> None:
     ax.grid(axis="y", linewidth=0.35, alpha=0.3)
     fig.tight_layout()
     output.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output, format="svg")
+    save_svg(fig, output)
     plt.close(fig)
 
 

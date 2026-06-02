@@ -67,7 +67,7 @@ The frozen-source acquisition boundary is documented in `docs/source_acquisition
 
 GitHub Actions are defined in `.github/workflows/reproducibility-ci.yml`: push/PR runs syntax linting, `pytest` with full-data tests skipped when the frozen bundle is absent, a small tracked-target Snakemake dry-run, and Docker image build; manual workflow-dispatch jobs run the full reviewer audit, optional downstream recompute, and optional Fase 1-17 frozen-raw rerun when the frozen data package is present.
 
-Public repository: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final code release tag is `v0.1.0`; the frozen `v0.1.0-rc4` data/raw bundle is archived on Zenodo at https://zenodo.org/records/20498705 with DOI `10.5281/zenodo.20498705`.
+Public repository: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final code release tag is `v0.1.1`; the frozen `v0.1.0-rc4` data/raw bundle is archived on Zenodo at https://zenodo.org/records/20498705 with DOI `10.5281/zenodo.20498705`.
 
 ## Commands
 

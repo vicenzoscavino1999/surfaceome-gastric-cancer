@@ -6,6 +6,12 @@ All notable changes to the reproducible analysis package are documented here.
 
 - No changes yet.
 
+## 0.1.1 - 2026-06-02
+
+- Hardened byte-level reproducibility for regenerated SVG artifacts by fixing Matplotlib SVG IDs/date metadata, stripping renderer trailing whitespace, and keeping LF line endings in audited SVG exports.
+- Prevented the Fase 2 batch-diagnostic Snakemake rule from rewriting frozen `config/datasets.yaml` status fields during reviewer reruns.
+- Rounded PERMANOVA diagnostic table floats to stable reviewer-facing precision. No score, weight, universe, ranking, tier, candidate placement, or manuscript conclusion changed.
+
 ## 0.1.0 - 2026-06-02
 
 - Published the Zenodo frozen reproducibility data package for `v0.1.0-rc4` and inserted DOI `10.5281/zenodo.20498705` into release and CBC submission metadata. No score, weight, universe, ranking, tier, figure data, or candidate placement changed.

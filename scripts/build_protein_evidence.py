@@ -6,6 +6,7 @@ import argparse
 import csv
 import datetime as dt
 import math
+import sys
 import zipfile
 from pathlib import Path
 
@@ -19,11 +20,17 @@ import yaml
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from src.utils.matplotlib_repro import configure_reproducible_svg, save_svg
+
 RAW_DIR = REPO_ROOT / "data" / "raw"
 PROCESSED_DIR = REPO_ROOT / "data" / "processed"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+configure_reproducible_svg()
 
 HPA_CANCER = RAW_DIR / "hpa" / "cancer_data.tsv.zip"
 HPA_NORMAL_IHC = RAW_DIR / "hpa" / "normal_ihc_data.tsv.zip"
@@ -529,7 +536,7 @@ def plot_rna_protein(rows: list[dict[str, object]], output: Path) -> None:
         ax.annotate(symbol, (x[idx], y[idx]), xytext=(4, 4), textcoords="offset points", fontsize=7)
     fig.tight_layout()
     output.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(output, format="svg")
+    save_svg(fig, output)
     plt.close(fig)
 
 
