@@ -227,7 +227,7 @@ def render_body(source: str, keys: list[str]) -> str:
 
 
 def build_cbc_tex(source: str, keys: list[str]) -> str:
-    title = source.splitlines()[0].removeprefix("# ").strip()
+    title = source.splitlines()[0].lstrip("\ufeff").removeprefix("# ").strip()
     abstract = extract_between(source, "## Abstract", "## Keywords")
     keywords = [
         keyword.strip()
@@ -289,7 +289,7 @@ def main() -> int:
     )
     parser.parse_args()
 
-    source = SOURCE.read_text(encoding="utf-8")
+    source = SOURCE.read_text(encoding="utf-8-sig")
     keys = bibliography_keys()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

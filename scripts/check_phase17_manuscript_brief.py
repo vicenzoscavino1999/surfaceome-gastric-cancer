@@ -279,6 +279,8 @@ def main() -> int:
             failures.append(f"CBC LaTeX handoff contains obsolete formatting phrase: {forbidden}")
     if r"\section{Graphical abstract caption}" in latex_manuscript:
         failures.append("graphical abstract caption should remain separate from the rendered manuscript body")
+    if r"\title{\#" in latex_manuscript or "\\title{\ufeff\\#" in latex_manuscript:
+        failures.append("CBC LaTeX handoff title contains a literal Markdown heading marker")
     if (ROOT / "manuscript/latex/cbc_manuscript.pdf").stat().st_size == 0:
         failures.append("CBC LaTeX handoff PDF preview is empty")
 
