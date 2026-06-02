@@ -42,6 +42,7 @@ PROCESSED_DIR = REPO_ROOT / "data" / "processed"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+FROZEN_ACCESS_DATE = "2026-06-01"
 configure_reproducible_svg()
 
 PHENOTYPE_PATH = RAW_DIR / "xena_toil" / "TcgaTargetGTEX_phenotype.txt.gz"
@@ -147,7 +148,7 @@ def write_purity_checksums() -> None:
                 "local_path": rel_path,
                 "filename": path.name,
                 "url_or_endpoint": TIDYESTIMATE_URL if path == TIDYESTIMATE_TAR else "tidyestimate/data/gene_sets.rda inside source package",
-                "retrieval_date": dt.date.today().isoformat(),
+                "retrieval_date": FROZEN_ACCESS_DATE,
                 "version_or_release": "tidyestimate 1.1.1; ESTIMATE signatures from Yoshihara et al. 2013",
                 "bytes": path.stat().st_size,
                 "sha256": checksum,
@@ -849,7 +850,7 @@ def write_notes(
     (DOCS_DIR / "fase8_single_cell_tme_specificity.md").write_text(
         f"""# Fase 8 Single-Cell/TME Specificity
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 Fase 8 was executed as the preregistered MVP fallback. No processed gastric scRNA dataset with reliable malignant epithelial versus TME annotations was admitted into the quantitative score, so `SC` is `not_available` and was not imputed.
 

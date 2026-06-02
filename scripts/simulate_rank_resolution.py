@@ -22,6 +22,7 @@ RESULTS_DIR = REPO_ROOT / "results"
 VALIDATION_DIR = RESULTS_DIR / "validation"
 FIGURES_DIR = RESULTS_DIR / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+FROZEN_ACCESS_DATE = "2026-06-01"
 
 SURFACEOME_UNIVERSE = PROCESSED_DIR / "surfaceome_universe.tsv"
 ID_MAP = PROCESSED_DIR / "id_map_master.tsv"
@@ -264,7 +265,7 @@ def write_notes(summary_rows: list[dict[str, object]], metadata: dict[str, float
     (DOCS_DIR / "fase4b_ranking_resolution.md").write_text(
         f"""# Fase 4B Ranking-Resolution Simulation
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 This pre-scoring simulation estimates whether the current surfaceome universe and observed layer coverage can support fine-grained tiering before biological expression/selectivity results are inspected.
 

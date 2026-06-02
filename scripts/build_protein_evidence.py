@@ -30,6 +30,7 @@ PROCESSED_DIR = REPO_ROOT / "data" / "processed"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+FROZEN_ACCESS_DATE = "2026-06-01"
 configure_reproducible_svg()
 
 HPA_CANCER = RAW_DIR / "hpa" / "cancer_data.tsv.zip"
@@ -552,7 +553,7 @@ def write_notes(rows: list[dict[str, object]], coverage_rows: list[dict[str, obj
     (DOCS_DIR / "fase7_protein_evidence.md").write_text(
         f"""# Fase 7 Protein Evidence And Localization
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 Fase 7 separates tumor RNA expression from protein evidence and localization. The MVP uses HPA stomach cancer IHC aggregate counts, HPA normal tissue IHC, and HPA subcellular localization. CPTAC/PDC and literature curation remain downstream/candidate-level layers and are marked `CPTAC_not_assessed` here.
 

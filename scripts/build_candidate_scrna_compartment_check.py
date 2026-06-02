@@ -24,6 +24,7 @@ CHECKSUM_DIR = ROOT / "data" / "checksums"
 TABLES_DIR = ROOT / "results" / "tables"
 FIGURES_DIR = ROOT / "results" / "figures"
 DOCS_DIR = ROOT / "docs"
+FROZEN_ACCESS_DATE = "2026-06-01"
 
 CANDIDATE_TABLE = TABLES_DIR / "manuscript_table3_top_candidates.tsv"
 OUTPUT_TABLE = TABLES_DIR / "candidate_scrna_tisch2_compartment_check.tsv"
@@ -224,7 +225,7 @@ def build_rows() -> tuple[list[dict[str, object]], list[dict[str, object]]]:
                     "artifact": label,
                     "local_path": rel_path,
                     "url": f"{TISCH2_BASE}/{dataset}/{path.name}",
-                    "retrieval_date": dt.date.today().isoformat(),
+                    "retrieval_date": FROZEN_ACCESS_DATE,
                     "bytes": path.stat().st_size,
                     "sha256": checksum,
                     "license_or_terms": "TISCH2 public download; source studies remain under their original terms",
@@ -399,7 +400,7 @@ def write_doc(rows: list[dict[str, object]], summary: list[dict[str, object]]) -
     lines = [
         "# Candidate-Level scRNA Compartment Check",
         "",
-        f"Access date: {dt.date.today().isoformat()}",
+        f"Access date: {FROZEN_ACCESS_DATE}",
         "",
         "This is a post-ranking candidate-level cross-check. It does not change the numeric `SC` component,",
         "the frozen ranking, or the Tier 1/Tier 2 assignments. Its purpose is to reduce overclaiming by",

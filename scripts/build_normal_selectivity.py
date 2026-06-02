@@ -34,6 +34,7 @@ PROCESSED_DIR = REPO_ROOT / "data" / "processed"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+FROZEN_ACCESS_DATE = "2026-06-01"
 configure_reproducible_svg()
 
 PHENOTYPE_PATH = RAW_DIR / "xena_toil" / "TcgaTargetGTEX_phenotype.txt.gz"
@@ -1042,7 +1043,7 @@ def write_notes(
     (DOCS_DIR / "fase6_normal_selectivity_risk.md").write_text(
         f"""# Fase 6 Normal Selectivity And Off-Tumor Risk
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 Fase 6 estimates tumor-normal selectivity (`N`) and organ-specific on-target/off-tumor risk (`R`) for the Fase 4 Core+Probable surfaceome universe. Xena/Toil values are transformed from `log2(TPM+0.001)` back to TPM before summary statistics. HPA RNA `nTPM` is used conservatively where mapped by `config/tissue_mappings.yaml`, especially for tissue classes not directly represented in Xena.
 

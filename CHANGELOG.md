@@ -11,7 +11,7 @@ All notable changes to the reproducible analysis package are documented here.
 - Hardened byte-level reproducibility for regenerated SVG artifacts by fixing Matplotlib SVG IDs/date metadata, stripping renderer trailing whitespace, keeping LF line endings, stabilizing PCA orientation, and ordering highlighted plot labels in audited SVG exports.
 - Froze offline Fase 2/Fase 3 acquisition metadata to the 2026-05-28 release snapshot so reviewer reruns do not rewrite checksum manifests with local verification dates.
 - Prevented the Fase 2 batch-diagnostic Snakemake rule from rewriting frozen `config/datasets.yaml` status fields during reviewer reruns.
-- Forced generated phase notes, release sentinels, and script-written config updates to use LF line endings so Windows forced reruns do not leave EOL-only dirty files.
+- Forced generated phase notes, release sentinels, and script-written config updates to use LF line endings, and froze generated access/retrieval dates for Fase 4-9 and candidate scRNA manifests, so Windows forced reruns do not leave date-only or EOL-only dirty files.
 - Rounded PERMANOVA diagnostic table floats to stable reviewer-facing precision. No score, weight, universe, ranking, tier, candidate placement, or manuscript conclusion changed.
 
 ## 0.1.0 - 2026-06-02

@@ -37,6 +37,7 @@ CHECKSUM_DIR = REPO_ROOT / "data" / "checksums"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+FROZEN_ACCESS_DATE = "2026-06-01"
 configure_reproducible_svg()
 
 PHENOTYPE_PATH = RAW_DIR / "xena_toil" / "TcgaTargetGTEX_phenotype.txt.gz"
@@ -189,7 +190,7 @@ def write_cbioportal_checksums(download_meta: dict[str, dict[str, str]]) -> None
                 "local_path": rel_path,
                 "filename": path.name,
                 "url_or_endpoint": url,
-                "retrieval_date": dt.date.today().isoformat(),
+                "retrieval_date": FROZEN_ACCESS_DATE,
                 "version_or_release": f"{CBIO_STUDY_ID} API live query",
                 "bytes": path.stat().st_size,
                 "sha256": checksum,
@@ -1028,7 +1029,7 @@ def write_notes(
     (DOCS_DIR / "fase5_tumor_expression.md").write_text(
         f"""# Fase 5 Tumor Expression
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 Fase 5 computes the tumor-expression component for the Fase 4 Core+Probable surfaceome universe using Xena/Toil TCGA-STAD primary tumor RNA. Xena values are stored as `log2(TPM + {XENA_LOG2_PSEUDOCOUNT})`; they were transformed back to TPM as `2^x - {XENA_LOG2_PSEUDOCOUNT}` and clipped at zero.
 

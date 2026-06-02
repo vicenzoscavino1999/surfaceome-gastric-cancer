@@ -30,6 +30,7 @@ PROCESSED_DIR = REPO_ROOT / "data" / "processed"
 TABLES_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
+FROZEN_ACCESS_DATE = "2026-06-01"
 
 UNIPROT_FEATURES = RAW_DIR / "uniprot" / "uniprot_reviewed_human_features.tsv.gz"
 SURFACEOME_UNIVERSE = PROCESSED_DIR / "surfaceome_universe.tsv"
@@ -166,7 +167,7 @@ def ensure_uniprot_features() -> None:
                 "local_path": rel_path,
                 "filename": UNIPROT_FEATURES.name,
                 "url_or_endpoint": UNIPROT_FEATURE_URL,
-                "retrieval_date": dt.date.today().isoformat(),
+                "retrieval_date": FROZEN_ACCESS_DATE,
                 "version_or_release": release,
                 "bytes": UNIPROT_FEATURES.stat().st_size,
                 "sha256": checksum,
@@ -696,7 +697,7 @@ def write_notes(rows: list[dict[str, object]], flag_rows: list[dict[str, object]
     (DOCS_DIR / "fase9_topology_isoforms.md").write_text(
         f"""# Fase 9 Topology, Isoforms, and Extracellular Accessibility
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 Fase 9 builds the topology component `T` for the Core+Probable surfaceome universe. The component is not a final biological ranking. It uses reviewed UniProt human feature fields for protein length, topological domains, transmembrane segments, signal peptide, lipid/GPI anchor, glycosylation, disulfide bonds, chains, domains, subcellular location, PTM comments, and Ensembl isoform mappings.
 

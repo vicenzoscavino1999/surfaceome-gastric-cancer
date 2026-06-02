@@ -98,10 +98,14 @@ def materialize_offline_inventory() -> None:
     if missing:
         raise FileNotFoundError(
             "Offline frozen-raw mode requires Phase 1 inventory snapshots: " + ", ".join(missing)
-        )
+    )
     for name, target in FROZEN_PHASE1_FILES.items():
+        source = FROZEN_PHASE1_DIR / name
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copy2(FROZEN_PHASE1_DIR / name, target)
+        if source.suffix.lower() in {".md", ".tsv"}:
+            target.write_text(source.read_text(encoding="utf-8"), encoding="utf-8", newline="\n")
+        else:
+            shutil.copy2(source, target)
 
 
 def format_counts(mapping: dict[str, object]) -> str:

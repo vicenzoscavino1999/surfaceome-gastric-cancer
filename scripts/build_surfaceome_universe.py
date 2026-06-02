@@ -39,6 +39,7 @@ RESULTS_DIR = REPO_ROOT / "results" / "tables"
 FIGURES_DIR = REPO_ROOT / "results" / "figures"
 DOCS_DIR = REPO_ROOT / "docs"
 PROVENANCE_LOG = DOCS_DIR / "provenance_log.tsv"
+FROZEN_ACCESS_DATE = "2026-06-01"
 configure_reproducible_svg()
 
 ID_MAP = PROCESSED_DIR / "id_map_master.tsv"
@@ -177,7 +178,7 @@ def download_sources(force: bool, timeout: int) -> list[dict[str, object]]:
                 "local_path": relative(path),
                 "filename": path.name,
                 "url_or_endpoint": spec["url"],
-                "retrieval_date": dt.date.today().isoformat(),
+                "retrieval_date": FROZEN_ACCESS_DATE,
                 "version_or_release": spec["version_or_release"],
                 "bytes": path.stat().st_size,
                 "sha256": sha256_file(path),
@@ -868,7 +869,7 @@ def write_notes(rows: list[dict[str, object]], jaccard_rows: list[dict[str, obje
     (DOCS_DIR / "fase4_surfaceome_universe.md").write_text(
         f"""# Fase 4 Surfaceome Universe
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 This phase builds a conservative multi-source surfaceome universe from Cancer Surfaceome Atlas/TCSA, CSPA, SURFY, UniProt topology, UniProt reviewed lipidation/GPI-anchor evidence, UniProt GO cellular component terms, and HPA subcellular localization. The unit remains the HGNC approved protein-coding gene from Fase 3.
 
