@@ -389,7 +389,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Build the frozen raw/source data package for Zenodo deposition."
     )
-    parser.add_argument("--code-tag", help="Companion code tag to cite, e.g. v0.1.0-rc3.")
+    parser.add_argument("--code-tag", help="Companion code tag to cite, e.g. v0.1.0-rc4.")
     parser.add_argument("--package-id", help="Override the archive root/package identifier.")
     parser.add_argument(
         "--output-dir",

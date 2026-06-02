@@ -6,15 +6,15 @@ release. Use it for the DOI that backs the manuscript's data-availability statem
 ## 1. Build The Local Package
 
 ```powershell
-python scripts/build_frozen_data_package.py --code-tag v0.1.0-rc3
+python scripts/build_frozen_data_package.py --code-tag v0.1.0-rc4
 ```
 
 Outputs are written under `release/archive/`, which is intentionally ignored by Git:
 
-- `surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.zip`
-- `surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.zip.sha256`
-- `surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.zenodo_metadata.json`
-- `surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.package_manifest.json`
+- `surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.zip`
+- `surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.zip.sha256`
+- `surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.zenodo_metadata.json`
+- `surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.package_manifest.json`
 
 The ZIP includes `data/raw/`, `data/checksums/`, release/provenance documentation,
 `SHA256SUMS.txt`, `package_manifest.json`, and `ZENODO_METADATA.json`.
@@ -34,7 +34,7 @@ For a trial run, use a Sandbox token from `https://sandbox.zenodo.org`.
 
 ```powershell
 python scripts/zenodo_upload_frozen_data_package.py `
-  release/archive/surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.zip `
+  release/archive/surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.zip `
   --dry-run
 ```
 
@@ -42,7 +42,7 @@ python scripts/zenodo_upload_frozen_data_package.py `
 
 ```powershell
 python scripts/zenodo_upload_frozen_data_package.py `
-  release/archive/surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.zip `
+  release/archive/surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.zip `
   --sandbox
 ```
 
@@ -53,7 +53,7 @@ the draft URL and reserved DOI.
 
 ```powershell
 python scripts/zenodo_upload_frozen_data_package.py `
-  release/archive/surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.zip
+  release/archive/surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.zip
 ```
 
 The script does not publish by default. Review the draft in Zenodo first, especially:
@@ -72,7 +72,7 @@ Publishing is permanent enough that the script requires an explicit confirmation
 
 ```powershell
 python scripts/zenodo_upload_frozen_data_package.py `
-  release/archive/surfaceome_gastric_cancer_v0.1.0-rc3_frozen_data_package.zip `
+  release/archive/surfaceome_gastric_cancer_v0.1.0-rc4_frozen_data_package.zip `
   --deposition-id ZENODO_DRAFT_ID `
   --skip-upload `
   --publish `
