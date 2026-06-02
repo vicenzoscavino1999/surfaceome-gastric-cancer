@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import csv
 import re
 import shutil
 from pathlib import Path
@@ -12,6 +13,7 @@ BIBLIOGRAPHY = ROOT / "manuscript" / "cbc_references.bib"
 OUTPUT_DIR = ROOT / "manuscript" / "latex"
 OUTPUT_TEX = OUTPUT_DIR / "cbc_manuscript.tex"
 OUTPUT_BIB = OUTPUT_DIR / "cbc_references.bib"
+TABLE_DIR = ROOT / "results" / "tables"
 AUTHOR_NAME = "Vicenzo Scavino Alfaro"
 AUTHOR_EMAIL = "u201919346@upc.edu.pe"
 AUTHOR_PHONE = "+51 962 559 391"
@@ -107,6 +109,33 @@ N_{\mathrm{score}} ={}& 0.50\,r_{\mathrm{critical}}
 \end{equation}""",
 }
 
+FIGURE_PLATES = [
+    ("1", ["f1_phase16_pipeline_overview.pdf"]),
+    ("2", ["f2_phase16_surfaceome_evidence_landscape.pdf"]),
+    ("3", ["f3_phase16_tumor_normal_selectivity.pdf"]),
+    ("4", ["f4_phase16_multilayer_heatmap_top30.pdf"]),
+    ("5", ["f5_top_candidates_scRNA_dotplot.pdf"]),
+    ("6", ["f6a_rank_stability_heatmap.pdf", "f6b_bumpchart_scenarios.pdf"]),
+    ("7", ["f7_phase16_benchmark_controls.pdf"]),
+    ("8", ["f8_phase16_tier1_candidate_panel.pdf"]),
+]
+
+TABLE_PLATES = [
+    ("1", TABLE_DIR / "manuscript_table1_datasets.tsv"),
+    ("2", TABLE_DIR / "manuscript_table2_score_definitions.tsv"),
+    ("3", TABLE_DIR / "manuscript_table3_top_candidates.tsv"),
+    ("4", TABLE_DIR / "manuscript_table4_controls.tsv"),
+    ("5", TABLE_DIR / "manuscript_table5_candidate_flags.tsv"),
+]
+
+TABLE_COLUMN_WIDTHS = {
+    "1": [0.10, 0.13, 0.14, 0.13, 0.11, 0.09, 0.12, 0.19],
+    "2": [0.08, 0.20, 0.08, 0.10, 0.15, 0.14, 0.23],
+    "3": [0.03, 0.05, 0.05, 0.055, 0.055, 0.055, 0.04, 0.04, 0.04, 0.04, 0.04, 0.04, 0.07, 0.055, 0.30],
+    "4": [0.10, 0.06, 0.20, 0.13, 0.07, 0.07, 0.07, 0.13, 0.19],
+    "5": [0.03, 0.05, 0.05, 0.10, 0.10, 0.09, 0.06, 0.04, 0.08, 0.08, 0.06, 0.09, 0.19],
+}
+
 
 def escape_tex(text: str) -> str:
     replacements = {
@@ -116,6 +145,8 @@ def escape_tex(text: str) -> str:
         "$": r"\$",
         "#": r"\#",
         "_": r"\_",
+        "<": r"\ensuremath{<}",
+        ">": r"\ensuremath{>}",
         "{": r"\{",
         "}": r"\}",
         "~": r"\textasciitilde{}",
@@ -124,7 +155,7 @@ def escape_tex(text: str) -> str:
     output: list[str] = []
     for character in text:
         output.append(replacements.get(character, character))
-        if character in {"/", "+"}:
+        if character in {"/", "+", "_", ";"}:
             output.append(r"\allowbreak{}")
     return "".join(output)
 
@@ -226,6 +257,132 @@ def render_body(source: str, keys: list[str]) -> str:
     return "\n".join(lines).strip()
 
 
+def extract_display_caption(source: str, display_type: str, display_id: str, keys: list[str]) -> str:
+    pattern = re.compile(
+        rf"\*\*{display_type} {re.escape(display_id)}\. ([^*]+?)\.\*\*\s+(.*?)(?=\n\n)",
+        flags=re.DOTALL,
+    )
+    match = pattern.search(source)
+    if not match:
+        raise ValueError(f"missing {display_type.lower()} caption for {display_id}")
+    title, description = match.groups()
+    caption = f"{title.strip()}. {' '.join(description.split())}"
+    return format_inline(caption, keys)
+
+
+def column_spec(widths: list[float]) -> str:
+    return "@{}" + "".join(
+        rf">{{\raggedright\arraybackslash}}p{{{width:.3f}\linewidth}}" for width in widths
+    ) + "@{}"
+
+
+def read_tsv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+    with path.open(newline="", encoding="utf-8") as handle:
+        reader = csv.DictReader(handle, delimiter="\t")
+        return list(reader.fieldnames or []), list(reader)
+
+
+def format_table_cell(value: str) -> str:
+    cleaned = " ".join(str(value).split())
+    if cleaned == "":
+        return r"\textemdash{}"
+    return escape_tex(cleaned)
+
+
+def render_table_plate(table_id: str, path: Path, source: str, keys: list[str]) -> str:
+    if not path.exists():
+        raise FileNotFoundError(path)
+    columns, rows = read_tsv(path)
+    widths = TABLE_COLUMN_WIDTHS[table_id]
+    if len(columns) != len(widths):
+        raise ValueError(
+            f"table {table_id} has {len(columns)} columns but {len(widths)} widths are configured"
+        )
+    caption = extract_display_caption(source, "Table", table_id, keys)
+    header = " & ".join(r"\textbf{" + escape_tex(column.replace("_", " ")) + "}" for column in columns)
+    body_rows = [
+        " & ".join(format_table_cell(row.get(column, "")) for column in columns) + r" \\"
+        for row in rows
+    ]
+    return "\n".join(
+        [
+            r"\clearpage",
+            r"\begin{landscape}",
+            r"\begingroup",
+            r"\tiny",
+            r"\setlength{\tabcolsep}{2pt}",
+            r"\renewcommand{\arraystretch}{1.13}",
+            rf"\begin{{longtable}}{{{column_spec(widths)}}}",
+            rf"\caption{{{caption}}}\label{{tab:review-{table_id}}}\\",
+            r"\toprule",
+            header + r" \\",
+            r"\midrule",
+            r"\endfirsthead",
+            rf"\caption[]{{{caption} (continued)}}\\",
+            r"\toprule",
+            header + r" \\",
+            r"\midrule",
+            r"\endhead",
+            *body_rows,
+            r"\bottomrule",
+            r"\end{longtable}",
+            r"\endgroup",
+            r"\end{landscape}",
+        ]
+    )
+
+
+def render_figure_plate(display_id: str, files: list[str], source: str, keys: list[str]) -> str:
+    caption = extract_display_caption(source, "Figure", display_id, keys)
+    graphics: list[str] = []
+    if len(files) == 1:
+        graphics.append(
+            rf"\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{{{files[0]}}}"
+        )
+    else:
+        for index, file_name in enumerate(files):
+            panel = chr(ord("a") + index)
+            graphics.extend(
+                [
+                    rf"\textbf{{{panel}.}}",
+                    rf"\includegraphics[width=\linewidth,height=0.38\textheight,keepaspectratio]{{{file_name}}}",
+                    r"\par\vspace{0.5em}",
+                ]
+            )
+    return "\n".join(
+        [
+            r"\clearpage",
+            r"\begin{figure}[p]",
+            r"\centering",
+            *graphics,
+            rf"\caption{{{caption}}}\label{{fig:review-{display_id}}}",
+            r"\end{figure}",
+        ]
+    )
+
+
+def render_review_displays(source: str, keys: list[str]) -> str:
+    figure_blocks = [
+        render_figure_plate(display_id, files, source, keys) for display_id, files in FIGURE_PLATES
+    ]
+    table_blocks = [
+        render_table_plate(table_id, path, source, keys) for table_id, path in TABLE_PLATES
+    ]
+    return "\n\n".join(
+        [
+            r"\clearpage",
+            r"\section*{Review figures and main tables}",
+            (
+                "The following pages embed the main display items for the review PDF. "
+                "The same figures and editable table files are also supplied separately "
+                "in the Editorial Manager package."
+            ),
+            *figure_blocks,
+            *table_blocks,
+        ]
+    )
+
+
 def build_cbc_tex(source: str, keys: list[str]) -> str:
     title = source.splitlines()[0].lstrip("\ufeff").removeprefix("# ").strip()
     abstract = extract_between(source, "## Abstract", "## Keywords")
@@ -235,15 +392,19 @@ def build_cbc_tex(source: str, keys: list[str]) -> str:
         if keyword.strip()
     ]
     body = render_body(source, keys)
+    review_displays = render_review_displays(source, keys)
 
     return rf"""\documentclass[preprint,12pt,authoryear]{{elsarticle}}
 
 \usepackage[utf8]{{inputenc}}
 \usepackage[T1]{{fontenc}}
 \usepackage{{amsmath}}
+\usepackage{{array}}
 \usepackage{{booktabs}}
 \usepackage{{graphicx}}
-\graphicspath{{{{./figures/}}}}
+\graphicspath{{{{./figures/}}{{./}}}}
+\usepackage{{longtable}}
+\IfFileExists{{pdflscape.sty}}{{\usepackage{{pdflscape}}}}{{\usepackage{{lscape}}}}
 \usepackage{{url}}
 \usepackage[hidelinks]{{hyperref}}
 
@@ -274,6 +435,8 @@ def build_cbc_tex(source: str, keys: list[str]) -> str:
 {body}
 
 \bibliography{{cbc_references}}
+
+{review_displays}
 
 \end{{document}}
 """

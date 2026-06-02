@@ -269,6 +269,9 @@ def main() -> int:
         r"\journal{Computational Biology and Chemistry}",
         r"\bibliographystyle{plainnat}",
         r"\bibliography{cbc_references}",
+        r"\section*{Review figures and main tables}",
+        r"\includegraphics",
+        r"\begin{longtable}",
         r"\citep{",
         "Vicenzo Scavino Alfaro",
         "u201919346@upc.edu.pe",
@@ -288,6 +291,28 @@ def main() -> int:
             failures.append(f"CBC LaTeX handoff contains obsolete formatting phrase: {forbidden}")
     if r"\section{Graphical abstract caption}" in latex_manuscript:
         failures.append("graphical abstract caption should remain separate from the rendered manuscript body")
+    for figure_file in [
+        "f1_phase16_pipeline_overview.pdf",
+        "f2_phase16_surfaceome_evidence_landscape.pdf",
+        "f3_phase16_tumor_normal_selectivity.pdf",
+        "f4_phase16_multilayer_heatmap_top30.pdf",
+        "f5_top_candidates_scRNA_dotplot.pdf",
+        "f6a_rank_stability_heatmap.pdf",
+        "f6b_bumpchart_scenarios.pdf",
+        "f7_phase16_benchmark_controls.pdf",
+        "f8_phase16_tier1_candidate_panel.pdf",
+    ]:
+        if figure_file not in latex_manuscript:
+            failures.append(f"CBC review PDF no longer embeds main figure file: {figure_file}")
+    for label in [
+        r"\label{tab:review-1}",
+        r"\label{tab:review-2}",
+        r"\label{tab:review-3}",
+        r"\label{tab:review-4}",
+        r"\label{tab:review-5}",
+    ]:
+        if label not in latex_manuscript:
+            failures.append(f"CBC review PDF no longer embeds main table: {label}")
     if r"\title{\#" in latex_manuscript or "\\title{\ufeff\\#" in latex_manuscript:
         failures.append("CBC LaTeX handoff title contains a literal Markdown heading marker")
     if (ROOT / "manuscript/latex/cbc_manuscript.pdf").stat().st_size == 0:

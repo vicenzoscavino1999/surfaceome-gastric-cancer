@@ -37,6 +37,7 @@ https://submit.elsevier.com/CBAC
 - [x] Render equations in LaTeX math mode rather than monospace.
 - [x] Render candidate gene symbols in italic rather than code font where Markdown backticks identify biological symbols.
 - [x] Convert manuscript SVG figures to font-independent publication PDFs with zero residual font resources.
+- [x] Embed main figures and main editable-table previews in the generated review PDF while retaining separate figure/table upload files.
 - [x] Recompile and visually inspect the current PDF after metadata and asset completion.
 - [x] Prepare a flat Editorial Manager upload package with `.tex`, bibliography/class/style files, tables, and figures at one directory level if LaTeX source upload is required.
 - [x] Run current local verification set: Phase 17 manuscript check, publication-figure check, LaTeX log screen, PDF visual render, unit tests, Snakemake dry-run, and manual `smoke-test` equivalent.
