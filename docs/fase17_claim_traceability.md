@@ -58,7 +58,7 @@ Sidecar metadata: `results/rankings/ranking_v2_frozen.metadata.yaml`
 ## Remaining Pre-Submission Checks
 
 - Direct PubMed/Google Scholar novelty check: DONE on 2026-06-02; see `docs/literature_landscape_and_differentiation.md` and DD-065. This did not require stronger manuscript novelty claims or changes to scores, tiers, DOI, or release artifacts.
-- Verify every external bibliographic record and DOI during any final reference-manager / `.bib` pass if new citations are added after this audit. The current CBC 30-reference library remains unchanged by the novelty check.
+- The CBC bibliography was expanded from 30 to 39 entries after the novelty audit so that the manuscript directly cites close gastric target-prioritization, ADC, tumor-specificity, and proteogenomic comparators. Verify every external bibliographic record and DOI during any final reference-manager / `.bib` pass if new citations are added after this audit.
 - Reconfirm the Computational Biology and Chemistry Guide for Authors and Editorial Manager file requirements immediately before final upload.
 - Public repository URL inserted: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
 - Archival DOI inserted: `10.5281/zenodo.20498705`.

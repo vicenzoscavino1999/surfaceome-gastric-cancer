@@ -132,8 +132,8 @@ def escape_tex(text: str) -> str:
 def bibliography_keys() -> list[str]:
     bibliography = BIBLIOGRAPHY.read_text(encoding="utf-8")
     keys = re.findall(r"@\w+\{([^,]+),", bibliography)
-    if len(keys) != 30:
-        raise ValueError(f"expected 30 BibTeX entries, found {len(keys)}")
+    if len(keys) != 39:
+        raise ValueError(f"expected 39 BibTeX entries, found {len(keys)}")
     return keys
 
 

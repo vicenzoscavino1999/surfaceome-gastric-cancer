@@ -1,6 +1,6 @@
 # Release Checklist
 
-Status date: 2026-06-01
+Status date: 2026-06-02
 
 ## Data
 
@@ -24,7 +24,7 @@ Status date: 2026-06-01
 - [x] Current release-candidate container audit passes with `docker run --rm -v "${PWD}:/work" surfaceome-gastric-cancer-repro`.
 - [x] Current release-candidate clean-directory audit passes after forced Fase 13->17 rerun and hash comparison.
 - [x] Current release-candidate clean-directory recompute from frozen `data/raw/` passes Fase 1->17 and reviewer audit.
-- [ ] Clean clone/container audit repeated after public release tag; post-tag result should be recorded in release notes or an external audit artifact because it is generated after the commit tree is frozen.
+- [ ] Post-tag audit artifact recorded in `release/post_tag_audit.md`; full fresh-clone/container audit with the Zenodo `data/raw/` bundle remains open.
 - [ ] Full transitive environment lockfile or container verified on the frozen public release tag.
 - [ ] Manual GitHub Actions release-audit workflow repeated on the final public release package if the frozen data bundle is available to the runner.
 

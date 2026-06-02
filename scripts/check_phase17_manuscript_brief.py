@@ -194,14 +194,23 @@ def main() -> int:
         if needle not in claim_traceability:
             failures.append(f"claim traceability audit missing required phrase: {needle}")
 
-    if bibliography.count("@article{") != 30:
-        failures.append("expected 30 BibTeX article entries for CBC")
+    if bibliography.count("@article{") != 39:
+        failures.append("expected 39 BibTeX article entries for CBC")
     if latex_bibliography != bibliography:
         failures.append("LaTeX handoff BibTeX library differs from manuscript/cbc_references.bib")
     dois = re.findall(r"^\s*doi\s*=\s*\{([^}]+)\}", bibliography, flags=re.MULTILINE | re.IGNORECASE)
-    if len(dois) != 30 or len(set(dois)) != 30:
-        failures.append("expected 30 unique DOI fields in CBC BibTeX library")
-    for doi in ["10.1126/science.aaz1776", "10.1016/S0140-6736(10)61121-X", "10.1371/journal.pcbi.1003285"]:
+    if len(dois) != 39 or len(set(dois)) != 39:
+        failures.append("expected 39 unique DOI fields in CBC BibTeX library")
+    for doi in [
+        "10.1126/science.aaz1776",
+        "10.1016/S0140-6736(10)61121-X",
+        "10.1371/journal.pcbi.1003285",
+        "10.1186/s12885-025-15484-z",
+        "10.1007/s10120-025-01584-z",
+        "10.3390/cancers18020270",
+        "10.1016/j.crmeth.2024.100900",
+        "10.1136/gutjnl-2025-337247",
+    ]:
         if doi not in bibliography:
             failures.append(f"CBC BibTeX library missing added DOI: {doi}")
 

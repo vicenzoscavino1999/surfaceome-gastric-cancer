@@ -134,7 +134,7 @@ python scripts/build_release_audit_report.py
 - [x] Key-output hash comparison after frozen-raw clean-directory recompute.
 - [x] cBioPortal/GISTIC and other API/manual captures declared as frozen checksum-registered inputs rather than default live-download outputs.
 - [x] GitHub Actions added for push/PR small CI, manual reviewer audit, Docker audit, and manual frozen-raw rerun.
-- [ ] Repeat clean clone/container audit after the public release tag; record the post-tag result in release notes or a post-release audit artifact because it is necessarily generated after the commit tree is frozen.
+- [ ] Post-tag audit artifact recorded in `release/post_tag_audit.md`; full fresh-clone/container audit with the Zenodo `data/raw/` bundle remains open.
 - [ ] Environment recreated from the lockfile/container on the frozen public release tag.
 - [x] Final archival DOI covers the frozen data inputs or an equivalent checksum/provenance data package.
 - [ ] Optional live-source redownload smoke test after public release freeze, treated as best-effort only.

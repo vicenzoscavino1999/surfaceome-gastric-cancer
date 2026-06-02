@@ -22,7 +22,7 @@ Format checked on 2026-06-01 from the current ScienceDirect/Elsevier CBC Guide f
 - Highlights are required at submission; 3-5 bullets, maximum 85 characters each.
 - A graphical abstract is mandatory.
 - References should use a consistent style at submission; CBC's guide shows author-year in-text citations and an alphabetical reference list. The generated LaTeX handoff therefore uses author-year citations.
-- Full-length articles typically include 30-50 references; the CBC adaptation expands the current reference list from 20 to 30 entries.
+- Full-length articles typically include 30-50 references; the CBC adaptation now uses 39 references after the pre-submission novelty/literature audit.
 - Figures must be supplied as separate files with logical names; tables must be editable text, not images.
 - CBC research-data Option C applies: deposit research data in a relevant repository and cite or link the dataset in the article. The DOI must cover frozen inputs or an equivalent checksum/provenance package because live-source re-downloads are best-effort only.
 - Publication route: subscription has no publication fee charged to authors. Open access is optional and lists an APC of USD 3,150 excluding taxes.

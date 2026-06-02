@@ -31,7 +31,7 @@ https://submit.elsevier.com/CBAC
 
 - [x] Markdown remains the drafting source; generated `.tex` must not be hand-edited.
 - [x] CBC BibTeX library created: `manuscript/cbc_references.bib`.
-- [x] Reference list expanded from 20 to 30 entries for CBC full-length article expectations.
+- [x] Reference list expanded from 20 to 39 entries after the pre-submission novelty/literature audit.
 - [x] Generate author-year citations for the Elsevier/CBC handoff.
 - [x] Use Elsevier `elsarticle` class with a CBC journal declaration.
 - [x] Render equations in LaTeX math mode rather than monospace.

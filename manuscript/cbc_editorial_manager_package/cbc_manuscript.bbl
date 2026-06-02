@@ -1,4 +1,4 @@
-\begin{thebibliography}{30}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -40,6 +40,12 @@ Ethan Cerami, Jianjiong Gao, Ugur Dogrusoz, Benjamin~E. Gross, Selcuk~Onur Sumer
 \newblock The {cBio} cancer genomics portal: an open platform for exploring multidimensional cancer genomics data.
 \newblock \emph{Cancer Discovery}, 2\penalty0 (5):\penalty0 401--404, 2012.
 \newblock \doi{10.1158/2159-8290.CD-12-0095}.
+
+\bibitem[Chang et~al.(2026)Chang, Hong, Lin, Hsiao, Hsu, et~al.]{chang2026gastric_proteogenomics}
+Ya-Hsuan Chang, Tzu-Chan Hong, Kuen-Tyng Lin, Yi-Jing Hsiao, Hsiang-En Hsu, et~al.
+\newblock Integrative proteogenomics maps multifactorial aetiology, progression and therapeutic vulnerabilities in gastric cancer.
+\newblock \emph{Gut}, 75\penalty0 (5):\penalty0 886--904, 2026.
+\newblock \doi{10.1136/gutjnl-2025-337247}.
 
 \bibitem[Deng et~al.(2024)Deng, Marino, Clarke, Diamant, Resnick, et~al.]{deng2024multiomics2targets}
 Eden~Z. Deng, Giacomo~B. Marino, Daniel~J.B. Clarke, Ido Diamant, Adam~C. Resnick, et~al.
@@ -89,11 +95,35 @@ Umesh Kathad, Neha Biyani, Raniero~L. {Peru y Colon De Portugal}, Jianli Zhou, H
 \newblock \emph{PLOS ONE}, 19\penalty0 (8):\penalty0 e0308604, 2024.
 \newblock \doi{10.1371/journal.pone.0308604}.
 
+\bibitem[Katoh et~al.(2025)Katoh, Loriot, Nakayama, Hamada, Shitara, and Katoh]{katoh2025adhesion_adc}
+Masuko Katoh, Yohann Loriot, Izuma Nakayama, Akinobu Hamada, Kohei Shitara, and Masaru Katoh.
+\newblock Antibody-drug conjugates targeting the cadherin, claudin and nectin families of adhesion molecules.
+\newblock \emph{Frontiers in Molecular Medicine}, 5:\penalty0 1661016, 2025.
+\newblock \doi{10.3389/fmmed.2025.1661016}.
+
+\bibitem[Li et~al.(2024)Li, Schnell, Bhattacharjee, Yarmarkovich, and Salomonis]{li2024bayests}
+Guangyuan Li, Daniel Schnell, Anukana Bhattacharjee, Mark Yarmarkovich, and Nathan Salomonis.
+\newblock Quantifying tumor specificity using {Bayesian} probabilistic modeling for drug and immunotherapeutic target discovery.
+\newblock \emph{Cell Reports Methods}, 4\penalty0 (11):\penalty0 100900, 2024.
+\newblock \doi{10.1016/j.crmeth.2024.100900}.
+
+\bibitem[Li et~al.(2026)Li, Cheng, Han, Xu, Luo, et~al.]{li2026gastric_adc_review}
+Wenke Li, Mo~Cheng, Hongyan Han, Menghui Xu, Yiqiao Luo, et~al.
+\newblock Antibody-drug conjugates in gastric cancer: clinical advances and resistance mechanisms.
+\newblock \emph{Gastric Cancer}, 29\penalty0 (2):\penalty0 300--320, 2026.
+\newblock \doi{10.1007/s10120-025-01703-w}.
+
 \bibitem[Li et~al.(2022)Li, Zhou, Zhang, You, Wang, et~al.]{li2022pancancer}
 Xinhui Li, Jian Zhou, Weiwen Zhang, Wenhua You, Jun Wang, et~al.
 \newblock Pan-cancer analysis identifies tumor cell surface targets for {CAR-T} cell therapies and antibody drug conjugates.
 \newblock \emph{Cancers}, 14\penalty0 (22):\penalty0 5674, 2022.
 \newblock \doi{10.3390/cancers14225674}.
+
+\bibitem[Moek et~al.(2017)Moek, de~Groot, de~Vries, and Fehrmann]{moek2017adc_landscape}
+K.~L. Moek, D.~J.~A. de~Groot, E.~G.~E. de~Vries, and R.~S.~N. Fehrmann.
+\newblock The antibody-drug conjugate target landscape across a broad range of tumour types.
+\newblock \emph{Annals of Oncology}, 28\penalty0 (12):\penalty0 3083--3091, 2017.
+\newblock \doi{10.1093/annonc/mdx541}.
 
 \bibitem[Razzaghdoust et~al.(2021)Razzaghdoust, Rahmatizadeh, Mofid, Muhammadnejad, Parvin, et~al.]{razzaghdoust2021adc}
 Abolfazl Razzaghdoust, Shahabedin Rahmatizadeh, Bahram Mofid, Samad Muhammadnejad, Mahmoud Parvin, et~al.
@@ -161,6 +191,12 @@ Zev~A. Wainberg, Peter~C. Enzinger, Yoon-Koo Kang, Shukui Qin, Kensei Yamaguchi,
 \newblock \emph{The Lancet Oncology}, 23\penalty0 (11):\penalty0 1430--1440, 2022.
 \newblock \doi{10.1016/S1470-2045(22)00603-9}.
 
+\bibitem[Wang et~al.(2025)Wang, Fang, Chen, Ji, Yu, et~al.]{wang2025cdh17_adc}
+Rui Wang, Peng Fang, Xi~Chen, Jiali Ji, Dongan Yu, et~al.
+\newblock Overcoming multidrug resistance in gastrointestinal cancers with a {CDH17}-targeted {ADC} conjugated to a {DNA} topoisomerase inhibitor.
+\newblock \emph{Cell Reports Medicine}, 6\penalty0 (7):\penalty0 102213, 2025.
+\newblock \doi{10.1016/j.xcrm.2025.102213}.
+
 \bibitem[Wang et~al.(2026)Wang, Olsen, Jiao, Wang, Jiang, et~al.]{wang2026gastric}
 Yuefan Wang, Lindsey~K. Olsen, Fenglong Jiao, Chenwei Wang, Kevin~X. Jiang, et~al.
 \newblock A 15-layer multi-omics analysis of gastric cancer ecotypes provides therapeutic insights.
@@ -173,6 +209,12 @@ Mark~D. Wilkinson, Michel Dumontier, IJsbrand~Jan Aalbersberg, Gabrielle Appleto
 \newblock \emph{Scientific Data}, 3:\penalty0 160018, 2016.
 \newblock \doi{10.1038/sdata.2016.18}.
 
+\bibitem[Xu et~al.(2025)Xu, Wei, Li, Yang, Chen, et~al.]{xu2025gastric_targets}
+Yuchentian Xu, Zhihao Wei, Ming Li, Wenwei Yang, Zhijun Chen, et~al.
+\newblock Identification and prioritization of high-frequency biomarkers and therapeutic targets in gastric cancer trials.
+\newblock \emph{BMC Cancer}, 26\penalty0 (1):\penalty0 148, 2025.
+\newblock \doi{10.1186/s12885-025-15484-z}.
+
 \bibitem[Yoshihara et~al.(2013)Yoshihara, Shahmoradgoli, Martinez, Vegesna, Kim, et~al.]{yoshihara2013estimate}
 Kosuke Yoshihara, Maria Shahmoradgoli, Emmanuel Martinez, Rahulsimham Vegesna, Hoon Kim, et~al.
 \newblock Inferring tumour purity and stromal and immune cell admixture from expression data.
@@ -184,5 +226,17 @@ Peng Zhang, Mingran Yang, Yiding Zhang, Shuai Xiao, Xinxing Lai, et~al.
 \newblock Dissecting the single-cell transcriptome network underlying gastric premalignant lesions and early gastric cancer.
 \newblock \emph{Cell Reports}, 27\penalty0 (6):\penalty0 1934--1947.e5, 2019.
 \newblock \doi{10.1016/j.celrep.2019.04.052}.
+
+\bibitem[Zhang et~al.(2025)Zhang, Tao, Xie, Yang, Lu, et~al.]{zhang2025cd66c}
+Peng Zhang, Chunyu Tao, Haifeng Xie, Lei Yang, Ying Lu, et~al.
+\newblock Identification of {CD66c} as a potential target in gastroesophageal junction cancer for antibody-drug conjugate development.
+\newblock \emph{Gastric Cancer}, 28\penalty0 (3):\penalty0 422--441, 2025.
+\newblock \doi{10.1007/s10120-025-01584-z}.
+
+\bibitem[Zhao et~al.(2026)Zhao, Xie, Tian, Yuan, Hu, et~al.]{zhao2026pvr}
+Yutao Zhao, Haifeng Xie, Xuyang Tian, Lei Yuan, Cheng Hu, et~al.
+\newblock Poliovirus receptor as a potential target in gastric signet-ring cell carcinoma for antibody-drug conjugate development.
+\newblock \emph{Cancers}, 18\penalty0 (2):\penalty0 270, 2026.
+\newblock \doi{10.3390/cancers18020270}.
 
 \end{thebibliography}
