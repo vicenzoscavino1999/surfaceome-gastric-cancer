@@ -1,11 +1,15 @@
 version: "0.1.0"
 created: "2026-05-28"
-status: "fase17h_public_repository_release_candidate_prepared_doi_pending"
+status: "fase17i_archival_doi_published_release_metadata_inserted"
 public_repository:
   url: "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer"
   planned_release_candidate_tag: "v0.1.0-rc4"
-  archival_doi_status: "pending_external_archive"
-  data_package_boundary: "frozen_data_raw_bundle_or_equivalent_checksum_provenance_package_must_be_archived_before_submission"
+  archival_doi_status: "published_zenodo_record"
+  archival_doi: "10.5281/zenodo.20498705"
+  archival_record_url: "https://zenodo.org/records/20498705"
+  data_package_version: "0.1.0-rc4"
+  data_package_sha256: "6c3fccbaeea2b9a28843c316a703b4cd82b87d26cef7e537fbe2601e6d7e2c09"
+  data_package_boundary: "frozen_data_raw_bundle_archived_with_checksum_provenance_package"
 
 data_freeze:
   freeze_id: "fase2_mvp_raw_xena_hpa_uniprot_gdc_metadata_2026-05-28"
@@ -284,8 +288,8 @@ data_freeze:
     corresponding_email: "u201919346@upc.edu.pe"
     author_orcid: "0009-0000-2472-9785"
     central_thesis: "reproducible_public_data_pipeline_with_tcsa_baseline_wang_consistency_limited_tisch2_compartment_annotation_and_quantified_GPI_anchor_evidence_routing_effect"
-    status: "fase17h_public_repository_release_candidate_prepared_local_pdf_package_and_reviewer_checks_passed_not_submission_ready"
-    metadata_status: "user_supplied_author_name_affiliation_orcid_durable_email_and_phone_inserted; public_repository_url_inserted; referee_shortlist_drafted_pending_author_conflict_confirmation; postal_address_archival_doi_final_pdf_approval_and_submission_upload_pending; apc_waiver_not_needed_if_subscription_route_selected"
+    status: "fase17i_archival_doi_inserted_local_pdf_package_and_reviewer_checks_passed_not_submission_ready"
+    metadata_status: "user_supplied_author_name_affiliation_orcid_durable_email_and_phone_inserted; public_repository_url_inserted; archival_doi_inserted; referee_shortlist_drafted_pending_author_conflict_confirmation; postal_address_final_pdf_approval_and_submission_upload_pending; apc_waiver_not_needed_if_subscription_route_selected"
     authoring_source: "manuscript/cbc_manuscript_scaffold.md"
     final_submission_format: "latex_elsevier_cbc_elsarticle_profile_generated_from_markdown"
     scope: "manuscript_drafting_only_no_score_weight_universe_ranking_or_tier_change"
@@ -293,7 +297,7 @@ data_freeze:
 source_acquisition_policy:
   documentation: "docs/source_acquisition_policy.md"
   default_reviewer_claim: "frozen_local_raw_source_files_with_checksums_not_100_percent_live_redownload"
-  final_archive_requirement: "public_repository_or_data_package_DOI_must_cover_frozen_inputs_or_equivalent_checksum_provenance_package"
+  final_archive_requirement: "fulfilled_by_zenodo_doi_10.5281_zenodo.20498705_for_frozen_data_package_v0.1.0-rc4"
   live_redownload_status: "best_effort_only_after_release_because_external_APIs_and_files_can_change"
   ci_boundary:
     push_pr: "syntax_lint_pytest_ci_safe_snakemake_dry_run_docker_build"

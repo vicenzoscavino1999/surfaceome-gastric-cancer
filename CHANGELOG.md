@@ -4,7 +4,7 @@ All notable changes to the reproducible analysis package are documented here.
 
 ## Unreleased - 2026-06-01
 
-- No changes yet.
+- Published the Zenodo frozen reproducibility data package for `v0.1.0-rc4` and inserted DOI `10.5281/zenodo.20498705` into release and CBC submission metadata. No score, weight, universe, ranking, tier, figure data, or candidate placement changed.
 
 ## 0.1.0-rc4 - 2026-06-01
 

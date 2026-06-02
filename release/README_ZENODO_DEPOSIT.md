@@ -3,6 +3,9 @@
 This workflow archives the frozen raw/source data package separately from the GitHub code
 release. Use it for the DOI that backs the manuscript's data-availability statement.
 
+Current production record: https://zenodo.org/records/20498705, DOI `10.5281/zenodo.20498705`.
+It contains the `v0.1.0-rc4` frozen data package ZIP and `.sha256` checksum.
+
 ## 1. Build The Local Package
 
 ```powershell

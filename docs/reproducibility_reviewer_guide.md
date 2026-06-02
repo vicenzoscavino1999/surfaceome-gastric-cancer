@@ -26,7 +26,7 @@ The repository separates four reproducibility modes so that reviewers can distin
 
 Frozen raw inputs include the retained source data, `data/raw/frozen_snapshots/phase1_inventory/` for live-endpoint inventory metadata, `data/raw/frozen_snapshots/` for historical ranking snapshots, and `data/raw/manual_curation/` for human-curated tiering artifacts. The active scientific ranking table remains metadata-free; file-level release metadata is in the sidecar.
 
-The frozen-source acquisition policy is documented in `docs/source_acquisition_policy.md`. In particular, cBioPortal clinical/GISTIC JSON files, GDC metadata captures, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation files are frozen inputs with checksum/provenance records. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final public DOI must cover these inputs or an equivalent archived data package. Live re-download is not the release reproduction claim.
+The frozen-source acquisition policy is documented in `docs/source_acquisition_policy.md`. In particular, cBioPortal clinical/GISTIC JSON files, GDC metadata captures, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation files are frozen inputs with checksum/provenance records. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The frozen data package is archived on Zenodo at https://zenodo.org/records/20498705 with archival DOI `10.5281/zenodo.20498705`. Live re-download is not the release reproduction claim.
 
 ## One-Command Audit
 
@@ -131,8 +131,8 @@ The current release candidate has been checked in Docker and in clean directory 
 
 ## Current Limitations
 
-- The public repository URL is inserted. The archival DOI is still pending and must be inserted before formal submission.
-- A Dockerfile, full transitive environment lockfile, Docker audit, downstream clean-directory audit, and frozen-raw clean-directory audit are present for the current release candidate. The clean clone/container audit must still be repeated after the public release tag; the DOI-bound data package audit must be repeated after the DOI archive is frozen.
+- The public repository URL and archival DOI are inserted. The archival DOI is `10.5281/zenodo.20498705`.
+- A Dockerfile, full transitive environment lockfile, Docker audit, downstream clean-directory audit, and frozen-raw clean-directory audit are present for the current release candidate. The clean clone/container audit must still be repeated after the final public release tag.
 - GitHub Actions are present for small CI and manual full-data release audits, but the full raw bundle is intentionally not assumed to exist on every push.
 - Some historical Snakemake metadata are missing in the long-lived prepared workspace for early files generated before all rules were formalized; a clean frozen-raw run produces current metadata and a clean dry-run for declared outputs.
 - Manual curation artifacts are validated as frozen files; web curation is not automatically regenerated.
@@ -140,4 +140,4 @@ The current release candidate has been checked in Docker and in clean directory 
 
 ## Bottom Line
 
-The current package is reviewable and locally auditable. It is not yet formally release-grade 10/10 until the archival DOI and final tagged-release clean-clone/container audit are completed. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
+The current package is reviewable and locally auditable, and the frozen data package is DOI-archived. It is not yet formally release-grade 10/10 until the final tagged-release clean-clone/container audit is completed. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.

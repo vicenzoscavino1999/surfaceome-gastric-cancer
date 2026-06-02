@@ -143,6 +143,7 @@ def main() -> int:
     cover_letter = read_text("manuscript/cbc_cover_letter_draft.md")
     submission_blockers = read_text("manuscript/cbc_submission_route_blockers.md")
     reproducibility = read_text("REPRODUCIBILITY.md")
+    data_availability = read_text("DATA_AVAILABILITY.md")
     reviewer_guide = read_text("docs/reproducibility_reviewer_guide.md")
     source_policy = read_text("docs/source_acquisition_policy.md")
 
@@ -286,6 +287,7 @@ def main() -> int:
         "not independent validation",
         "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer",
         "archival DOI",
+        "10.5281/zenodo.20498705",
     ]:
         if needle not in cover_letter:
             failures.append(f"CBC cover letter draft missing required phrase: {needle}")
@@ -298,6 +300,7 @@ def main() -> int:
         "Current Limitations",
         "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer",
         "archival DOI",
+        "10.5281/zenodo.20498705",
         "full transitive environment lockfile",
         "GitHub Actions",
         "docs/source_acquisition_policy.md",
@@ -318,10 +321,23 @@ def main() -> int:
         "cBioPortal TCGA-STAD clinical",
         "Frozen archived input",
         "GitHub Actions checks are split",
-        "The archival DOI must cover",
+        "The archival DOI covers",
+        "10.5281/zenodo.20498705",
     ]:
         if needle not in source_policy:
             failures.append(f"source acquisition policy missing required phrase: {needle}")
+
+    for needle in [
+        "10.5281/zenodo.20498705",
+        "https://zenodo.org/records/20498705",
+    ]:
+        for label, text in [
+            ("CBC manuscript scaffold", scaffold),
+            ("data availability", data_availability),
+            ("reproducibility plan", reproducibility),
+        ]:
+            if needle not in text:
+                failures.append(f"{label} missing archival dataset DOI phrase: {needle}")
 
     manuscript_tables = "\n".join(
         read_text(path)

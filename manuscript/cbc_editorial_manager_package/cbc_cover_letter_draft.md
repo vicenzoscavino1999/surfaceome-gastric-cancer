@@ -12,7 +12,7 @@ The most transferable result is an auditable GPI evidence-routing quantification
 
 The applied output is a coarse, hypothesis-generating Tier 1/2 candidate set for gastric cancer follow-up. External comparisons are used conservatively: the ranking shows moderate concordance with a Cancer Surfaceome Atlas pan-cancer GESP baseline and consistency with a contemporary gastric proteogenomic surface-target atlas, but matched-null analyses show that the gastric atlas overlap is not enriched beyond matched expectation and is not independent validation of the ranking or any individual nomination.
 
-We intend to submit through the subscription route. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. Before formal submission, the archival DOI will be inserted into the data/code availability statement. The DOI will cover the frozen release inputs or an equivalent checksum/provenance data package; live-source re-downloads are treated as best-effort only. The corresponding-author email is retained permanently by the author's university.
+We intend to submit through the subscription route. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The frozen reproducibility data package is archived on Zenodo at https://zenodo.org/records/20498705 with archival DOI `10.5281/zenodo.20498705`. The DOI covers the frozen release inputs and checksum/provenance data package; live-source re-downloads are treated as best-effort only. The corresponding-author email is retained permanently by the author's university.
 
 The material has not been published and is not under consideration elsewhere. A preprint may be posted in accordance with Elsevier's preprint policy. The sole author has reviewed the manuscript and accepts responsibility for the content, including the declared use of OpenAI Codex for manuscript organization, language editing, and repository-oriented consistency checks.
 
@@ -30,6 +30,6 @@ Telephone: +51 962 559 391
 - Phone number: +51 962 559 391.
 - Full postal address: pending if required by Editorial Manager.
 - Public repository URL: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
-- Archival DOI: pending release; must cover frozen inputs or equivalent checksum/provenance package.
+- Archival DOI: 10.5281/zenodo.20498705, covering the frozen inputs and checksum/provenance package.
 - Suggested referees: draft shortlist prepared; author conflict confirmation required before upload.
 - Publication route: subscription, no APC selected.

@@ -67,9 +67,9 @@ The release uses four explicit levels:
 
 `data/raw/frozen_snapshots/phase1_inventory/` stores frozen live-endpoint inventory metadata for offline Fase 1 materialization. `data/raw/frozen_snapshots/` also stores historical ranking snapshots needed to materialize v0/v1 outputs during raw regeneration. `data/raw/manual_curation/` stores frozen human-curation artifacts needed to reproduce Fase 15 without redoing web/manual review.
 
-`docs/source_acquisition_policy.md` records the release boundary for API/manual acquisitions. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are frozen inputs with checksum/provenance records. The final public DOI must cover those inputs or an equivalent archived data package; live refreshes are best-effort only.
+`docs/source_acquisition_policy.md` records the release boundary for API/manual acquisitions. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are frozen inputs with checksum/provenance records. The frozen data package is archived on Zenodo at https://zenodo.org/records/20498705 with DOI `10.5281/zenodo.20498705`; live refreshes are best-effort only.
 
-The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The planned release-candidate tag is `v0.1.0-rc4`; the archival DOI remains pending until the frozen input bundle or equivalent checksum/provenance package is archived externally.
+The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The active release-candidate tag is `v0.1.0-rc4`; the archival DOI for the frozen input bundle is `10.5281/zenodo.20498705`.
 
 ## Reviewer Audit Path
 
@@ -136,8 +136,8 @@ python scripts/build_release_audit_report.py
 - [x] GitHub Actions added for push/PR small CI, manual reviewer audit, Docker audit, and manual frozen-raw rerun.
 - [ ] Repeat clean clone/container audit after the public release tag; record the post-tag result in release notes or a post-release audit artifact because it is necessarily generated after the commit tree is frozen.
 - [ ] Environment recreated from the lockfile/container on the frozen public release tag.
-- [ ] Final archival DOI covers the frozen data inputs or an equivalent checksum/provenance data package.
+- [x] Final archival DOI covers the frozen data inputs or an equivalent checksum/provenance data package.
 - [ ] Optional live-source redownload smoke test after public release freeze, treated as best-effort only.
 - [x] Public repository URL inserted in manuscript and cover letter.
-- [ ] Archival DOI inserted in manuscript and cover letter.
+- [x] Archival DOI inserted in manuscript and cover letter.
 - [ ] Release checklist in `release/release_checklist.md`.

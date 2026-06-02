@@ -13,7 +13,7 @@ python scripts\build_phase17_latex_handoff.py
 
 The generated manuscript source is `cbc_manuscript.tex`. Edit `manuscript/cbc_manuscript_scaffold.md`, not the generated `.tex`, then regenerate.
 
-The current `cbc_manuscript.pdf` is a draft preview with current author name, affiliation, ORCID, durable corresponding-author email, phone metadata, and public repository URL inserted. It is not submission-ready because the archival DOI, optional postal-address metadata, optional referee suggestions, and final user approval remain pending.
+The current `cbc_manuscript.pdf` is a draft preview with current author name, affiliation, ORCID, durable corresponding-author email, phone metadata, public repository URL, and archival DOI inserted. It is not submission-ready because optional postal-address metadata, optional referee suggestions, and final user approval remain pending.
 
 Publication figure PDFs are generated separately:
 

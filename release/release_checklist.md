@@ -10,7 +10,7 @@ Status date: 2026-06-01
 - [x] API/manual captures are declared as frozen inputs in `docs/source_acquisition_policy.md`; cBioPortal/GISTIC are not treated as default live-download outputs.
 - [x] Data availability limitations are documented in the manuscript, reproducibility guide, and route-blocker file.
 - [x] Public repository URL inserted after release: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
-- [ ] Archival DOI inserted after release and covering the frozen input package or equivalent checksum/provenance data package.
+- [x] Archival DOI inserted after release and covering the frozen input package or equivalent checksum/provenance data package: `10.5281/zenodo.20498705`.
 
 ## Code
 
@@ -60,9 +60,9 @@ Status date: 2026-06-01
 
 - [ ] Final PDF/graphical abstract approved by author.
 - [x] GitHub or equivalent public repository release.
-- [ ] Zenodo, OSF, Figshare, or equivalent archival DOI.
+- [x] Zenodo, OSF, Figshare, or equivalent archival DOI.
 - [x] Public repository URL added to manuscript.
 - [x] Public repository URL added to cover letter.
-- [ ] DOI added to manuscript.
-- [ ] DOI added to cover letter.
+- [x] DOI added to manuscript.
+- [x] DOI added to cover letter.
 - [ ] Editorial Manager upload completed.
