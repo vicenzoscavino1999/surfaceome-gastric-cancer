@@ -38,17 +38,19 @@ Markdown remains the editable drafting source during claim review and language p
 
 ## Frozen central thesis
 
-We developed a reproducible public-data pipeline for gastric cancer surface-target prioritization that is compared against an external pan-cancer surfaceome-score baseline, checked against a contemporary gastric proteogenomic atlas, and quantifies how incomplete routing of confirmed GPI-anchor evidence propagates into candidate-universe construction and ranking.
+We developed SurfPrior-GC, a reproducible public-data pipeline for gastric cancer surface-target prioritization that leads with a transferable GPI-anchor evidence-routing audit, then integrates heterogeneous public evidence into a coarse experimental queue with explicit uncertainty boundaries.
 
 This wording intentionally avoids an unmeasured cost claim and avoids saying that the nominated targets are clinically validated or safe.
 
 ## Contribution order
 
-1. Reproducible public-data method with external consistency benchmarking.
-2. Transferable GPI-anchor evidence-routing audit and correction.
-3. Gastric cancer Tier 1/2 candidate nominations as hypothesis-generating outputs.
+1. Named framework: SurfPrior-GC.
+2. Transferable GPI-anchor evidence-routing audit and correction, including the 54-gene universe effect and benchmark-rank shifts.
+3. Integrated uncertainty-aware scoring across RNA, protein/localization, topology, normal-risk, TME, benchmark-control, and stability evidence.
+4. Gastric cancer Tier 1/2 candidate nominations as hypothesis-generating outputs.
+5. Scope boundary: matched-null overlap is not enriched and no wet-lab validation is claimed.
 
-The manuscript should lead with the method and auditability, emphasize the GPI finding as the transferable contribution, and present candidates as the applied output.
+The manuscript should lead with the named framework and GPI audit, present the integrated evidence model and candidate tiers as the applied output, and place the matched-null negative result in limitations/scope rather than as the headline.
 
 ## Claim guardrails
 
@@ -84,9 +86,9 @@ CBC does not list a fixed figure/table count for full-length articles, but every
 Current Fase 16 plan:
 
 - Figures: 9 main-display entries if F6a and F6b remain separate.
-- Tables: 5 main tables.
+- Tables: 4 main tables, with the extended top-30 candidate-flag table supplied as Supplementary File 2.
 
-If space becomes tight after the CBC PDF is regenerated, the lowest-damage compression levers are: move Table 5 or Table 4 to Supplementary Materials, shorten declarations/availability boilerplate, and combine F6a/F6b if needed. Scientific caveats should be consolidated, not removed.
+If space becomes tight after the CBC PDF is regenerated, the lowest-damage compression levers are: keep supplementary-table detail in the separate supplementary files, shorten declarations/availability boilerplate, and combine F6a/F6b if needed. Scientific caveats should be consolidated, not removed.
 
 ## Manuscript guardrails from prior phases
 
@@ -96,7 +98,7 @@ If space becomes tight after the CBC PDF is regenerated, the lowest-damage compr
 - The limited TISCH2 check annotates the 18 Tier 1/2 candidates only; it does not resolve cell-of-origin for the full ranked universe and must not change scores or tiers.
 - Only `STAD_GSE134520` contributes a TISCH2 malignant-cell class (880 malignant-class cells; premalignant/early-cancer study); `STAD_GSE167297` is context-only. Discordant calls lower candidate-specific confidence but must not silently change frozen scores or tiers.
 - TCSA final/core GESP is an external surfaceome-prioritization baseline, not a gastric-specific validation label.
-- Wang 2026 is an external consistency check, not proof of first discovery, independent ranking validation, or per-gene single-cell validation for genes absent from Figure 7H.
+- Wang 2026 is an external consistency check, not proof of first discovery, candidate-level proof, or per-gene single-cell support for genes absent from Figure 7H.
 - `CLDN18.2` and `FGFR2b` remain isoform unresolved from gene-level expression.
 - HPA IHC supports protein/localization evidence but lacks antibody-level and patient-level membrane details.
 - Fase 14 supports coarse stability language but not fine rank interpretation.
@@ -109,7 +111,7 @@ If space becomes tight after the CBC PDF is regenerated, the lowest-damage compr
 - `manuscript/graphical_abstract_brief.md`
 - `manuscript/figure_table_plan.tsv`
 
-Current manuscript body status: Abstract, Materials and methods, Results, Discussion, Conclusions, Glossary, Data/code availability, Declarations, and Acknowledgements have editorially hardened prose. Initial DOI-verified references, declarations, figure/table captions, supplementary captions, and graphical-abstract submission caption text are drafted. The graphical abstract is exported as a separate TIFF with editable SVG source and a PNG visual-review raster. The `manuscript/latex/` handoff is generated from Markdown through the CBC Elsevier profile, and `manuscript/cbc_editorial_manager_package/` contains a flat package for Editorial Manager. The generated review PDF embeds the main figures and main-table previews at the end while retaining separate figure PDFs and editable TSV tables for upload. The user-supplied author name, affiliation, ORCID, durable corresponding-author email, and telephone are inserted into the manuscript source and LaTeX handoff. Reviewer-hardening audits verified that active `Surf` scaling is the post-GPI `[5,10]` formula, clarified the six-active-layer/`SC` wording, centered Wang 2026 simple and matched-null overlap testing, quantified the GPI correction impact, downgraded Wang language to consistency-check framing, added TCSA external-baseline comparison, compressed limited TISCH2 candidate-level scRNA annotation to context-only status, reframed GPI as quantification/correction rather than first discovery, declared API/manual captures as frozen checksum inputs rather than live-redownload claims, added GitHub Actions small CI/manual release-audit hooks, and removed residual internal scenario/stage labels from public-facing text and artwork. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer, and the frozen data package DOI is `10.5281/zenodo.20498705`. The manuscript is not submission-ready; final graphical-abstract approval, final PDF approval after any further edits, optional postal address, and referee suggestions if requested remain pending. APC/waiver is no longer a blocker if the subscription route is selected.
+Current manuscript body status: Abstract, Materials and methods, Results, Discussion, Conclusions, Glossary, Data/code availability, Declarations, and Acknowledgements have editorially hardened prose. DOI-verified references, declarations, figure/table captions, a separate supplementary manifest caption file, and graphical-abstract submission caption text are drafted. The graphical abstract is exported as a separate TIFF with editable SVG source and a PNG visual-review raster. The `manuscript/latex/` handoff is generated from Markdown through the CBC Elsevier profile, and `manuscript/cbc_editorial_manager_package/` contains a flat package for Editorial Manager. The generated review PDF embeds the main figures and main-table previews at the end while retaining separate figure PDFs, editable TSV tables, and a separate supplementary-table manifest for upload. The user-supplied author name, affiliation, ORCID, durable corresponding-author email, and telephone are inserted into the manuscript source and LaTeX handoff. Reviewer-hardening audits verified that active `Surf` scaling is the post-GPI `[5,10]` formula, clarified the six-active-layer/`SC` wording, centered Wang 2026 simple and matched-null overlap testing, quantified the GPI correction impact, downgraded Wang language to consistency-check framing, added TCSA external-baseline comparison, compressed limited TISCH2 candidate-level scRNA annotation to context-only status, reframed GPI as quantification/correction rather than first discovery, declared API/manual captures as frozen checksum inputs rather than live-redownload claims, added GitHub Actions small CI/manual release-audit hooks, and removed residual internal scenario/stage labels from public-facing text and artwork. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer, and the frozen data package DOI is `10.5281/zenodo.20498705`. The manuscript is not submission-ready; final graphical-abstract approval, final PDF approval after any further edits, optional postal address, and referee suggestions if requested remain pending. APC/waiver is no longer a blocker if the subscription route is selected.
 
 ## Decision
 

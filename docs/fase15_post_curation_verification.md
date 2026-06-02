@@ -148,7 +148,7 @@ Access routes: UPC institutional access; ScienceDirect "request full text"; cont
   ITGB5 #40, DSC2 #49 are top surface glyco-outliers in Wang's proteomics (evidence we did not have,
   RNA/HPA only). CDH3/NECTIN2/JAG1 are NOT top glyco-outliers — corroboration is partial, reported
   honestly.
-- **Compartment thesis independently validated:** Wang concludes vulnerabilities "extend beyond
+- **Compartment thesis externally supported:** Wang concludes vulnerabilities "extend beyond
   epithelial tumor cells to stromal and immune compartments" and confirms EPCAM epithelial-predominant
   (C4) plus a fibroblast-predominant surface-target set — exactly our PECAM1/LRRC15 compartment-FP
   narrative and bulk/TME limitation.

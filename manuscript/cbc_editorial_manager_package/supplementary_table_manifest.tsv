@@ -1,0 +1,25 @@
+supplement_id	title	path	status	exists
+S1	Full surfaceome universe	data/processed/surfaceome_universe.tsv	available	true
+S2	All component scores	results/tables/component_scores_all_candidates.tsv	available	true
+S3	Scenario rankings	results/rankings	available_directory	true
+S4	Complete stability and sensitivity outputs	results/validation/rank_stability.tsv	available	true
+S5	Tissue mapping	config/tissue_mappings.yaml	available	true
+S6	Manual curation notes	results/tables/manual_curation_notes.tsv	available	true
+S7	Excluded candidates with reason	results/tables/excluded_with_reason.tsv	available	true
+S8	PCA/PERMANOVA batch diagnostic	results/tables/batch_permanova.tsv	available	true
+S9	Surfaceome overlap/Jaccard	results/tables/surfaceome_jaccard_with_published_lists.tsv	available	true
+S10	Tumor-normal power analysis	results/tables/tumor_normal_power_analysis.tsv	available	true
+S11	Score functional-form sensitivity	results/validation/functional_form_sensitivity.tsv	available	true
+S12	TME marker-correlation flags	results/tables/tme_contamination_flags.tsv	available	true
+S13	Subtype feasibility and power	results/tables/subtype_power_analysis.tsv	available	true
+S14	Rank resolution simulation	results/validation/ranking_resolution_simulation.tsv	available	true
+S15	Risk functional-form sensitivity	results/validation/risk_functional_form_sensitivity.tsv	available	true
+S16	Wang 2026 cross-check	results/tables/wang2026_crosscheck.tsv	available	true
+S17	Wang 2026 overlap enrichment	results/tables/wang2026_overlap_enrichment.tsv	available	true
+S18	Wang 2026 matched-null sensitivity	results/tables/wang2026_matched_null.tsv	available	true
+S19	GPI correction impact summary	results/tables/gpi_correction_impact.tsv	available	true
+S20	GPI rank delta	results/tables/gpi_rank_delta_v1_v2.tsv	available	true
+S21	External surfaceome baseline comparison	results/tables/external_surfaceome_baseline_comparison.tsv	available	true
+S22	Candidate-level TISCH2 scRNA compartment check	results/tables/candidate_scrna_tisch2_compartment_check.tsv	available	true
+S23	Surfaceome source-dependency audit	results/tables/surfaceome_source_dependency_audit.tsv	available	true
+S24	Surfaceome source-dependency summary	results/tables/surfaceome_source_dependency_summary.tsv	available	true

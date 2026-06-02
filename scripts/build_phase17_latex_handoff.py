@@ -77,6 +77,9 @@ MATH_TOKENS = {
     "R_max_plus_breadth": r"$R_{\mathrm{max+breadth}}$",
     "R_sum_capped": r"$R_{\mathrm{sum,capped}}$",
     "Surf_relative_confidence": r"$Surf_{\mathrm{relative\ confidence}}$",
+    "x_gj": r"$x_{gj}$",
+    "w_j": r"$w_j$",
+    "A_g": r"$A_g$",
     "log2(TPM + 0.001)": r"$\log_2(\mathrm{TPM}+0.001)$",
     "log2FC >= 1": r"$\log_2\mathrm{FC}\geq 1$",
 }
@@ -107,6 +110,15 @@ N_{\mathrm{score}} ={}& 0.50\,r_{\mathrm{critical}}
     "Surf_relative_confidence = (surfaceome_confidence_score - 5) / 5": r"""\begin{equation}
 \operatorname{Surf}_{\mathrm{relative}} = \frac{S_{\mathrm{conf}} - 5}{5}.
 \end{equation}""",
+    "S_g = (sum_{j in A_g, j != R} w_j * x_gj - w_R * x_gR) / sum_{j in A_g} abs(w_j)": r"""\begin{equation}
+S_g =
+\frac{
+\sum_{j\in A_g,\ j\neq R} w_j x_{gj}
+- w_R x_{gR}
+}{
+\sum_{j\in A_g} |w_j|
+}.
+\end{equation}""",
 }
 
 FIGURE_PLATES = [
@@ -125,7 +137,6 @@ TABLE_PLATES = [
     ("2", TABLE_DIR / "manuscript_table2_score_definitions.tsv"),
     ("3", TABLE_DIR / "manuscript_table3_top_candidates.tsv"),
     ("4", TABLE_DIR / "manuscript_table4_controls.tsv"),
-    ("5", TABLE_DIR / "manuscript_table5_candidate_flags.tsv"),
 ]
 
 TABLE_COLUMN_WIDTHS = {
@@ -334,6 +345,25 @@ def render_table_plate(table_id: str, path: Path, source: str, keys: list[str]) 
 
 def render_figure_plate(display_id: str, files: list[str], source: str, keys: list[str]) -> str:
     caption = extract_display_caption(source, "Figure", display_id, keys)
+    if display_id == "6" and len(files) == 2:
+        graphics = [
+            r"\textbf{a.}",
+            rf"\includegraphics[width=\linewidth,height=0.34\textheight,keepaspectratio]{{{files[0]}}}",
+            r"\par\vspace{0.5em}",
+            r"\textbf{b.}",
+            rf"\includegraphics[width=\linewidth,height=0.42\textheight,keepaspectratio]{{{files[1]}}}",
+            r"\par\vspace{0.5em}",
+        ]
+        return "\n".join(
+            [
+                r"\clearpage",
+                r"\begin{figure}[p]",
+                r"\centering",
+                *graphics,
+                rf"\caption{{{caption}}}\label{{fig:review-{display_id}}}",
+                r"\end{figure}",
+            ]
+        )
     graphics: list[str] = []
     if len(files) == 1:
         graphics.append(

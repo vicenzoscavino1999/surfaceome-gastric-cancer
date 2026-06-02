@@ -227,40 +227,40 @@ def build_pipeline_overview(
     )
     counts = tier_counts(tier_rows)
     steps = [
-        ("HGNC protein-coding\ncandidate space", candidate_denominator),
+        ("HGNC protein-\ncoding\nspace", candidate_denominator),
         ("Core+Probable\nsurfaceome", core_probable),
-        ("Scored\nfinal ranking", len(ranking_rows)),
-        ("HPA stomach IHC\ncovered", hpa_covered),
-        ("Stability analysis\n(top20 pass)", top20_passing),
+        ("Scored final\nranking", len(ranking_rows)),
+        ("HPA stomach\nIHC covered", hpa_covered),
+        ("Top-20\nstability pass", top20_passing),
         ("Coarse tiers\nT1/T2/W", f"{counts['Tier 1']}/{counts['Tier 2']}/{counts['Watchlist']}"),
     ]
 
-    fig, ax = plt.subplots(figsize=(12.8, 3.5))
-    ax.set_xlim(0, 12.8)
-    ax.set_ylim(0, 3.5)
+    fig, ax = plt.subplots(figsize=(6.9, 2.05))
+    ax.set_xlim(0, 6.9)
+    ax.set_ylim(0, 2.05)
     ax.axis("off")
     for index, (label, count) in enumerate(steps):
-        x = 0.25 + index * 2.05
-        rect = Rectangle((x, 1.25), 1.65, 1.1, facecolor="#eef4f8", edgecolor="#2a4b5f", linewidth=1.2)
+        x = 0.16 + index * 1.12
+        rect = Rectangle((x, 0.82), 0.92, 0.82, facecolor="#eef4f8", edgecolor="#2a4b5f", linewidth=0.9)
         ax.add_patch(rect)
-        ax.text(x + 0.825, 1.96, label, ha="center", va="center", fontsize=9, fontweight="bold")
-        ax.text(x + 0.825, 1.48, str(count), ha="center", va="center", fontsize=13, color="#16384b")
+        ax.text(x + 0.46, 1.37, label, ha="center", va="center", fontsize=7.1, fontweight="bold", linespacing=0.95)
+        ax.text(x + 0.46, 0.98, str(count), ha="center", va="center", fontsize=12.2, color="#16384b")
         if index < len(steps) - 1:
             ax.add_patch(
                 FancyArrowPatch(
-                    (x + 1.68, 1.8),
-                    (x + 2.02, 1.8),
+                    (x + 0.95, 1.23),
+                    (x + 1.10, 1.23),
                     arrowstyle="-|>",
-                    mutation_scale=12,
-                    linewidth=1.2,
+                    mutation_scale=9,
+                    linewidth=0.9,
                     color="#4a4a4a",
                 )
             )
     ax.text(
-        0.25,
-        0.55,
+        0.16,
+        0.34,
         "Manuscript package uses frozen outputs only: no score, weight, universe, ranking, or tier changes.",
-        fontsize=9,
+        fontsize=7.7,
         color="#555555",
     )
     fig.savefig(PIPELINE_FIGURE, bbox_inches="tight")
@@ -270,23 +270,33 @@ def build_pipeline_overview(
 def build_surfaceome_landscape(surfaceome_rows: list[dict[str, str]]) -> None:
     source_rows = [row for row in surfaceome_rows if row.get("summary_type") == "source"]
     source_rows.sort(key=lambda row: int(float(row["n_genes"])))
-    labels = [row["label"] for row in source_rows]
+    label_map = {
+        "go_surface_or_plasma_membrane": "GO surface/plasma\nmembrane",
+        "tcsa": "TCSA",
+        "uniprot_extracellular_topology": "UniProt extracellular\ntopology",
+        "surfy": "SURFY",
+        "hpa_plasma_membrane": "HPA plasma\nmembrane",
+        "cspa": "CSPA",
+        "uniprot_gpi_anchor": "UniProt GPI\nanchor",
+    }
+    labels = [label_map.get(row["label"], row["label"].replace("_", " ")) for row in source_rows]
     totals = np.array([float(row["n_genes"]) for row in source_rows])
     overlaps = np.array([source_overlap_from_note(row.get("notes", "")) for row in source_rows])
     y = np.arange(len(labels))
 
-    fig, ax = plt.subplots(figsize=(8.4, 4.8))
+    fig, ax = plt.subplots(figsize=(6.8, 4.15))
     ax.barh(y, totals, color="#d9e1e8", label="Source genes")
     ax.barh(y, overlaps, color="#3179a6", label="Overlap with Core+Probable")
     ax.set_yticks(y)
-    ax.set_yticklabels(labels, fontsize=8)
-    ax.set_xlabel("Gene count")
-    ax.set_title("Surfaceome Evidence Landscape")
-    ax.legend(loc="lower right", fontsize=8)
+    ax.set_yticklabels(labels, fontsize=8.2)
+    ax.set_xlabel("Gene count", fontsize=9.2)
+    ax.set_title("Surfaceome Evidence Landscape", fontsize=10.5)
+    ax.legend(loc="lower right", fontsize=7.8, frameon=True)
     ax.grid(axis="x", color="#eeeeee", linewidth=0.8)
+    ax.set_xlim(0, max(totals) * 1.16)
     for yi, total, overlap in zip(y, totals, overlaps):
-        ax.text(total + max(totals) * 0.01, yi, f"{int(overlap)}/{int(total)}", va="center", fontsize=7)
-    fig.tight_layout()
+        ax.text(total + max(totals) * 0.012, yi, f"{int(overlap)}/{int(total)}", va="center", fontsize=7.2)
+    fig.subplots_adjust(left=0.28, right=0.97, bottom=0.14, top=0.90)
     fig.savefig(SURFACEOME_FIGURE)
     plt.close(fig)
 

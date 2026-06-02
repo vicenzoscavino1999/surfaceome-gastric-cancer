@@ -507,10 +507,10 @@ def recompute_risk_from_organ_rows(
 
 
 def write_rank_stability_heatmap(top_symbols: list[str], rank_sources: dict[str, dict[str, int]]) -> None:
-    cell_w = 24
-    cell_h = 18
-    left = 110
-    top = 38
+    cell_w = 25
+    cell_h = 13
+    left = 95
+    top = 42
     labels = list(rank_sources)
     width = left + len(labels) * cell_w + 24
     height = top + len(top_symbols) * cell_h + 28
@@ -529,21 +529,21 @@ def write_rank_stability_heatmap(top_symbols: list[str], rank_sources: dict[str,
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
         '<rect width="100%" height="100%" fill="white"/>',
-        '<style>text{font-family:Arial,sans-serif;font-size:11px}.small{font-size:9px}</style>',
+        '<style>text{font-family:Arial,sans-serif;font-size:10px}.small{font-size:8px}</style>',
         '<text x="12" y="20" font-size="14" font-weight="700">Rank stability heatmap</text>',
     ]
     for col, label in enumerate(labels):
         x = left + col * cell_w + 12
-        parts.append(f'<text class="small" x="{x}" y="34" text-anchor="middle" transform="rotate(-45 {x} 34)">{label}</text>')
+        parts.append(f'<text class="small" font-size="8" x="{x}" y="36" text-anchor="middle" transform="rotate(-45 {x} 36)">{label}</text>')
     for row_idx, symbol in enumerate(top_symbols):
         y = top + row_idx * cell_h
-        parts.append(f'<text x="8" y="{y + 13}">{symbol}</text>')
+        parts.append(f'<text font-size="9" x="8" y="{y + 9.5:.1f}">{symbol}</text>')
         for col, label in enumerate(labels):
             rank = rank_sources[label].get(symbol, 9999)
             x = left + col * cell_w
             parts.append(f'<rect x="{x}" y="{y}" width="{cell_w - 1}" height="{cell_h - 1}" fill="{color(rank)}"/>')
             text = str(rank) if rank <= 999 else ">999"
-            parts.append(f'<text class="small" x="{x + cell_w / 2:.1f}" y="{y + 12}" text-anchor="middle">{text}</text>')
+            parts.append(f'<text class="small" font-size="7" x="{x + cell_w / 2:.1f}" y="{y + 9.5:.1f}" text-anchor="middle">{text}</text>')
     parts.append("</svg>")
     RANK_STABILITY_HEATMAP.write_text("\n".join(parts), encoding="utf-8", newline="\n")
 
@@ -557,13 +557,14 @@ def write_bumpchart_scenarios(scenario_ranks: dict[str, dict[str, int]], baselin
         "novelty_focused": "novelty",
         "protein_first": "protein",
     }
-    left = 90
-    top = 35
-    col_w = 120
-    row_h = 13
+    left = 78
+    top = 62
+    col_w = 112
+    row_h = 9.6
     max_rank = 30
-    width = left + (len(scenarios) - 1) * col_w + 120
-    height = top + max_rank * row_h + 42
+    right_label_x = left + (len(scenarios) - 1) * col_w + 14
+    width = right_label_x + 112
+    height = top + max_rank * row_h + 36
     palette = ["#1b9e77", "#d95f02", "#7570b3", "#e7298a", "#66a61e", "#e6ab02", "#a6761d", "#1f78b4"]
     parts = [
         f'<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}" viewBox="0 0 {width} {height}">',
@@ -573,21 +574,29 @@ def write_bumpchart_scenarios(scenario_ranks: dict[str, dict[str, int]], baselin
     ]
     for col, scenario in enumerate(scenarios):
         x = left + col * col_w
-        parts.append(f'<text x="{x}" y="{top - 8}" text-anchor="middle" font-weight="700">{display_labels.get(scenario, scenario)}</text>')
+        parts.append(f'<text x="{x}" y="{top - 15}" text-anchor="middle" font-weight="700">{display_labels.get(scenario, scenario)}</text>')
         parts.append(f'<line x1="{x}" y1="{top}" x2="{x}" y2="{top + max_rank * row_h}" stroke="#cccccc"/>')
         for rank in [1, 10, 20, 30]:
             y = top + (rank - 1) * row_h
-            parts.append(f'<text class="small" x="{x - 30}" y="{y + 4}">{rank}</text>')
-    end_label_groups: dict[float, list[str]] = {}
+            if col == 0:
+                parts.append(f'<text class="small" font-size="8" x="{x - 28}" y="{y + 3.2:.1f}">{rank}</text>')
+    raw_end_labels: list[tuple[float, str]] = []
     for symbol in baseline_top20:
         end_rank = scenario_ranks[scenarios[-1]].get(symbol, max_rank + 1)
         end_y = top + (min(end_rank, max_rank) - 1) * row_h
-        end_label_groups.setdefault(end_y, []).append(symbol)
+        raw_end_labels.append((end_y + 3.2, symbol))
     end_label_y: dict[str, float] = {}
-    for end_y, symbols in end_label_groups.items():
-        for label_index, symbol in enumerate(symbols):
-            offset = (label_index - (len(symbols) - 1) / 2) * 9
-            end_label_y[symbol] = end_y + 4 + offset
+    min_gap = 8.4
+    sorted_labels = sorted(raw_end_labels)
+    previous = top + 2
+    for requested_y, symbol in sorted_labels:
+        label_y = max(requested_y, previous + min_gap)
+        end_label_y[symbol] = label_y
+        previous = label_y
+    overflow = previous - (top + (max_rank - 1) * row_h + 8)
+    if overflow > 0:
+        for _, symbol in sorted_labels:
+            end_label_y[symbol] -= overflow
     for idx, symbol in enumerate(baseline_top20):
         points: list[tuple[float, float]] = []
         for col, scenario in enumerate(scenarios):
@@ -599,7 +608,12 @@ def write_bumpchart_scenarios(scenario_ranks: dict[str, dict[str, int]], baselin
         parts.append(f'<path d="{path}" fill="none" stroke="{color}" stroke-width="1.7" opacity="0.85"/>')
         for x, y in points:
             parts.append(f'<circle cx="{x:.1f}" cy="{y:.1f}" r="2.4" fill="{color}"/>')
-        parts.append(f'<text class="small" x="{points[-1][0] + 8:.1f}" y="{end_label_y[symbol]:.1f}">{symbol}</text>')
+        parts.append(
+            f'<line x1="{points[-1][0] + 3:.1f}" y1="{points[-1][1]:.1f}" '
+            f'x2="{right_label_x - 3:.1f}" y2="{end_label_y[symbol] - 3:.1f}" '
+            f'stroke="{color}" stroke-width="0.6" opacity="0.45"/>'
+        )
+        parts.append(f'<text class="small" font-size="8" x="{right_label_x:.1f}" y="{end_label_y[symbol]:.1f}">{symbol}</text>')
     parts.append("</svg>")
     BUMCHART_SCENARIOS.write_text("\n".join(parts), encoding="utf-8", newline="\n")
 

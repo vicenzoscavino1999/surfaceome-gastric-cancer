@@ -18,6 +18,7 @@ REQUIRED_FILES = [
     "DATA_AVAILABILITY.md",
     "manuscript/cbc_manuscript_scaffold.md",
     "manuscript/cbc_highlights.md",
+    "manuscript/cbc_supplementary_material.md",
     "manuscript/graphical_abstract_brief.md",
     "manuscript/figure_table_plan.tsv",
     "manuscript/cbc_references.bib",
@@ -38,6 +39,8 @@ REQUIRED_FILES = [
     "manuscript/cbc_editorial_manager_package/cbc_manuscript.pdf",
     "manuscript/cbc_editorial_manager_package/cbc_references.bib",
     "manuscript/cbc_editorial_manager_package/cbc_manuscript.bbl",
+    "manuscript/cbc_editorial_manager_package/cbc_supplementary_material.md",
+    "manuscript/cbc_editorial_manager_package/supplementary_table_manifest.tsv",
     "manuscript/cbc_editorial_manager_package/graphical_abstract.tiff",
     "manuscript/cbc_editorial_manager_package/plainnat.bst",
     "scripts/build_phase17_latex_handoff.py",
@@ -73,6 +76,7 @@ ACTIVE_TEXT_FILES = [
     "REPRODUCIBILITY.md",
     "DATA_AVAILABILITY.md",
     "manuscript/latex/README.md",
+    "manuscript/cbc_supplementary_material.md",
 ]
 
 FORBIDDEN_OVERCLAIMS = [
@@ -81,6 +85,9 @@ FORBIDDEN_OVERCLAIMS = [
     "clinically validated candidate",
     "validated target",
     "fraction of the cost",
+    "not " + "independent validation",
+    "independent " + "validation",
+    "independently " + "validated",
 ]
 
 
@@ -166,18 +173,23 @@ def main() -> int:
                 failures.append(f"active CBC file still contains obsolete journal phrase in {rel}: {forbidden}")
 
     for needle in [
-        "A reproducible framework for uncertainty-aware gastric cancer surface-target prioritization with GPI evidence-routing audit",
+        "SurfPrior-GC: a reproducible framework for uncertainty-aware gastric cancer surface-target prioritization with GPI evidence-routing audit",
         "Target journal: Computational Biology and Chemistry",
         "subscription route",
         "integrates heterogeneous public evidence while keeping uncertainty explicit",
         "not enriched beyond a matched null controlling for surfaceome confidence",
-        "transparent hypothesis generation and uncertainty delimitation, not independent validation",
+        "transparent hypothesis generation with explicit uncertainty boundaries",
         "excluded 54 confirmed glycosylphosphatidylinositol (GPI)-anchor genes",
+        "S_g = (sum_{j in A_g, j != R} w_j * x_gj - w_R * x_gR) / sum_{j in A_g} abs(w_j)",
+        "Rank percentiles used average-rank tie handling",
         "including six Tier 1 candidates",
         "## Glossary",
         "## Acknowledgements",
+        "## Supplementary material",
+        "Supplementary Tables S1-S24",
+        "Supplementary File 2",
         "Telephone: +51 962 559 391",
-        "Computational Biology and Chemistry research-data route",
+        "10.5281/zenodo.20498705",
     ]:
         if needle not in scaffold:
             failures.append(f"scaffold missing required CBC/science phrase: {needle}")
@@ -309,7 +321,6 @@ def main() -> int:
         r"\label{tab:review-2}",
         r"\label{tab:review-3}",
         r"\label{tab:review-4}",
-        r"\label{tab:review-5}",
     ]:
         if label not in latex_manuscript:
             failures.append(f"CBC review PDF no longer embeds main table: {label}")
@@ -320,7 +331,7 @@ def main() -> int:
 
     for needle in [
         "subscription route",
-        "not independent validation",
+        "candidate-level experimental evidence",
         "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer",
         "archival DOI",
         "10.5281/zenodo.20498705",

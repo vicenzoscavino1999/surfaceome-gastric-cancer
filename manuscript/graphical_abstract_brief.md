@@ -9,8 +9,8 @@ Computational Biology and Chemistry requires a graphical abstract as a separate 
 Left to right:
 
 1. Public data inputs: TCGA/GTEx RNA, HPA IHC/localization, UniProt topology/GPI features, surfaceome resources, TME marker modules.
-2. Reproducible pipeline: ID normalization, Core+Probable surfaceome universe, component scoring, stability checks, coarse tiering.
-3. Diagnostic insight: incomplete routing of confirmed GPI-anchor evidence can change candidate-universe membership and ranks; a universe-wide GPI evidence correction is applied before ranking.
+2. SurfPrior-GC pipeline: ID normalization, Core+Probable surfaceome universe, component scoring, stability checks, coarse tiering.
+3. Diagnostic insight: incomplete routing of confirmed GPI-anchor evidence can change candidate-universe membership and ranks; a universe-wide GPI evidence correction restores 54 confirmed GPI-anchor genes before ranking.
 4. Outputs: Tier 1/2 gastric cancer surface-target hypotheses and external consistency check with Wang 2026.
 
 ## Visual constraints
@@ -23,11 +23,11 @@ Left to right:
 
 ## Candidate text
 
-Reproducible public-data prioritization of gastric cancer surface targets quantifies GPI-anchor evidence-routing effects and is benchmarked against external surfaceome/proteogenomic references.
+SurfPrior-GC prioritizes gastric cancer surface-target hypotheses and quantifies a universe-stage GPI-anchor evidence-routing correction before candidate tiering.
 
 ## Submission caption
 
-Public TCGA/GTEx RNA, HPA protein/localization, UniProt topology/GPI features, curated surfaceome resources, TME marker modules, and limited TISCH2 candidate annotations are integrated through a reproducible pipeline for gastric cancer surface-target prioritization. A universe-wide GPI-anchor evidence-routing correction is applied before ranking. Outputs are coarse, hypothesis-generating Tier 1/2 nominations with external TCSA/Wang consistency checks and explicit limits from bulk RNA, compartment flags, isoform ambiguity, HPA IHC granularity, and absence of wet-lab validation.
+SurfPrior-GC integrates public TCGA/GTEx RNA, HPA protein/localization, UniProt topology/GPI features, curated surfaceome resources, TME marker modules, and limited TISCH2 candidate annotations for gastric cancer surface-target prioritization. A universe-wide GPI-anchor evidence-routing audit restores 54 confirmed GPI-anchor genes before ranking. Outputs are coarse, hypothesis-generating Tier 1/2 nominations with external TCSA/Wang consistency checks and explicit limits from bulk RNA, compartment flags, isoform ambiguity, HPA IHC granularity, and absence of wet-lab validation.
 
 ## Draft artwork
 

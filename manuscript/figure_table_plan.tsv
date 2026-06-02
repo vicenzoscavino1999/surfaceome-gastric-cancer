@@ -12,4 +12,4 @@ T1	table	Datasets, versions, use, and limitations	results/tables/manuscript_tabl
 T2	table	Score definitions and component weights	results/tables/manuscript_table2_score_definitions.tsv	Methods scoring	yes
 T3	table	Tier 1 and Tier 2 candidates	results/tables/manuscript_table3_top_candidates.tsv	Main candidate results	yes
 T4	table	Control diagnostics	results/tables/manuscript_table4_controls.tsv	Validation and sanity checks	yes
-T5	table	Risks and flags among top candidates	results/tables/manuscript_table5_candidate_flags.tsv	Interpretation guardrails	yes
+T5	table	Risks and flags among top candidates	results/tables/manuscript_table5_candidate_flags.tsv	Supplementary interpretation guardrails	no

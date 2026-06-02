@@ -27,6 +27,11 @@ TABLE_FILES = [
     ROOT / "results" / "tables" / "manuscript_table2_score_definitions.tsv",
     ROOT / "results" / "tables" / "manuscript_table3_top_candidates.tsv",
     ROOT / "results" / "tables" / "manuscript_table4_controls.tsv",
+]
+
+SUPPLEMENTARY_FILES = [
+    ROOT / "manuscript" / "cbc_supplementary_material.md",
+    ROOT / "results" / "tables" / "supplementary_table_manifest.tsv",
     ROOT / "results" / "tables" / "manuscript_table5_candidate_flags.tsv",
 ]
 
@@ -87,10 +92,15 @@ def main() -> int:
         manifest.append(f"- {copy_file(source)}")
 
     manifest.append("")
+    manifest.append("## Supplementary material")
+    for source in SUPPLEMENTARY_FILES:
+        manifest.append(f"- {copy_file(source)}")
+
+    manifest.append("")
     manifest.append("## External blockers")
     manifest.append(
         "- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; "
-        "final code release tag is v0.1.2; archival DOI is 10.5281/zenodo.20498705."
+        "final code release tag is v0.1.3; archival DOI is 10.5281/zenodo.20498705."
     )
     manifest.append("- Add full postal address in Editorial Manager if required.")
     manifest.append("- Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.")

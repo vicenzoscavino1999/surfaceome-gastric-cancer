@@ -23,8 +23,8 @@ https://submit.elsevier.com/CBAC
 - [x] Graphical abstract artwork is exported as a separate TIFF file.
 - [x] Graphical abstract export is 3200 x 1280 px, above the Elsevier minimum 1328 x 531 px.
 - [x] Figure captions are drafted.
-- [x] Main tables are available as editable TSV text.
-- [x] Supplementary captions are drafted and mapped to available artifacts.
+- [x] Four main tables are available as editable TSV text; the extended top-30 flag table is supplied as Supplementary File 2.
+- [x] Supplementary material is represented by a separate caption file, the S1-S24 table manifest, and the top-30 flag table mapped to available artifacts.
 - [x] Final editorial pass after CBC formatting.
 
 ## LaTeX Handoff
@@ -73,5 +73,5 @@ https://submit.elsevier.com/CBAC
 - [x] Re-run local smoke-test equivalent, unit tests, Snakemake dry-run, and Phase 17 manuscript/figure checks.
 - [x] Add reviewer-facing reproducibility guide and aggregate check command.
 - [x] Add frozen-source acquisition policy and split GitHub Actions CI/manual release-audit workflow.
-- [ ] Record the clean clone/container audit on the final public tag `v0.1.2` after push (no data, score, or ranking change vs the audited `v0.1.1`; frozen ranking SHA256 unchanged; `v0.1.0-rc4` DOI-bound data-package archival complete).
+- [ ] Record the clean clone/container audit on the final public tag `v0.1.3` after push (no data, score, or ranking change; frozen ranking SHA256 unchanged; `v0.1.0-rc4` DOI-bound data-package archival complete).
 - [ ] Reconfirm Guide for Authors requirements immediately before submission.

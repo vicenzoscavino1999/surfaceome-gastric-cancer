@@ -137,17 +137,17 @@ Geir~Kjetil Sandve, Anton Nekrutenko, James Taylor, and Eivind Hovig.
 \newblock \emph{PLOS Computational Biology}, 9\penalty0 (10):\penalty0 e1003285, 2013.
 \newblock \doi{10.1371/journal.pcbi.1003285}.
 
-\bibitem[Shah et~al.(2023)Shah, Shitara, Ajani, Bang, Enzinger, et~al.]{shah2023spotlight}
+\bibitem[Shah et~al.(2023)Shah, Shitara, Ajani, Bang, Enzinger, et~al.]{shitara2023glow}
 Manish~A. Shah, Kohei Shitara, Jaffer~A. Ajani, Yung-Jue Bang, Peter Enzinger, et~al.
-\newblock Zolbetuximab plus {mFOLFOX6} in patients with {CLDN18.2}-positive, {HER2}-negative, untreated, locally advanced unresectable or metastatic gastric or gastro-oesophageal junction adenocarcinoma ({SPOTLIGHT}): a multicentre, randomised, double-blind, phase 3 trial.
-\newblock \emph{The Lancet}, 401\penalty0 (10389):\penalty0 1655--1668, 2023.
-\newblock \doi{10.1016/S0140-6736(23)00620-7}.
-
-\bibitem[Shitara et~al.(2023)Shitara, Lordick, Bang, Enzinger, Ilson, et~al.]{shitara2023glow}
-Kohei Shitara, Florian Lordick, Yung-Jue Bang, Peter Enzinger, David Ilson, et~al.
 \newblock Zolbetuximab plus {CAPOX} in {CLDN18.2}-positive gastric or gastroesophageal junction adenocarcinoma: the randomized, phase 3 {GLOW} trial.
 \newblock \emph{Nature Medicine}, 29:\penalty0 2133--2141, 2023.
 \newblock \doi{10.1038/s41591-023-02465-7}.
+
+\bibitem[Shitara et~al.(2023)Shitara, Lordick, Bang, Enzinger, Ilson, et~al.]{shah2023spotlight}
+Kohei Shitara, Florian Lordick, Yung-Jue Bang, Peter Enzinger, David Ilson, et~al.
+\newblock Zolbetuximab plus {mFOLFOX6} in patients with {CLDN18.2}-positive, {HER2}-negative, untreated, locally advanced unresectable or metastatic gastric or gastro-oesophageal junction adenocarcinoma ({SPOTLIGHT}): a multicentre, randomised, double-blind, phase 3 trial.
+\newblock \emph{The Lancet}, 401\penalty0 (10389):\penalty0 1655--1668, 2023.
+\newblock \doi{10.1016/S0140-6736(23)00620-7}.
 
 \bibitem[Thul et~al.(2017)Thul, Akesson, Wiking, Mahdessian, Geladaki, et~al.]{thul2017subcellular}
 Peter~J. Thul, Lovisa Akesson, Mikaela Wiking, Diana Mahdessian, Aikaterini Geladaki, et~al.
