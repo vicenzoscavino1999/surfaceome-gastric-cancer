@@ -2,10 +2,15 @@
 
 All notable changes to the reproducible analysis package are documented here.
 
-## Unreleased - 2026-06-01
+## Unreleased
+
+- No changes yet.
+
+## 0.1.0 - 2026-06-02
 
 - Published the Zenodo frozen reproducibility data package for `v0.1.0-rc4` and inserted DOI `10.5281/zenodo.20498705` into release and CBC submission metadata. No score, weight, universe, ranking, tier, figure data, or candidate placement changed.
 - Fixed the CBC LaTeX handoff title rendering so a UTF-8 BOM in the Markdown scaffold cannot leak the literal Markdown `#` marker into the generated PDF. No scientific artifacts changed.
+- Finalized the public code release tag path as `v0.1.0`; the archived frozen data package remains versioned as `v0.1.0-rc4` because it is the checksum-locked input bundle used for the DOI deposit.
 
 ## 0.1.0-rc4 - 2026-06-01
 
