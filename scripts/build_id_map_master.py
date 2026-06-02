@@ -50,6 +50,9 @@ CONTROLS_YAML = REPO_ROOT / "config" / "controls.yaml"
 PROVENANCE_LOG = DOCS_DIR / "provenance_log.tsv"
 
 USER_AGENT = "surfaceome-gastric-cancer-phase3/0.1"
+FROZEN_ACCESS_DATE = "2026-05-28"
+FROZEN_HGNC_LAST_MODIFIED = "Tue, 26 May 2026 13:13:52 GMT"
+FROZEN_HGNC_CONTENT_LENGTH = "16737155"
 
 MANUAL_THERAPEUTIC_ALIASES = {
     "CLDN18.2": ("CLDN18", "isoform_specific_alias_requires_downstream_transcript_evidence"),
@@ -133,9 +136,13 @@ def write_tsv(path: Path, rows: list[dict[str, object]], fieldnames: list[str]) 
 
 def download_hgnc(force: bool, timeout: int) -> dict[str, object]:
     HGNC_RAW.parent.mkdir(parents=True, exist_ok=True)
-    headers = fetch_head(HGNC_URL, timeout=timeout)
     action = "verified_existing_raw"
+    headers = {
+        "last-modified": FROZEN_HGNC_LAST_MODIFIED,
+        "content-length": FROZEN_HGNC_CONTENT_LENGTH,
+    }
     if force or not HGNC_RAW.exists():
+        headers = fetch_head(HGNC_URL, timeout=timeout)
         action = "downloaded_raw"
         print("Downloading HGNC complete set", flush=True)
         part = HGNC_RAW.with_name(HGNC_RAW.name + ".part")
@@ -151,7 +158,7 @@ def download_hgnc(force: bool, timeout: int) -> dict[str, object]:
         "local_path": relative(HGNC_RAW),
         "filename": HGNC_RAW.name,
         "url_or_endpoint": HGNC_URL,
-        "retrieval_date": dt.date.today().isoformat(),
+        "retrieval_date": FROZEN_ACCESS_DATE if action == "verified_existing_raw" else dt.date.today().isoformat(),
         "version_or_release": f"HGNC complete set; Last-Modified {headers.get('last-modified', '')}".strip(),
         "bytes": HGNC_RAW.stat().st_size,
         "sha256": sha256_file(HGNC_RAW),
@@ -661,7 +668,7 @@ def write_notes(master_rows: list[dict[str, object]], control_rows: list[dict[st
     (DOCS_DIR / "fase3_identifier_normalization.md").write_text(
         f"""# Fase 3 Identifier Normalization
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 Fase 3 builds a canonical map from HGNC approved protein-coding genes and joins HGNC aliases/previous symbols with UniProt reviewed human topology accessions, MANE/Ensembl transcripts, HPA identifiers, and Xena/Toil Ensembl gene IDs.
 

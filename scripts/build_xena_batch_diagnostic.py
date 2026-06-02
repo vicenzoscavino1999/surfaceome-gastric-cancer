@@ -221,6 +221,15 @@ def make_plot(scores: np.ndarray, samples: list[SelectedSample], explained: np.n
     plt.close(fig)
 
 
+def orient_pca_scores(scores: np.ndarray, components: np.ndarray) -> np.ndarray:
+    oriented = scores.copy()
+    for idx, component in enumerate(components):
+        anchor = int(np.argmax(np.abs(component)))
+        if component[anchor] < 0:
+            oriented[:, idx] *= -1
+    return oriented
+
+
 def update_config_status() -> None:
     if not CONFIG_DATASETS.exists():
         return
@@ -314,8 +323,8 @@ def main(argv: list[str] | None = None) -> int:
 
     scaler = StandardScaler()
     scaled = scaler.fit_transform(matrix)
-    pca = PCA(n_components=2, random_state=SEED)
-    scores = pca.fit_transform(scaled)
+    pca = PCA(n_components=2, random_state=SEED, svd_solver="full")
+    scores = orient_pca_scores(pca.fit_transform(scaled), pca.components_)
     make_plot(scores, samples, pca.explained_variance_ratio_, FIGURES_DIR / "pca_batch_diagnostic.svg")
 
     groups = np.array([sample.analysis_group for sample in samples])

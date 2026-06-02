@@ -980,7 +980,7 @@ def plot_expression_distribution(tumor_rows: list[dict[str, object]], output: Pa
     ax_scatter.grid(True, linewidth=0.35, alpha=0.25)
     fig.colorbar(scatter, ax=ax_scatter, label="E score")
 
-    highlight = {"ERBB2", "CLDN18", "FGFR2", "TACSTD2", "EPCAM", "MET", "MSLN"}
+    highlight = ["ERBB2", "CLDN18", "FGFR2", "TACSTD2", "EPCAM", "MET", "MSLN"]
     for symbol in highlight:
         if symbol not in symbols:
             continue

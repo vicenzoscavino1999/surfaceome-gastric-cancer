@@ -35,6 +35,58 @@ CONFIG_DATASETS = REPO_ROOT / "config" / "datasets.yaml"
 PROVENANCE_LOG = DOCS_DIR / "provenance_log.tsv"
 
 USER_AGENT = "surfaceome-gastric-cancer-phase2/0.1"
+FROZEN_ACCESS_DATE = "2026-05-28"
+
+FROZEN_URL_METADATA = {
+    "TcgaTargetGTEX_phenotype.txt.gz": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "Fri, 09 Apr 2021 20:01:15 GMT",
+        "content_length": "135753",
+    },
+    "TcgaTargetGtex_rsem_gene_tpm.gz": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "Fri, 09 Apr 2021 20:01:53 GMT",
+        "content_length": "1323254426",
+    },
+    "normal_ihc_data.tsv.zip": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "Thu, 06 Nov 2025 02:55:06 GMT",
+        "content_length": "5732831",
+    },
+    "cancer_data.tsv.zip": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "Thu, 06 Nov 2025 02:55:32 GMT",
+        "content_length": "1724018",
+    },
+    "subcellular_location.tsv.zip": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "Thu, 06 Nov 2025 02:55:42 GMT",
+        "content_length": "252331",
+    },
+    "rna_tissue_consensus.tsv.zip": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "Thu, 06 Nov 2025 03:00:57 GMT",
+        "content_length": "5293680",
+    },
+    "rna_tissue_gtex.tsv.zip": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "Thu, 06 Nov 2025 03:03:44 GMT",
+        "content_length": "5921184",
+    },
+    "uniprot_reviewed_human_topology.tsv.gz": {
+        "action": "downloaded_raw",
+        "retrieval_date": FROZEN_ACCESS_DATE,
+        "last_modified": "",
+        "content_length": "",
+    },
+}
 
 PHASE2_SOURCE_STATUS = {
     "xena_toil_tcga_gtex": "raw_downloaded_with_checksums_batch_diagnostic_pending",
@@ -211,7 +263,7 @@ def download_url(spec: UrlDownload, force: bool, timeout: int, chunk_size: int, 
     else:
         checksum = sha256_file(target, chunk_size=chunk_size)
 
-    return {
+    record = {
         "source_id": spec.source_id,
         "action": action,
         "local_path": relative(target),
@@ -227,6 +279,9 @@ def download_url(spec: UrlDownload, force: bool, timeout: int, chunk_size: int, 
         "license_or_terms": spec.license_or_terms,
         "notes": spec.notes,
     }
+    if offline:
+        record.update(FROZEN_URL_METADATA.get(spec.filename, {}))
+    return record
 
 
 def gdc_query(endpoint: str, params: dict[str, object], timeout: int) -> tuple[str, bytes]:
@@ -317,24 +372,26 @@ def write_gdc_metadata(force: bool, timeout: int, offline: bool) -> list[dict[st
             print(f"Downloading gdc_tcga_stad: {filename}", flush=True)
             url, raw = gdc_query(endpoint, params, timeout=timeout)
             target.write_bytes(raw)
-        records.append(
-            {
-                "source_id": "gdc_tcga_stad",
-                "action": action,
-                "local_path": relative(target),
-                "filename": filename,
-                "url_or_endpoint": url,
-                "retrieval_date": dt.date.today().isoformat(),
-                "version_or_release": "GDC API live query",
-                "bytes": target.stat().st_size,
-                "sha256": sha256_file(target),
-                "status": "ok",
-                "last_modified": "",
-                "content_length": "",
-                "license_or_terms": "GDC data use terms; open-access metadata queried",
-                "notes": notes,
-            }
-        )
+        record = {
+            "source_id": "gdc_tcga_stad",
+            "action": action,
+            "local_path": relative(target),
+            "filename": filename,
+            "url_or_endpoint": url,
+            "retrieval_date": dt.date.today().isoformat(),
+            "version_or_release": "GDC API live query",
+            "bytes": target.stat().st_size,
+            "sha256": sha256_file(target),
+            "status": "ok",
+            "last_modified": "",
+            "content_length": "",
+            "license_or_terms": "GDC data use terms; open-access metadata queried",
+            "notes": notes,
+        }
+        if offline:
+            record["action"] = "downloaded_raw_metadata"
+            record["retrieval_date"] = FROZEN_ACCESS_DATE
+        records.append(record)
     return records
 
 
@@ -464,7 +521,7 @@ def write_fase2_notes(records: list[dict[str, object]], skipped_large: bool) -> 
     (DOCS_DIR / "fase2_data_acquisition.md").write_text(
         f"""# Fase 2 Data Acquisition
 
-Access date: {dt.date.today().isoformat()}
+Access date: {FROZEN_ACCESS_DATE}
 
 This note records the first reproducible raw-data acquisition pass for the MVP tumor-normal workflow. Raw files are immutable inputs; derived tables must be regenerated from scripts rather than by editing raw files.
 
@@ -481,14 +538,14 @@ This note records the first reproducible raw-data acquisition pass for the MVP t
 - Download manifest: `results/tables/phase2_download_manifest.tsv`
 - Provenance log: `docs/provenance_log.tsv`
 
-## Remaining Fase 2 Gate
+## Batch Diagnostic Gate
 
-The next required Fase 2 output is the Xena/Toil tumor-normal batch diagnostic:
+The required Xena/Toil tumor-normal batch diagnostic has been generated:
 
 - `results/figures/pca_batch_diagnostic.svg`
 - `results/tables/batch_permanova.tsv`
 
-GDC STAR Counts expression files remain a secondary sensitivity layer. The raw GDC metadata captured here identifies eligible files, but the primary tumor-normal score should not start until the Xena/Toil PCA/PERMANOVA diagnostic is generated and interpreted.{skipped}
+Interpretation is documented in `docs/fase2_batch_diagnostic.md`. GDC STAR Counts expression files remain a secondary sensitivity layer. The raw GDC metadata captured here identifies eligible files, and Fase 5 must preserve TCGA/GTEx source labels plus adjacent-normal sensitivity before strong tumor-normal selectivity claims.{skipped}
 """,
         encoding="utf-8",
     )
