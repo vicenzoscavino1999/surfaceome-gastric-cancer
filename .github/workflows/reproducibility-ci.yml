@@ -64,6 +64,9 @@ jobs:
           results/tables/coverage_matrix.tsv
           docs/fase1_data_inventory.md
 
+      - name: No-raw smoke audit
+        run: python scripts/run_reproducibility_checks.py --mode smoke
+
       - name: Build audit container
         run: docker build -f docker/Dockerfile -t surfaceome-gastric-cancer-repro .
 
