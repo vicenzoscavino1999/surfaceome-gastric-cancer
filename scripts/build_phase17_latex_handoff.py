@@ -426,8 +426,10 @@ def build_cbc_tex(source: str, keys: list[str]) -> str:
 
     return rf"""\documentclass[preprint,12pt,authoryear]{{elsarticle}}
 
+\IfFileExists{{cmap.sty}}{{\usepackage{{cmap}}}}{{}}
 \usepackage[utf8]{{inputenc}}
 \usepackage[T1]{{fontenc}}
+\usepackage{{lmodern}}
 \usepackage{{amsmath}}
 \usepackage{{array}}
 \usepackage{{booktabs}}
