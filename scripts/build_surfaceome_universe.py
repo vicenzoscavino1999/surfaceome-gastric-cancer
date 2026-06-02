@@ -913,6 +913,7 @@ The universe is acceptable for the next phase only if negative controls do not e
 - `results/tables/surfaceome_false_positive_false_negative_audit.tsv`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

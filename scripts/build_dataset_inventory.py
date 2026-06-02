@@ -1104,6 +1104,7 @@ def main(argv: list[str] | None = None) -> int:
     (DOCS_DIR / "fase1_data_inventory.md").write_text(
         build_phase1_notes(args.access_date, summaries),
         encoding="utf-8",
+        newline="\n",
     )
     print("Wrote Fase 1 inventory tables and notes.")
     return 0

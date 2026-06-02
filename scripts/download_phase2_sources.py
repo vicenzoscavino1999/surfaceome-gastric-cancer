@@ -504,7 +504,7 @@ def update_datasets_config(downloaded_sources: Iterable[str], all_xena_files_pre
         elif current_id in status_updates and line.startswith("    status: "):
             line = f'    status: "{status_updates[current_id]}"'
         updated_lines.append(line)
-    CONFIG_DATASETS.write_text("\n".join(updated_lines) + "\n", encoding="utf-8")
+    CONFIG_DATASETS.write_text("\n".join(updated_lines) + "\n", encoding="utf-8", newline="\n")
 
 
 def write_fase2_notes(records: list[dict[str, object]], skipped_large: bool) -> None:
@@ -548,6 +548,7 @@ The required Xena/Toil tumor-normal batch diagnostic has been generated:
 Interpretation is documented in `docs/fase2_batch_diagnostic.md`. GDC STAR Counts expression files remain a secondary sensitivity layer. The raw GDC metadata captured here identifies eligible files, and Fase 5 must preserve TCGA/GTEx source labels plus adjacent-normal sensitivity before strong tumor-normal selectivity claims.{skipped}
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

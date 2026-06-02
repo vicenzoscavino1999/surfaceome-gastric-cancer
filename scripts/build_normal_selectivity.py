@@ -1094,6 +1094,7 @@ The intra-TCGA adjacent-normal comparison is reported as a sensitivity test. It 
 - `results/figures/tumor_normal_power_curve.svg`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

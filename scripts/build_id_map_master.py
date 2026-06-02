@@ -700,6 +700,7 @@ CLDN18.2 and FGFR2b are intentionally not treated as solved by gene-level mappin
 - `results/tables/id_source_coverage.tsv`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

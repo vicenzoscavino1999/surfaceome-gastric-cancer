@@ -843,7 +843,7 @@ def build_note(
         "Fase 16 complete. Proceed to Fase 17 manuscript drafting with these packaged figures/tables and the stated limitations.",
         "",
     ]
-    PHASE16_NOTE.write_text("\n".join(lines), encoding="utf-8")
+    PHASE16_NOTE.write_text("\n".join(lines), encoding="utf-8", newline="\n")
 
 
 def main() -> int:

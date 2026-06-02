@@ -937,6 +937,7 @@ Interpretation: this set mixes plausible adhesion/surface or dual-compartment bi
 - `results/figures/top_candidates_scRNA_dotplot.svg`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

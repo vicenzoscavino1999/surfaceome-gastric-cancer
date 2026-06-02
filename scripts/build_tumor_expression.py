@@ -1082,6 +1082,7 @@ Frozen cBioPortal GISTIC JSON calls were used for ERBB2, FGFR2, and MET to suppo
 - `results/tables/amplified_target_cna_expression.tsv`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

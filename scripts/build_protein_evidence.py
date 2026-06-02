@@ -592,6 +592,7 @@ The HPA cancer bulk file does not expose antibody IDs, staining intensity/quanti
 - `results/figures/rna_protein_concordance.svg`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

@@ -298,6 +298,7 @@ Fase 4B is not a statistical power test and does not assign biological priority.
 - `results/figures/rank_ci_by_coverage.svg`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

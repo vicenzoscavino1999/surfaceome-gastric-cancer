@@ -741,6 +741,7 @@ Class A/B means a clear or inferred extracellular region supports antibody-acces
 - `results/figures/ecd_length_distribution.svg`
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 

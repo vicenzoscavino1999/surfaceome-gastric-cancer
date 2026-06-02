@@ -38,7 +38,7 @@ def main() -> int:
         writer.writeheader()
         writer.writerows(rows)
 
-    SENTINEL.write_text("supplementary_table_manifest_status=ok\n", encoding="utf-8")
+    SENTINEL.write_text("supplementary_table_manifest_status=ok\n", encoding="utf-8", newline="\n")
     print("Refreshed supplementary table manifest path status.")
     return 0
 

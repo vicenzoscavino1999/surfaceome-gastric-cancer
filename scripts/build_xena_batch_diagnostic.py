@@ -245,7 +245,7 @@ def update_config_status() -> None:
         elif current_id == "xena_toil_tcga_gtex" and line.startswith("    status: "):
             line = '    status: "raw_downloaded_with_checksums_batch_diagnostic_complete"'
         updated.append(line)
-    CONFIG_DATASETS.write_text("\n".join(updated) + "\n", encoding="utf-8")
+    CONFIG_DATASETS.write_text("\n".join(updated) + "\n", encoding="utf-8", newline="\n")
 
 
 def format_permanova_row(row: dict[str, object]) -> dict[str, object]:
@@ -288,6 +288,7 @@ This diagnostic uses the downloaded Xena/Toil `TcgaTargetGtex_rsem_gene_tpm.gz` 
 Fase 2 batch diagnostic outputs now exist. The diagnostic is not a permission to ignore source effects: Fase 5 must keep TCGA/GTEx source labels in the analysis notes, and GDC adjacent-normal sensitivity remains required before strong tumor-normal selectivity claims.
 """,
         encoding="utf-8",
+        newline="\n",
     )
 
 
