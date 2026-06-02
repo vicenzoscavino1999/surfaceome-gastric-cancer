@@ -1,7 +1,5 @@
 ﻿# SurfPrior-GC: a reproducible framework for uncertainty-aware gastric cancer surface-target prioritization with GPI evidence-routing audit
 
-Draft status: CBC adaptation started 2026-06-01. This is not a submission-ready manuscript.
-
 Target journal: Computational Biology and Chemistry, full-length article, subscription route.
 
 ## Abstract
