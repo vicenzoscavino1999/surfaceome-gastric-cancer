@@ -1,6 +1,6 @@
 ﻿# Fase 17 Claim Traceability Audit
 
-Date: 2026-05-31
+Date: 2026-05-31; pre-submission literature/novelty status updated 2026-06-02.
 
 ## Scope
 
@@ -57,9 +57,10 @@ Sidecar metadata: `results/rankings/ranking_v2_frozen.metadata.yaml`
 
 ## Remaining Pre-Submission Checks
 
-- Verify every external bibliographic record and DOI during the reference-manager / `.bib` pass.
-- Reconfirm the CSBJ guide for authors immediately before final submission formatting.
+- Direct PubMed/Google Scholar novelty check: DONE on 2026-06-02; see `docs/literature_landscape_and_differentiation.md` and DD-065. This did not require stronger manuscript novelty claims or changes to scores, tiers, DOI, or release artifacts.
+- Verify every external bibliographic record and DOI during any final reference-manager / `.bib` pass if new citations are added after this audit. The current CBC 30-reference library remains unchanged by the novelty check.
+- Reconfirm the Computational Biology and Chemistry Guide for Authors and Editorial Manager file requirements immediately before final upload.
 - Public repository URL inserted: https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
-- Insert the archival DOI after the frozen input package or equivalent checksum/provenance package is archived.
+- Archival DOI inserted: `10.5281/zenodo.20498705`.
 - Reconfirm author, funding, competing-interest, and acknowledgement wording immediately before final submission; current author name, affiliation, ORCID, and corrected corresponding-author email are inserted but the PDF remains non-final.
 - Migrate the frozen editorial text to LaTeX only after the remaining language review is complete.
