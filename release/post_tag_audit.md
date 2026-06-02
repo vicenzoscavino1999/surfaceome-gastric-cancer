@@ -24,7 +24,7 @@ record requested by the open item in `release/release_checklist.md`.
   the CBC manuscript check, the publication-figure check, and the Snakemake dry-run (`Nothing to be
   done`).
 
-## Clean-checkout finding (what a stranger experiences from a bare clone)
+## Clean-checkout finding for tag v0.1.1
 
 A clean checkout of tag `v0.1.1` (via `git worktree add --detach <dir> v0.1.1`, equivalent to a fresh
 `git clone` of the tag) was tested with no external data downloaded. Result:
@@ -39,6 +39,15 @@ A clean checkout of tag `v0.1.1` (via `git worktree add --detach <dir> v0.1.1`, 
 A reviewer must first download the Zenodo data package and populate `data/raw/`. This is now stated
 up front in `README.md`.
 
+## Post-tag main mitigation
+
+On post-tag `main`, `scripts/run_reproducibility_checks.py` now has `auto`, `full`, and `smoke`
+modes. A bare clone without `data/raw/` runs a no-raw smoke audit that verifies the frozen ranking
+hash, release-input wiring, no-data unit tests, and tracked phase artifacts, then explicitly lists
+the full-data checks that require the Zenodo bundle. With `data/raw/` populated, the same command
+runs the full audit. This improves reviewer ergonomics on `main`; it does not change the already
+published `v0.1.1` tag or Zenodo DOI.
+
 ## Still open (honest residual)
 
 - [ ] Run the full audit from a fresh clone of `v0.1.1` **plus** the Zenodo `data/raw/` bundle on a
@@ -47,13 +56,12 @@ up front in `README.md`.
       `docs/nondeterminism_inventory.md` notes BLAS/LAPACK and cross-architecture floating-point
       differences may perturb tolerance-validated numeric outputs (PCA/PERMANOVA/power sims).
 - [ ] Independent third-party reproduction (any operator other than the author).
-- [ ] Optional: make `scripts/run_reproducibility_checks.py` degrade gracefully without `data/raw/`
-      (validate tracked outputs, hashes, manuscript checks, and the dry-run; clearly skip raw-input
-      checks with a "download the Zenodo bundle for the full audit" message) instead of exiting on a
-      traceback.
+- [x] Post-tag `main` makes `scripts/run_reproducibility_checks.py` degrade gracefully without
+      `data/raw/` by running a no-raw smoke audit and listing skipped full-data checks.
 
 ## Note on repository state at audit time
 
 The published artifacts (`v0.1.1` tag and the `10.5281/zenodo.20498705` DOI) are frozen and stable.
 The local `main` branch has advanced past the tag with post-release commits; those do not change the
-published release or DOI. Any reproduction claim should be made against tag `v0.1.1`, not `main`.
+published release or DOI. If the no-raw smoke-audit mitigation should become a tagged release
+feature, create a later code tag from the updated `main`.

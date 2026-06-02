@@ -1,6 +1,6 @@
 ﻿# Reviewer Reproducibility Guide
 
-Date: 2026-06-01
+Date: 2026-06-02
 
 This guide gives reviewers a short path through the repository. It does not replace the full provenance records in `docs/provenance_log.tsv`, `config/datasets.yaml`, `config/release_manifest.yaml`, or `REPRODUCIBILITY.md`.
 
@@ -43,15 +43,12 @@ Run the reviewer audit:
 python scripts/run_reproducibility_checks.py
 ```
 
-This command runs unit tests, all phase artifact checks through Fase 16, the CBC manuscript check, the publication-figure check, and a Snakemake dry-run.
+This command auto-detects whether the frozen raw bundle is present. With `data/raw/` populated from the Zenodo package, it runs the full audit: unit tests, all phase artifact checks through Fase 16, the CBC manuscript check, the publication-figure check, and a Snakemake dry-run. In a bare clone without `data/raw/`, it runs a no-raw smoke audit that verifies the frozen ranking hash, release-input wiring, no-data unit tests, and tracked phase artifacts while explicitly listing skipped full-data checks. Use `--mode full` or `--mode smoke` to force either path.
 
 Expected current result:
 
-- `python -m pytest -q`: 13 tests pass.
-- Phase artifact checks: all pass from bootstrap through Fase 16.
-- `scripts/check_phase17_manuscript_brief.py`: passes.
-- `scripts/export_phase17_publication_figures.py --check`: passes.
-- `python -m snakemake -n --cores 1`: reports that all requested files are present and up to date.
+- Full mode with the frozen bundle: `python -m pytest -q` reports 13 passing tests; phase artifact checks pass from bootstrap through Fase 16; the CBC manuscript check passes; the publication-figure check passes; `python -m snakemake -n --cores 1` reports that all requested files are present and up to date.
+- Smoke mode without the frozen bundle: no-data tests pass, data-dependent tests are skipped, the frozen ranking hash matches, and skipped full-data checks are listed explicitly.
 
 ## Recompute Downstream
 
@@ -132,7 +129,7 @@ The current release candidate has been checked in Docker and in clean directory 
 ## Current Limitations
 
 - The public repository URL and archival DOI are inserted. The archival DOI is `10.5281/zenodo.20498705`.
-- A Dockerfile, full transitive environment lockfile, Docker audit, downstream clean-directory audit, and frozen-raw clean-directory audit are present for the current release candidate. The clean clone/container audit must still be repeated after the final public release tag.
+- A Dockerfile, full transitive environment lockfile, Docker audit, downstream clean-directory audit, frozen-raw clean-directory audit, and no-raw smoke audit are present for the current release path. A full clean-clone/container audit with the Zenodo raw bundle remains the strongest remaining independent reproduction step.
 - GitHub Actions are present for small CI and manual full-data release audits, but the full raw bundle is intentionally not assumed to exist on every push.
 - Some historical Snakemake metadata are missing in the long-lived prepared workspace for early files generated before all rules were formalized; a clean frozen-raw run produces current metadata and a clean dry-run for declared outputs.
 - Manual curation artifacts are validated as frozen files; web curation is not automatically regenerated.
@@ -140,4 +137,4 @@ The current release candidate has been checked in Docker and in clean directory 
 
 ## Bottom Line
 
-The current package is reviewable and locally auditable, and the frozen data package is DOI-archived. It is not yet formally release-grade 10/10 until the final tagged-release clean-clone/container audit is completed. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.
+The current package is reviewable and locally auditable, and the frozen data package is DOI-archived. The main remaining reproducibility gap is independent or containerized reproduction from a fresh clone plus the Zenodo raw bundle. The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer.

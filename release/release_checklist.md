@@ -24,7 +24,7 @@ Status date: 2026-06-02
 - [x] Current release-candidate container audit passes with `docker run --rm -v "${PWD}:/work" surfaceome-gastric-cancer-repro`.
 - [x] Current release-candidate clean-directory audit passes after forced Fase 13->17 rerun and hash comparison.
 - [x] Current release-candidate clean-directory recompute from frozen `data/raw/` passes Fase 1->17 and reviewer audit.
-- [ ] Post-tag audit artifact recorded in `release/post_tag_audit.md`; full fresh-clone/container audit with the Zenodo `data/raw/` bundle remains open.
+- [ ] No-raw smoke audit path is implemented on post-tag `main`; full fresh-clone/container audit with the Zenodo `data/raw/` bundle remains open before any next release tag.
 - [ ] Full transitive environment lockfile or container verified on the frozen public release tag.
 - [ ] Manual GitHub Actions release-audit workflow repeated on the final public release package if the frozen data bundle is available to the runner.
 

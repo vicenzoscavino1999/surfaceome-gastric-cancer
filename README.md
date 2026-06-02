@@ -5,7 +5,7 @@
 
 This repository is the execution workspace for a reproducible computational paper that prioritizes cell-surface targets in gastric adenocarcinoma.
 
-> **Reproducing the full audit requires the frozen data bundle.** A bare `git clone` ships the code, configuration, and tracked result/processed tables, but **not** the large `data/raw/` inputs (gitignored; ~1.4 GB). Before running `python scripts/run_reproducibility_checks.py`, download the Zenodo package ([DOI 10.5281/zenodo.20498705](https://doi.org/10.5281/zenodo.20498705)) and extract it so that `data/raw/` is populated. Without it the audit stops at the Fase 2 raw-input check. The push/PR CI badge above exercises only the no-raw smoke path.
+> **Reproducing the full audit requires the frozen data bundle.** A bare `git clone` ships the code, configuration, and tracked result/processed tables, but **not** the large `data/raw/` inputs (gitignored; ~1.4 GB). `python scripts/run_reproducibility_checks.py` auto-detects this boundary: with the Zenodo package ([DOI 10.5281/zenodo.20498705](https://doi.org/10.5281/zenodo.20498705)) extracted so that `data/raw/` is populated, it runs the full audit; without the bundle, it runs a no-raw smoke audit that validates tracked artifacts and clearly lists skipped full-data checks. The push/PR CI badge above exercises only the no-raw smoke path.
 
 Current stage: Fase 17 has a Computational Biology and Chemistry manuscript handoff, PDF, graphical abstract, flat Editorial Manager package, and reviewer-facing reproducibility checks. Coarse tiers are assigned and packaged for manuscript use, but no fine intra-tier order, clinical efficacy/safety claim, or wet-lab validation claim has been generated.
 
@@ -60,13 +60,15 @@ python -m pip install -r requirements-manuscript.txt
 python scripts/run_reproducibility_checks.py
 ```
 
+In a bare clone without `data/raw/`, this command runs the no-raw smoke audit. To force behavior explicitly, use `--mode smoke` or `--mode full`.
+
 The optional manuscript rebuild also regenerates the CBC LaTeX handoff, compiles the PDF, and rebuilds the flat package:
 
 ```powershell
 python scripts/run_reproducibility_checks.py --include-latex
 ```
 
-Current local result: unit tests pass, phase artifact checks pass through Fase 16, the CBC manuscript check passes, the publication-figure check passes, and Snakemake dry-run reports all declared outputs up to date.
+Current local result: full mode passes unit tests, phase artifact checks through Fase 16, the CBC manuscript check, the publication-figure check, and Snakemake dry-run. Smoke mode also passes from a no-raw posture, with full-data checks explicitly skipped.
 
 The frozen-source acquisition boundary is documented in `docs/source_acquisition_policy.md`. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are treated as frozen checksum/provenance inputs for release reproduction. Live re-downloads are best-effort only and are not the default reviewer claim.
 

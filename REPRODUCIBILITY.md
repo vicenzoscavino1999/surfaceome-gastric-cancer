@@ -33,7 +33,7 @@ Fase 2 MVP raw inputs have been downloaded or captured with checksums in `data/c
 - `python -m pytest -q` is the canonical unit-test command.
 - `snakemake --summary` is the workflow audit command for declared outputs.
 - `snakemake -n --cores 1` currently reports nothing to do in the prepared workspace; it can still warn about missing historical provenance metadata for early long-lived outputs. A clean frozen-raw directory rerun has now completed Fase 1-17 and its post-run dry-run reports nothing to do.
-- `python scripts/run_reproducibility_checks.py` is the reviewer-facing aggregate audit command. It runs unit tests, all phase artifact checks through Fase 16, the CBC manuscript check, the publication-figure check, and a Snakemake dry-run.
+- `python scripts/run_reproducibility_checks.py` is the reviewer-facing aggregate audit command. In `auto` mode it runs the full audit when the frozen raw bundle is present; otherwise it runs a no-raw smoke audit that validates the frozen ranking hash, release-input wiring, no-data unit tests, and tracked phase artifacts while explicitly listing skipped full-data checks. Use `--mode full` or `--mode smoke` to force either path.
 - `.github/workflows/reproducibility-ci.yml` provides push/PR syntax lint, `pytest` with full-data tests skipped when the frozen bundle is absent, a CI-safe Snakemake dry-run, and Docker image build. Manual workflow-dispatch jobs run the full reviewer audit, optional Fase 13->17 recompute, and optional Fase 1->17 frozen-raw rerun when the frozen data bundle is present.
 - Fase 4B indicates that fine five-level tiering is not justified under neutral synthetic uncertainty unless Tier 1 uses a stricter stability threshold or Fase 14 real-score stability supports finer granularity.
 - Fase 5 cBioPortal patient clinical and GISTIC files are checksum-registered in `data/checksums/cbioportal_sha256.tsv` and treated as frozen archived inputs in the default Snakemake path (`scripts/build_tumor_expression.py --offline`); `E_score` is a component score, not a final target ranking.
@@ -80,6 +80,8 @@ python -m pip install -r requirements-dev.txt
 python -m pip install -r requirements-manuscript.txt
 python scripts/run_reproducibility_checks.py
 ```
+
+In a bare clone without `data/raw/`, this command runs the no-raw smoke audit. After extracting the Zenodo bundle so that `data/raw/` is populated, use the same command or `--mode full` for the full audit.
 
 The optional manuscript rebuild is:
 
