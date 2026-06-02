@@ -90,12 +90,12 @@ def main() -> int:
     manifest.append("## External blockers")
     manifest.append(
         "- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; "
-        "insert archival DOI before formal submission."
+        "final code release tag is v0.1.1; archival DOI is 10.5281/zenodo.20498705."
     )
     manifest.append("- Add full postal address in Editorial Manager if required.")
     manifest.append("- Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.")
 
-    (PACKAGE_DIR / "PACKAGE_README.md").write_text("\n".join(manifest) + "\n", encoding="utf-8")
+    (PACKAGE_DIR / "PACKAGE_README.md").write_text("\n".join(manifest) + "\n", encoding="utf-8", newline="\n")
     print(f"Wrote flat CBC submission package: {PACKAGE_DIR}")
     return 0
 
