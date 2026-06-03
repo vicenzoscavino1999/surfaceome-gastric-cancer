@@ -281,7 +281,7 @@ def main() -> int:
         r"\journal{Computational Biology and Chemistry}",
         r"\bibliographystyle{plainnat}",
         r"\bibliography{cbc_references}",
-        r"\section*{Review figures and main tables}",
+        r"\begin{figure}[htbp]",
         r"\includegraphics",
         r"\begin{longtable}",
         r"\citep{",

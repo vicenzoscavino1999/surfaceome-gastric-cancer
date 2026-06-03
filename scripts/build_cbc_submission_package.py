@@ -100,7 +100,7 @@ def main() -> int:
     manifest.append("## External blockers")
     manifest.append(
         "- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; "
-        "final code release tag is v0.1.5; archival DOI is 10.5281/zenodo.20498705."
+        "final code release tag is v0.1.6; archival DOI is 10.5281/zenodo.20498705."
     )
     manifest.append("- Add full postal address in Editorial Manager if required.")
     manifest.append("- Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.")

@@ -10,6 +10,7 @@
 \usepackage{graphicx}
 \graphicspath{{./figures/}{./}}
 \usepackage{longtable}
+\IfFileExists{placeins.sty}{\usepackage[section]{placeins}}{\providecommand{\FloatBarrier}{}}
 \IfFileExists{pdflscape.sty}{\usepackage{pdflscape}}{\usepackage{lscape}}
 \usepackage{url}
 \usepackage[hidelinks]{hyperref}
@@ -38,6 +39,7 @@ gastric cancer \sep surfaceome \sep target prioritization \sep reproducibility \
 
 \end{frontmatter}
 
+\FloatBarrier
 \section{Introduction}
 
 \subsection{Why surface-target prioritization is hard}
@@ -50,6 +52,7 @@ In gastric adenocarcinoma, antibody-accessible surface proteins remain a tractab
 
 Recent literature already includes pan-cancer surfaceome resources, pan-cancer ADC target discovery, tumor-specificity modeling, gastric clinical-trial target prioritization, gastric proteogenomic vulnerability atlases, and single-target or subtype-focused gastric/\allowbreak{}GEJ/\allowbreak{}GSRCC ADC discovery studies \citep{hu2021surfaceome,li2022pancancer,razzaghdoust2021adc,kathad2024adc,wang2026gastric,deng2024multiomics2targets,moek2017adc_landscape,li2024bayests,xu2025gastric_targets,chang2026gastric_proteogenomics,zhang2025cd66c,zhao2026pvr,li2026gastric_adc_review,katoh2025adhesion_adc,wang2025cdh17_adc}. We therefore introduce SurfPrior-GC, a release-grade, uncertainty-aware framework for auditing how heterogeneous public surfaceome evidence is combined, bounded, and converted into experimentally testable hypotheses in gastric cancer. Its main transferable contribution is a GPI-anchor evidence-routing audit: SurfPrior-GC quantifies how topology-first routing excluded 54 confirmed GPI-anchor genes, corrects this at universe construction before scoring, and preserves the downstream effect on ranking and benchmark behavior. The framework then integrates RNA, protein/\allowbreak{}localization, topology, normal-risk, TME, benchmark-control, and stability evidence into a coarse experimental queue. External TCSA and Wang comparisons are used as consistency and scope checks, with matched-null behavior reported as an evidential boundary rather than candidate-level experimental evidence.
 
+\FloatBarrier
 \section{Material and methods}
 
 \subsection{Reproducibility design}
@@ -63,6 +66,39 @@ Intermediate ranking snapshots were retained rather than overwritten. The pre-fi
 \subsection{Datasets and identifier normalization}
 
 The main input sources are summarized in Table 1. TCGA-STAD and GTEx expression data were obtained through the UCSC Xena/\allowbreak{}Toil RNA-seq recompute and used as the primary tumor-normal RNA matrix \citep{goldman2020xena,vivian2017toil,gtex2020atlas}. GDC TCGA-STAD metadata and cBioPortal TCGA-STAD clinical and copy-number fields were used for clinical covariate availability, selected amplification context, and secondary sensitivity planning \citep{grossman2016gdc,cerami2012cbioportal}. Human Protein Atlas (HPA) downloadable files supplied normal IHC, cancer IHC, subcellular localization, and tissue RNA context \citep{uhlen2015hpa,uhlen2017pathology,thul2017subcellular}. UniProtKB reviewed human records supplied protein identifiers, topology, transmembrane annotations, extracellular features, signal peptides, lipidation/\allowbreak{}GPI-anchor evidence, protein length, and isoform mappings \citep{uniprot2025}. TCSA, CSPA, SURFY, UniProt GO, UniProt topology/\allowbreak{}GPI fields, and HPA subcellular localization were integrated to construct the surfaceome universe \citep{hu2021surfaceome,bauschfluck2015cspa,bauschfluck2018surfy}.
+
+\clearpage
+\begin{landscape}
+\begingroup
+\tiny
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.13}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.100\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.140\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.110\linewidth}>{\raggedright\arraybackslash}p{0.090\linewidth}>{\raggedright\arraybackslash}p{0.120\linewidth}>{\raggedright\arraybackslash}p{0.190\linewidth}@{}}
+\caption{Public datasets, versions, uses, and limitations. Primary and secondary sources used for the workflow, including Xena/\allowbreak{}Toil TCGA-STAD/\allowbreak{}GTEx RNA, GDC and cBioPortal metadata, HPA IHC/\allowbreak{}localization/\allowbreak{}RNA files, UniProt reviewed-human topology/\allowbreak{}GPI features, curated surfaceome resources, TISCH2 candidate-level scRNA context, and optional resources not admitted into the numeric primary score. The table records source versions, checksum manifests where applicable, and interpretation limits.}\label{tab:review-1}\\
+\toprule
+\textbf{source id} & \textbf{source name} & \textbf{primary use} & \textbf{analysis stage} & \textbf{version or release} & \textbf{status} & \textbf{checksum manifest} & \textbf{limitation or note} \\
+\midrule
+\endfirsthead
+\caption[]{Public datasets, versions, uses, and limitations. Primary and secondary sources used for the workflow, including Xena/\allowbreak{}Toil TCGA-STAD/\allowbreak{}GTEx RNA, GDC and cBioPortal metadata, HPA IHC/\allowbreak{}localization/\allowbreak{}RNA files, UniProt reviewed-human topology/\allowbreak{}GPI features, curated surfaceome resources, TISCH2 candidate-level scRNA context, and optional resources not admitted into the numeric primary score. The table records source versions, checksum manifests where applicable, and interpretation limits. (continued)}\\
+\toprule
+\textbf{source id} & \textbf{source name} & \textbf{primary use} & \textbf{analysis stage} & \textbf{version or release} & \textbf{status} & \textbf{checksum manifest} & \textbf{limitation or note} \\
+\midrule
+\endhead
+xena\_\allowbreak{}toil\_\allowbreak{}tcga\_\allowbreak{}gtex & UCSC Xena /\allowbreak{} Toil RNA-seq recompute & Primary TCGA-STAD vs GTEx stomach RNA matrix & source acquisition download;\allowbreak{} inventory metadata complete & Toil recompute;\allowbreak{} matrix Last-Modified Fri, 09 Apr 2021 20:01:53 GMT & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}matrix\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}xena\_\allowbreak{}toil\_\allowbreak{}sha256.tsv & Expression unit to register as log2(TPM+\allowbreak{}0.001);\allowbreak{} phenotype counted without downloading matrix. \\
+gdc\_\allowbreak{}tcga\_\allowbreak{}stad & GDC TCGA-STAD API & TCGA clinical, biospecimen, STAR-count RNA-seq sensitivity & inventory metadata complete;\allowbreak{} source acquisition selected downloads & GDC API live query & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}raw\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}gdc\_\allowbreak{}tcga\_\allowbreak{}stad\_\allowbreak{}sha256.tsv & GDC STAR counts are secondary sensitivity, not the primary TCGA-GTEx matrix. \\
+cbioportal\_\allowbreak{}stad\_\allowbreak{}tcga & cBioPortal TCGA-STAD clinical & TCGA subtype and legacy clinical field availability & inventory metadata complete & stad\_\allowbreak{}tcga and stad\_\allowbreak{}tcga\_\allowbreak{}pan\_\allowbreak{}can\_\allowbreak{}atlas\_\allowbreak{}2018 API studies & metadata\_\allowbreak{}verified & data/\allowbreak{}checksums/\allowbreak{}cbioportal\_\allowbreak{}sha256.tsv & Used for TCGA molecular subtype counts and legacy histology fields. \\
+hpa\_\allowbreak{}downloads & Human Protein Atlas downloadable TSV & Normal IHC, cancer IHC, subcellular location, tissue RNA cross-checks & inventory metadata complete;\allowbreak{} source acquisition downloads & HPA 25.1;\allowbreak{} Ensembl 109 & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}raw\_\allowbreak{}saved & data/\allowbreak{}checksums/\allowbreak{}hpa\_\allowbreak{}sha256.tsv & HPA final5.1 replaces older plan filenames normal\_\allowbreak{}tissue.tsv/\allowbreak{}pathology.tsv with current normal\_\allowbreak{}ihc\_\allowbreak{}data.tsv/\allowbreak{}cancer\_\allowbreak{}data.tsv. \\
+uniprot\_\allowbreak{}reviewed\_\allowbreak{}human & UniProtKB reviewed human & Protein identifiers, topology, TM, extracellular domains, signal peptides & inventory metadata complete;\allowbreak{} surfaceome universe ID mapping/\allowbreak{}topology & 2026\_\allowbreak{}01 & metadata\_\allowbreak{}verified & data/\allowbreak{}checksums/\allowbreak{}uniprot\_\allowbreak{}sha256.tsv & Universe-specific reviewed coverage waits for HGNC/\allowbreak{}Ensembl/\allowbreak{}UniProt mapping. \\
+depmap & DepMap Portal Context Explorer & Gastric/\allowbreak{}GEJ cell-line expression and CRISPR dependency evidence & inventory metadata complete;\allowbreak{} inventory1 optional annotation & DepMap Portal current release;\allowbreak{} 26Q1 label observed on portal & metadata\_\allowbreak{}verified & data/\allowbreak{}checksums/\allowbreak{}depmap\_\allowbreak{}sha256.tsv & 104 Esophagus/\allowbreak{}Stomach models;\allowbreak{} EGC subset is the closest adenocarcinoma set. \\
+pdc\_\allowbreak{}cptac\_\allowbreak{}gastric & NCI Proteomic Data Commons gastric/\allowbreak{}STAD studies & Incremental proteomics, phosphoproteomics, glycoproteomics, and related omics & inventory metadata complete;\allowbreak{} optional after HPA/\allowbreak{}scRNA/\allowbreak{}external RNA & PDC GraphQL live query & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}raw\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}pdc\_\allowbreak{}cptac\_\allowbreak{}sha256.tsv & Candidate gene protein coverage remains TBD until Protein Assembly reports are downloaded and mapped. \\
+scrna\_\allowbreak{}gastric\_\allowbreak{}candidates & TISCH2/\allowbreak{}GEO gastric cancer scRNA candidates & Malignant epithelial vs TME specificity layer & inventory candidate inventory;\allowbreak{} TME specificity fallback quality gate & GEO/\allowbreak{}TISCH2 current at access date & candidate\_\allowbreak{}sources\_\allowbreak{}identified\_\allowbreak{}not\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}scrna\_\allowbreak{}sha256.tsv & Do not include in main score until annotation quality and processed matrix availability pass gate. \\
+external\_\allowbreak{}bulk\_\allowbreak{}rna\_\allowbreak{}cohorts & GEO/\allowbreak{}ACRG external gastric expression cohorts & External RNA validation cohort & inventory candidate inventory;\allowbreak{} tumor expression-7 optional validation & GEO current at access date & candidate\_\allowbreak{}sources\_\allowbreak{}identified\_\allowbreak{}not\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}external\_\allowbreak{}bulk\_\allowbreak{}rna\_\allowbreak{}sha256.tsv & Layer is incremental;\allowbreak{} avoid delaying primary if batch/\allowbreak{}platform harmonization becomes expensive. \\
+structure\_\allowbreak{}sources & RCSB PDB and AlphaFold DB & Candidate-level ECD/\allowbreak{}structure annotations & inventory0 candidate-level optional layer & Current APIs at candidate query date & source\_\allowbreak{}declared\_\allowbreak{}not\_\allowbreak{}assessed & data/\allowbreak{}checksums/\allowbreak{}structures\_\allowbreak{}sha256.tsv & Not needed before scoring;\allowbreak{} used for candidate cards and modality discussion. \\
+clinical\_\allowbreak{}druggability\_\allowbreak{}sources & Open Targets, ChEMBL, DGIdb, ClinicalTrials.gov & Clinical/\allowbreak{}druggability annotations & inventory2 candidate-level annotation & Current APIs at candidate query date & source\_\allowbreak{}declared\_\allowbreak{}not\_\allowbreak{}assessed & data/\allowbreak{}checksums/\allowbreak{}clinical\_\allowbreak{}druggability\_\allowbreak{}sha256.tsv & Used for candidate cards and tiering context, not to inflate discovery score. \\
+\bottomrule
+\end{longtable}
+\endgroup
+\end{landscape}
 
 Identifier normalization used HGNC-approved protein-coding genes as the primary denominator before surfaceome filtering \citep{tweedie2021hgnc}. This choice prevents the candidate denominator from being inflated by noncoding or deprecated matrix rows while preserving alias, Ensembl, UniProt, and HPA mappings for evidence integration. Mapping failures and source coverage are retained as audit outputs rather than silently dropped.
 
@@ -143,6 +179,35 @@ Isoform-specific benchmarks were handled conservatively. \textit{CLDN18} and \te
 
 The integrated score used the pre-specified components listed in Table 2. The primary scenario used manually chosen expert-prior weights $Surf=0.15$, $E=0.20$, $N=0.20$, $R=0.20$, $P=0.15$, $SC=0.00$, and $T=0.10$. These weights are transparent design choices, not learned coefficients or optimal estimates. $SC$ remained unavailable and was not imputed. Sensitivity scenarios included safety-prioritized, ADC-focused, novelty-focused, and protein-evidence-focused weighting;\allowbreak{} these were reported as sensitivity contexts, not alternative primary rankings.
 
+\clearpage
+\begin{landscape}
+\begingroup
+\tiny
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.13}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.080\linewidth}>{\raggedright\arraybackslash}p{0.200\linewidth}>{\raggedright\arraybackslash}p{0.080\linewidth}>{\raggedright\arraybackslash}p{0.100\linewidth}>{\raggedright\arraybackslash}p{0.150\linewidth}>{\raggedright\arraybackslash}p{0.140\linewidth}>{\raggedright\arraybackslash}p{0.230\linewidth}@{}}
+\caption{Score components and primary weights. Definitions, directions, weights, primary sources, normalization conventions, and principal limitations for $Surf$, $E$, $N$, $R$, $P$, $SC$, and $T$. $R$ is high-worse and subtracted;\allowbreak{} $SC$ remains unavailable with zero weight;\allowbreak{} missing components are handled by exclude-and-renormalize during scoring and by tier restrictions during interpretation.}\label{tab:review-2}\\
+\toprule
+\textbf{component} & \textbf{definition} & \textbf{primary weight} & \textbf{direction} & \textbf{primary source} & \textbf{normalization} & \textbf{main limitation} \\
+\midrule
+\endfirsthead
+\caption[]{Score components and primary weights. Definitions, directions, weights, primary sources, normalization conventions, and principal limitations for $Surf$, $E$, $N$, $R$, $P$, $SC$, and $T$. $R$ is high-worse and subtracted;\allowbreak{} $SC$ remains unavailable with zero weight;\allowbreak{} missing components are handled by exclude-and-renormalize during scoring and by tier restrictions during interpretation. (continued)}\\
+\toprule
+\textbf{component} & \textbf{definition} & \textbf{primary weight} & \textbf{direction} & \textbf{primary source} & \textbf{normalization} & \textbf{main limitation} \\
+\midrule
+\endhead
+Surf & surfaceome membership confidence;\allowbreak{} higher is better & 0.150000 & higher\_\allowbreak{}better & surfaceome\_\allowbreak{}universe.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & Membership confidence within admitted Core+\allowbreak{}Probable universe;\allowbreak{} not direct antigen density. \\
+E & tumor expression and prevalence;\allowbreak{} higher is better & 0.200000 & higher\_\allowbreak{}better & TCGA-STAD tumor\_\allowbreak{}expression.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & Bulk RNA;\allowbreak{} no malignant epithelial isolation. \\
+N & tumor-normal selectivity;\allowbreak{} higher is better & 0.200000 & higher\_\allowbreak{}better & selectivity\_\allowbreak{}scores.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & TCGA/\allowbreak{}GTEx source effects remain explicit. \\
+R & on-target/\allowbreak{}off-tumor risk;\allowbreak{} higher is worse and is subtracted & 0.200000 & higher\_\allowbreak{}worse\_\allowbreak{}subtracted & off\_\allowbreak{}tumor\_\allowbreak{}risk.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & High-worse off-tumor risk is subtracted;\allowbreak{} risk form is sensitivity-tested. \\
+P & protein/\allowbreak{}localization evidence;\allowbreak{} higher is better & 0.150000 & higher\_\allowbreak{}better & protein\_\allowbreak{}evidence.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & HPA bulk IHC lacks antibody-level and patient-level membrane fields. \\
+SC & tumor-cell specificity versus TME;\allowbreak{} higher is better;\allowbreak{} optional in primary & 0.000000 & higher\_\allowbreak{}better & single\_\allowbreak{}cell\_\allowbreak{}specificity.tsv (not\_\allowbreak{}available in primary score) & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & No processed annotated gastric scRNA matrix admitted into the score;\allowbreak{} not counted in the primary score. \\
+T & topology, extracellular accessibility, and isoform confidence;\allowbreak{} higher is better & 0.100000 & higher\_\allowbreak{}better & topology\_\allowbreak{}isoforms\_\allowbreak{}ecd.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & Topology/\allowbreak{}gene-level isoform annotations do not resolve CLDN18.2 or FGFR2b expression. \\
+\bottomrule
+\end{longtable}
+\endgroup
+\end{landscape}
+
 $Surf$ is the relative surfaceome confidence within the admitted Core+\allowbreak{}Probable universe. After the GPI correction, it is scaled as:
 
 \begin{equation}
@@ -175,13 +240,26 @@ Manual curation informed tiers and caveats but did not change scores. The top 30
 
 External baseline behavior was assessed in two ways. First, final scores were compared with the Cancer Surfaceome Atlas final and core GESP scores \citep{hu2021surfaceome} over overlapping genes by Spearman correlation and top-k overlap. This is a pan-cancer surfaceome-prioritization baseline, not a gastric-specific validation label. Second, external consistency was assessed against Wang 2026 gastric proteogenomic surface-target resources \citep{wang2026gastric}. Two null models were retained for the Wang comparison. The first was a one-sided hypergeometric test against random draws from the frozen Core+\allowbreak{}Probable surfaceome universe. The second was a deterministic matched-null sensitivity analysis with 20,000 permutations and seed 20260531, sampling nearest-neighbor Core+\allowbreak{}Probable controls matched on surfaceome confidence, tumor expression percentile, protein-evidence percentile and missingness, topology percentile, available component count, and accessibility class. This cross-check is used as benchmark concordance and compartment-framework support, not as clinical-efficacy evidence or as per-gene single-cell support for genes absent from the Wang Figure 7H panel.
 
+\FloatBarrier
 \section{Results}
 
 \subsection{SurfPrior-GC workflow and GPI-routing audit}
 
 SurfPrior-GC integrates public transcriptomic, protein, localization, topology, and curated surfaceome resources into a staged candidate-prioritization pipeline (Fig. 1;\allowbreak{} Table 1). The current execution covers dataset inventory, raw/\allowbreak{}source checksum capture, batch diagnostics, identifier normalization, surfaceome universe construction, tumor expression, normal selectivity and off-tumor risk, HPA protein/\allowbreak{}localization evidence, TME specificity flags, topology/\allowbreak{}isoform annotation, integrated scoring, stability analysis, coarse tiering, external baseline comparison, candidate-level scRNA compartment annotation, and manuscript figure/\allowbreak{}table packaging. Unit tests, smoke tests through the figure/\allowbreak{}table package, the manuscript brief check, and Snakemake dry-run checks pass for declared current outputs.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f1_phase16_pipeline_overview.pdf}
+\caption{SurfPrior-GC reproducible public-data workflow for gastric cancer surface-target prioritization. The workflow begins with frozen public inputs, identifier normalization, and construction of a Core+\allowbreak{}Probable surfaceome universe, then computes tumor expression ($E$), normal selectivity ($N$), high-worse off-tumor risk ($R$), HPA protein/\allowbreak{}localization evidence ($P$), topology/\allowbreak{}accessibility ($T$), TME flags, stability checks, and coarse tiering. The figure reports stage-level counts and separates quantitative evidence layers from review flags and downstream hypothesis generation.}\label{fig:review-1}
+\end{figure}
+
 The final surfaceome universe contains 2,704 Core+\allowbreak{}Probable genes, comprising 2,646 Core and 58 Probable candidates (Fig. 2). The construction rule balanced published surfaceome support with direct anchor, topology, or localization evidence. This conservative rule excluded all intracellular/\allowbreak{}secreted negative controls from Core+\allowbreak{}Probable while retaining benchmark surface-target genes for downstream scoring.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f2_phase16_surfaceome_evidence_landscape.pdf}
+\caption{SurfPrior-GC surfaceome evidence landscape and GPI-anchor correction. Source overlap and confidence summaries show how curated surfaceome resources, UniProt topology/\allowbreak{}GPI evidence, HPA localization, GO annotations, and SURFY support contribute to the 2,704-gene Core+\allowbreak{}Probable universe. Confirmed UniProt lipidation GPI-anchor evidence is credited as a source-wide non-experimental strong anchor during universe construction. Low $Surf$ values in the final ranking indicate lower relative confidence within the admitted universe, not absence from the surfaceome.}\label{fig:review-2}
+\end{figure}
 
 During scoring diagnostics, confirmed GPI-anchored candidates exposed a source-integration problem. Treating GPI evidence only as a downstream topology note under-credited confirmed GPI-anchored surface proteins at the surfaceome universe layer. Prior surfaceome work already recognized annotated GPI-linked proteins \citep{bauschfluck2018surfy};\allowbreak{} the issue quantified here is local evidence routing in a gastric cancer prioritization workflow. Confirmed lipidation evidence was therefore credited universe-wide as non-experimental strong anchor evidence before rerunning downstream analyses, while subcellular-location-only GPI annotations remained flagged but uncredited as direct lipidation evidence.
 
@@ -201,9 +279,61 @@ Tumor expression was measured for 2,696 of 2,704 Core+\allowbreak{}Probable gene
 
 The off-tumor risk component $R$ provided an opposing high-worse layer (Fig. 3). In the current conservative maximum-risk model, 1,825 Core+\allowbreak{}Probable genes had high critical off-tumor risk. This high count is expected because many cell-surface proteins are shared across normal epithelial, endothelial, hematopoietic, immune, or organ-specific compartments. $E$, $N$, and $R$ therefore need to be interpreted together: tumor abundance without normal-context review can over-rank broadly expressed targets, while a high normal-risk flag does not automatically exclude gastric-lineage or clinically benchmarked antigens.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f3_phase16_tumor_normal_selectivity.pdf}
+\caption{Tumor-normal selectivity and off-tumor risk landscape. Candidate genes are positioned by TCGA-STAD tumor expression, stomach and critical-normal selectivity, and conservative organ-risk context. $R$ is a high-worse component and is subtracted in the integrated score. The display illustrates why tumor abundance, normal selectivity, and off-tumor risk must be interpreted jointly rather than as independent target-readiness claims.}\label{fig:review-3}
+\end{figure}
+
 \subsection{Integrated evidence across candidates}
 
 The primary frozen ranking was converted into coarse tiers only after stability analysis and manual curation (Fig. 4;\allowbreak{} Table 3). Tier 1 contains six unordered surface-target hypotheses: \textit{ITGB4}, \textit{CDH3}, \textit{NECTIN2}, \textit{CEACAM5}, \textit{JAG1}, and \textit{EPCAM}. Tier 2 contains twelve additional candidates: \textit{MPZL1}, \textit{ITGB5}, \textit{BST2}, \textit{IFNGR1}, \textit{ALPG}, \textit{DSC2}, \textit{TNFRSF11A}, \textit{ERBB2}, \textit{CD9}, \textit{LSR}, \textit{CDH17}, and \textit{TGFBR1}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f4_phase16_multilayer_heatmap_top30.pdf}
+\caption{Multi-layer evidence heatmap for the top 30 ranked candidates. The heatmap summarizes $Surf$, $E$, $N$, $R$, $P$, $T$, missingness, TME flags, topology/\allowbreak{}accessibility, and coarse tiers for the top-ranked candidates from the final frozen ranking. Tiers are unordered within Tier 1, Tier 2, and Watchlist. Watchlist entries document immune, stromal, endothelial, ubiquitous, or thin-evidence cases that would be overinterpreted by a score-only view.}\label{fig:review-4}
+\end{figure}
+
+\clearpage
+\begin{landscape}
+\begingroup
+\tiny
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.13}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.030\linewidth}>{\raggedright\arraybackslash}p{0.050\linewidth}>{\raggedright\arraybackslash}p{0.050\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.300\linewidth}@{}}
+\caption{Tier 1 and Tier 2 candidates. Coarse unordered Tier 1 and Tier 2 nominations from the final frozen ranking, stability outputs, and manual curation. Columns report rank, score, prevalence flag, stability frequency, component values, Wang 2026 class/\allowbreak{}glyco-outlier context, and the principal caveat. The table is a hypothesis list, not a clinical target list.}\label{tab:review-3}\\
+\toprule
+\textbf{rank} & \textbf{gene} & \textbf{tier} & \textbf{primary score} & \textbf{prevalence flag} & \textbf{primary top20 freq} & \textbf{Surf} & \textbf{E} & \textbf{N} & \textbf{R high worse} & \textbf{P} & \textbf{T} & \textbf{wang class} & \textbf{wang glyco outlier rank} & \textbf{principal caveat} \\
+\midrule
+\endfirsthead
+\caption[]{Tier 1 and Tier 2 candidates. Coarse unordered Tier 1 and Tier 2 nominations from the final frozen ranking, stability outputs, and manual curation. Columns report rank, score, prevalence flag, stability frequency, component values, Wang 2026 class/\allowbreak{}glyco-outlier context, and the principal caveat. The table is a hypothesis list, not a clinical target list. (continued)}\\
+\toprule
+\textbf{rank} & \textbf{gene} & \textbf{tier} & \textbf{primary score} & \textbf{prevalence flag} & \textbf{primary top20 freq} & \textbf{Surf} & \textbf{E} & \textbf{N} & \textbf{R high worse} & \textbf{P} & \textbf{T} & \textbf{wang class} & \textbf{wang glyco outlier rank} & \textbf{principal caveat} \\
+\midrule
+\endhead
+1 & ITGB4 & Tier 1 & 0.626035 & Broad & 1.000 & 0.600000 & 0.988126 & 0.995176 & 0.364564 & 0.889044 & 0.789308 & Membrane & 292 & CAVEAT: basal/\allowbreak{}stratified epithelial (skin keratinocyte/\allowbreak{}hemidesmosome) normal expression;\allowbreak{} skin not in organ-risk model so R may under-weight it;\allowbreak{} preclinical agents only \\
+6 & CDH3 & Tier 1 & 0.608164 & Broad & 1.000 & 0.600000 & 0.831911 & 0.961410 & 0.312987 & 0.954444 & 0.789308 & Membrane & NA & established TAA;\allowbreak{} confirm membranous tumor IHC in pass 2 \\
+9 & NECTIN2 & Tier 1 & 0.588737 & Broad & 1.000 & 0.600000 & 0.980705 & 0.988497 & 0.599629 & 0.972610 & 0.789308 & Membrane & NA & CAVEAT: purity-adjusted myeloid/\allowbreak{}DC partial 0.32 p\ensuremath{<}0.001 +\allowbreak{} LAMP3+\allowbreak{} DC checkpoint literature;\allowbreak{} closest-to-threshold Tier 1 member;\allowbreak{} single-cell confirmation needed (user-confirmed Tier 1 2026-05-31) \\
+12 & CEACAM5 & Tier 1 & 0.584828 & Broad & 1.000 & 0.600000 & 0.918738 & 0.936178 & 0.470501 & 0.984349 & 0.702923 & ADC/\allowbreak{}Antibody & 4 & apical/\allowbreak{}normal GI epithelial expression;\allowbreak{} specificity review \\
+13 & JAG1 & Tier 1 & 0.584280 & Broad & 1.000 & 0.600000 & 0.917625 & 0.813729 & 0.470501 & 0.989939 & 0.936182 & Membrane & NA & CAVEAT: dual tumor-epithelial +\allowbreak{} endothelial/\allowbreak{}vascular (angiocrine) expression;\allowbreak{} most compartment-exposed Tier 1 member;\allowbreak{} surface-targetable (neutralizing mAbs) but needs single-cell resolution \\
+14 & EPCAM & Tier 1 & 0.580488 & Broad & 1.000 & 0.600000 & 0.964007 & 0.989239 & 0.599629 & 0.840973 & 0.936182 & ADC/\allowbreak{}Antibody & 22 & high normal epithelial expression (preregistered normal-expression penalty) \\
+7 & MPZL1 & Tier 2 & 0.605739 & Broad & 1.000 & 0.600000 & 0.974026 & 0.994434 & 0.470501 & 0.964226 & 0.715131 & Membrane & 371 & needs cell-resolution to confirm tumor-epithelial origin \\
+8 & ITGB5 & Tier 2 & 0.595199 & Broad & 1.000 & 0.600000 & 0.959184 & 0.858627 & 0.470501 & 0.947457 & 0.936182 & Membrane & 40 & high TME +\allowbreak{} broad expression \\
+10 & BST2 & Tier 2 & 0.586798 & Broad & 1.000 & 0.800000 & 0.985158 & 0.878108 & 0.364564 & 0.536333 & 0.866075 & Membrane & NA & membrane localization discordance;\allowbreak{} hematopoietic risk \\
+11 & IFNGR1 & Tier 2 & 0.585684 & Broad & 1.000 & 0.600000 & 0.952876 & 0.824490 & 0.470501 & 0.937954 & 0.936182 & Membrane & 141 & ubiquitous cytokine receptor, no tumor selectivity \\
+16 & ALPG & Tier 2 & 0.574731 & Moderate & 0.840 & 0.600000 & 0.513544 & 0.980334 & 0.085343 & 0.781163 & 0.858491 & Approved Non Oncology & NA & excellent normal-tissue window but ranking is single-layer dependent \\
+18 & DSC2 & Tier 2 & 0.573364 & Broad & 0.900 & 0.600000 & 0.799629 & 0.803340 & 0.312987 & 0.976244 & 0.789308 & Membrane & 49 & literature reports DOWNregulation in tumor (poor window) \\
+19 & TNFRSF11A & Tier 2 & 0.572773 & Broad & 0.940 & 0.600000 & 0.737291 & 0.939889 & 0.290167 & 0.842929 & 0.789308 & Membrane & NA & weak gastric-specific antibody rationale (denosumab targets ligand) \\
+20 & ERBB2 & Tier 2 & 0.568251 & Broad & 0.340 & 0.600000 & 0.968089 & 0.952134 & 0.599629 & 0.901342 & 0.789308 & ADC/\allowbreak{}Antibody & 232 & established HER2 benchmark;\allowbreak{} NOT forced to Tier 1;\allowbreak{} robust top50, heterogeneity-consistent \\
+25 & CD9 & Tier 2 & 0.560111 & Broad & 0.020 & 0.600000 & 0.991095 & 0.892022 & 0.470501 & 0.923421 & 0.490751 & NA & NA & short extracellular loops limit antibody access \\
+26 & LSR & Tier 2 & 0.559871 & Broad & 0.040 & 0.400000 & 0.989981 & 0.998516 & 0.599629 & 0.954444 & 0.789308 & NA & NA & favorable literature window;\allowbreak{} tight-junction accessibility caveat \\
+28 & CDH17 & Tier 2 & 0.557068 & Broad & 0.000 & 0.400000 & 0.848237 & 0.871614 & 0.364564 & 0.882616 & 0.936182 & Membrane & 19 & GI-restricted surface-antigen program with clinical-stage CAR-T/\allowbreak{}ADC context;\allowbreak{} bulk ranking conservative \\
+30 & TGFBR1 & Tier 2 & 0.553247 & Broad & 0.000 & 0.600000 & 0.860482 & 0.920594 & 0.470501 & 0.951928 & 0.583426 & Experimental & NA & ubiquitous signaling receptor, no tumor selectivity \\
+\bottomrule
+\end{longtable}
+\endgroup
+\end{landscape}
 
 The Tier 1 set is intentionally not presented as a fine rank order. Its members combine high tumor expression/\allowbreak{}selectivity, protein/\allowbreak{}localization support, and accessible topology, but each carries interpretation caveats. For example, \textit{ITGB4} has basal/\allowbreak{}stratified epithelial expression not fully captured by the organ-risk model, \textit{NECTIN2} has a purity-adjusted myeloid/\allowbreak{}DC signal below the frozen high-TME threshold, \textit{CEACAM5} and \textit{EPCAM} retain normal epithelial expression concerns, and \textit{JAG1} has dual epithelial/\allowbreak{}endothelial biology. These caveats are part of the prioritization output rather than post-hoc exclusions.
 
@@ -212,6 +342,12 @@ Tier 2 captures candidates with strong but less stable or more caveated evidence
 \subsection{TME specificity and compartment caveats}
 
 Because no processed gastric single-cell matrix was admitted into the primary score, compartment specificity was handled through flags rather than a numeric $SC$ layer (Fig. 5;\allowbreak{} Supplementary File 2). The TME fallback identified known immune, endothelial, and stromal markers as high-risk cases for epithelial tumor-target interpretation. \textit{PECAM1} remained high in the bulk ranking but was assigned to Watchlist by the pre-specified TME rule after curation confirmed vascular/\allowbreak{}endothelial rather than tumor-epithelial staining. \textit{LRRC15} was also assigned to Watchlist because curation supported a CAF/\allowbreak{}stromal interpretation rather than a primary malignant-epithelial target claim.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f5_top_candidates_scRNA_dotplot.pdf}
+\caption{Tumor microenvironment specificity fallback. Bulk TCGA-STAD marker-module and ESTIMATE-adjusted partial-correlation outputs flag likely CAF/\allowbreak{}fibroblast, endothelial, myeloid/\allowbreak{}macrophage, T-cell, and B/\allowbreak{}plasma compartment signals among top candidates. These outputs are flags only and do not replace cell-resolved single-cell or spatial validation. $SC$ remains \texttt{not\_\allowbreak{}available} and is not imputed in the primary score.}\label{fig:review-5}
+\end{figure}
 
 The same compartment discipline applies to immune genes and thin-evidence high-rank artifacts. HLA and KIR genes with missing primary expression/\allowbreak{}protein/\allowbreak{}risk components were Watchlist by the missing-data rule, not by subjective demotion. \textit{HLA-DPB1}, \textit{IL2RG}, and related immune-context candidates are retained as biologically relevant but not nominated as epithelial tumor-cell surface targets.
 
@@ -225,14 +361,81 @@ These single-cell calls are not symmetric evidence for or against tier placement
 
 Stability analysis supported coarse candidate interpretation but not fine within-tier ordering (Fig. 6a-b). Weight perturbations were generally stable: 231 of 250 perturbations passed both pre-specified gates, with minimum and median Spearman correlations of 0.910703 and 0.983898 relative to the final ranking. However, leave-one-layer-out analyses showed important layer dependence, especially for $T$, $R$, and $E$, and post-scoring rank resolution found only 1 of 20 baseline top20 genes with a 95\% rank interval contained within the top 40. These results justify coarse tiers rather than fine rank claims.
 
+\begin{figure}[htbp]
+\centering
+\textbf{a.}
+\includegraphics[width=\linewidth,height=0.34\textheight,keepaspectratio]{f6a_rank_stability_heatmap.pdf}
+\par\vspace{0.5em}
+\textbf{b.}
+\includegraphics[width=\linewidth,height=0.42\textheight,keepaspectratio]{f6b_bumpchart_scenarios.pdf}
+\par\vspace{0.5em}
+\caption{Rank stability and weighting sensitivity. (a) Rank-stability heatmap from weight perturbation, leave-one-layer-out, missing-data, risk-form, organ-weight, and post-scoring resolution analyses. (b) Weighting-sensitivity bumpchart comparing the primary pre-specified ranking with safety-prioritized, ADC-focused, novelty-focused, protein-evidence-focused, and robust-aggregate contexts. Stability supports coarse tiers and explicit caveats, but not fine within-tier ordering.}\label{fig:review-6}
+\end{figure}
+
 Control behavior was used as a diagnostic rather than for weight tuning (Fig. 7;\allowbreak{} Table 4). Positive-control top50 recovery remained imperfect at 4 of 8 (\textit{ERBB2}, \textit{EPCAM}, \textit{MET}, and \textit{CEACAM5}). The aggregate pre-specified top50 gate therefore remains reported as failed. The cause review was added after the aggregate miss and is reported as an explanatory diagnostic, not as a replacement success criterion: \textit{CLDN18} and \textit{FGFR2} are isoform unresolved at gene level, \textit{MSLN} retains a topology/\allowbreak{}shedding penalty despite high protein support and corrected GPI evidence, and \textit{TACSTD2} has intermediate surface confidence and weaker protein support. Negative intracellular controls were excluded from Core/\allowbreak{}Probable;\allowbreak{} \textit{PTPRC} was cleanly low-ranked for epithelial targeting;\allowbreak{} \textit{PECAM1} remained the documented vascular/\allowbreak{}TME exception and was handled by Watchlist tiering.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f7_phase16_benchmark_controls.pdf}
+\caption{Benchmark-control behavior. Positive, secondary, negative, and TME/\allowbreak{}off-tumor controls are shown as diagnostics of pipeline behavior rather than as tuning targets. Positive-control top50 recovery is reported as imperfect, isoform-specific benchmarks remain unresolved where expression is gene-level, intracellular negative controls are excluded from Core+\allowbreak{}Probable, and \textit{PECAM1} is retained as the documented vascular/\allowbreak{}TME exception handled by Watchlist tiering.}\label{fig:review-7}
+\end{figure}
+
+\clearpage
+\begin{landscape}
+\begingroup
+\tiny
+\setlength{\tabcolsep}{2pt}
+\renewcommand{\arraystretch}{1.13}
+\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.100\linewidth}>{\raggedright\arraybackslash}p{0.060\linewidth}>{\raggedright\arraybackslash}p{0.200\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.190\linewidth}@{}}
+\caption{Benchmark-control diagnostics. Positive controls, secondary benchmarks, intracellular negative controls, and TME/\allowbreak{}off-tumor controls used to assess whether the pipeline behaves plausibly. Control behavior is reported honestly, including the failed aggregate positive-control top50 gate and the cause-level interpretation of misses. Controls were not used to retune weights or rescue individual candidates.}\label{tab:review-4}\\
+\toprule
+\textbf{control set} & \textbf{gene} & \textbf{expected} & \textbf{presence status} & \textbf{baseline rank} & \textbf{top20 frequency} & \textbf{top50 frequency} & \textbf{leave one layer rank range} & \textbf{interpretation} \\
+\midrule
+\endfirsthead
+\caption[]{Benchmark-control diagnostics. Positive controls, secondary benchmarks, intracellular negative controls, and TME/\allowbreak{}off-tumor controls used to assess whether the pipeline behaves plausibly. Control behavior is reported honestly, including the failed aggregate positive-control top50 gate and the cause-level interpretation of misses. Controls were not used to retune weights or rescue individual candidates. (continued)}\\
+\toprule
+\textbf{control set} & \textbf{gene} & \textbf{expected} & \textbf{presence status} & \textbf{baseline rank} & \textbf{top20 frequency} & \textbf{top50 frequency} & \textbf{leave one layer rank range} & \textbf{interpretation} \\
+\midrule
+\endhead
+positive\_\allowbreak{}control & ERBB2 & top\_\allowbreak{}50\_\allowbreak{}in\_\allowbreak{}balanced\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}biological\_\allowbreak{}exception & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 20 & 0.340000 & 1.000000 & 10-46 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+positive\_\allowbreak{}control & CLDN18 & top\_\allowbreak{}100\_\allowbreak{}in\_\allowbreak{}balanced\_\allowbreak{}and\_\allowbreak{}isoform\_\allowbreak{}flag\_\allowbreak{}present & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 1474 & 0.000000 & 0.000000 & 886-2154 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+positive\_\allowbreak{}control & FGFR2 & top\_\allowbreak{}100\_\allowbreak{}or\_\allowbreak{}subtype\_\allowbreak{}amplification\_\allowbreak{}flag & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 1333 & 0.000000 & 0.000000 & 918-1953 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+positive\_\allowbreak{}control & TACSTD2 & ranked\_\allowbreak{}with\_\allowbreak{}normal\_\allowbreak{}risk\_\allowbreak{}flag & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 202 & 0.000000 & 0.000000 & 162-323 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+positive\_\allowbreak{}control & EPCAM & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}normal\_\allowbreak{}expression\_\allowbreak{}penalty & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 14 & 1.000000 & 1.000000 & 6-38 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+positive\_\allowbreak{}control & CEACAM5 & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}specificity\_\allowbreak{}review & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 12 & 1.000000 & 1.000000 & 8-34 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+positive\_\allowbreak{}control & MET & ranked\_\allowbreak{}or\_\allowbreak{}flagged\_\allowbreak{}for\_\allowbreak{}heterogeneity & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 45 & 0.000000 & 0.788000 & 27-105 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+positive\_\allowbreak{}control & MSLN & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}coverage\_\allowbreak{}gap & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 158 & 0.000000 & 0.000000 & 48-316 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+secondary\_\allowbreak{}benchmark & CEACAM6 & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}specificity\_\allowbreak{}review & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 57 & 0.000000 & 0.244000 & 29-119 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+secondary\_\allowbreak{}benchmark & ERBB3 & ranked\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}if\_\allowbreak{}low\_\allowbreak{}in\_\allowbreak{}STAD & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 101 & 0.000000 & 0.000000 & 19-274 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+secondary\_\allowbreak{}benchmark & GUCY2C & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}gi\_\allowbreak{}normal\_\allowbreak{}expression\_\allowbreak{}flag & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 345 & 0.000000 & 0.000000 & 132-641 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+secondary\_\allowbreak{}benchmark & SLC44A4 & topology\_\allowbreak{}and\_\allowbreak{}ecd\_\allowbreak{}review\_\allowbreak{}required & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 427 & 0.000000 & 0.000000 & 241-953 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+secondary\_\allowbreak{}benchmark & NECTIN4 & ranked\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}if\_\allowbreak{}expression\_\allowbreak{}low\_\allowbreak{}or\_\allowbreak{}risk\_\allowbreak{}high & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 389 & 0.000000 & 0.000000 & 202-709 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+negative\_\allowbreak{}control & ACTB & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+negative\_\allowbreak{}control & GAPDH & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+negative\_\allowbreak{}control & H3C1 & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+negative\_\allowbreak{}control & TOMM20 & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+negative\_\allowbreak{}control & CALR & not\_\allowbreak{}tier\_\allowbreak{}1\_\allowbreak{}without\_\allowbreak{}context\_\allowbreak{}specific\_\allowbreak{}surface\_\allowbreak{}evidence & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+negative\_\allowbreak{}control & ALB & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}cell\_\allowbreak{}surface\_\allowbreak{}target & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+tme\_\allowbreak{}or\_\allowbreak{}off\_\allowbreak{}tumor\_\allowbreak{}penalty\_\allowbreak{}control & PTPRC & surface\_\allowbreak{}evidence\_\allowbreak{}allowed\_\allowbreak{}but\_\allowbreak{}not\_\allowbreak{}tier\_\allowbreak{}1\_\allowbreak{}for\_\allowbreak{}epithelial\_\allowbreak{}tumor\_\allowbreak{}targeting & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 636 & 0.000000 & 0.000000 & 290-1230 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+tme\_\allowbreak{}or\_\allowbreak{}off\_\allowbreak{}tumor\_\allowbreak{}penalty\_\allowbreak{}control & PECAM1 & surface\_\allowbreak{}evidence\_\allowbreak{}allowed\_\allowbreak{}but\_\allowbreak{}not\_\allowbreak{}tier\_\allowbreak{}1\_\allowbreak{}for\_\allowbreak{}epithelial\_\allowbreak{}tumor\_\allowbreak{}targeting & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 15 & 1.000000 & 1.000000 & 15-39 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
+\bottomrule
+\end{longtable}
+\endgroup
+\end{landscape}
 
 \subsection{Candidate interpretation}
 
 The candidate panel summarizes the final applied output of the pipeline (Fig. 8;\allowbreak{} Table 3;\allowbreak{} Supplementary File 2). The Tier 1 set should be read as a compact, experimentally testable hypothesis set rather than as a list of proven therapeutic targets. Candidate behavior is most useful where it reveals the framework's boundaries: \textit{ERBB2} remaining Tier 2 shows that benchmark status did not override frozen stability rules, and Watchlist placement for \textit{PECAM1} and \textit{LRRC15} shows how bulk surfaceome ranking can over-rank endothelial or stromal signals when cell-resolved data are unavailable.
 
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f8_phase16_tier1_candidate_panel.pdf}
+\caption{Tier 1 candidate panel. The six unordered Tier 1 hypotheses are \textit{ITGB4}, \textit{CDH3}, \textit{NECTIN2}, \textit{CEACAM5}, \textit{JAG1}, and \textit{EPCAM}. The panel summarizes component evidence, Wang 2026 concordance, and candidate-specific caveats. These nominations are experimentally testable hypotheses and do not imply clinical efficacy, clinical safety, antigen density, internalization, or wet-lab validation.}\label{fig:review-8}
+\end{figure}
+
 Tier 1/\allowbreak{}2 candidates therefore function as a prioritized experimental queue with explicit caveats. Their value in this manuscript is not stand-alone translational validity, but the fact that each nomination carries the evidence layers, missingness, compartment warnings, normal-risk context, and stability limits needed to decide what validation would be required next.
 
+\FloatBarrier
 \section{Discussion}
 
 \subsection{What the pipeline adds}
@@ -285,6 +488,7 @@ Compartment resolution is especially important for the most exposed candidates. 
 
 Modality-specific assays should follow confirmation of tumor-cell surface abundance. ADC-relevant candidates require internalization and payload-sensitivity testing. CAR or bispecific candidates require antigen-density and normal cross-reactivity assessment. GPI-anchored candidates require attention to shedding, soluble isoforms, and surface-retention behavior. The output of this pipeline is therefore a prioritized experimental queue, not a substitute for target validation.
 
+\FloatBarrier
 \section{Conclusions}
 
 This study provides SurfPrior-GC, a reproducible framework for uncertainty-aware gastric cancer surface-target prioritization from public evidence. Its concrete transferable contribution is the GPI audit: confirmed lipidation evidence should be handled at universe construction when defining surfaceome candidates, because incomplete routing excluded 54 confirmed GPI-anchor genes and changed benchmark-relevant ranks.
@@ -293,6 +497,7 @@ The resulting Tier 1 and Tier 2 hypotheses are a coarse experimental queue, not 
 
 The matched-null result defines the scope of the evidence: gastric-atlas agreement is not enriched beyond a surfaceome-evidence-matched null, and no wet-lab validation is provided here. The nominated genes should therefore be treated as experimentally testable hypotheses with explicit validation requirements, not as established therapeutic targets.
 
+\FloatBarrier
 \section{Glossary}
 
 \textbf{ADC.} Antibody-drug conjugate.
@@ -317,46 +522,21 @@ The matched-null result defines the scope of the evidence: gastric-atlas agreeme
 
 \textbf{TME.} Tumor microenvironment.
 
-\section{Figure captions}
-
-\textbf{Figure 1. SurfPrior-GC reproducible public-data workflow for gastric cancer surface-target prioritization.} The workflow begins with frozen public inputs, identifier normalization, and construction of a Core+\allowbreak{}Probable surfaceome universe, then computes tumor expression ($E$), normal selectivity ($N$), high-worse off-tumor risk ($R$), HPA protein/\allowbreak{}localization evidence ($P$), topology/\allowbreak{}accessibility ($T$), TME flags, stability checks, and coarse tiering. The figure reports stage-level counts and separates quantitative evidence layers from review flags and downstream hypothesis generation.
-
-\textbf{Figure 2. SurfPrior-GC surfaceome evidence landscape and GPI-anchor correction.} Source overlap and confidence summaries show how curated surfaceome resources, UniProt topology/\allowbreak{}GPI evidence, HPA localization, GO annotations, and SURFY support contribute to the 2,704-gene Core+\allowbreak{}Probable universe. Confirmed UniProt lipidation GPI-anchor evidence is credited as a source-wide non-experimental strong anchor during universe construction. Low $Surf$ values in the final ranking indicate lower relative confidence within the admitted universe, not absence from the surfaceome.
-
-\textbf{Figure 3. Tumor-normal selectivity and off-tumor risk landscape.} Candidate genes are positioned by TCGA-STAD tumor expression, stomach and critical-normal selectivity, and conservative organ-risk context. $R$ is a high-worse component and is subtracted in the integrated score. The display illustrates why tumor abundance, normal selectivity, and off-tumor risk must be interpreted jointly rather than as independent target-readiness claims.
-
-\textbf{Figure 4. Multi-layer evidence heatmap for the top 30 ranked candidates.} The heatmap summarizes $Surf$, $E$, $N$, $R$, $P$, $T$, missingness, TME flags, topology/\allowbreak{}accessibility, and coarse tiers for the top-ranked candidates from the final frozen ranking. Tiers are unordered within Tier 1, Tier 2, and Watchlist. Watchlist entries document immune, stromal, endothelial, ubiquitous, or thin-evidence cases that would be overinterpreted by a score-only view.
-
-\textbf{Figure 5. Tumor microenvironment specificity fallback.} Bulk TCGA-STAD marker-module and ESTIMATE-adjusted partial-correlation outputs flag likely CAF/\allowbreak{}fibroblast, endothelial, myeloid/\allowbreak{}macrophage, T-cell, and B/\allowbreak{}plasma compartment signals among top candidates. These outputs are flags only and do not replace cell-resolved single-cell or spatial validation. $SC$ remains \texttt{not\_\allowbreak{}available} and is not imputed in the primary score.
-
-\textbf{Figure 6. Rank stability and weighting sensitivity.} (a) Rank-stability heatmap from weight perturbation, leave-one-layer-out, missing-data, risk-form, organ-weight, and post-scoring resolution analyses. (b) Weighting-sensitivity bumpchart comparing the primary pre-specified ranking with safety-prioritized, ADC-focused, novelty-focused, protein-evidence-focused, and robust-aggregate contexts. Stability supports coarse tiers and explicit caveats, but not fine within-tier ordering.
-
-\textbf{Figure 7. Benchmark-control behavior.} Positive, secondary, negative, and TME/\allowbreak{}off-tumor controls are shown as diagnostics of pipeline behavior rather than as tuning targets. Positive-control top50 recovery is reported as imperfect, isoform-specific benchmarks remain unresolved where expression is gene-level, intracellular negative controls are excluded from Core+\allowbreak{}Probable, and \textit{PECAM1} is retained as the documented vascular/\allowbreak{}TME exception handled by Watchlist tiering.
-
-\textbf{Figure 8. Tier 1 candidate panel.} The six unordered Tier 1 hypotheses are \textit{ITGB4}, \textit{CDH3}, \textit{NECTIN2}, \textit{CEACAM5}, \textit{JAG1}, and \textit{EPCAM}. The panel summarizes component evidence, Wang 2026 concordance, and candidate-specific caveats. These nominations are experimentally testable hypotheses and do not imply clinical efficacy, clinical safety, antigen density, internalization, or wet-lab validation.
-
-\section{Table captions}
-
-\textbf{Table 1. Public datasets, versions, uses, and limitations.} Primary and secondary sources used for the workflow, including Xena/\allowbreak{}Toil TCGA-STAD/\allowbreak{}GTEx RNA, GDC and cBioPortal metadata, HPA IHC/\allowbreak{}localization/\allowbreak{}RNA files, UniProt reviewed-human topology/\allowbreak{}GPI features, curated surfaceome resources, TISCH2 candidate-level scRNA context, and optional resources not admitted into the numeric primary score. The table records source versions, checksum manifests where applicable, and interpretation limits.
-
-\textbf{Table 2. Score components and primary weights.} Definitions, directions, weights, primary sources, normalization conventions, and principal limitations for $Surf$, $E$, $N$, $R$, $P$, $SC$, and $T$. $R$ is high-worse and subtracted;\allowbreak{} $SC$ remains unavailable with zero weight;\allowbreak{} missing components are handled by exclude-and-renormalize during scoring and by tier restrictions during interpretation.
-
-\textbf{Table 3. Tier 1 and Tier 2 candidates.} Coarse unordered Tier 1 and Tier 2 nominations from the final frozen ranking, stability outputs, and manual curation. Columns report rank, score, prevalence flag, stability frequency, component values, Wang 2026 class/\allowbreak{}glyco-outlier context, and the principal caveat. The table is a hypothesis list, not a clinical target list.
-
-\textbf{Table 4. Benchmark-control diagnostics.} Positive controls, secondary benchmarks, intracellular negative controls, and TME/\allowbreak{}off-tumor controls used to assess whether the pipeline behaves plausibly. Control behavior is reported honestly, including the failed aggregate positive-control top50 gate and the cause-level interpretation of misses. Controls were not used to retune weights or rescue individual candidates.
-
+\FloatBarrier
 \section{Supplementary material}
 
 Supplementary material is supplied separately for Editorial Manager. Supplementary File 1 contains the table manifest for Supplementary Tables S1-S24, including titles, repository paths, availability status, and archived-data-package coverage. Supplementary File 2 contains candidate flags and interpretation guardrails for the top 30 ranked candidates, including TME risk, normal-risk interpretation, accessibility class, HPA status, discordance flags, missing primary components, isoform-resolution status, and candidate-specific caveats.
 
+\FloatBarrier
 \section{Data and code availability}
 
 All inputs used in the current analysis are public resources. Downloaded or captured raw/\allowbreak{}source files are listed in the release manifest, dataset registry, download manifest, and provenance log, with checksums where files are stored locally. Mutable API captures, including cBioPortal clinical/\allowbreak{}GISTIC JSON files, are treated as frozen archived inputs for release reproduction;\allowbreak{} live re-downloads are best-effort transparency checks rather than the default reproducibility claim.
 
-Analysis code is available at https:/\allowbreak{}/\allowbreak{}github.com/\allowbreak{}vicenzoscavino1999/\allowbreak{}surfaceome-gastric-cancer under final code release tag \texttt{v0.1.5}. The frozen reproducibility data package for release candidate \texttt{v0.1.0-rc4} is archived on Zenodo at https:/\allowbreak{}/\allowbreak{}zenodo.org/\allowbreak{}records/\allowbreak{}20498705 with DOI \path{10.5281/zenodo.20498705}. The active frozen ranking table has SHA256 \texttt{9504\allowbreak{}0ede\allowbreak{}f1b2\allowbreak{}a50c\allowbreak{}9ab1\allowbreak{}d610\allowbreak{}4285\allowbreak{}6485\allowbreak{}bbfc\allowbreak{}ac98\allowbreak{}e9f5\allowbreak{}1d4c\allowbreak{}b78c\allowbreak{}be05\allowbreak{}c46e\allowbreak{}9631}, with file-level metadata in \path{results/rankings/ranking_v2_frozen.metadata.yaml}.
+Analysis code is available at https:/\allowbreak{}/\allowbreak{}github.com/\allowbreak{}vicenzoscavino1999/\allowbreak{}surfaceome-gastric-cancer under final code release tag \texttt{v0.1.6}. The frozen reproducibility data package for release candidate \texttt{v0.1.0-rc4} is archived on Zenodo at https:/\allowbreak{}/\allowbreak{}zenodo.org/\allowbreak{}records/\allowbreak{}20498705 with DOI \path{10.5281/zenodo.20498705}. The active frozen ranking table has SHA256 \texttt{9504\allowbreak{}0ede\allowbreak{}f1b2\allowbreak{}a50c\allowbreak{}9ab1\allowbreak{}d610\allowbreak{}4285\allowbreak{}6485\allowbreak{}bbfc\allowbreak{}ac98\allowbreak{}e9f5\allowbreak{}1d4c\allowbreak{}b78c\allowbreak{}be05\allowbreak{}c46e\allowbreak{}9631}, with file-level metadata in \path{results/rankings/ranking_v2_frozen.metadata.yaml}.
 
 The repository includes smoke tests, unit tests, manuscript checks, Snakemake dry-run checks, GitHub Actions small CI, and manual full-data release-audit hooks documented in the README and reproducibility guide. No new patient samples, wet-lab data, or restricted-access clinical data were generated for this study.
 
+\FloatBarrier
 \section{Declarations}
 
 \textbf{Ethics approval and consent to participate.} Not applicable. This study uses publicly available, de-identified, aggregate, or open-access research data and does not generate new human-subject samples.
@@ -373,222 +553,11 @@ The repository includes smoke tests, unit tests, manuscript checks, Snakemake dr
 
 \textbf{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process.} During the preparation of this work, the author used OpenAI Codex to support manuscript organization, language editing, and repository-oriented consistency checks. The author reviewed, revised, verified, and approved the final manuscript and accepts full responsibility for its content.
 
+\FloatBarrier
 \section{Acknowledgements}
 
 The author acknowledges the developers, maintainers, data generators, and participants behind TCGA, GTEx, GDC, UCSC Xena/\allowbreak{}Toil, HPA, UniProt, HGNC, cBioPortal, TCSA, CSPA, SURFY, ESTIMATE/\allowbreak{}tidyestimate, TISCH2, the underlying public gastric single-cell datasets, and the Wang 2026 open-access gastric proteogenomic atlas. No endorsement by those projects is implied.
 
 \bibliography{cbc_references}
-
-\clearpage
-
-\section*{Review figures and main tables}
-
-The following pages embed the main display items for the review PDF. The same figures and editable table files are also supplied separately in the Editorial Manager package.
-
-\clearpage
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f1_phase16_pipeline_overview.pdf}
-\caption{SurfPrior-GC reproducible public-data workflow for gastric cancer surface-target prioritization. The workflow begins with frozen public inputs, identifier normalization, and construction of a Core+\allowbreak{}Probable surfaceome universe, then computes tumor expression ($E$), normal selectivity ($N$), high-worse off-tumor risk ($R$), HPA protein/\allowbreak{}localization evidence ($P$), topology/\allowbreak{}accessibility ($T$), TME flags, stability checks, and coarse tiering. The figure reports stage-level counts and separates quantitative evidence layers from review flags and downstream hypothesis generation.}\label{fig:review-1}
-\end{figure}
-
-\clearpage
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f2_phase16_surfaceome_evidence_landscape.pdf}
-\caption{SurfPrior-GC surfaceome evidence landscape and GPI-anchor correction. Source overlap and confidence summaries show how curated surfaceome resources, UniProt topology/\allowbreak{}GPI evidence, HPA localization, GO annotations, and SURFY support contribute to the 2,704-gene Core+\allowbreak{}Probable universe. Confirmed UniProt lipidation GPI-anchor evidence is credited as a source-wide non-experimental strong anchor during universe construction. Low $Surf$ values in the final ranking indicate lower relative confidence within the admitted universe, not absence from the surfaceome.}\label{fig:review-2}
-\end{figure}
-
-\clearpage
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f3_phase16_tumor_normal_selectivity.pdf}
-\caption{Tumor-normal selectivity and off-tumor risk landscape. Candidate genes are positioned by TCGA-STAD tumor expression, stomach and critical-normal selectivity, and conservative organ-risk context. $R$ is a high-worse component and is subtracted in the integrated score. The display illustrates why tumor abundance, normal selectivity, and off-tumor risk must be interpreted jointly rather than as independent target-readiness claims.}\label{fig:review-3}
-\end{figure}
-
-\clearpage
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f4_phase16_multilayer_heatmap_top30.pdf}
-\caption{Multi-layer evidence heatmap for the top 30 ranked candidates. The heatmap summarizes $Surf$, $E$, $N$, $R$, $P$, $T$, missingness, TME flags, topology/\allowbreak{}accessibility, and coarse tiers for the top-ranked candidates from the final frozen ranking. Tiers are unordered within Tier 1, Tier 2, and Watchlist. Watchlist entries document immune, stromal, endothelial, ubiquitous, or thin-evidence cases that would be overinterpreted by a score-only view.}\label{fig:review-4}
-\end{figure}
-
-\clearpage
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f5_top_candidates_scRNA_dotplot.pdf}
-\caption{Tumor microenvironment specificity fallback. Bulk TCGA-STAD marker-module and ESTIMATE-adjusted partial-correlation outputs flag likely CAF/\allowbreak{}fibroblast, endothelial, myeloid/\allowbreak{}macrophage, T-cell, and B/\allowbreak{}plasma compartment signals among top candidates. These outputs are flags only and do not replace cell-resolved single-cell or spatial validation. $SC$ remains \texttt{not\_\allowbreak{}available} and is not imputed in the primary score.}\label{fig:review-5}
-\end{figure}
-
-\clearpage
-\begin{figure}[p]
-\centering
-\textbf{a.}
-\includegraphics[width=\linewidth,height=0.34\textheight,keepaspectratio]{f6a_rank_stability_heatmap.pdf}
-\par\vspace{0.5em}
-\textbf{b.}
-\includegraphics[width=\linewidth,height=0.42\textheight,keepaspectratio]{f6b_bumpchart_scenarios.pdf}
-\par\vspace{0.5em}
-\caption{Rank stability and weighting sensitivity. (a) Rank-stability heatmap from weight perturbation, leave-one-layer-out, missing-data, risk-form, organ-weight, and post-scoring resolution analyses. (b) Weighting-sensitivity bumpchart comparing the primary pre-specified ranking with safety-prioritized, ADC-focused, novelty-focused, protein-evidence-focused, and robust-aggregate contexts. Stability supports coarse tiers and explicit caveats, but not fine within-tier ordering.}\label{fig:review-6}
-\end{figure}
-
-\clearpage
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f7_phase16_benchmark_controls.pdf}
-\caption{Benchmark-control behavior. Positive, secondary, negative, and TME/\allowbreak{}off-tumor controls are shown as diagnostics of pipeline behavior rather than as tuning targets. Positive-control top50 recovery is reported as imperfect, isoform-specific benchmarks remain unresolved where expression is gene-level, intracellular negative controls are excluded from Core+\allowbreak{}Probable, and \textit{PECAM1} is retained as the documented vascular/\allowbreak{}TME exception handled by Watchlist tiering.}\label{fig:review-7}
-\end{figure}
-
-\clearpage
-\begin{figure}[p]
-\centering
-\includegraphics[width=\linewidth,height=0.82\textheight,keepaspectratio]{f8_phase16_tier1_candidate_panel.pdf}
-\caption{Tier 1 candidate panel. The six unordered Tier 1 hypotheses are \textit{ITGB4}, \textit{CDH3}, \textit{NECTIN2}, \textit{CEACAM5}, \textit{JAG1}, and \textit{EPCAM}. The panel summarizes component evidence, Wang 2026 concordance, and candidate-specific caveats. These nominations are experimentally testable hypotheses and do not imply clinical efficacy, clinical safety, antigen density, internalization, or wet-lab validation.}\label{fig:review-8}
-\end{figure}
-
-\clearpage
-\begin{landscape}
-\begingroup
-\tiny
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.13}
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.100\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.140\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.110\linewidth}>{\raggedright\arraybackslash}p{0.090\linewidth}>{\raggedright\arraybackslash}p{0.120\linewidth}>{\raggedright\arraybackslash}p{0.190\linewidth}@{}}
-\caption{Public datasets, versions, uses, and limitations. Primary and secondary sources used for the workflow, including Xena/\allowbreak{}Toil TCGA-STAD/\allowbreak{}GTEx RNA, GDC and cBioPortal metadata, HPA IHC/\allowbreak{}localization/\allowbreak{}RNA files, UniProt reviewed-human topology/\allowbreak{}GPI features, curated surfaceome resources, TISCH2 candidate-level scRNA context, and optional resources not admitted into the numeric primary score. The table records source versions, checksum manifests where applicable, and interpretation limits.}\label{tab:review-1}\\
-\toprule
-\textbf{source id} & \textbf{source name} & \textbf{primary use} & \textbf{analysis stage} & \textbf{version or release} & \textbf{status} & \textbf{checksum manifest} & \textbf{limitation or note} \\
-\midrule
-\endfirsthead
-\caption[]{Public datasets, versions, uses, and limitations. Primary and secondary sources used for the workflow, including Xena/\allowbreak{}Toil TCGA-STAD/\allowbreak{}GTEx RNA, GDC and cBioPortal metadata, HPA IHC/\allowbreak{}localization/\allowbreak{}RNA files, UniProt reviewed-human topology/\allowbreak{}GPI features, curated surfaceome resources, TISCH2 candidate-level scRNA context, and optional resources not admitted into the numeric primary score. The table records source versions, checksum manifests where applicable, and interpretation limits. (continued)}\\
-\toprule
-\textbf{source id} & \textbf{source name} & \textbf{primary use} & \textbf{analysis stage} & \textbf{version or release} & \textbf{status} & \textbf{checksum manifest} & \textbf{limitation or note} \\
-\midrule
-\endhead
-xena\_\allowbreak{}toil\_\allowbreak{}tcga\_\allowbreak{}gtex & UCSC Xena /\allowbreak{} Toil RNA-seq recompute & Primary TCGA-STAD vs GTEx stomach RNA matrix & source acquisition download;\allowbreak{} inventory metadata complete & Toil recompute;\allowbreak{} matrix Last-Modified Fri, 09 Apr 2021 20:01:53 GMT & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}matrix\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}xena\_\allowbreak{}toil\_\allowbreak{}sha256.tsv & Expression unit to register as log2(TPM+\allowbreak{}0.001);\allowbreak{} phenotype counted without downloading matrix. \\
-gdc\_\allowbreak{}tcga\_\allowbreak{}stad & GDC TCGA-STAD API & TCGA clinical, biospecimen, STAR-count RNA-seq sensitivity & inventory metadata complete;\allowbreak{} source acquisition selected downloads & GDC API live query & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}raw\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}gdc\_\allowbreak{}tcga\_\allowbreak{}stad\_\allowbreak{}sha256.tsv & GDC STAR counts are secondary sensitivity, not the primary TCGA-GTEx matrix. \\
-cbioportal\_\allowbreak{}stad\_\allowbreak{}tcga & cBioPortal TCGA-STAD clinical & TCGA subtype and legacy clinical field availability & inventory metadata complete & stad\_\allowbreak{}tcga and stad\_\allowbreak{}tcga\_\allowbreak{}pan\_\allowbreak{}can\_\allowbreak{}atlas\_\allowbreak{}2018 API studies & metadata\_\allowbreak{}verified & data/\allowbreak{}checksums/\allowbreak{}cbioportal\_\allowbreak{}sha256.tsv & Used for TCGA molecular subtype counts and legacy histology fields. \\
-hpa\_\allowbreak{}downloads & Human Protein Atlas downloadable TSV & Normal IHC, cancer IHC, subcellular location, tissue RNA cross-checks & inventory metadata complete;\allowbreak{} source acquisition downloads & HPA 25.1;\allowbreak{} Ensembl 109 & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}raw\_\allowbreak{}saved & data/\allowbreak{}checksums/\allowbreak{}hpa\_\allowbreak{}sha256.tsv & HPA final5.1 replaces older plan filenames normal\_\allowbreak{}tissue.tsv/\allowbreak{}pathology.tsv with current normal\_\allowbreak{}ihc\_\allowbreak{}data.tsv/\allowbreak{}cancer\_\allowbreak{}data.tsv. \\
-uniprot\_\allowbreak{}reviewed\_\allowbreak{}human & UniProtKB reviewed human & Protein identifiers, topology, TM, extracellular domains, signal peptides & inventory metadata complete;\allowbreak{} surfaceome universe ID mapping/\allowbreak{}topology & 2026\_\allowbreak{}01 & metadata\_\allowbreak{}verified & data/\allowbreak{}checksums/\allowbreak{}uniprot\_\allowbreak{}sha256.tsv & Universe-specific reviewed coverage waits for HGNC/\allowbreak{}Ensembl/\allowbreak{}UniProt mapping. \\
-depmap & DepMap Portal Context Explorer & Gastric/\allowbreak{}GEJ cell-line expression and CRISPR dependency evidence & inventory metadata complete;\allowbreak{} inventory1 optional annotation & DepMap Portal current release;\allowbreak{} 26Q1 label observed on portal & metadata\_\allowbreak{}verified & data/\allowbreak{}checksums/\allowbreak{}depmap\_\allowbreak{}sha256.tsv & 104 Esophagus/\allowbreak{}Stomach models;\allowbreak{} EGC subset is the closest adenocarcinoma set. \\
-pdc\_\allowbreak{}cptac\_\allowbreak{}gastric & NCI Proteomic Data Commons gastric/\allowbreak{}STAD studies & Incremental proteomics, phosphoproteomics, glycoproteomics, and related omics & inventory metadata complete;\allowbreak{} optional after HPA/\allowbreak{}scRNA/\allowbreak{}external RNA & PDC GraphQL live query & metadata\_\allowbreak{}verified\_\allowbreak{}no\_\allowbreak{}raw\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}pdc\_\allowbreak{}cptac\_\allowbreak{}sha256.tsv & Candidate gene protein coverage remains TBD until Protein Assembly reports are downloaded and mapped. \\
-scrna\_\allowbreak{}gastric\_\allowbreak{}candidates & TISCH2/\allowbreak{}GEO gastric cancer scRNA candidates & Malignant epithelial vs TME specificity layer & inventory candidate inventory;\allowbreak{} TME specificity fallback quality gate & GEO/\allowbreak{}TISCH2 current at access date & candidate\_\allowbreak{}sources\_\allowbreak{}identified\_\allowbreak{}not\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}scrna\_\allowbreak{}sha256.tsv & Do not include in main score until annotation quality and processed matrix availability pass gate. \\
-external\_\allowbreak{}bulk\_\allowbreak{}rna\_\allowbreak{}cohorts & GEO/\allowbreak{}ACRG external gastric expression cohorts & External RNA validation cohort & inventory candidate inventory;\allowbreak{} tumor expression-7 optional validation & GEO current at access date & candidate\_\allowbreak{}sources\_\allowbreak{}identified\_\allowbreak{}not\_\allowbreak{}downloaded & data/\allowbreak{}checksums/\allowbreak{}external\_\allowbreak{}bulk\_\allowbreak{}rna\_\allowbreak{}sha256.tsv & Layer is incremental;\allowbreak{} avoid delaying primary if batch/\allowbreak{}platform harmonization becomes expensive. \\
-structure\_\allowbreak{}sources & RCSB PDB and AlphaFold DB & Candidate-level ECD/\allowbreak{}structure annotations & inventory0 candidate-level optional layer & Current APIs at candidate query date & source\_\allowbreak{}declared\_\allowbreak{}not\_\allowbreak{}assessed & data/\allowbreak{}checksums/\allowbreak{}structures\_\allowbreak{}sha256.tsv & Not needed before scoring;\allowbreak{} used for candidate cards and modality discussion. \\
-clinical\_\allowbreak{}druggability\_\allowbreak{}sources & Open Targets, ChEMBL, DGIdb, ClinicalTrials.gov & Clinical/\allowbreak{}druggability annotations & inventory2 candidate-level annotation & Current APIs at candidate query date & source\_\allowbreak{}declared\_\allowbreak{}not\_\allowbreak{}assessed & data/\allowbreak{}checksums/\allowbreak{}clinical\_\allowbreak{}druggability\_\allowbreak{}sha256.tsv & Used for candidate cards and tiering context, not to inflate discovery score. \\
-\bottomrule
-\end{longtable}
-\endgroup
-\end{landscape}
-
-\clearpage
-\begin{landscape}
-\begingroup
-\tiny
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.13}
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.080\linewidth}>{\raggedright\arraybackslash}p{0.200\linewidth}>{\raggedright\arraybackslash}p{0.080\linewidth}>{\raggedright\arraybackslash}p{0.100\linewidth}>{\raggedright\arraybackslash}p{0.150\linewidth}>{\raggedright\arraybackslash}p{0.140\linewidth}>{\raggedright\arraybackslash}p{0.230\linewidth}@{}}
-\caption{Score components and primary weights. Definitions, directions, weights, primary sources, normalization conventions, and principal limitations for $Surf$, $E$, $N$, $R$, $P$, $SC$, and $T$. $R$ is high-worse and subtracted;\allowbreak{} $SC$ remains unavailable with zero weight;\allowbreak{} missing components are handled by exclude-and-renormalize during scoring and by tier restrictions during interpretation.}\label{tab:review-2}\\
-\toprule
-\textbf{component} & \textbf{definition} & \textbf{primary weight} & \textbf{direction} & \textbf{primary source} & \textbf{normalization} & \textbf{main limitation} \\
-\midrule
-\endfirsthead
-\caption[]{Score components and primary weights. Definitions, directions, weights, primary sources, normalization conventions, and principal limitations for $Surf$, $E$, $N$, $R$, $P$, $SC$, and $T$. $R$ is high-worse and subtracted;\allowbreak{} $SC$ remains unavailable with zero weight;\allowbreak{} missing components are handled by exclude-and-renormalize during scoring and by tier restrictions during interpretation. (continued)}\\
-\toprule
-\textbf{component} & \textbf{definition} & \textbf{primary weight} & \textbf{direction} & \textbf{primary source} & \textbf{normalization} & \textbf{main limitation} \\
-\midrule
-\endhead
-Surf & surfaceome membership confidence;\allowbreak{} higher is better & 0.150000 & higher\_\allowbreak{}better & surfaceome\_\allowbreak{}universe.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & Membership confidence within admitted Core+\allowbreak{}Probable universe;\allowbreak{} not direct antigen density. \\
-E & tumor expression and prevalence;\allowbreak{} higher is better & 0.200000 & higher\_\allowbreak{}better & TCGA-STAD tumor\_\allowbreak{}expression.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & Bulk RNA;\allowbreak{} no malignant epithelial isolation. \\
-N & tumor-normal selectivity;\allowbreak{} higher is better & 0.200000 & higher\_\allowbreak{}better & selectivity\_\allowbreak{}scores.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & TCGA/\allowbreak{}GTEx source effects remain explicit. \\
-R & on-target/\allowbreak{}off-tumor risk;\allowbreak{} higher is worse and is subtracted & 0.200000 & higher\_\allowbreak{}worse\_\allowbreak{}subtracted & off\_\allowbreak{}tumor\_\allowbreak{}risk.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & High-worse off-tumor risk is subtracted;\allowbreak{} risk form is sensitivity-tested. \\
-P & protein/\allowbreak{}localization evidence;\allowbreak{} higher is better & 0.150000 & higher\_\allowbreak{}better & protein\_\allowbreak{}evidence.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & HPA bulk IHC lacks antibody-level and patient-level membrane fields. \\
-SC & tumor-cell specificity versus TME;\allowbreak{} higher is better;\allowbreak{} optional in primary & 0.000000 & higher\_\allowbreak{}better & single\_\allowbreak{}cell\_\allowbreak{}specificity.tsv (not\_\allowbreak{}available in primary score) & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & No processed annotated gastric scRNA matrix admitted into the score;\allowbreak{} not counted in the primary score. \\
-T & topology, extracellular accessibility, and isoform confidence;\allowbreak{} higher is better & 0.100000 & higher\_\allowbreak{}better & topology\_\allowbreak{}isoforms\_\allowbreak{}ecd.tsv & rank\_\allowbreak{}percentile\_\allowbreak{}or\_\allowbreak{}fixed\_\allowbreak{}scale & Topology/\allowbreak{}gene-level isoform annotations do not resolve CLDN18.2 or FGFR2b expression. \\
-\bottomrule
-\end{longtable}
-\endgroup
-\end{landscape}
-
-\clearpage
-\begin{landscape}
-\begingroup
-\tiny
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.13}
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.030\linewidth}>{\raggedright\arraybackslash}p{0.050\linewidth}>{\raggedright\arraybackslash}p{0.050\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.040\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.055\linewidth}>{\raggedright\arraybackslash}p{0.300\linewidth}@{}}
-\caption{Tier 1 and Tier 2 candidates. Coarse unordered Tier 1 and Tier 2 nominations from the final frozen ranking, stability outputs, and manual curation. Columns report rank, score, prevalence flag, stability frequency, component values, Wang 2026 class/\allowbreak{}glyco-outlier context, and the principal caveat. The table is a hypothesis list, not a clinical target list.}\label{tab:review-3}\\
-\toprule
-\textbf{rank} & \textbf{gene} & \textbf{tier} & \textbf{primary score} & \textbf{prevalence flag} & \textbf{primary top20 freq} & \textbf{Surf} & \textbf{E} & \textbf{N} & \textbf{R high worse} & \textbf{P} & \textbf{T} & \textbf{wang class} & \textbf{wang glyco outlier rank} & \textbf{principal caveat} \\
-\midrule
-\endfirsthead
-\caption[]{Tier 1 and Tier 2 candidates. Coarse unordered Tier 1 and Tier 2 nominations from the final frozen ranking, stability outputs, and manual curation. Columns report rank, score, prevalence flag, stability frequency, component values, Wang 2026 class/\allowbreak{}glyco-outlier context, and the principal caveat. The table is a hypothesis list, not a clinical target list. (continued)}\\
-\toprule
-\textbf{rank} & \textbf{gene} & \textbf{tier} & \textbf{primary score} & \textbf{prevalence flag} & \textbf{primary top20 freq} & \textbf{Surf} & \textbf{E} & \textbf{N} & \textbf{R high worse} & \textbf{P} & \textbf{T} & \textbf{wang class} & \textbf{wang glyco outlier rank} & \textbf{principal caveat} \\
-\midrule
-\endhead
-1 & ITGB4 & Tier 1 & 0.626035 & Broad & 1.000 & 0.600000 & 0.988126 & 0.995176 & 0.364564 & 0.889044 & 0.789308 & Membrane & 292 & CAVEAT: basal/\allowbreak{}stratified epithelial (skin keratinocyte/\allowbreak{}hemidesmosome) normal expression;\allowbreak{} skin not in organ-risk model so R may under-weight it;\allowbreak{} preclinical agents only \\
-6 & CDH3 & Tier 1 & 0.608164 & Broad & 1.000 & 0.600000 & 0.831911 & 0.961410 & 0.312987 & 0.954444 & 0.789308 & Membrane & NA & established TAA;\allowbreak{} confirm membranous tumor IHC in pass 2 \\
-9 & NECTIN2 & Tier 1 & 0.588737 & Broad & 1.000 & 0.600000 & 0.980705 & 0.988497 & 0.599629 & 0.972610 & 0.789308 & Membrane & NA & CAVEAT: purity-adjusted myeloid/\allowbreak{}DC partial 0.32 p\ensuremath{<}0.001 +\allowbreak{} LAMP3+\allowbreak{} DC checkpoint literature;\allowbreak{} closest-to-threshold Tier 1 member;\allowbreak{} single-cell confirmation needed (user-confirmed Tier 1 2026-05-31) \\
-12 & CEACAM5 & Tier 1 & 0.584828 & Broad & 1.000 & 0.600000 & 0.918738 & 0.936178 & 0.470501 & 0.984349 & 0.702923 & ADC/\allowbreak{}Antibody & 4 & apical/\allowbreak{}normal GI epithelial expression;\allowbreak{} specificity review \\
-13 & JAG1 & Tier 1 & 0.584280 & Broad & 1.000 & 0.600000 & 0.917625 & 0.813729 & 0.470501 & 0.989939 & 0.936182 & Membrane & NA & CAVEAT: dual tumor-epithelial +\allowbreak{} endothelial/\allowbreak{}vascular (angiocrine) expression;\allowbreak{} most compartment-exposed Tier 1 member;\allowbreak{} surface-targetable (neutralizing mAbs) but needs single-cell resolution \\
-14 & EPCAM & Tier 1 & 0.580488 & Broad & 1.000 & 0.600000 & 0.964007 & 0.989239 & 0.599629 & 0.840973 & 0.936182 & ADC/\allowbreak{}Antibody & 22 & high normal epithelial expression (preregistered normal-expression penalty) \\
-7 & MPZL1 & Tier 2 & 0.605739 & Broad & 1.000 & 0.600000 & 0.974026 & 0.994434 & 0.470501 & 0.964226 & 0.715131 & Membrane & 371 & needs cell-resolution to confirm tumor-epithelial origin \\
-8 & ITGB5 & Tier 2 & 0.595199 & Broad & 1.000 & 0.600000 & 0.959184 & 0.858627 & 0.470501 & 0.947457 & 0.936182 & Membrane & 40 & high TME +\allowbreak{} broad expression \\
-10 & BST2 & Tier 2 & 0.586798 & Broad & 1.000 & 0.800000 & 0.985158 & 0.878108 & 0.364564 & 0.536333 & 0.866075 & Membrane & NA & membrane localization discordance;\allowbreak{} hematopoietic risk \\
-11 & IFNGR1 & Tier 2 & 0.585684 & Broad & 1.000 & 0.600000 & 0.952876 & 0.824490 & 0.470501 & 0.937954 & 0.936182 & Membrane & 141 & ubiquitous cytokine receptor, no tumor selectivity \\
-16 & ALPG & Tier 2 & 0.574731 & Moderate & 0.840 & 0.600000 & 0.513544 & 0.980334 & 0.085343 & 0.781163 & 0.858491 & Approved Non Oncology & NA & excellent normal-tissue window but ranking is single-layer dependent \\
-18 & DSC2 & Tier 2 & 0.573364 & Broad & 0.900 & 0.600000 & 0.799629 & 0.803340 & 0.312987 & 0.976244 & 0.789308 & Membrane & 49 & literature reports DOWNregulation in tumor (poor window) \\
-19 & TNFRSF11A & Tier 2 & 0.572773 & Broad & 0.940 & 0.600000 & 0.737291 & 0.939889 & 0.290167 & 0.842929 & 0.789308 & Membrane & NA & weak gastric-specific antibody rationale (denosumab targets ligand) \\
-20 & ERBB2 & Tier 2 & 0.568251 & Broad & 0.340 & 0.600000 & 0.968089 & 0.952134 & 0.599629 & 0.901342 & 0.789308 & ADC/\allowbreak{}Antibody & 232 & established HER2 benchmark;\allowbreak{} NOT forced to Tier 1;\allowbreak{} robust top50, heterogeneity-consistent \\
-25 & CD9 & Tier 2 & 0.560111 & Broad & 0.020 & 0.600000 & 0.991095 & 0.892022 & 0.470501 & 0.923421 & 0.490751 & NA & NA & short extracellular loops limit antibody access \\
-26 & LSR & Tier 2 & 0.559871 & Broad & 0.040 & 0.400000 & 0.989981 & 0.998516 & 0.599629 & 0.954444 & 0.789308 & NA & NA & favorable literature window;\allowbreak{} tight-junction accessibility caveat \\
-28 & CDH17 & Tier 2 & 0.557068 & Broad & 0.000 & 0.400000 & 0.848237 & 0.871614 & 0.364564 & 0.882616 & 0.936182 & Membrane & 19 & GI-restricted surface-antigen program with clinical-stage CAR-T/\allowbreak{}ADC context;\allowbreak{} bulk ranking conservative \\
-30 & TGFBR1 & Tier 2 & 0.553247 & Broad & 0.000 & 0.600000 & 0.860482 & 0.920594 & 0.470501 & 0.951928 & 0.583426 & Experimental & NA & ubiquitous signaling receptor, no tumor selectivity \\
-\bottomrule
-\end{longtable}
-\endgroup
-\end{landscape}
-
-\clearpage
-\begin{landscape}
-\begingroup
-\tiny
-\setlength{\tabcolsep}{2pt}
-\renewcommand{\arraystretch}{1.13}
-\begin{longtable}{@{}>{\raggedright\arraybackslash}p{0.100\linewidth}>{\raggedright\arraybackslash}p{0.060\linewidth}>{\raggedright\arraybackslash}p{0.200\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.070\linewidth}>{\raggedright\arraybackslash}p{0.130\linewidth}>{\raggedright\arraybackslash}p{0.190\linewidth}@{}}
-\caption{Benchmark-control diagnostics. Positive controls, secondary benchmarks, intracellular negative controls, and TME/\allowbreak{}off-tumor controls used to assess whether the pipeline behaves plausibly. Control behavior is reported honestly, including the failed aggregate positive-control top50 gate and the cause-level interpretation of misses. Controls were not used to retune weights or rescue individual candidates.}\label{tab:review-4}\\
-\toprule
-\textbf{control set} & \textbf{gene} & \textbf{expected} & \textbf{presence status} & \textbf{baseline rank} & \textbf{top20 frequency} & \textbf{top50 frequency} & \textbf{leave one layer rank range} & \textbf{interpretation} \\
-\midrule
-\endfirsthead
-\caption[]{Benchmark-control diagnostics. Positive controls, secondary benchmarks, intracellular negative controls, and TME/\allowbreak{}off-tumor controls used to assess whether the pipeline behaves plausibly. Control behavior is reported honestly, including the failed aggregate positive-control top50 gate and the cause-level interpretation of misses. Controls were not used to retune weights or rescue individual candidates. (continued)}\\
-\toprule
-\textbf{control set} & \textbf{gene} & \textbf{expected} & \textbf{presence status} & \textbf{baseline rank} & \textbf{top20 frequency} & \textbf{top50 frequency} & \textbf{leave one layer rank range} & \textbf{interpretation} \\
-\midrule
-\endhead
-positive\_\allowbreak{}control & ERBB2 & top\_\allowbreak{}50\_\allowbreak{}in\_\allowbreak{}balanced\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}biological\_\allowbreak{}exception & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 20 & 0.340000 & 1.000000 & 10-46 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-positive\_\allowbreak{}control & CLDN18 & top\_\allowbreak{}100\_\allowbreak{}in\_\allowbreak{}balanced\_\allowbreak{}and\_\allowbreak{}isoform\_\allowbreak{}flag\_\allowbreak{}present & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 1474 & 0.000000 & 0.000000 & 886-2154 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-positive\_\allowbreak{}control & FGFR2 & top\_\allowbreak{}100\_\allowbreak{}or\_\allowbreak{}subtype\_\allowbreak{}amplification\_\allowbreak{}flag & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 1333 & 0.000000 & 0.000000 & 918-1953 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-positive\_\allowbreak{}control & TACSTD2 & ranked\_\allowbreak{}with\_\allowbreak{}normal\_\allowbreak{}risk\_\allowbreak{}flag & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 202 & 0.000000 & 0.000000 & 162-323 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-positive\_\allowbreak{}control & EPCAM & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}normal\_\allowbreak{}expression\_\allowbreak{}penalty & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 14 & 1.000000 & 1.000000 & 6-38 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-positive\_\allowbreak{}control & CEACAM5 & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}specificity\_\allowbreak{}review & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 12 & 1.000000 & 1.000000 & 8-34 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-positive\_\allowbreak{}control & MET & ranked\_\allowbreak{}or\_\allowbreak{}flagged\_\allowbreak{}for\_\allowbreak{}heterogeneity & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 45 & 0.000000 & 0.788000 & 27-105 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-positive\_\allowbreak{}control & MSLN & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}coverage\_\allowbreak{}gap & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 158 & 0.000000 & 0.000000 & 48-316 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-secondary\_\allowbreak{}benchmark & CEACAM6 & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}specificity\_\allowbreak{}review & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 57 & 0.000000 & 0.244000 & 29-119 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-secondary\_\allowbreak{}benchmark & ERBB3 & ranked\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}if\_\allowbreak{}low\_\allowbreak{}in\_\allowbreak{}STAD & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 101 & 0.000000 & 0.000000 & 19-274 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-secondary\_\allowbreak{}benchmark & GUCY2C & surface\_\allowbreak{}evidence\_\allowbreak{}positive\_\allowbreak{}with\_\allowbreak{}gi\_\allowbreak{}normal\_\allowbreak{}expression\_\allowbreak{}flag & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 345 & 0.000000 & 0.000000 & 132-641 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-secondary\_\allowbreak{}benchmark & SLC44A4 & topology\_\allowbreak{}and\_\allowbreak{}ecd\_\allowbreak{}review\_\allowbreak{}required & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 427 & 0.000000 & 0.000000 & 241-953 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-secondary\_\allowbreak{}benchmark & NECTIN4 & ranked\_\allowbreak{}or\_\allowbreak{}documented\_\allowbreak{}if\_\allowbreak{}expression\_\allowbreak{}low\_\allowbreak{}or\_\allowbreak{}risk\_\allowbreak{}high & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 389 & 0.000000 & 0.000000 & 202-709 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-negative\_\allowbreak{}control & ACTB & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-negative\_\allowbreak{}control & GAPDH & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-negative\_\allowbreak{}control & H3C1 & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-negative\_\allowbreak{}control & TOMM20 & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}surfaceome\_\allowbreak{}core & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-negative\_\allowbreak{}control & CALR & not\_\allowbreak{}tier\_\allowbreak{}1\_\allowbreak{}without\_\allowbreak{}context\_\allowbreak{}specific\_\allowbreak{}surface\_\allowbreak{}evidence & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-negative\_\allowbreak{}control & ALB & not\_\allowbreak{}top\_\allowbreak{}100\_\allowbreak{}and\_\allowbreak{}not\_\allowbreak{}cell\_\allowbreak{}surface\_\allowbreak{}target & not\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & \textemdash{} & \textemdash{} & \textemdash{} & \textemdash{} & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-tme\_\allowbreak{}or\_\allowbreak{}off\_\allowbreak{}tumor\_\allowbreak{}penalty\_\allowbreak{}control & PTPRC & surface\_\allowbreak{}evidence\_\allowbreak{}allowed\_\allowbreak{}but\_\allowbreak{}not\_\allowbreak{}tier\_\allowbreak{}1\_\allowbreak{}for\_\allowbreak{}epithelial\_\allowbreak{}tumor\_\allowbreak{}targeting & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 636 & 0.000000 & 0.000000 & 290-1230 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-tme\_\allowbreak{}or\_\allowbreak{}off\_\allowbreak{}tumor\_\allowbreak{}penalty\_\allowbreak{}control & PECAM1 & surface\_\allowbreak{}evidence\_\allowbreak{}allowed\_\allowbreak{}but\_\allowbreak{}not\_\allowbreak{}tier\_\allowbreak{}1\_\allowbreak{}for\_\allowbreak{}epithelial\_\allowbreak{}tumor\_\allowbreak{}targeting & ranked\_\allowbreak{}in\_\allowbreak{}core\_\allowbreak{}probable\_\allowbreak{}universe & 15 & 1.000000 & 1.000000 & 15-39 & benchmark\_\allowbreak{}diagnostic\_\allowbreak{}not\_\allowbreak{}weight\_\allowbreak{}tuning \\
-\bottomrule
-\end{longtable}
-\endgroup
-\end{landscape}
 
 \end{document}

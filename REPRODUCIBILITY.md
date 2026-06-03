@@ -69,7 +69,7 @@ The release uses four explicit levels:
 
 `docs/source_acquisition_policy.md` records the release boundary for API/manual acquisitions. cBioPortal/GISTIC, GDC metadata, TISCH2 candidate-context files, Wang 2026 `mmc8.xlsx`, endpoint inventory snapshots, and manual curation artifacts are frozen inputs with checksum/provenance records. The frozen data package is archived on Zenodo at https://zenodo.org/records/20498705 with DOI `10.5281/zenodo.20498705`; live refreshes are best-effort only.
 
-The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final code release tag is `v0.1.5`; the archival DOI for the frozen `v0.1.0-rc4` input bundle is `10.5281/zenodo.20498705`.
+The public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer. The final code release tag is `v0.1.6`; the archival DOI for the frozen `v0.1.0-rc4` input bundle is `10.5281/zenodo.20498705`.
 
 ## Reviewer Audit Path
 

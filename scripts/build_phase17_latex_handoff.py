@@ -251,20 +251,66 @@ def extract_between(source: str, start: str, end: str) -> str:
 def render_body(source: str, keys: list[str]) -> str:
     body_end_marker = "## Graphical abstract caption" if "## Graphical abstract caption" in source else "## References"
     body = source.split("## 1. Introduction", 1)[1].split(body_end_marker, 1)[0]
-    lines = ["\\section{Introduction}"]
+
+    # Pre-render each display once; place it inline at its first prose mention so the
+    # preprint reads like a finished paper instead of collecting everything at the end.
+    figure_floats = {fid: render_figure_plate(fid, files, source, keys) for fid, files in FIGURE_PLATES}
+    table_floats = {tid: render_table_plate(tid, path, source, keys) for tid, path in TABLE_PLATES}
+    inserted: set[str] = set()
+
+    def emit_displays_for(text: str, out: list[str]) -> None:
+        # Figures are cited as "Fig. N" in prose; the full word "Figure 7" refers to an
+        # external (Wang) panel, so match only the abbreviated form to avoid mis-placement.
+        for fid, _ in FIGURE_PLATES:
+            key = "F" + fid
+            if key not in inserted and re.search(rf"Fig\.\s*{fid}(?![0-9])", text):
+                out.append("")
+                out.append(figure_floats[fid])
+                inserted.add(key)
+        for tid, _ in TABLE_PLATES:
+            key = "T" + tid
+            if key not in inserted and re.search(rf"Table\s*{tid}(?![0-9])", text):
+                out.append("")
+                out.append(table_floats[tid])
+                inserted.add(key)
+
+    lines = [r"\FloatBarrier", r"\section{Introduction}"]
+    skip_section = False
     for line in body.splitlines()[1:]:
         stripped = line.strip()
         equation_match = re.fullmatch(r"`([^`]+)`\.?", stripped)
         if line.startswith("## "):
+            title = line[3:].strip()
+            if title in {"Figure captions", "Table captions"}:
+                skip_section = True  # captions now live inline under each float
+                continue
+            skip_section = False
+            lines.append(r"\FloatBarrier")
             lines.append(section_command(line[3:], level=2, keys=keys))
         elif line.startswith("### "):
+            if skip_section:
+                continue
             lines.append(section_command(line[4:], level=3, keys=keys))
+        elif skip_section:
+            continue
         elif equation_match and equation_match.group(1) in EQUATIONS:
             lines.append(EQUATIONS[equation_match.group(1)])
         elif line:
             lines.append(format_inline(line, keys))
+            emit_displays_for(stripped, lines)
         else:
             lines.append("")
+
+    leftovers: list[str] = []
+    for fid, _ in FIGURE_PLATES:
+        if "F" + fid not in inserted:
+            leftovers.append(figure_floats[fid])
+    for tid, _ in TABLE_PLATES:
+        if "T" + tid not in inserted:
+            leftovers.append(table_floats[tid])
+    if leftovers:
+        lines.append(r"\FloatBarrier")
+        lines.extend(leftovers)
     return "\n".join(lines).strip()
 
 
@@ -356,8 +402,7 @@ def render_figure_plate(display_id: str, files: list[str], source: str, keys: li
         ]
         return "\n".join(
             [
-                r"\clearpage",
-                r"\begin{figure}[p]",
+                r"\begin{figure}[htbp]",
                 r"\centering",
                 *graphics,
                 rf"\caption{{{caption}}}\label{{fig:review-{display_id}}}",
@@ -381,8 +426,7 @@ def render_figure_plate(display_id: str, files: list[str], source: str, keys: li
             )
     return "\n".join(
         [
-            r"\clearpage",
-            r"\begin{figure}[p]",
+            r"\begin{figure}[htbp]",
             r"\centering",
             *graphics,
             rf"\caption{{{caption}}}\label{{fig:review-{display_id}}}",
@@ -422,7 +466,6 @@ def build_cbc_tex(source: str, keys: list[str]) -> str:
         if keyword.strip()
     ]
     body = render_body(source, keys)
-    review_displays = render_review_displays(source, keys)
 
     return rf"""\documentclass[preprint,12pt,authoryear]{{elsarticle}}
 
@@ -436,6 +479,7 @@ def build_cbc_tex(source: str, keys: list[str]) -> str:
 \usepackage{{graphicx}}
 \graphicspath{{{{./figures/}}{{./}}}}
 \usepackage{{longtable}}
+\IfFileExists{{placeins.sty}}{{\usepackage[section]{{placeins}}}}{{\providecommand{{\FloatBarrier}}{{}}}}
 \IfFileExists{{pdflscape.sty}}{{\usepackage{{pdflscape}}}}{{\usepackage{{lscape}}}}
 \usepackage{{url}}
 \usepackage[hidelinks]{{hyperref}}
@@ -467,8 +511,6 @@ def build_cbc_tex(source: str, keys: list[str]) -> str:
 {body}
 
 \bibliography{{cbc_references}}
-
-{review_displays}
 
 \end{{document}}
 """
