@@ -1,9 +1,9 @@
-version: "0.1.4"
+version: "0.1.5"
 created: "2026-05-28"
 status: "fase17j_post_tag_reproducibility_hardening_prepared"
 public_repository:
   url: "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer"
-  final_code_release_tag: "v0.1.4"
+  final_code_release_tag: "v0.1.5"
   archived_data_package_code_tag: "v0.1.0-rc4"
   archival_doi_status: "published_zenodo_record"
   archival_doi: "10.5281/zenodo.20498705"

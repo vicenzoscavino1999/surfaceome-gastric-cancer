@@ -38,6 +38,6 @@ Generated from repository sources. Do not edit these packaged files directly.
 - manuscript_table5_candidate_flags.tsv
 
 ## External blockers
-- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; final code release tag is v0.1.4; archival DOI is 10.5281/zenodo.20498705.
+- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; final code release tag is v0.1.5; archival DOI is 10.5281/zenodo.20498705.
 - Add full postal address in Editorial Manager if required.
 - Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.

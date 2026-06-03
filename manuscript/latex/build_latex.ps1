@@ -20,6 +20,11 @@ try {
     if ($LASTEXITCODE -ne 0) {
         throw "latexmk failed with exit code $LASTEXITCODE"
     }
+    $rotateScript = Join-Path $PSScriptRoot "..\..\scripts\finalize_landscape_rotation.py"
+    python $rotateScript "cbc_manuscript.pdf"
+    if ($LASTEXITCODE -ne 0) {
+        throw "landscape rotation post-processing failed with exit code $LASTEXITCODE"
+    }
 }
 finally {
     $env:LANG = $previousLang

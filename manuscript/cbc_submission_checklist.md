@@ -73,5 +73,5 @@ https://submit.elsevier.com/CBAC
 - [x] Re-run local smoke-test equivalent, unit tests, Snakemake dry-run, and Phase 17 manuscript/figure checks.
 - [x] Add reviewer-facing reproducibility guide and aggregate check command.
 - [x] Add frozen-source acquisition policy and split GitHub Actions CI/manual release-audit workflow.
-- [ ] Record the clean clone/container audit on the final public tag `v0.1.4` after push (no data, score, or ranking change; frozen ranking SHA256 unchanged; `v0.1.0-rc4` DOI-bound data-package archival complete).
+- [ ] Record the clean clone/container audit on the final public tag `v0.1.5` after push (no data, score, or ranking change; frozen ranking SHA256 unchanged; `v0.1.0-rc4` DOI-bound data-package archival complete).
 - [ ] Reconfirm Guide for Authors requirements immediately before submission.

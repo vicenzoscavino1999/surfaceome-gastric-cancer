@@ -6,7 +6,7 @@ authors:
   - family-names: "Scavino Alfaro"
     given-names: "Vicenzo"
     orcid: "https://orcid.org/0009-0000-2472-9785"
-version: "0.1.4"
+version: "0.1.5"
 date-released: "2026-06-02"
 repository-code: "https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer"
 abstract: "A reproducible public-data framework for uncertainty-aware gastric cancer surface-target prioritization with a GPI-anchor evidence-routing audit."
