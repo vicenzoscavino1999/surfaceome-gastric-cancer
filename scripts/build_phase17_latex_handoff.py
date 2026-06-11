@@ -21,6 +21,7 @@ AUTHOR_ORCID = "0009-0000-2472-9785"
 AUTHOR_AFFILIATION = "Independent Researcher"
 AUTHOR_CITY = "Lima"
 AUTHOR_COUNTRY = "Peru"
+CBC_CLASS_OPTIONS = "review,12pt,authoryear"
 
 GENE_SYMBOLS = {
     "ALPG",
@@ -435,28 +436,6 @@ def render_figure_plate(display_id: str, files: list[str], source: str, keys: li
     )
 
 
-def render_review_displays(source: str, keys: list[str]) -> str:
-    figure_blocks = [
-        render_figure_plate(display_id, files, source, keys) for display_id, files in FIGURE_PLATES
-    ]
-    table_blocks = [
-        render_table_plate(table_id, path, source, keys) for table_id, path in TABLE_PLATES
-    ]
-    return "\n\n".join(
-        [
-            r"\clearpage",
-            r"\section*{Review figures and main tables}",
-            (
-                "The following pages embed the main display items for the review PDF. "
-                "The same figures and editable table files are also supplied separately "
-                "in the Editorial Manager package."
-            ),
-            *figure_blocks,
-            *table_blocks,
-        ]
-    )
-
-
 def build_cbc_tex(source: str, keys: list[str]) -> str:
     title = source.splitlines()[0].lstrip("\ufeff").removeprefix("# ").strip()
     abstract = extract_between(source, "## Abstract", "## Keywords")
@@ -467,7 +446,7 @@ def build_cbc_tex(source: str, keys: list[str]) -> str:
     ]
     body = render_body(source, keys)
 
-    return rf"""\documentclass[preprint,12pt,authoryear]{{elsarticle}}
+    return rf"""\documentclass[{CBC_CLASS_OPTIONS}]{{elsarticle}}
 
 \IfFileExists{{cmap.sty}}{{\usepackage{{cmap}}}}{{}}
 \usepackage[utf8]{{inputenc}}

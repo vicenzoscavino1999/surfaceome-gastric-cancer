@@ -63,6 +63,37 @@ REQUIRED_FILES = [
     "results/tables/candidate_scrna_tisch2_summary.tsv",
 ]
 
+PACKAGE_REQUIRED_FILES = [
+    "PACKAGE_README.md",
+    "cbc_manuscript.tex",
+    "cbc_references.bib",
+    "cbc_manuscript.bbl",
+    "cbc_manuscript.pdf",
+    "elsarticle.cls",
+    "elsarticle-num.bst",
+    "plainnat.bst",
+    "cbc_highlights.md",
+    "cbc_cover_letter_draft.md",
+    "cbc_suggested_referees_draft.md",
+    "graphical_abstract.tiff",
+    "cbc_supplementary_material.md",
+    "supplementary_table_manifest.tsv",
+    "manuscript_table1_datasets.tsv",
+    "manuscript_table2_score_definitions.tsv",
+    "manuscript_table3_top_candidates.tsv",
+    "manuscript_table4_controls.tsv",
+    "manuscript_table5_candidate_flags.tsv",
+    "f1_phase16_pipeline_overview.pdf",
+    "f2_phase16_surfaceome_evidence_landscape.pdf",
+    "f3_phase16_tumor_normal_selectivity.pdf",
+    "f4_phase16_multilayer_heatmap_top30.pdf",
+    "f5_top_candidates_scRNA_dotplot.pdf",
+    "f6a_rank_stability_heatmap.pdf",
+    "f6b_bumpchart_scenarios.pdf",
+    "f7_phase16_benchmark_controls.pdf",
+    "f8_phase16_tier1_candidate_panel.pdf",
+]
+
 ACTIVE_TEXT_FILES = [
     "docs/fase17_manuscript_brief.md",
     "manuscript/cbc_manuscript_scaffold.md",
@@ -159,6 +190,7 @@ def main() -> int:
         "subscription route",
         "no publication fee charged to authors",
         "USD 3,150",
+        "Format rechecked on 2026-06-10",
         "preprints anywhere at any time",
         "author-year citations",
         "research-data Option C",
@@ -277,7 +309,7 @@ def main() -> int:
             failures.append(f"unable to validate graphical abstract raster {path}: {exc}")
 
     for needle in [
-        r"\documentclass[preprint,12pt,authoryear]{elsarticle}",
+        r"\documentclass[review,12pt,authoryear]{elsarticle}",
         r"\journal{Computational Biology and Chemistry}",
         r"\bibliographystyle{plainnat}",
         r"\bibliography{cbc_references}",
@@ -295,9 +327,11 @@ def main() -> int:
         if needle not in latex_manuscript:
             failures.append(f"CBC LaTeX handoff missing required phrase: {needle}")
     for forbidden in [
+        r"\documentclass[preprint,12pt,authoryear]{elsarticle}",
         r"\documentclass[twocolumn]{article}",
         r"\bibliographystyle{unsrtnat}",
         r"\bibliography{csbj_references}",
+        r"\section*{Review figures and main tables}",
     ]:
         if forbidden in latex_manuscript:
             failures.append(f"CBC LaTeX handoff contains obsolete formatting phrase: {forbidden}")
@@ -328,6 +362,18 @@ def main() -> int:
         failures.append("CBC LaTeX handoff title contains a literal Markdown heading marker")
     if (ROOT / "manuscript/latex/cbc_manuscript.pdf").stat().st_size == 0:
         failures.append("CBC LaTeX handoff PDF preview is empty")
+
+    package_dir = ROOT / "manuscript/cbc_editorial_manager_package"
+    package_subdirs = [path.name for path in package_dir.iterdir() if path.is_dir()]
+    if package_subdirs:
+        failures.append(
+            "CBC Editorial Manager package must be flat; subdirectories present: "
+            + ", ".join(sorted(package_subdirs))
+        )
+    for name in PACKAGE_REQUIRED_FILES:
+        path = package_dir / name
+        if not path.exists() or path.stat().st_size == 0:
+            failures.append(f"CBC Editorial Manager package missing or empty file: {name}")
 
     for needle in [
         "subscription route",

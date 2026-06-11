@@ -1,10 +1,16 @@
 # Computational Biology and Chemistry Submission Checklist
 
-Verified against the current ScienceDirect/Elsevier Guide for Authors and open-access information pages on 2026-06-01:
+Verified against the current ScienceDirect/Elsevier Guide for Authors, article-sharing policy, graphical-abstract guidance, artwork checklist, and LaTeX instructions on 2026-06-10:
 
 https://www.sciencedirect.com/journal/computational-biology-and-chemistry/publish/guide-for-authors
 
-https://www.sciencedirect.com/journal/computational-biology-and-chemistry/publish/open-access-options
+https://www.elsevier.com/about/policies-and-standards/sharing
+
+https://www.elsevier.com/researcher/author/tools-and-resources/graphical-abstract
+
+https://www.elsevier.com/about/policies-and-standards/author/artwork-and-media-instructions/artwork-formats-checklist
+
+https://www.elsevier.com/researcher/author/policies-and-guidelines/latex-instructions
 
 https://submit.elsevier.com/CBAC
 
@@ -34,10 +40,11 @@ https://submit.elsevier.com/CBAC
 - [x] Reference list expanded from 20 to 39 entries after the pre-submission novelty/literature audit.
 - [x] Generate author-year citations for the Elsevier/CBC handoff.
 - [x] Use Elsevier `elsarticle` class with a CBC journal declaration.
+- [x] Use the Elsevier `elsarticle` review profile for a double-spaced submission manuscript.
 - [x] Render equations in LaTeX math mode rather than monospace.
 - [x] Render candidate gene symbols in italic rather than code font where Markdown backticks identify biological symbols.
 - [x] Convert manuscript SVG figures to font-independent publication PDFs with zero residual font resources.
-- [x] Embed main figures and main editable-table previews in the generated review PDF while retaining separate figure/table upload files.
+- [x] Embed main figures and main editable-table previews near first mention in the generated review PDF while retaining separate figure/table upload files.
 - [x] Recompile and visually inspect the current PDF after metadata and asset completion.
 - [x] Prepare a flat Editorial Manager upload package with `.tex`, bibliography/class/style files, tables, and figures at one directory level if LaTeX source upload is required.
 - [x] Run current local verification set: Phase 17 manuscript check, publication-figure check, LaTeX log screen, PDF visual render, unit tests, Snakemake dry-run, and manual `smoke-test` equivalent.
@@ -73,5 +80,5 @@ https://submit.elsevier.com/CBAC
 - [x] Re-run local smoke-test equivalent, unit tests, Snakemake dry-run, and Phase 17 manuscript/figure checks.
 - [x] Add reviewer-facing reproducibility guide and aggregate check command.
 - [x] Add frozen-source acquisition policy and split GitHub Actions CI/manual release-audit workflow.
-- [ ] Record the clean clone/container audit on the final public tag `v0.1.6` after push (no data, score, or ranking change; frozen ranking SHA256 unchanged; `v0.1.0-rc4` DOI-bound data-package archival complete).
-- [ ] Reconfirm Guide for Authors requirements immediately before submission.
+- [ ] Record the clean clone/container audit on the final public tag `v0.1.7` after push (no data, score, or ranking change; frozen ranking SHA256 unchanged; `v0.1.0-rc4` DOI-bound data-package archival complete).
+- [x] Reconfirm Guide for Authors requirements immediately before submission.

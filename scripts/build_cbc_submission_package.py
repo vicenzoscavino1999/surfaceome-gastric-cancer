@@ -69,7 +69,10 @@ def main() -> int:
     manifest: list[str] = []
     manifest.append("# CBC Editorial Manager flat package")
     manifest.append("")
-    manifest.append("Generated from repository sources. Do not edit these packaged files directly.")
+    manifest.append(
+        "Generated from repository sources for a Computational Biology and Chemistry "
+        "LaTeX submission. Do not edit these packaged files directly."
+    )
     manifest.append("")
     manifest.append("## Core files")
 
@@ -97,13 +100,16 @@ def main() -> int:
         manifest.append(f"- {copy_file(source)}")
 
     manifest.append("")
-    manifest.append("## External blockers")
+    manifest.append("## Human upload notes")
     manifest.append(
         "- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; "
-        "final code release tag is v0.1.6; archival DOI is 10.5281/zenodo.20498705."
+        "final code release tag is v0.1.7; archival DOI is 10.5281/zenodo.20498705."
     )
-    manifest.append("- Add full postal address in Editorial Manager if required.")
-    manifest.append("- Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.")
+    manifest.append("- Add the author's full postal address in Editorial Manager if the form requires it.")
+    manifest.append(
+        "- Suggested referees remain optional unless the submission system requests them; "
+        "a draft shortlist is included for author conflict confirmation."
+    )
 
     (PACKAGE_DIR / "PACKAGE_README.md").write_text("\n".join(manifest) + "\n", encoding="utf-8", newline="\n")
     print(f"Wrote flat CBC submission package: {PACKAGE_DIR}")

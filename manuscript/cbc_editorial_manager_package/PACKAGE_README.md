@@ -1,6 +1,6 @@
 # CBC Editorial Manager flat package
 
-Generated from repository sources. Do not edit these packaged files directly.
+Generated from repository sources for a Computational Biology and Chemistry LaTeX submission. Do not edit these packaged files directly.
 
 ## Core files
 - cbc_manuscript.tex
@@ -37,7 +37,7 @@ Generated from repository sources. Do not edit these packaged files directly.
 - supplementary_table_manifest.tsv
 - manuscript_table5_candidate_flags.tsv
 
-## External blockers
-- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; final code release tag is v0.1.6; archival DOI is 10.5281/zenodo.20498705.
-- Add full postal address in Editorial Manager if required.
+## Human upload notes
+- Public repository URL is https://github.com/vicenzoscavino1999/surfaceome-gastric-cancer; final code release tag is v0.1.7; archival DOI is 10.5281/zenodo.20498705.
+- Add the author's full postal address in Editorial Manager if the form requires it.
 - Suggested referees remain optional unless the submission system requests them; a draft shortlist is included for author conflict confirmation.
